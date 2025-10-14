@@ -12,6 +12,6 @@ public class YarnDialogueManager : MonoBehaviour
         dialogueRunner.SetProject(mainYarnProject);
 
         // Start with a specific node
-        await dialogueRunner.StartDialogue("Intro");
+        await dialogueRunner.StartDialogue("Start");
     }
 }
