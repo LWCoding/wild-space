@@ -1,0 +1,14 @@
+title: SitAround
+---
+<<show Sitting>>
+Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
+    -> (do some push-ups)
+        Narrator: You drop down and do a few push-ups to keep your strength up.
+    -> (contemplate the meaning of life)
+        Narrator: You ponder the vastness of existence and your place within it.
+    -> (think of something happy)
+        Narrator: You recall a fond memory that brings a smile to your face.
+    -> (no use sitting around. stand back up!)
+Narrator: You decide to get back to doing something. Anything is better than sitting around.
+<<hide Sitting>>
+===

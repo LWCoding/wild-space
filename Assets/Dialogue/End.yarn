@@ -1,0 +1,10 @@
+title: End
+---
+<<stop_voice_blip Cat>>
+<<hide_character Cat>>
+<<hide_character Dog>>
+<<hide_character DogObscure>>
+<<hide_character CatObscure>>
+Narrator: You've reached the end of the demo.
+Narrator: I couldn't be bothered to code anymore beyond this point. :')
+===

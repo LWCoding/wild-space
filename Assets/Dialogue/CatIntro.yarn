@@ -1,0 +1,20 @@
+title: CatIntro
+---
+<<stop_voice_blip Cat>>
+<<hide_character DogObscure>>
+Narrator: You decide not to engage the new figure.
+<<start_voice_blip Cat>>
+<<if $catKnowsAboutOtherFigure>>
+    <<positive_indicator Cat>>
+    <<show_character Cat Happy right>>
+    Cat: Good choice! You can never be too sure with strangers.
+<<endif>>
+Cat: Anyways, where were we? It looks like you might need some help there.
+    -> Help? With what?
+        Cat: Well, you seem to be stuck there. With limited oxygen!
+        <<stop_voice_blip Cat>>
+        Narrator: You notice that the meter you saw on the wall earlier continues to blink red.
+        <<start_voice_blip Cat>>
+        Cat: You should probably get out of there before you run out of air! I'm assuming you beings need that as well.
+<<jump End>>
+===

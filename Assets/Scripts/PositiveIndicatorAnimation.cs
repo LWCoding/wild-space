@@ -9,7 +9,7 @@ public class PositiveIndicatorAnimation : MonoBehaviour
 {
     [Header("Animation Settings")]
     [SerializeField] private float moveDistance = 2f; // How far up the sprite moves
-    [SerializeField] private float animationDuration = 1.5f; // How long the animation takes
+    [SerializeField] private float animationDuration = 1f; // How long the animation takes
     [SerializeField] private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); // Movement curve
     [SerializeField] private AnimationCurve fadeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0); // Fade curve
     

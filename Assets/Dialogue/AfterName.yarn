@@ -1,11 +1,12 @@
 ﻿title: AfterName
-position: -169,-98
+position: -31,-584
 ---
 <<declare $playerName = "Player">>
 <<once>>
-Narrator: Great, hello {$playerName}.
+Narrator: {$playerName}... {$playerName}... that sounds right to you.
 <<endonce>>
-Narrator: The room around you is cold, and seemingly empty.
+Narrator: You suddenly open your eyes, and realize that you are no longer suspended in mid-air.
+Narrator: You find yourself in a small, enclosed room. The walls are metallic, and there is a faint humming sound coming from the walls.
     -> Hello? Is anyone there?
         Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
         <<jump AfterName>>
@@ -17,22 +18,54 @@ Narrator: The room around you is cold, and seemingly empty.
 ===
 
 title: LookAround
-position: 121,-186
+position: -33,-341
 ---
 <<once>>
-Narrator: You take a look around. You're in some sort of... cold, dark, metallic room. Plates line the walls, and there is a faint humming sound coming from the walls.
-Narrator: Suddenly, the monitor in front of you jumps to life.
-<<show_character CatObscure Neutral right>>
+<<show ComputerSetup>>
+<<declare $toiletExplored = false>>
+<<declare $bedrollExplored = false>>
+<<declare $cannedFoodExplored = false>>
+<<declare $meterExplored = false>>
+<<declare $monitorExplored = false>>
 <<endonce>>
+Narrator: You take a look around. There's a monitor in front of you. The rest of the room is mostly empty, but seems stocked with a toilet, bedroll, canned food, and a strange meter on the wall.
+    -> Inspect the toilet. <<if $toiletExplored == false>>
+        Narrator: The toilet is a standard issue, but it looks like it hasn't been cleaned in a while. You'd rather not use it.
+        <<set $toiletExplored = true>>
+    -> Inspect the bedroll. <<if $bedrollExplored == false>>
+        Narrator: The bedroll is a simple sleeping mat. It looks like it hasn't been used in a while, but it seems comfortable enough.
+        <<set $bedrollExplored = true>>
+    -> Inspect the canned food. <<if $cannedFoodExplored == false>>
+        Narrator: The canned food is old, but it looks like it might still be edible. You decide to save it for later.
+        <<set $cannedFoodExplored = true>>
+    -> Inspect the meter on the wall. <<if $meterExplored == false>>
+        Narrator: The meter is blinking red. It seems to be some sort of oxygen level indicator. You should probably get out of here before you run out of air.
+        <<set $meterExplored = true>>
+    -> Inspect the monitor. <<if $monitorExplored == false>>
+        Narrator: The monitor is currently off. You wonder what it might display if it were on.
+        <<set $monitorExplored = true>>
+
+<<if $toiletExplored and $bedrollExplored and $cannedFoodExplored and $meterExplored and $monitorExplored>>
+    Narrator: You've inspected everything in the room.
+    <<hide ComputerSetup>>
+    <<detour SitAround>>
+    <<show ComputerSetup>>
+    <<jump MonitorOn>>
+<<else>>
+    <<jump LookAround>>
+<<endif>>
+===
+
+title: MonitorOn
+---
+Narrator: Suddenly, the monitor in front of you jumps to life. A dark figure appears on the screen, accompanied with a garbled, static-filled voice.
+<<show_character CatObscure Neutral right>>
 <<start_voice_blip CatObscure>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
-        <<stop_voice_blip CatObscure>>
-        Narrator: The voice does not seem to acknowledge your reply.
         <<start_voice_blip CatObscure>>
         ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
         <<stop_voice_blip CatObscure>>
-        <<show ComputerSetup>>
         Narrator: At this moment, you notice a keyboard. You may be able to communicate with it.
         -> Type, "Hello!"
             <<jump EnterMessage>>
@@ -40,13 +73,14 @@ Narrator: Suddenly, the monitor in front of you jumps to life.
             <<jump EnterMessage>>
         -> Type, "Seen any good movies lately?"
             <<jump EnterMessage>>
-        -> Stay silent.
+        -> (stay silent)
             <<jump EnterMessage>>
-    -> Stay silent.
+    -> (stay silent)
         <<jump Silence>>
 ===
 
 title: Silence
+position: -29,-144
 ---
 Narrator: The voice from the monitor continues to speak.
 <<start_voice_blip CatObscure>>
@@ -56,18 +90,20 @@ Narrator: The voice from the monitor continues to speak.
 ===
 
 title: EnterMessage
+position: 320,-340
 ---
 <<start_voice_blip CatObscure>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
 <<stop_voice_blip CatObscure>>
 Narrator: You notice a separated panel of dials. It seems like you need to adjust the frequency to let the signal through.
     -> Turn the left dial.
-        <<jump MonitorFixed>>
+        <<jump Introduction>>
     -> Turn the right dial.
-        <<jump MonitorFixed>>
+        <<jump Introduction>>
 ===
 
-title: MonitorFixed
+title: Introduction
+position: 316,-140
 ---
 Narrator: Suddenly, the monitor in front of you jumps to life.
 <<hide_character CatObscure>>
@@ -75,21 +111,14 @@ Narrator: Suddenly, the monitor in front of you jumps to life.
 <<start_voice_blip Cat>>
 ???: Meow! Hello!
     -> ...What?
-        <<jump Introduction>>
     -> Aww, you're so cute!
         <<positive_indicator Cat>>
-        <<jump Introduction>>
     -> (scream)
         <<stop_voice_blip Cat>>
         Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
         <<show_character Cat Neutral right>>
         <<start_voice_blip Cat>>
         ???: That... surely is a strange introduction, otherbeing.
-        <<jump Introduction>>
-===
-
-title: Introduction
----
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
 ???: Well, you seem to be in a bit of a pickle. What're you doing in space all by yourself?
@@ -97,29 +126,24 @@ title: Introduction
         <<show_character Cat Happy right>>
         <<positive_indicator Cat>>
         ???: Oh! You didn't know? You're in space! How exciting!
-        <<jump Introduction2>>
     -> Who... are you?
-        <<jump Introduction2>>
-===
-
-title: Introduction2
----
 Cat: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫喵, but you can just call me Cat. 
 Cat: I'm what you'd probably call an "alien lifeform". Meowdy!
     -> An alien lifeform?
         <<show_character Cat Thinking right>>
         Cat: Just another way to say that I'm not... from your planet of origin.
-        <<jump Introduction3>>
     -> 猫喵猫喵? What does that mean?
-        Cat: It's nothing you should worry yourself about.
-        <<jump Introduction3>>
+        <<show_character Cat Thinking right>>
+        Cat: It's... hard to explain. It's probably not something I can explain to you.
+        <<show_character Cat Happy right>>
+        Cat: Just call me Cat, it's easier that way.
     -> Meowdy?
         Cat: Meowdy.
-        <<jump Introduction3>>
-===
-
-title: Introduction3
----
+Cat: But anyways, what's your name?
+    -> My name's {$playerName}.
+        Cat: {$playerName}? What a nice name!
+    -> (stay silent)
+        Cat: Oh, you don't have a name? That's okay, I guess.
 <<declare $catKnowsAboutOtherFigure = false>>
 <<stop_voice_blip Cat>>
 <<show_character DogObscure Neutral left>>
@@ -129,51 +153,20 @@ Narrator: Just as Cat finishes their sentence, another silhouette appears on the
         <<start_voice_blip Cat>>
         <<set $catKnowsAboutOtherFigure = true>>
         Cat: Hm? Do you see someone else?
-        Cat: I wouldn't worry about it. Let's just keep talking!
+        Cat: I wouldn't worry about it.
             -> But what if they have something to say?
                 Cat: Don't.
                 Cat: It's probably not important.
                     -> (ignore the newcomer)
-                        <<jump IgnoreNewcomer>>
+                        <<jump CatIntro>>
                     -> (invite them in)
-                        <<jump InviteThemIn>>
+                        <<jump DogIntro>>
             -> (ignore the newcomer)
-                <<jump IgnoreNewcomer>>
+                <<jump CatIntro>>
             -> (invite them in)
-                <<jump InviteThemIn>>
+                <<jump DogIntro>>
     -> (ignore the newcomer)
-        <<jump IgnoreNewcomer>>
+        <<jump CatIntro>>
     -> (invite them in)
-        <<jump InviteThemIn>>
-===
-
-title: IgnoreNewcomer
----
-<<stop_voice_blip Cat>>
-<<hide_character DogObscure>>
-Narrator: You decide not to engage the new figure.
-<<if $catKnowsAboutOtherFigure>>
-    <<positive_indicator Cat>>
-    <<show_character Cat Happy right>>
-    Cat: Good choice! You can never be too sure with strangers.
-<<endif>>
-Cat: Anyways, where were we?
-<<jump EndOfDemo>>
-===
-
-title: InviteThemIn
----
-<<stop_voice_blip Cat>>
-Narrator: As you turn the dial, the monitor flickers, and the new figure becomes clearer. Cat fades into the background as the new figure takes center stage.
-<<hide_character Cat>>
-<<jump EndOfDemo>>
-===
-
-title: EndOfDemo
----
-<<stop_voice_blip Cat>>
-<<hide_character Cat>>
-<<hide_character DogObscure>>
-Narrator: You've reached the end of the demo.
-Narrator: I couldn't be bothered to code anymore beyond this point. :')
+        <<jump DogIntro>>
 ===
