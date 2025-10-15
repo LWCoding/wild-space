@@ -58,13 +58,12 @@ Narrator: The voice from the monitor continues to speak.
 title: EnterMessage
 ---
 <<start_voice_blip CatObscure>>
-<<positive_indicator CatObscure>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
 <<stop_voice_blip CatObscure>>
-Narrator: You notice a separated panel of buttons, connected to a microphone next to the monitor.
-    -> Click the left button.
+Narrator: You notice a separated panel of dials. It seems like you need to adjust the frequency to let the signal through.
+    -> Turn the left dial.
         <<jump MonitorFixed>>
-    -> Click the right button.
+    -> Turn the right dial.
         <<jump MonitorFixed>>
 ===
 
@@ -74,7 +73,7 @@ Narrator: Suddenly, the monitor in front of you jumps to life.
 <<hide_character CatObscure>>
 <<show_character Cat Happy right>>
 <<start_voice_blip Cat>>
-Cat?: Meow! Hello!
+???: Meow! Hello!
     -> ...What?
         <<jump Introduction>>
     -> Aww, you're so cute!
@@ -85,23 +84,96 @@ Cat?: Meow! Hello!
         Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
         <<show_character Cat Neutral right>>
         <<start_voice_blip Cat>>
-        Cat?: That... surely is a strange introduction, otherbeing.
+        ???: That... surely is a strange introduction, otherbeing.
         <<jump Introduction>>
 ===
 
 title: Introduction
 ---
 <<start_voice_blip Cat>>
-<<show_character Cat Happy right>>
-Cat?: Hi! :3
 <<show_character Cat Thinking right>>
-Cat?: You've actually reached the end of the demo, so I don't know what else to do.
-<<show_character CatObscure Neutral left>>
-Cat?: This is my friend. :333
-    -> Ok.
-        <<stop_voice_blip Cat>>
-        Narrator: This is literally all I coded.
-    -> What.
-        <<stop_voice_blip Cat>>
-        Narrator: This is literally all I coded.
+???: Well, you seem to be in a bit of a pickle. What're you doing in space all by yourself?
+    -> Space?!
+        <<show_character Cat Happy right>>
+        <<positive_indicator Cat>>
+        ???: Oh! You didn't know? You're in space! How exciting!
+        <<jump Introduction2>>
+    -> Who... are you?
+        <<jump Introduction2>>
+===
+
+title: Introduction2
+---
+Cat: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫喵, but you can just call me Cat. 
+Cat: I'm what you'd probably call an "alien lifeform". Meowdy!
+    -> An alien lifeform?
+        <<show_character Cat Thinking right>>
+        Cat: Just another way to say that I'm not... from your planet of origin.
+        <<jump Introduction3>>
+    -> 猫喵猫喵? What does that mean?
+        Cat: It's nothing you should worry yourself about.
+        <<jump Introduction3>>
+    -> Meowdy?
+        Cat: Meowdy.
+        <<jump Introduction3>>
+===
+
+title: Introduction3
+---
+<<declare $catKnowsAboutOtherFigure = false>>
+<<stop_voice_blip Cat>>
+<<show_character DogObscure Neutral left>>
+Narrator: Just as Cat finishes their sentence, another silhouette appears on the monitor.
+    -> Who is that?
+        <<show_character Cat Neutral right>>
+        <<start_voice_blip Cat>>
+        <<set $catKnowsAboutOtherFigure = true>>
+        Cat: Hm? Do you see someone else?
+        Cat: I wouldn't worry about it. Let's just keep talking!
+            -> But what if they have something to say?
+                Cat: Don't.
+                Cat: It's probably not important.
+                    -> (ignore the newcomer)
+                        <<jump IgnoreNewcomer>>
+                    -> (invite them in)
+                        <<jump InviteThemIn>>
+            -> (ignore the newcomer)
+                <<jump IgnoreNewcomer>>
+            -> (invite them in)
+                <<jump InviteThemIn>>
+    -> (ignore the newcomer)
+        <<jump IgnoreNewcomer>>
+    -> (invite them in)
+        <<jump InviteThemIn>>
+===
+
+title: IgnoreNewcomer
+---
+<<stop_voice_blip Cat>>
+<<hide_character DogObscure>>
+Narrator: You decide not to engage the new figure.
+<<if $catKnowsAboutOtherFigure>>
+    <<positive_indicator Cat>>
+    <<show_character Cat Happy right>>
+    Cat: Good choice! You can never be too sure with strangers.
+<<endif>>
+Cat: Anyways, where were we?
+<<jump EndOfDemo>>
+===
+
+title: InviteThemIn
+---
+<<stop_voice_blip Cat>>
+Narrator: As you turn the dial, the monitor flickers, and the new figure becomes clearer. Cat fades into the background as the new figure takes center stage.
+<<hide_character Cat>>
+<<jump EndOfDemo>>
+===
+
+title: EndOfDemo
+---
+<<stop_voice_blip Cat>>
+<<hide_character Cat>>
+<<hide_character DogObscure>>
+Narrator: You've reached the end of the demo.
+Narrator: I couldn't be bothered to code anymore beyond this point. :')
 ===
