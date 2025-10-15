@@ -4,11 +4,10 @@ position: -319,-6
 <<once>>
 Narrator: You wake up in a place completely unfamiliar to you.
 Narrator: You have no recollection of where, or who you are.
-<<endonce>>
 <<show_character Cat Happy right>>
+<<endonce>>
 Narrator: What do you do?
     -> Hello? Is anyone there?
-        <<show_character Cat Neutral right>>
         Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
         <<jump Start>>
     -> Where... am I?
@@ -16,6 +15,12 @@ Narrator: What do you do?
         <<jump Start>>
     -> (take a look around)
         <<jump LookAround>>
+    -> Talk to the weird fellow.
+        <<start_voice_blip Cat>>
+        Cat: Hi, I am a weird fellow indeed. It is very nice to meet you.
+        Narrator: They are so funny.
+        <<stop_voice_blip Cat>>
+        <<jump Start>>
 ===
 
 title: LookAround

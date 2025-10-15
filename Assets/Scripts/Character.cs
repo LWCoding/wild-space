@@ -11,8 +11,10 @@ public class Character : MonoBehaviour
 {
     private Coroutine currentVoiceBlipCoroutine;
     private bool isSpeaking = false;
+    private bool isVoiceBlipOn = false;
     private CharacterManager characterManager;
-    
+    private CharacterExpression lastSetExpression;
+
     /// <summary>
     /// Retrieves character data from the database when accessed
     /// </summary>
@@ -27,13 +29,24 @@ public class Character : MonoBehaviour
             return null;
         }
     }
-    
+
     void Awake()
     {
         // Find the CharacterManager
         characterManager = FindObjectOfType<CharacterManager>();
+
+        // Subscribe to the typewriter finished event to stop voice blips
+        LinePresenter.OnTypewriterFinished += OnTypewriterFinished;
+        LinePresenter.OnLineStarted += OnLineStarted;  // Resume voice blips if necessary
     }
-    
+
+    void OnDestroy()
+    {
+        // Unsubscribe to prevent memory leaks
+        LinePresenter.OnTypewriterFinished -= OnTypewriterFinished;
+        LinePresenter.OnLineStarted -= OnLineStarted;
+    }
+
     /// <summary>
     /// Shows this character with a specific expression at a designated position.
     /// Usage in Yarn: <<show_character CharacterName Expression Position>>
@@ -44,8 +57,6 @@ public class Character : MonoBehaviour
     [YarnCommand("show_character")]
     public void ShowCharacter(string expression, string position)
     {
-        Debug.Log($"ShowCharacter called on '{gameObject.name}' with expression '{expression}' and position '{position}'");
-        
         if (characterManager == null)
         {
             Debug.LogError("CharacterManager not found in scene!");
@@ -70,21 +81,18 @@ public class Character : MonoBehaviour
         // Update position and rotation
         transform.position = targetAnchor.position;
         transform.rotation = targetAnchor.rotation;
-        
+
         // Set the expression
         SetExpression(expression);
-        
+
         // Enable the character's SpriteRenderer
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = true;
-            Debug.Log($"Enabled SpriteRenderer for '{gameObject.name}', current sprite: {spriteRenderer.sprite?.name}");
         }
-        
-        Debug.Log($"Showed character '{gameObject.name}' with expression '{expression}' at position '{position}'");
     }
-    
+
     /// <summary>
     /// Hides this character by disabling their SpriteRenderer.
     /// Usage in Yarn: <<hide_character CharacterName>>
@@ -94,17 +102,15 @@ public class Character : MonoBehaviour
     {
         // Stop any active voice blips
         StopVoiceBlip();
-        
+
         // Disable the character's SpriteRenderer
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = false;
         }
-        
-        Debug.Log($"Hid character: {gameObject.name}");
     }
-    
+
     /// <summary>
     /// Starts voice blips for this character while they're speaking.
     /// Usage in Yarn: <<start_voice_blip CharacterName>>
@@ -117,34 +123,44 @@ public class Character : MonoBehaviour
             Debug.LogWarning($"No character data found for '{gameObject.name}'");
             return;
         }
-        
-        // Get the current expression (we'll use the default if no specific expression is set)
-        CharacterExpression currentExpression = CharacterData.defaultExpression;
+
+        // Use the last set expression, or fall back to default if none has been set
+        CharacterExpression currentExpression = lastSetExpression ?? CharacterData.defaultExpression;
         if (currentExpression == null || currentExpression.voiceBlip == null)
         {
             Debug.LogWarning($"No voice blip found for character '{gameObject.name}'");
             return;
         }
-        
+
         isSpeaking = true;
+        isVoiceBlipOn = true;
         currentVoiceBlipCoroutine = StartCoroutine(PlayVoiceBlips(currentExpression));
     }
-    
+
     /// <summary>
-    /// Stops the current voice blip for this character.
+    /// Stops this character from saying any more voice blips.
     /// Usage in Yarn: <<stop_voice_blip CharacterName>>
     /// </summary>
     [YarnCommand("stop_voice_blip")]
     public void StopVoiceBlip()
     {
+        ShutUp();
+        isVoiceBlipOn = false;
+    }
+
+    /// <summary>
+    /// Makes the character stop playing voice blips.
+    /// </summary>
+    private void ShutUp()
+    {
+        isSpeaking = false;
         if (currentVoiceBlipCoroutine != null)
         {
             StopCoroutine(currentVoiceBlipCoroutine);
             currentVoiceBlipCoroutine = null;
         }
-        isSpeaking = false;
     }
-    
+
     /// <summary>
     /// Sets the expression/sprite for this character.
     /// </summary>
@@ -156,7 +172,7 @@ public class Character : MonoBehaviour
             Debug.LogWarning($"No character data found for '{gameObject.name}'");
             return;
         }
-        
+
         // Get the expression data
         CharacterExpression expression = CharacterData.GetExpression(expressionName);
         if (expression == null)
@@ -164,20 +180,21 @@ public class Character : MonoBehaviour
             Debug.LogWarning($"No expression data found for '{expressionName}' on character '{gameObject.name}'");
             return;
         }
-        
+
         // Set the sprite if the character has a SpriteRenderer
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null && expression.expressionSprite != null)
         {
             spriteRenderer.sprite = expression.expressionSprite;
         }
-        
+
         // Apply default scale from character data
         transform.localScale = CharacterData.defaultScale;
-        
-        Debug.Log($"Set expression '{expression.expressionName}' for character '{gameObject.name}'");
+
+        // Store the last set expression for voice blip usage
+        lastSetExpression = expression;
     }
-    
+
     /// <summary>
     /// Coroutine that plays voice blips repeatedly
     /// </summary>
@@ -185,26 +202,23 @@ public class Character : MonoBehaviour
     private IEnumerator PlayVoiceBlips(CharacterExpression expression)
     {
         AudioSource audioSource = GetComponent<AudioSource>();
-        
+
         if (audioSource == null)
         {
             audioSource = gameObject.AddComponent<AudioSource>();
         }
-        
-        audioSource.clip = expression.voiceBlip;
-        audioSource.loop = false;
-        
+
         while (isSpeaking)
         {
-            if (audioSource.clip != null)
+            if (expression.voiceBlip != null)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(expression.voiceBlip);
             }
-            
+
             yield return new WaitForSeconds(expression.blipInterval);
         }
     }
-    
+
     /// <summary>
     /// Gets the character name.
     /// </summary>
@@ -213,7 +227,7 @@ public class Character : MonoBehaviour
     {
         return gameObject.name;
     }
-    
+
     /// <summary>
     /// Gets the character data.
     /// </summary>
@@ -222,4 +236,19 @@ public class Character : MonoBehaviour
     {
         return CharacterData;
     }
+
+    private void OnTypewriterFinished()
+    {
+        // Temporarily stop voice blips when the typewriter animation is complete
+        ShutUp();
+    }
+
+    private void OnLineStarted()
+    {
+        if (isVoiceBlipOn)
+        {
+            StartVoiceBlip();
+        }
+    }
+
 }

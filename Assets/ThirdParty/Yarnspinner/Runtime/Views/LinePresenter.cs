@@ -26,6 +26,17 @@ namespace Yarn.Unity
     [HelpURL("https://docs.yarnspinner.dev/using-yarnspinner-with-unity/components/dialogue-view/line-view")]
     public sealed class LinePresenter : DialoguePresenterBase
     {
+        /// <summary>
+        /// Static action that is called when the typewriter animation finishes.
+        /// This allows external scripts to be notified when dialogue text animation completes.
+        /// </summary>
+        public static System.Action? OnTypewriterFinished;
+        
+        /// <summary>
+        /// Static action that is called when a new dialogue line starts.
+        /// This allows external scripts to be notified when a new line begins.
+        /// </summary>
+        public static System.Action? OnLineStarted;
         enum TypewriterType
         {
             None, ByLetter, ByWord, Custom,
@@ -285,6 +296,9 @@ namespace Yarn.Unity
                 return;
             }
 
+            // Notify that a new line has started
+            OnLineStarted?.Invoke();
+
             MarkupParseResult text;
 
             // configuring the text fields
@@ -347,6 +361,9 @@ namespace Yarn.Unity
                 Text = this.lineText,
             };
             await typewriter.RunTypewriter(text, token.HurryUpToken);
+
+            // Notify that the typewriter animation has finished
+            OnTypewriterFinished?.Invoke();
 
             // if we are set to autoadvance how long do we hold for before continuing?
             if (autoAdvance)
