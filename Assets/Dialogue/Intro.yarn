@@ -15,12 +15,6 @@ Narrator: What do you do?
         <<jump Start>>
     -> (take a look around)
         <<jump LookAround>>
-    -> Talk to the weird fellow.
-        <<start_voice_blip Cat>>
-        Cat: Hi, I am a weird fellow indeed. It is very nice to meet you.
-        Narrator: They are so funny.
-        <<stop_voice_blip Cat>>
-        <<jump Start>>
 ===
 
 title: LookAround
