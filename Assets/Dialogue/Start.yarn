@@ -1,0 +1,8 @@
+﻿title: Start
+position: -319,-6
+---
+Narrator: You wake up in a place unfamiliar to you.
+Narrator: You have no recollection of where, or who you are.
+Narrator: Might as well choose a name for yourself.
+<<prompt_name NamePrompter>>
+===

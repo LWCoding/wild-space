@@ -1,0 +1,103 @@
+﻿title: AfterName
+position: -169,-98
+---
+<<declare $playerName = "Player">>
+<<once>>
+Narrator: Great, hello {$playerName}.
+<<endonce>>
+Narrator: The room around you is cold, and seemingly empty.
+    -> Hello? Is anyone there?
+        Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
+        <<jump AfterName>>
+    -> Where... am I?
+        Narrator: An echo from your voice bounces off the walls. Other than yourself, nobody responds to your question.
+        <<jump AfterName>>
+    -> (take a look around)
+        <<jump LookAround>>
+===
+
+title: LookAround
+position: 121,-186
+---
+<<once>>
+Narrator: You take a look around. You're in some sort of... cold, dark, metallic room. Plates line the walls, and there is a faint humming sound coming from the walls.
+Narrator: Suddenly, the monitor in front of you jumps to life.
+<<show_character CatObscure Neutral right>>
+<<endonce>>
+<<start_voice_blip CatObscure>>
+???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
+    -> Yes, I can hear you. Who are you?
+        <<stop_voice_blip CatObscure>>
+        Narrator: The voice on the other side does not seem to acknowledge your reply.
+        <<start_voice_blip CatObscure>>
+        ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
+        <<stop_voice_blip CatObscure>>
+        <<show ComputerSetup>>
+        Narrator: At this moment, you notice a keyboard in front of you. It seems you may be able to communicate with it.
+        -> Type, "Hello!"
+            <<jump EnterMessage>>
+        -> Type, "Who are you?"
+            <<jump EnterMessage>>
+        -> Type, "Seen any good movies lately?"
+            <<jump EnterMessage>>
+        -> Stay silent.
+            <<jump EnterMessage>>
+    -> Stay silent.
+        <<jump Silence>>
+===
+
+title: Silence
+---
+Narrator: The voice from the monitor continues to speak.
+<<start_voice_blip CatObscure>>
+???: Please... <i>*kshh*</i> if... there... yourself... known...
+<<stop_voice_blip CatObscure>>
+<<jump LookAround>>
+===
+
+title: EnterMessage
+---
+<<start_voice_blip CatObscure>>
+???: Click... <i>*bzzt*</i> comm... cation... panel...
+<<stop_voice_blip CatObscure>>
+Narrator: You notice a separated panel of buttons, connected to a microphone next to the monitor.
+    -> Click the left button.
+        <<jump MonitorFixed>>
+    -> Click the right button.
+        <<jump MonitorFixed>>
+===
+
+title: MonitorFixed
+---
+Narrator: Suddenly, the monitor in front of you jumps to life.
+<<hide_character CatObscure>>
+<<show_character Cat Happy right>>
+<<start_voice_blip Cat>>
+Cat?: Meow! Hello!
+    -> ...What?
+        <<jump Introduction>>
+    -> (scream)
+        <<stop_voice_blip Cat>>
+        Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
+        <<show_character Cat Neutral right>>
+        <<start_voice_blip Cat>>
+        Cat?: That... surely is a strange introduction, otherbeing.
+        <<jump Introduction>>
+===
+
+title: Introduction
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Happy right>>
+Cat?: Hi! :3
+<<show_character Cat Thinking right>>
+Cat?: You've actually reached the end of the demo, so I don't know what else to do.
+<<show_character CatObscure Neutral left>>
+Cat?: This is my friend. :333
+    -> Ok.
+        <<stop_voice_blip Cat>>
+        Narrator: This is literally all I coded.
+    -> What.
+        <<stop_voice_blip Cat>>
+        Narrator: This is literally all I coded.
+===
