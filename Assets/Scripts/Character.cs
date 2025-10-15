@@ -9,6 +9,9 @@ using System.Collections;
 /// </summary>
 public class Character : MonoBehaviour
 {
+    [Header("Character Assignments")]
+    [SerializeField] private GameObject positiveIndicatorPrefab;
+
     private Coroutine currentVoiceBlipCoroutine;
     private bool isSpeaking = false;
     private bool isVoiceBlipOn = false;
@@ -146,6 +149,12 @@ public class Character : MonoBehaviour
     {
         ShutUp();
         isVoiceBlipOn = false;
+    }
+
+    [YarnCommand("positive_indicator")]
+    public void PositiveIndicator()
+    {
+        Instantiate(positiveIndicatorPrefab, transform.position + Vector3.up * 1, Quaternion.identity);
     }
 
     /// <summary>

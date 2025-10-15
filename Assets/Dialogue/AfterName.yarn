@@ -26,14 +26,14 @@ Narrator: Suddenly, the monitor in front of you jumps to life.
 <<endonce>>
 <<start_voice_blip CatObscure>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
-    -> Yes, I can hear you. Who are you?
+    -> Who are you?
         <<stop_voice_blip CatObscure>>
-        Narrator: The voice on the other side does not seem to acknowledge your reply.
+        Narrator: The voice does not seem to acknowledge your reply.
         <<start_voice_blip CatObscure>>
         ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
         <<stop_voice_blip CatObscure>>
         <<show ComputerSetup>>
-        Narrator: At this moment, you notice a keyboard in front of you. It seems you may be able to communicate with it.
+        Narrator: At this moment, you notice a keyboard. You may be able to communicate with it.
         -> Type, "Hello!"
             <<jump EnterMessage>>
         -> Type, "Who are you?"
@@ -58,6 +58,7 @@ Narrator: The voice from the monitor continues to speak.
 title: EnterMessage
 ---
 <<start_voice_blip CatObscure>>
+<<positive_indicator CatObscure>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
 <<stop_voice_blip CatObscure>>
 Narrator: You notice a separated panel of buttons, connected to a microphone next to the monitor.
@@ -75,6 +76,9 @@ Narrator: Suddenly, the monitor in front of you jumps to life.
 <<start_voice_blip Cat>>
 Cat?: Meow! Hello!
     -> ...What?
+        <<jump Introduction>>
+    -> Aww, you're so cute!
+        <<positive_indicator Cat>>
         <<jump Introduction>>
     -> (scream)
         <<stop_voice_blip Cat>>
