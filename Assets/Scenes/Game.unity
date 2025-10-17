@@ -1125,13 +1125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709b94ad813dbc7479c82112de90d843, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterContainer: {fileID: 0}
-  _characterPrefab: {fileID: 0}
-  leftAnchor: {fileID: 0}
-  centerAnchor: {fileID: 0}
-  rightAnchor: {fileID: 0}
-  leftFarAnchor: {fileID: 0}
-  rightFarAnchor: {fileID: 0}
+  characterContainer: {fileID: 913853952}
+  _characterPrefab: {fileID: 3257140566696577627, guid: aa8b524c0596a49478263e3951bb646a, type: 3}
+  leftAnchor: {fileID: 106696850}
+  centerAnchor: {fileID: 1165409721}
+  rightAnchor: {fileID: 1306706245}
+  leftFarAnchor: {fileID: 1967380047}
+  rightFarAnchor: {fileID: 42871876}
 --- !u!1 &678714430
 GameObject:
   m_ObjectHideFlags: 0
