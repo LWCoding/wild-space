@@ -3,11 +3,12 @@ position: -319,-6
 ---
 <<show Stars>>
 <<show Drifting>>
+<<speed 0.4>>
 Narrator: It is silent. You are floating in the vast emptiness of space.
 Narrator: You are utterly alone. It feels... relaxing.
-Narrator: Back on Earth, nobody ever noticed you. You always felt invisible.
+Narrator: Back on Earth, you always felt invisible.
 Narrator: Nobody loves you. Nobody cares about you. 
-Narrator: You have no friends, no family, no purpose.
-Narrator: You feel yourself drifting aimlessly, with no purpose or direction. Might as well choose a name for yourself.
+Narrator: You have no friends, no living family, no purpose.
+Narrator: You drift aimlessly, with no purpose or direction. Might as well choose a name for yourself in the meantime.
 <<prompt_name NamePrompter>>
 ===
