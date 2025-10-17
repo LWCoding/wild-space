@@ -1,7 +1,11 @@
 title: Globals
 ---
+<<declare $catKnowsPlayerName = false>>
+<<declare $dogKnowsPlayerName = false>>
 <<declare $catLikesYou = 0>>
 <<declare $catDislikesYou = 0>>
 <<declare $dogLikesYou = 0>>
 <<declare $dogDislikesYou = 0>>
+<<declare $posSelfPerception = 0>>
+<<declare $negSelfPerception = 0>>
 ===
