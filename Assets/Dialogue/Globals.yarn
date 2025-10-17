@@ -1,0 +1,7 @@
+title: Globals
+---
+<<declare $catLikesYou = 0>>
+<<declare $catDislikesYou = 0>>
+<<declare $dogLikesYou = 0>>
+<<declare $dogDislikesYou = 0>>
+===

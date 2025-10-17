@@ -4,10 +4,11 @@ using UnityEngine;
 public class CharacterExpression : ScriptableObject
 {
     [Header("Expression Info")]
-    public string expressionName;
-    public Sprite expressionSprite;
+    public string ExpressionName;
+    public Sprite ExpressionSprite;
 
     [Header("Voice Blip")]
-    public AudioClip voiceBlip;
-    public float blipInterval = 0.1f;
+    public AudioClip VoiceBlip;
+    public float BlipInterval = 0.1f;
+    public float BlipVolume = 1.0f;
 }

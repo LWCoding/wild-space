@@ -27,7 +27,7 @@ public class CharacterData : ScriptableObject
             
         foreach (var expression in expressions)
         {
-            if (expression != null && expression.expressionName.ToLower() == expressionName.ToLower())
+            if (expression != null && expression.ExpressionName.ToLower() == expressionName.ToLower())
             {
                 return expression;
             }
@@ -49,7 +49,7 @@ public class CharacterData : ScriptableObject
             
         foreach (var expression in expressions)
         {
-            if (expression != null && expression.expressionName.ToLower() == expressionName.ToLower())
+            if (expression != null && expression.ExpressionName.ToLower() == expressionName.ToLower())
             {
                 return true;
             }
@@ -66,9 +66,9 @@ public class CharacterData : ScriptableObject
         List<string> names = new List<string>();
         foreach (var expression in expressions)
         {
-            if (expression != null && !string.IsNullOrEmpty(expression.expressionName))
+            if (expression != null && !string.IsNullOrEmpty(expression.ExpressionName))
             {
-                names.Add(expression.expressionName);
+                names.Add(expression.ExpressionName);
             }
         }
         return names.ToArray();

@@ -129,7 +129,7 @@ public class Character : MonoBehaviour
 
         // Use the last set expression, or fall back to default if none has been set
         CharacterExpression currentExpression = lastSetExpression ?? CharacterData.defaultExpression;
-        if (currentExpression == null || currentExpression.voiceBlip == null)
+        if (currentExpression == null || currentExpression.VoiceBlip == null)
         {
             Debug.LogWarning($"No voice blip found for character '{gameObject.name}'");
             return;
@@ -192,9 +192,9 @@ public class Character : MonoBehaviour
 
         // Set the sprite if the character has a SpriteRenderer
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null && expression.expressionSprite != null)
+        if (spriteRenderer != null && expression.ExpressionSprite != null)
         {
-            spriteRenderer.sprite = expression.expressionSprite;
+            spriteRenderer.sprite = expression.ExpressionSprite;
         }
 
         // Apply default scale from character data
@@ -219,12 +219,12 @@ public class Character : MonoBehaviour
 
         while (isSpeaking)
         {
-            if (expression.voiceBlip != null)
+            if (expression.VoiceBlip != null)
             {
-                audioSource.PlayOneShot(expression.voiceBlip);
+                audioSource.PlayOneShot(expression.VoiceBlip, expression.BlipVolume);
             }
 
-            yield return new WaitForSeconds(expression.blipInterval);
+            yield return new WaitForSeconds(expression.BlipInterval);
         }
     }
 

@@ -82,7 +82,7 @@ public class CharacterManager : MonoBehaviour
         }
 
         // Set default expression and scale
-        SetCharacterExpression(characterInstance, characterData, characterData.defaultExpression?.expressionName);
+        SetCharacterExpression(characterInstance, characterData, characterData.defaultExpression?.ExpressionName);
 
         // Track the character
         spawnedCharacters[characterName] = characterInstance;
@@ -149,9 +149,9 @@ public class CharacterManager : MonoBehaviour
 
         // Set the sprite if the character has a SpriteRenderer
         SpriteRenderer spriteRenderer = characterInstance.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null && expression.expressionSprite != null)
+        if (spriteRenderer != null && expression.ExpressionSprite != null)
         {
-            spriteRenderer.sprite = expression.expressionSprite;
+            spriteRenderer.sprite = expression.ExpressionSprite;
         }
 
         // Apply default scale from character data
