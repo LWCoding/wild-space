@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
-/// MonoBehaviour Singleton that automatically discovers and manages all CharacterData ScriptableObjects.
+/// MonoBehaviour Singleton that automatically discovers and manages all CharacterData ScriptableObjects from the Resources/Characters folder.
 /// Place this component on a GameObject in your scene.
 /// </summary>
 public class CharacterDatabase : MonoBehaviour
@@ -64,15 +64,15 @@ public class CharacterDatabase : MonoBehaviour
     }
     
     /// <summary>
-    /// Automatically discovers all CharacterData ScriptableObjects in the project
+    /// Automatically discovers all CharacterData ScriptableObjects from Resources folder
     /// </summary>
     private void DiscoverCharacterData()
     {
         // Clear existing characters list
         characters.Clear();
         
-        // Find all CharacterData ScriptableObjects in the project
-        CharacterData[] foundCharacters = Resources.FindObjectsOfTypeAll<CharacterData>();
+        // Load all CharacterData ScriptableObjects from Resources folder
+        CharacterData[] foundCharacters = Resources.LoadAll<CharacterData>("Characters");
         
         // Filter out duplicates and add to our list
         HashSet<CharacterData> uniqueCharacters = new HashSet<CharacterData>();
@@ -88,7 +88,7 @@ public class CharacterDatabase : MonoBehaviour
         // Add unique characters to our list
         characters.AddRange(uniqueCharacters);
         
-        Debug.Log($"Discovered {characters.Count} CharacterData ScriptableObjects");
+        Debug.Log($"Discovered {characters.Count} CharacterData ScriptableObjects from Resources/Characters");
     }
     
     /// <summary>
@@ -184,7 +184,7 @@ public class CharacterDatabase : MonoBehaviour
     {
         DiscoverCharacterData();
         BuildLookupTable();
-        Debug.Log($"CharacterDatabase refreshed with {characters.Count} characters");
+        Debug.Log($"CharacterDatabase refreshed with {characters.Count} characters from Resources/Characters");
     }
     
     /// <summary>

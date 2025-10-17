@@ -3,11 +3,13 @@ position: -319,-6
 ---
 <<show Stars>>
 <<show Drifting>>
-Narrator: You wake up, and find yourself drifting, weightlessly.
-Narrator: The weight of the void surrounds you.
-Narrator: You have no recollection of where, or who you are.
-Narrator: Might as well choose a name for yourself.
+Narrator: During all of your time on Earth, nobody ever noticed you. Or made an effort to get to know you. You always felt invisible.
+Narrator: You were never good at making friends, despite your efforts to do so.
+Narrator: Your parents were around, but they always seemed too busy to pay you much attention.
+Narrator: You were always the odd one out, never quite fitting in with the other kids at school.
+Narrator: You tried to be like them, but it never worked. You were always the weird kid.
+Narrator: Nobody loves you. Nobody cares about you.
+Narrator: You are utterly alone.
+Narrator: You drift aimlessly, with no purpose or direction. Might as well choose a name for yourself.
 <<prompt_name NamePrompter>>
-<<hide Drifting>>
-<<hide Stars>>
 ===
