@@ -11,7 +11,7 @@ public class YarnShowHideable : MonoBehaviour
     [Header("Should Start Visible?")]
     [SerializeField] private bool _startVisible = true;
     
-    private void Start() {
+    private void Awake() {
         GetComponent<SpriteRenderer>().enabled = _startVisible;
     }
 

@@ -1,32 +1,32 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Yarn.Unity;
 
 /// <summary>
 /// Manager that handles character spawning and basic visibility management.
-/// Individual Character components handle Yarn commands and character-specific functionality.
 /// </summary>
 public class CharacterManager : MonoBehaviour
 {
     [Header("Character System")]
     [SerializeField] private Transform characterContainer;
     [SerializeField] private GameObject _characterPrefab; // Default character prefab
-    
+
     // Character anchor positions
     [SerializeField] private Transform leftAnchor;
     [SerializeField] private Transform centerAnchor;
     [SerializeField] private Transform rightAnchor;
     [SerializeField] private Transform leftFarAnchor;
     [SerializeField] private Transform rightFarAnchor;
-    
+
     // Track spawned characters
-    private Dictionary<string, GameObject> spawnedCharacters = new Dictionary<string, GameObject>();
-    
+    private static Dictionary<string, GameObject> spawnedCharacters = new Dictionary<string, GameObject>();
+
     void Start()
     {
         // Spawn all registered characters at startup
         SpawnAllCharacters();
     }
-    
+
     void OnDestroy()
     {
         // Clean up spawned characters
@@ -39,7 +39,7 @@ public class CharacterManager : MonoBehaviour
         }
         spawnedCharacters.Clear();
     }
-    
+
     /// <summary>
     /// Spawns all registered characters at startup and hides them by default
     /// </summary>
@@ -65,7 +65,7 @@ public class CharacterManager : MonoBehaviour
 
         Debug.Log($"Spawned {spawnedCharacters.Count} characters. All hidden by default.");
     }
-    
+
     /// <summary>
     /// Spawns a single character and hides it by default
     /// </summary>
@@ -75,38 +75,40 @@ public class CharacterManager : MonoBehaviour
     {
         // Use the character's specific prefab or the default prefab
         GameObject prefabToUse = characterData.characterPrefab != null ? characterData.characterPrefab : _characterPrefab;
-        
+
         if (prefabToUse == null)
         {
             Debug.LogError($"No character prefab assigned for character '{characterName}' and no default prefab set!");
             return;
         }
-        
+
         // Spawn at center position initially (will be repositioned when shown)
         Transform spawnPosition = centerAnchor != null ? centerAnchor : transform;
         GameObject characterInstance = Instantiate(prefabToUse, spawnPosition.position, spawnPosition.rotation, characterContainer);
         characterInstance.name = characterName;
-        
+
         // Hide the character by default
         SpriteRenderer spriteRenderer = characterInstance.GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
         {
             spriteRenderer.enabled = false;
         }
-        
+
         // Set default expression and scale
         SetCharacterExpression(characterInstance, characterData, characterData.defaultExpression?.expressionName);
-        
+
         // Track the character
         spawnedCharacters[characterName] = characterInstance;
-        
+
         Debug.Log($"Spawned character '{characterName}' (hidden by default)");
     }
-    
+
     /// <summary>
-    /// Hides all characters by disabling their SpriteRenderers.
+    /// Yarn command to hide all characters.
+    /// Usage in Yarn: <<hide_all_characters>>
     /// </summary>
-    public void HideAllCharacters()
+    [YarnCommand("hide_all_characters")]
+    public static void HideAllCharactersCommand()
     {
         foreach (var character in spawnedCharacters.Values)
         {
@@ -121,32 +123,29 @@ public class CharacterManager : MonoBehaviour
         }
         Debug.Log("Hid all characters");
     }
-    
-    /// <summary>
-    /// Lists all available characters and their expressions in the console.
-    /// </summary>
-    public void ListCharacters()
-    {
-        if (!CharacterDatabase.IsInitialized())
-        {
-            Debug.LogError("Character database singleton is not initialized!");
-            return;
-        }
 
-        string[] characterNames = CharacterDatabase.Instance.GetCharacterNames();
-        Debug.Log($"Available characters ({characterNames.Length}):");
-        
-        foreach (string characterName in characterNames)
+    /// <summary>
+    /// Yarn command to hide all objects with YarnShowHideable components.
+    /// Usage in Yarn: <<hide_all_objects>>
+    /// </summary>
+    [YarnCommand("hide_all_objects")]
+    public static void HideAllObjectsCommand()
+    {
+        // Find all objects with YarnShowHideable components
+        YarnShowHideable[] showHideableObjects = FindObjectsOfType<YarnShowHideable>();
+
+        foreach (var obj in showHideableObjects)
         {
-            CharacterData characterData = CharacterDatabase.Instance.GetCharacter(characterName);
-            if (characterData != null)
+            if (obj != null)
             {
-                string[] expressions = characterData.GetExpressionNames();
-                Debug.Log($"- {characterName}: {string.Join(", ", expressions)}");
+                obj.HideObject();
             }
         }
+
+        Debug.Log($"Hid {showHideableObjects.Length} YarnShowHideable objects");
     }
-    
+
+
     /// <summary>
     /// Gets the transform for the specified anchor position.
     /// </summary>
@@ -170,7 +169,7 @@ public class CharacterManager : MonoBehaviour
                 return null;
         }
     }
-    
+
     /// <summary>
     /// Sets the expression/sprite for a character instance using character data.
     /// </summary>
@@ -196,11 +195,9 @@ public class CharacterManager : MonoBehaviour
 
         // Apply default scale from character data
         characterInstance.transform.localScale = characterData.defaultScale;
-
-        Debug.Log($"Set expression '{expression.expressionName}' for character '{characterData.characterName}'");
     }
-    
-    
+
+
     /// <summary>
     /// Gets a character instance by name
     /// </summary>
@@ -209,39 +206,5 @@ public class CharacterManager : MonoBehaviour
     public GameObject GetCharacter(string characterName)
     {
         return spawnedCharacters.TryGetValue(characterName, out GameObject character) ? character : null;
-    }
-    
-    /// <summary>
-    /// Checks if a character is currently spawned
-    /// </summary>
-    /// <param name="characterName">Name of the character</param>
-    /// <returns>True if the character is spawned</returns>
-    public bool IsCharacterSpawned(string characterName)
-    {
-        return spawnedCharacters.ContainsKey(characterName);
-    }
-    
-    /// <summary>
-    /// Checks if a character is currently visible (SpriteRenderer enabled)
-    /// </summary>
-    /// <param name="characterName">Name of the character</param>
-    /// <returns>True if the character is visible</returns>
-    public bool IsCharacterVisible(string characterName)
-    {
-        if (!spawnedCharacters.ContainsKey(characterName))
-            return false;
-            
-        GameObject character = spawnedCharacters[characterName];
-        SpriteRenderer spriteRenderer = character.GetComponent<SpriteRenderer>();
-        return spriteRenderer != null && spriteRenderer.enabled;
-    }
-    
-    /// <summary>
-    /// Gets all spawned character names
-    /// </summary>
-    /// <returns>Array of spawned character names</returns>
-    public string[] GetSpawnedCharacterNames()
-    {
-        return new List<string>(spawnedCharacters.Keys).ToArray();
     }
 }

@@ -1,8 +1,7 @@
 ﻿title: AfterName
 position: -31,-584
 ---
-<<hide Stars>>
-<<hide Drifting>>
+<<hide_all_objects>>
 <<declare $playerName = "Player">>
 <<once>>
 Narrator: {$playerName}... {$playerName}... that sounds right to you.
