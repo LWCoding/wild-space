@@ -1,0 +1,26 @@
+title: MonitorOffClick
+---
+Narrator: The monitor is currently off. You wonder what it might display if it were on.
+<<set $monitorExplored = true>>
+<<if $bedrollExplored and $cannedFoodExplored and $monitorExplored>>
+    <<jump MonitorOn>>
+<<endif>>
+===
+
+title: BedrollClick
+---
+Narrator: The bedroll is a simple sleeping mat. It looks like it hasn't been used in a while, but it seems comfortable enough.
+<<set $bedrollExplored = true>>
+<<if $bedrollExplored and $cannedFoodExplored and $monitorExplored>>
+    <<jump MonitorOn>>
+<<endif>>
+===
+
+title: SoupClick
+---
+Narrator: The soup is a strange, unidentifiable color. You wonder what it might taste like.
+<<set $cannedFoodExplored = true>>
+<<if $bedrollExplored and $cannedFoodExplored and $monitorExplored>>
+    <<jump MonitorOn>>
+<<endif>>
+===

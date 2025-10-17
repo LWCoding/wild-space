@@ -16,6 +16,11 @@ namespace Yarn.Unity
     public class BasicTypewriter : IAsyncTypewriter
     {
         /// <summary>
+        /// Global multiplier for dialogue typing speed. Values > 1 speed up, < 1 slow down.
+        /// </summary>
+        public static double GlobalSpeedMultiplier = 1.0;
+
+        /// <summary>
         /// The <see cref="TMP_Text"/> to display the text in.
         /// </summary>
         public TMP_Text? Text { get; set; }
@@ -53,17 +58,85 @@ namespace Yarn.Unity
                     markupHandler.OnLineDisplayBegin(line, Text);
                 }
 
-                double secondsPerCharacter = 0;
+                // Base seconds per character from configured characters-per-second
+                double baseSecondsPerCharacter = 0;
                 if (CharactersPerSecond > 0)
                 {
-                    secondsPerCharacter = 1.0 / CharactersPerSecond;
+                    baseSecondsPerCharacter = 1.0 / CharactersPerSecond;
+                    // Apply global speed multiplier (divide time to go faster when multiplier > 1)
+                    var global = GlobalSpeedMultiplier;
+                    if (global <= 0)
+                    {
+                        global = 0.0001; // avoid divide-by-zero; effectively instant
+                    }
+                    baseSecondsPerCharacter /= global;
                 }
 
                 // Get the count of visible characters from TextMesh to exclude markup characters
                 var visibleCharacterCount = Text.GetTextInfo(line.Text).characterCount;
 
+                // Build a per-character speed multiplier map from [speed=...] attributes
+                // Defaults to 1.0 (no change). A value > 1 speeds up, < 1 slows down.
+                // If an attribute has length 0, ignore it.
+                var speedMultipliers = new System.Collections.Generic.Dictionary<int, double>();
+                foreach (var attribute in line.Attributes)
+                {
+                    if (attribute.Name != "speed" || attribute.Length == 0)
+                    {
+                        continue;
+                    }
+
+                    if (attribute.Properties.TryGetValue("speed", out Yarn.Markup.MarkupValue value))
+                    {
+                        double multiplier = 1.0;
+                        switch (value.Type)
+                        {
+                            case Yarn.Markup.MarkupValueType.Integer:
+                                multiplier = value.IntegerValue;
+                                break;
+                            case Yarn.Markup.MarkupValueType.Float:
+                                multiplier = value.FloatValue;
+                                break;
+                            default:
+                                Debug.LogWarning($"Speed property is of type {value.Type}, defaulting to 1.0 (no change).");
+                                multiplier = 1.0;
+                                break;
+                        }
+
+                        // Clamp to a tiny positive value to avoid division by zero or negative speeds
+                        if (multiplier <= 0)
+                        {
+                            multiplier = 0.0001; // effectively instantaneous
+                        }
+
+                        // Assign this multiplier to each character index covered by the attribute
+                        int start = attribute.Position;
+                        int endExclusive = attribute.Position + attribute.Length;
+                        for (int idx = start; idx < endExclusive; idx++)
+                        {
+                            speedMultipliers[idx] = multiplier;
+                        }
+                    }
+                }
+
+                // Helper to get per-character seconds based on multiplier
+                double GetSecondsForCharacterIndex(int index)
+                {
+                    if (baseSecondsPerCharacter <= 0)
+                    {
+                        return 0; // instant if base is 0 cps
+                    }
+
+                    if (speedMultipliers.TryGetValue(index, out var mult))
+                    {
+                        return baseSecondsPerCharacter / mult;
+                    }
+
+                    return baseSecondsPerCharacter;
+                }
+
                 // Start with a full time budget so that we immediately show the first character
-                double accumulatedDelay = secondsPerCharacter;
+                double accumulatedDelay = GetSecondsForCharacterIndex(0);
 
                 // Go through each character of the line and letting the
                 // processors know about it
@@ -72,6 +145,7 @@ namespace Yarn.Unity
                     // If we don't already have enough accumulated time budget
                     // for a character, wait until we do (or until we're
                     // cancelled)
+                    double secondsPerCharacter = GetSecondsForCharacterIndex(i);
                     while (!cancellationToken.IsCancellationRequested
                         && (accumulatedDelay < secondsPerCharacter))
                     {

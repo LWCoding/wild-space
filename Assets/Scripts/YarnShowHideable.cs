@@ -7,12 +7,20 @@ using Yarn.Unity;
 /// </summary>
 public class YarnShowHideable : MonoBehaviour
 {
-    
+
     [Header("Should Start Visible?")]
     [SerializeField] private bool _startVisible = true;
-    
-    private void Awake() {
-        GetComponent<SpriteRenderer>().enabled = _startVisible;
+
+    private void Awake()
+    {
+        if (_startVisible)
+        {
+            ShowObject();
+        }
+        else
+        {
+            HideObject();
+        }
     }
 
     /// <summary>
@@ -23,9 +31,14 @@ public class YarnShowHideable : MonoBehaviour
     public void ShowObject()
     {
         GetComponent<SpriteRenderer>().enabled = true;
+        TryGetComponent<Collider2D>(out var collider);
+        if (collider != null)
+        {
+            collider.enabled = true;
+        }
         Debug.Log($"Showed object: {gameObject.name}");
     }
-    
+
     /// <summary>
     /// Hides this GameObject.
     /// Usage in Yarn: <<hide ObjectName>>
@@ -34,6 +47,11 @@ public class YarnShowHideable : MonoBehaviour
     public void HideObject()
     {
         GetComponent<SpriteRenderer>().enabled = false;
+        TryGetComponent<Collider2D>(out var collider);
+        if (collider != null)
+        {
+            collider.enabled = false;
+        }
         Debug.Log($"Hid object: {gameObject.name}");
     }
 

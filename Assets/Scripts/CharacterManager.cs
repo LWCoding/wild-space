@@ -21,23 +21,10 @@ public class CharacterManager : MonoBehaviour
     // Track spawned characters
     private static Dictionary<string, GameObject> spawnedCharacters = new Dictionary<string, GameObject>();
 
+    // Must be on start since singletons initialize on awake.
     void Start()
     {
-        // Spawn all registered characters at startup
         SpawnAllCharacters();
-    }
-
-    void OnDestroy()
-    {
-        // Clean up spawned characters
-        foreach (var character in spawnedCharacters.Values)
-        {
-            if (character != null)
-            {
-                Destroy(character);
-            }
-        }
-        spawnedCharacters.Clear();
     }
 
     /// <summary>
@@ -103,12 +90,8 @@ public class CharacterManager : MonoBehaviour
         Debug.Log($"Spawned character '{characterName}' (hidden by default)");
     }
 
-    /// <summary>
-    /// Yarn command to hide all characters.
-    /// Usage in Yarn: <<hide_all_characters>>
-    /// </summary>
-    [YarnCommand("hide_all_characters")]
-    public static void HideAllCharactersCommand()
+    // Function for hiding all characters. Should be called by yarn command.
+    public static void HideAllCharacters()
     {
         foreach (var character in spawnedCharacters.Values)
         {
@@ -123,28 +106,6 @@ public class CharacterManager : MonoBehaviour
         }
         Debug.Log("Hid all characters");
     }
-
-    /// <summary>
-    /// Yarn command to hide all objects with YarnShowHideable components.
-    /// Usage in Yarn: <<hide_all_objects>>
-    /// </summary>
-    [YarnCommand("hide_all_objects")]
-    public static void HideAllObjectsCommand()
-    {
-        // Find all objects with YarnShowHideable components
-        YarnShowHideable[] showHideableObjects = FindObjectsOfType<YarnShowHideable>();
-
-        foreach (var obj in showHideableObjects)
-        {
-            if (obj != null)
-            {
-                obj.HideObject();
-            }
-        }
-
-        Debug.Log($"Hid {showHideableObjects.Length} YarnShowHideable objects");
-    }
-
 
     /// <summary>
     /// Gets the transform for the specified anchor position.
@@ -207,4 +168,5 @@ public class CharacterManager : MonoBehaviour
     {
         return spawnedCharacters.TryGetValue(characterName, out GameObject character) ? character : null;
     }
+
 }

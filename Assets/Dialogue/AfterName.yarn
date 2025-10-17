@@ -1,13 +1,17 @@
 ﻿title: AfterName
 position: -31,-584
 ---
-<<hide_all_objects>>
-<<declare $playerName = "Player">>
 <<once>>
+<<declare $playerName = "Player">>
+<<hide_all_objects>>
+<<speed 0.2>>
 Narrator: {$playerName}... {$playerName}... that sounds right to you.
+<<speed 1>>
+Narrator: You open your eyes, and realize that you are no longer suspended in mid-air.
+Narrator: You're lying down. On a hard surface. Your head feels heavy, and your body aches all over.
+Narrator: You slowly sit up, and take in your surroundings.
 <<endonce>>
-Narrator: You suddenly open your eyes, and realize that you are no longer suspended in mid-air.
-Narrator: You find yourself in a small, enclosed room. The walls are metallic, and there is a faint humming sound coming from the walls.
+Narrator: You're at home. In your metal spaceship.
     -> Hello? Is anyone there?
         Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
         <<jump AfterName>>
@@ -22,46 +26,21 @@ title: LookAround
 position: -33,-341
 ---
 <<once>>
-<<show ComputerSetup>>
-<<declare $toiletExplored = false>>
 <<declare $bedrollExplored = false>>
 <<declare $cannedFoodExplored = false>>
-<<declare $meterExplored = false>>
 <<declare $monitorExplored = false>>
+<<show MonitorOff>>
+<<show Bedroll>>
+<<show Soup>>
 <<endonce>>
-Narrator: You take a look around. There's a monitor in front of you. The rest of the room is mostly empty, but seems stocked with a toilet, bedroll, canned food, and a strange meter on the wall.
-    -> Inspect the toilet. <<if $toiletExplored == false>>
-        Narrator: The toilet is a standard issue, but it looks like it hasn't been cleaned in a while. You'd rather not use it.
-        <<set $toiletExplored = true>>
-    -> Inspect the bedroll. <<if $bedrollExplored == false>>
-        Narrator: The bedroll is a simple sleeping mat. It looks like it hasn't been used in a while, but it seems comfortable enough.
-        <<set $bedrollExplored = true>>
-    -> Inspect the canned food. <<if $cannedFoodExplored == false>>
-        Narrator: The canned food is old, but it looks like it might still be edible. You decide to save it for later.
-        <<set $cannedFoodExplored = true>>
-    -> Inspect the meter on the wall. <<if $meterExplored == false>>
-        Narrator: The meter is blinking red. It seems to be some sort of oxygen level indicator. You should probably get out of here before you run out of air.
-        <<set $meterExplored = true>>
-    -> Inspect the monitor. <<if $monitorExplored == false>>
-        Narrator: The monitor is currently off. You wonder what it might display if it were on.
-        <<set $monitorExplored = true>>
-
-<<if $toiletExplored and $bedrollExplored and $cannedFoodExplored and $meterExplored and $monitorExplored>>
-    Narrator: You've inspected everything in the room.
-    <<hide ComputerSetup>>
-    <<detour SitAround>>
-    <<show ComputerSetup>>
-    <<jump MonitorOn>>
-<<else>>
-    <<jump LookAround>>
-<<endif>>
 ===
 
 title: MonitorOn
 ---
-Narrator: Suddenly, the monitor in front of you jumps to life. A dark figure appears on the screen, accompanied with a garbled, static-filled voice.
+<<hide MonitorOff>>
 <<show_character CatObscure Neutral right>>
 <<start_voice_blip CatObscure>>
+Narrator: Suddenly, the monitor in front of you jumps to life. A dark figure appears on the screen, accompanied with a garbled, static-filled voice.
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
         <<start_voice_blip CatObscure>>
