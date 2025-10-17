@@ -35,23 +35,42 @@ position: -33,-341
 <<endonce>>
 ===
 
+title: AfterInteractedWithItems
+---
+<<hide_all_objects>>
+<<show Sitting>>
+Narrator: This is the life that you've committed yourself to, ever since taking the job to pilot this small exploration vessel.
+Narrator: Just to get a chance away from Earth, away from the people who never cared about you.
+Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
+    -> (do some push-ups)
+        Narrator: You drop down and do a few push-ups to keep your strength up.
+    -> (contemplate the meaning of life)
+        Narrator: You ponder the vastness of existence and your place within it.
+    -> (think of something happy)
+        Narrator: You recall a fond memory that brings a smile to your face. It's a small comfort in the loneliness of space.
+    -> (no use sitting around. stand back up!)
+Narrator: You decide to get back to doing something. Anything is better than sitting around.
+<<hide Sitting>>
+<<jump MonitorOn>>
+===
+
 title: MonitorOn
 ---
+<<hide Sitting>>
 <<hide MonitorOff>>
+<<show MonitorOn>>
 <<show_character CatObscure Neutral right>>
+Narrator: Suddenly, the monitor jumps to life. A dark figure appears on the screen, accompanied with a garbled, static-filled voice.
 <<start_voice_blip CatObscure>>
-Narrator: Suddenly, the monitor in front of you jumps to life. A dark figure appears on the screen, accompanied with a garbled, static-filled voice.
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
         <<start_voice_blip CatObscure>>
         ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
-        <<stop_voice_blip CatObscure>>
-        Narrator: At this moment, you notice a keyboard. You may be able to communicate with it.
-        -> Type, "Hello!"
+        -> Say, "Hello!"
             <<jump EnterMessage>>
-        -> Type, "Who are you?"
+        -> Say, "Who are you?"
             <<jump EnterMessage>>
-        -> Type, "Seen any good movies lately?"
+        -> Say, "Seen any good movies lately?"
             <<jump EnterMessage>>
         -> (stay silent)
             <<jump EnterMessage>>
@@ -75,7 +94,7 @@ position: 320,-340
 <<start_voice_blip CatObscure>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
 <<stop_voice_blip CatObscure>>
-Narrator: You notice a separated panel of dials. It seems like you need to adjust the frequency to let the signal through.
+Narrator: You notice a set of dials on the monitor. It seems like you need to adjust the frequency to let the signal through.
     -> Turn the left dial.
         <<jump Introduction>>
     -> Turn the right dial.
@@ -102,11 +121,11 @@ Narrator: Suddenly, the monitor in front of you jumps to life.
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
 ???: Well, you seem to be in a bit of a pickle. What're you doing in space all by yourself?
-    -> Space?!
-        <<show_character Cat Happy right>>
-        <<positive_indicator Cat>>
-        ???: Oh! You didn't know? You're in space! How exciting!
+    -> What the fuck?
+        <<show_character Cat Neutral right>>
+        ???: ...
     -> Who... are you?
+<<show_character Cat Happy right>>
 Cat: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫喵, but you can just call me Cat. 
 Cat: I'm what you'd probably call an "alien lifeform". Meowdy!
     -> An alien lifeform?
