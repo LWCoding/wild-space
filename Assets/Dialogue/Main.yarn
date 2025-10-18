@@ -91,12 +91,12 @@ title: MonitorOn
 <<hide MonitorOff>>
 <<show MonitorOn>>
 Narrator: Just as you turn the monitor off, it flickers and springs back to life.
-<<show_character CatObscure Neutral right>>
+<<show_character Cat Obscure right>>
 Narrator: A dark figure appears on the screen, accompanied with a static-filled voice.
-<<start_voice_blip CatObscure>>
+<<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
-        <<start_voice_blip CatObscure>>
+        <<start_voice_blip Cat>>
         ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
         -> Hello?
             <<jump EnterMessage>>
@@ -105,20 +105,20 @@ Narrator: A dark figure appears on the screen, accompanied with a static-filled 
         -> (stay silent)
             <<jump EnterMessage>>
     -> (stay silent)
-        <<stop_voice_blip CatObscure>>
+        <<stop_voice_blip Cat>>
         Narrator: The voice from the monitor continues to speak.
-        <<start_voice_blip CatObscure>>
+        <<start_voice_blip Cat>>
         ???: Please... <i>*kshh*</i> if... there... yourself... known...
-        <<stop_voice_blip CatObscure>>
+        <<stop_voice_blip Cat>>
         <<jump EnterMessage>>
 ===
 
 title: EnterMessage
 position: 320,-340
 ---
-<<start_voice_blip CatObscure>>
+<<start_voice_blip Cat>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
-<<stop_voice_blip CatObscure>>
+<<stop_voice_blip Cat>>
 Narrator: With your expertise, you think you can adjust the frequency and let the signal through.
     -> (let the signal through)
         <<jump Introduction>>
@@ -143,7 +143,7 @@ title: Reinterrupted
 ---
 <<hide_all_objects>>
 <<show MonitorOn>>
-<<show_character CatObscure Neutral right>>
+<<show_character Cat Obscure right>>
 Narrator: Suddenly, the same character from before reappears on the screen.
     -> (get it over with. let the signal through)
 <<jump Introduction>>
@@ -153,7 +153,6 @@ title: Introduction
 position: 316,-140
 ---
 Narrator: Suddenly, the figure comes into view.
-<<hide_character CatObscure>>
 <<show_character Cat Neutral right>>
 <<start_voice_blip Cat>>
 <<play_music GlorpTheme>>
@@ -162,7 +161,7 @@ Narrator: Suddenly, the figure comes into view.
     -> Aww, you're so cute!
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
-        <<show_character Cat Happy right>>
+        <<show_character Cat Happy2 right>>
         ???: Aw, you're too kind. 
         <<show_character Cat Neutral right>>
         ???: But seriously, are you okay out there? You look like you're all alone.
@@ -207,7 +206,7 @@ Narrator: Suddenly, the figure comes into view.
     -> 猫喵猫猫喵? What does that mean?
         <<show_character Cat Thinking right>>
         {$catName}: It's... hard to explain. It's probably not something I can explain to you.
-        <<show_character Cat Happy right>>
+        <<show_character Cat Happy2 right>>
         {$catName}: Just call me Cat, it's easier that way.
     -> Meowdy.
         <<show_character Cat Thinking right>>
@@ -223,7 +222,7 @@ Narrator: Suddenly, the figure comes into view.
         {$catName}: A human? I've only heard stories about your kind.
         {$catName}: Is it true that you walk on two legs and have opposable thumbs?
         -> Yes.
-            <<show_character Cat Happy right>>
+            <<show_character Cat Happy2 right>>
             {$catName}: That's incredible! You must be very dexterous.
         -> No.
             <<show_character Cat Neutral right>>

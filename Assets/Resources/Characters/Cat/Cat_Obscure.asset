@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7d91d5b20131d46a2f5362d0167457, type: 3}
-  m_Name: Cat_Neutral
+  m_Name: Cat_Obscure
   m_EditorClassIdentifier: 
-  ExpressionName: Neutral
-  ExpressionSprite: {fileID: 21300000, guid: 9404e2aa5f9c5c245bd39f77ad48cf2a, type: 3}
-  VoiceBlip: {fileID: 8300000, guid: 4c83f17fe4cf3b045b1c518e462f9916, type: 3}
+  ExpressionName: Obscure
+  ExpressionSprite: {fileID: 21300000, guid: 7415cbe9761565e4e884357d708b86cc, type: 3}
+  VoiceBlip: {fileID: 8300000, guid: 9e6e2d0c3b56b924f8d4e720969a5d2c, type: 3}
   BlipInterval: 0.1
   BlipVolume: 0.7

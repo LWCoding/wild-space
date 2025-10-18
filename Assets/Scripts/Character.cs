@@ -88,6 +88,13 @@ public class Character : MonoBehaviour
         // Set the expression
         SetExpression(expression);
 
+        // Flip Y scale if position is right or rightFar
+        if (position == "right" || position == "rightFar")
+        {
+            Vector3 currentScale = transform.localScale;
+            transform.localScale = new Vector3(-currentScale.x, currentScale.y, currentScale.z);
+        }
+
         // Enable the character's SpriteRenderer
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         if (spriteRenderer != null)
