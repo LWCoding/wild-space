@@ -202,6 +202,7 @@ Narrator: Suddenly, the figure comes into view.
         {$catName}: Hm? How do I explain this...
         <<show_character Cat Neutral right>>
         {$catName}: I'm not from your planet of origin. I come from a place far away.
+        <<show_character Cat Thinking right>>
         {$catName}: Do they not have manners where you come from?
     -> 猫喵猫猫喵? What does that mean?
         <<show_character Cat Thinking right>>
@@ -294,7 +295,10 @@ title: DogIntro
     -> Who are you?
     -> That doesn't make sense.
         <<set $dogDislikesYou += 1>>
+        <<stop_voice_blip Dog>>
+        Narrator: The figure on the monitor tilts their head in confusion.
     -> (stay silent)
+<<start_voice_blip Dog>>
 ???: What're you doing out here all by yourself? Woof.
 {$dogName}: I'm {$dogName}. Woof. I come in peace. Woof.
 {$dogName}: I saw your signal, and thought I'd come check it out. Woof.
@@ -311,19 +315,25 @@ title: DogIntro
         <<positive_indicator Dog>>
         {$dogName}: Woof! It's nice to meet you, {$playerName}!
 {$dogName}: I hope you don't mind me dropping by unannounced. Woof.
-    -> No.
-        {$dogName}: Good, good. Woof. I don't want any competition.
-            -> Competition?
-                {$dogName}: Woof! Just kidding. Woof. But seriously, I don't want any competition.
-    -> Yes.
-        {$dogName}: Oh? Who was it? Woof.
-            -> {$catName}
-                {$dogName}: ...
-                {$dogName}: Woof! I know Cat! They're a good friend of mine. Woof.
-            -> Another alien lifeform.
-                {$dogName}: Oh, that's bad news. As a rule, I don't trust other alien lifeforms. Woof.
-            -> Actually, I didn't see anyone.
-                {$dogName}: Oh? Okay. Woof.
+    -> Do you know {$catName}?
+        {$dogName}: {$catName}? Can't say I'm familiar. We're not that interconnected here in space.
+    -> What are you doing here?
+        {$dogName}: Oh, I was just passing by. Woof.
+{$dogName}: It's rare that I even see another living being out here. Woof.
+{$dogName}: I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
+    -> Signal?
+        {$dogName}: Yeah, I picked up on it while I was out exploring. Woof.
+        {$dogName}: I like to wander around and see new places. Woof.
+        {$dogName}: What about you? What are you doing out here? Woof.
+        -> I'm looking for alien life.
+            {$dogName}: Alien life? What for? Woof.
+            {$dogName}: I don't see the point in all that. Woof. Why?
+                -> I'm here to report them to our home planet.
+                    {$dogName}: Report them? Woof. That seems... a bit harsh. Woof.
+                -> I just want to make contact.
+                    {$dogName}: Make contact? Woof. I guess that makes sense. Woof.
+        -> I'm exploring, just like you.
+            {$dogName}: Exploring? Woof. We should go together sometime!
 <<stop_voice_blip Dog>>
 <<jump End>>
 ===
