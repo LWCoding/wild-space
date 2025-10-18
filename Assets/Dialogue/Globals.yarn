@@ -8,4 +8,8 @@ title: Globals
 <<declare $dogDislikesYou = 0>>
 <<declare $posSelfPerception = 0>>
 <<declare $negSelfPerception = 0>>
+
+<<declare $playerName = "Player">>
+<<declare $catName = "Gnarp">>
+<<declare $dogName = "Doggo">>
 ===
