@@ -27,7 +27,7 @@ public class UIYarnShowHideable : MonoBehaviour
 
     /// <summary>
     /// Shows this GameObject.
-    /// Usage in Yarn: <<show ObjectName>>
+    /// Usage in Yarn: <<show_ui ObjectName>>
     /// </summary>
     [YarnCommand("show_ui")]
     public void ShowObject()
@@ -47,7 +47,7 @@ public class UIYarnShowHideable : MonoBehaviour
 
     /// <summary>
     /// Hides this GameObject.
-    /// Usage in Yarn: <<hide ObjectName>>
+    /// Usage in Yarn: <<hide_ui ObjectName>>
     /// </summary>
     [YarnCommand("hide_ui")]
     public void HideObject()
