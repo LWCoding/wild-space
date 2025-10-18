@@ -37,6 +37,12 @@ public class YarnShowHideable : MonoBehaviour
             collider.enabled = true;
         }
         Debug.Log($"Showed object: {gameObject.name}");
+        
+        // Also show any children under this GameObject
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
@@ -53,6 +59,12 @@ public class YarnShowHideable : MonoBehaviour
             collider.enabled = false;
         }
         Debug.Log($"Hid object: {gameObject.name}");
+
+        // Also hide any children under this GameObject
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
+        }
     }
 
 }

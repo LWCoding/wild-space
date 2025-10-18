@@ -3,6 +3,7 @@ position: -31,-584
 ---
 <<once>>
 <<declare $playerName = "Player">>
+<<declare $saidHello = false>>
 <<hide_all_objects>>
 Narrator: {$playerName}... Yes, you are {$playerName}.
 <<speed 1>>
@@ -11,11 +12,9 @@ Narrator: You're lying down. On a hard surface. Your head feels heavy, and your 
 Narrator: You slowly sit up, and take in your surroundings.
 <<endonce>>
 Narrator: You're at home. In your metal spaceship.
-    -> Hello? Is anyone there?
+    -> Hello? <<if $saidHello == false>>
+        <<set $saidHello = true>>
         Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
-        <<jump AfterName>>
-    -> Where... am I?
-        Narrator: An echo from your voice bounces off the walls. Other than yourself, nobody responds to your question.
         <<jump AfterName>>
     -> (take a look around)
         <<jump LookAround>>
@@ -31,15 +30,19 @@ position: -33,-341
 <<show MonitorOff>>
 <<show Bedroll>>
 <<show Soup>>
+Narrator: Might as well re-familiarize yourself with your surroundings.
+<<show_ui ClickToInteract>>
 <<endonce>>
 ===
 
 title: AfterInteractedWithItems
 ---
 <<hide_all_objects>>
+<<hide_ui ClickToInteract>>
 <<show Sitting>>
 Narrator: This is the life that you've committed yourself to, ever since taking the job to pilot this small exploration vessel.
-Narrator: Just to get a chance away from Earth, away from the people who never cared about you.
+Narrator: You are tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
+Narrator: But deep inside, you knew this was just to get a chance away from Earth.
 Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
     -> (do some push-ups)
         Narrator: You were never huge on fitness, but you were required to keep in shape for space travel.
@@ -60,6 +63,22 @@ Narrator: Nothing of interest seems to be happening. You take a seat and ponder 
     -> (no use sitting around. stand back up!)
 Narrator: You decide to get back to doing something. Anything is better than sitting around.
 <<hide Sitting>>
+<<jump DoJobFirstTime>>
+===
+
+title: DoJobFirstTime
+---
+Narrator: You stand up and turn on the computer. Time to get to work on your daily report.
+<<show MonitorUI>>
+<<show_ui TypeToInteract>>
+===
+
+title: AfterTypedFirstTime
+---
+<<hide_ui TypeToInteract>>
+Narrator: Looks good.
+<<hide MonitorUI>>
+<<show MonitorOff>>
 <<jump MonitorOn>>
 ===
 
@@ -82,6 +101,7 @@ Narrator: Suddenly, the monitor jumps to life. A dark figure appears on the scre
         -> (stay silent)
             <<jump EnterMessage>>
     -> (stay silent)
+        <<stop_voice_blip CatObscure>>
         Narrator: The voice from the monitor continues to speak.
         <<start_voice_blip CatObscure>>
         ???: Please... <i>*kshh*</i> if... there... yourself... known...

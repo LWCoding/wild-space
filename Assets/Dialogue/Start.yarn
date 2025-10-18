@@ -9,6 +9,6 @@ Narrator: You are utterly alone. It feels... relaxing.
 Narrator: Back on Earth, you always felt invisible.
 Narrator: Nobody loved you. Nobody cared about you. 
 Narrator: You have no friends, no living family, no purpose.
-Narrator: You drift aimlessly, with no purpose or direction. Might as well choose a name for yourself.
+Narrator: You drift aimlessly. Might as well choose a name for yourself.
 <<prompt_name NamePrompter>>
 ===

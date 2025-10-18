@@ -36,6 +36,24 @@ public static class DialogueYarnCommands
     }
 
     /// <summary>
+    /// Yarn: <<hide_all_objects>>
+    /// Hides all objects with YarnShowHideable components.
+    /// </summary>
+    [YarnCommand("hide_all_ui_objects")]
+    public static void HideAllUIObjects()
+    {
+        var showHideableObjects = Object.FindObjectsOfType<UIYarnShowHideable>();
+        foreach (var obj in showHideableObjects)
+        {
+            if (obj != null)
+            {
+                obj.HideObject();
+            }
+        }
+        Debug.Log($"Hid {showHideableObjects.Length} UIYarnShowHideable objects");
+    }
+
+    /// <summary>
     /// Yarn: <<speed 2>> or <<speed 0.5>>
     /// Sets global dialogue typing speed multiplier.
     /// </summary>
