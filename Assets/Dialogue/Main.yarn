@@ -156,6 +156,7 @@ Narrator: Suddenly, the figure comes into view.
 <<hide_character CatObscure>>
 <<show_character Cat Neutral right>>
 <<start_voice_blip Cat>>
+<<play_music GlorpTheme>>
 ???: Hey, I caught your signal from our ship! Are you alright?
     -> ...What?
     -> Aww, you're so cute!
@@ -255,6 +256,7 @@ Narrator: Suddenly, the figure comes into view.
 <<hide_all_characters>>
 <<hide MonitorOn>>
 <<show MonitorOnNoSilhouette>>
+<<play_music MainTheme>>
 Narrator: Suddenly, the screen flickers back to static. Cat is gone, for now.
     -> Cat? Can you hear me?
         Narrator: You tap the monitor and move around the dials, trying to re-establish contact.

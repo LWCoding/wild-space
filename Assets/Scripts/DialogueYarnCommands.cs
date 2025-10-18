@@ -74,6 +74,79 @@ public static class DialogueYarnCommands
             Debug.LogWarning($"Invalid speed value '{multiplier}'. Expected a number, e.g., 2 or 0.5");
         }
     }
+
+    /// <summary>
+    /// Yarn: <<play_music "AudioClipName">> or <<play_music "AudioClipName" 0.8>> or <<play_music "AudioClipName" 0.8 3.0>>
+    /// Smoothly transitions to a new audio clip using AudioManager.
+    /// Optional parameters: volume (0-1), transition time (seconds).
+    /// </summary>
+    [YarnCommand("play_music")]
+    public static void PlayMusic(string clipName, string volume = "", string transitionTime = "")
+    {
+        // Use the singleton AudioManager instance
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError($"AudioManager singleton not initialized. Cannot play music '{clipName}'");
+            return;
+        }
+
+        // Load the audio clip from Resources
+        AudioClip clip = Resources.Load<AudioClip>($"Audio/{clipName}");
+        if (clip == null)
+        {
+            Debug.LogError($"Audio clip '{clipName}' not found in Resources/Audio/ folder");
+            return;
+        }
+
+        // Parse optional volume (default to 0.1)
+        float vol = 0.1f;
+        if (!string.IsNullOrEmpty(volume))
+        {
+            if (float.TryParse(volume, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float volValue))
+            {
+                vol = Mathf.Clamp01(volValue); // Clamp between 0 and 1
+            }
+            else
+            {
+                Debug.LogWarning($"Invalid volume '{volume}'. Using default volume of 0.1.");
+            }
+        }
+
+        // Parse optional transition time (default to -1 to use AudioManager default)
+        float transition = -1f;
+        if (!string.IsNullOrEmpty(transitionTime))
+        {
+            if (float.TryParse(transitionTime, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float timeValue))
+            {
+                transition = timeValue;
+            }
+            else
+            {
+                Debug.LogWarning($"Invalid transition time '{transitionTime}'. Using AudioManager default.");
+            }
+        }
+
+        // Call the AudioManager to change the clip
+        AudioManager.Instance.ChangeAudioClip(clip, vol, transition);
+        Debug.Log($"Playing music: {clipName} (volume: {vol}, transition: {transition}s)");
+    }
+
+    /// <summary>
+    /// Yarn: <<stop_music>>
+    /// Immediately stops all music without transition.
+    /// </summary>
+    [YarnCommand("stop_music")]
+    public static void StopMusic()
+    {
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError("AudioManager singleton not initialized. Cannot stop music.");
+            return;
+        }
+
+        AudioManager.Instance.StopAudio();
+        Debug.Log("Stopped all music");
+    }
 }
 
 
