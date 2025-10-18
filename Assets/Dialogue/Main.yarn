@@ -68,7 +68,9 @@ Narrator: You decide to get back to doing something. Anything is better than sit
 
 title: DoJobFirstTime
 ---
-Narrator: You stand up and turn on the computer. Time to get to work on your daily report.
+Narrator: You stand up and turn on the computer. 
+Narrator: As part of your job, you need to complete a daily report on your findings.
+Narrator: You're not sure anyone actually reads these, but it gives you a sense of routine.
 <<show MonitorUI>>
 <<show_ui TypeToInteract>>
 ===
@@ -76,7 +78,9 @@ Narrator: You stand up and turn on the computer. Time to get to work on your dai
 title: AfterTypedFirstTime
 ---
 <<hide_ui TypeToInteract>>
-Narrator: Looks good.
+Narrator: You sigh, after having written the same report for the 620th time. 
+Narrator: The report is done for the day.
+    -> (turn off the monitor)
 <<hide MonitorUI>>
 <<show MonitorOff>>
 <<jump MonitorOn>>
@@ -87,8 +91,9 @@ title: MonitorOn
 <<hide Sitting>>
 <<hide MonitorOff>>
 <<show MonitorOn>>
+Narrator: Just as you turn the monitor off, it flickers and springs back to life.
 <<show_character CatObscure Neutral right>>
-Narrator: Suddenly, the monitor jumps to life. A dark figure appears on the screen, accompanied with a garbled, static-filled voice.
+Narrator: A dark figure appears on the screen, accompanied with a static-filled voice.
 <<start_voice_blip CatObscure>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
@@ -115,17 +120,40 @@ position: 320,-340
 <<start_voice_blip CatObscure>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
 <<stop_voice_blip CatObscure>>
-Narrator: You notice a set of dials on the monitor. It seems like you need to adjust the frequency to let the signal through.
-    -> Turn the left dial.
+Narrator: With your expertise, you think you can adjust the frequency and let the signal through.
+    -> (let the signal through)
         <<jump Introduction>>
-    -> Turn the right dial.
-        <<jump Introduction>>
+    -> (ignore the signal. it's probably nothing.)
+        Narrator: You decide to ignore the signal. It's probably just static interference.
+        <<hide_all_characters>>
+        <<hide MonitorOn>>
+        <<show MonitorOnNoSilhouette>>
+        <<set $negSelfPerception += 1>>
+        Narrator: After a few moments, the screen flickers back to static. You are alone, again.
+        Narrator: How should you pass the time?
+            -> (play a game on the monitor)
+                Narrator: You decide to play a game on the monitor to pass the time.
+                Narrator: The game is simple, but it helps distract you from the loneliness.
+                <<jump Reinterrupted>>
+            -> (try to find the signal again)
+                Narrator: You fiddle with the dials and knobs, trying to find the signal again.
+                <<jump Reinterrupted>>
+===
+
+title: Reinterrupted
+---
+<<hide_all_objects>>
+<<show MonitorOn>>
+<<show_character CatObscure Neutral right>>
+Narrator: Suddenly, the same character from before reappears on the screen.
+    -> (get it over with. let the signal through)
+<<jump Introduction>>
 ===
 
 title: Introduction
 position: 316,-140
 ---
-Narrator: Suddenly, the monitor in front of you jumps to life.
+Narrator: Suddenly, the figure comes into view.
 <<hide_character CatObscure>>
 <<show_character Cat Neutral right>>
 <<start_voice_blip Cat>>
