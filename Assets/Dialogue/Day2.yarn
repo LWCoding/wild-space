@@ -1,0 +1,76 @@
+title: StartDay2
+---
+Narrator: You wake up to a loud chime on the monitor, your head pounding yet again. You don't know what time it is, but you feel rested. 
+Narrator: Your sleep cycle has been all over the place since you started this job.
+Narrator: You sit up and rub your temples. Time to get ready for another day of work.
+<<show_ui ClickToInteract>>
+<<show MonitorOffDay2>>
+===
+
+title: OnClickedMonitorDay2
+---
+<<hide_all_ui_objects>>
+<<show MonitorOnDay2>>
+Narrator: You turn on the monitor to see today's tasks.
+Narrator: Before you start your report, you notice a new message from HQ.
+Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
+Narrator: You ponder the details of your next report. Do you report the encounter? Or keep it under wraps?
+    -> (report the encounter)
+        <<hide_all_objects>>
+        <<show_ui TypeToInteract>>
+        <<show MonitorReportDay2>>
+    -> (keep it under wraps)
+        <<hide_all_objects>>
+        <<show_ui TypeToInteract>>
+        <<show MonitorDontReportDay2>>
+===
+
+title: ReportedAliens
+---
+<<hide_all_ui_objects>>
+Narrator: You finish sending the report to HQ. You followed your orders and reported everything as you saw it.
+<<if $posSelfPerception > $negSelfPerception>>
+    Narrator: You did your duty and upheld the integrity of your role. But you can't help but feel a bit conflicted about the report.
+<<else>>
+    Narrator: You feel a bit uneasy, but you rationalize that honesty is the best policy.
+<<endif>>
+Narrator: Not soon after, you receive a reply from HQ.
+<<hide_all_objects>>
+<<show MonitorReportedMessage>>
+<<wait 2>>
+<<jump AfterReadReportedMessage>>
+===
+
+title: AfterReadReportedMessage
+---
+Narrator: You can't help but feel a bit defensive. You did your best to report the facts.
+Narrator: Still, their words linger in your mind as you prepare for the day ahead.
+<<jump End>>  // TODO: Need to add this ending
+===
+
+title: KeptUnderWraps
+---
+<<hide_all_ui_objects>>
+Narrator: You hesitate before sending the message. You have disobeyed direct orders, but you feel it was the right choice.
+<<if $posSelfPerception > $negSelfPerception>>
+    Narrator: You feel a sense of pride in your decision. You trust your instincts and believe that not everything needs to be reported.
+<<else>>
+    Narrator: You feel a pang of guilt. However, you rationalize that some things are better left unsaid.
+<<endif>>
+Narrator: You turn the monitor off and take a seat.
+<<hide_all_objects>>
+<<show Sitting>>
+Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
+    -> (reestablish contact with the aliens)
+    -> (ignore the aliens)
+Narrator: You decide to get back to doing something. Anything is better than sitting around.
+<<hide Sitting>>
+<<hide_all_objects>>
+// TODO: Need to continue this branch
+===
+
+title: EndDay2
+---
+Narrator: You are done with the day.
+<<jump End>>
+===
