@@ -72,7 +72,7 @@ position: 308,-448
 Narrator: You stand up and turn on the computer. 
 Narrator: As part of your job, you need to complete a daily report on your findings.
 Narrator: You're not sure anyone actually reads these, but it gives you a sense of routine.
-<<show MonitorUI>>
+<<show MonitorReportDay1>>
 <<show_ui TypeToInteract>>
 ===
 
@@ -83,7 +83,7 @@ position: 15,-241
 Narrator: You sigh, after having written the same report for the 620th time. 
 Narrator: The report is done for the day.
     -> (turn off the monitor)
-<<hide MonitorUI>>
+<<hide MonitorReportDay1>>
 <<show MonitorOff>>
 <<jump MonitorOn>>
 ===

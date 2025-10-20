@@ -1,4 +1,5 @@
 title: StartDay2
+position: 51,-456
 ---
 Narrator: You wake up to a loud chime on the monitor, your head pounding yet again. You don't know what time it is, but you feel rested. 
 Narrator: Your sleep cycle has been all over the place since you started this job.
@@ -8,6 +9,7 @@ Narrator: You sit up and rub your temples. Time to get ready for another day of 
 ===
 
 title: OnClickedMonitorDay2
+position: 55,-311
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOnDay2>>
@@ -16,18 +18,30 @@ Narrator: Before you start your report, you notice a new message from HQ.
 Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
 Narrator: You ponder the details of your next report. Do you report the encounter? Or keep it under wraps?
     -> (report the encounter)
-        <<hide_all_objects>>
-        <<show_ui TypeToInteract>>
-        <<show MonitorReportDay2>>
+        Narrator: You hesitate for a moment. You're not entirely sure what will happen if you report the aliens, but you may never see them again.
+        -> (report the encounter)
+            Narrator: You get to writing your report.
+            <<hide_all_objects>>
+            <<show_ui TypeToInteract>>
+            <<show MonitorReport>>
+        -> (keep it under wraps)
+            <<hide_all_objects>>
+            Narrator: You get to writing your report.
+            <<show_ui TypeToInteract>>
+            <<show MonitorDontReportDay2>>
     -> (keep it under wraps)
         <<hide_all_objects>>
+        Narrator: You get to writing your report.
         <<show_ui TypeToInteract>>
         <<show MonitorDontReportDay2>>
 ===
 
 title: ReportedAliens
+position: 75,230
 ---
 <<hide_all_ui_objects>>
+<<hide_all_objects>>
+<<show ScreenBlocker>>
 Narrator: You finish sending the report to HQ. You followed your orders and reported everything as you saw it.
 <<if $posSelfPerception > $negSelfPerception>>
     Narrator: You did your duty and upheld the integrity of your role. But you can't help but feel a bit conflicted about the report.
@@ -35,20 +49,17 @@ Narrator: You finish sending the report to HQ. You followed your orders and repo
     Narrator: You feel a bit uneasy, but you rationalize that honesty is the best policy.
 <<endif>>
 Narrator: Not soon after, you receive a reply from HQ.
-<<hide_all_objects>>
 <<show MonitorReportedMessage>>
-<<wait 2>>
-<<jump AfterReadReportedMessage>>
-===
-
-title: AfterReadReportedMessage
----
+<<wait 4>>
 Narrator: You can't help but feel a bit defensive. You did your best to report the facts.
-Narrator: Still, their words linger in your mind as you prepare for the day ahead.
-<<jump End>>  // TODO: Need to add this ending
+Narrator: Days pass. And afterwards, you never hear from the aliens again.
+Narrator: You're not even sure if they were real to begin with.
+<<detour End>>
+Narrator: ENDING 1/3: Did it ever happen?
 ===
 
-title: KeptUnderWraps
+title: KeptUnderWrapsDay2
+position: 167,29
 ---
 <<hide_all_ui_objects>>
 Narrator: You hesitate before sending the message. You have disobeyed direct orders, but you feel it was the right choice.
@@ -60,13 +71,12 @@ Narrator: You hesitate before sending the message. You have disobeyed direct ord
 Narrator: You turn the monitor off and take a seat.
 <<hide_all_objects>>
 <<show Sitting>>
-Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
+Narrator: It's a fresh day. The aliens said that you can ping them if you wanted to chat. Maybe you should give it a try.
     -> (reestablish contact with the aliens)
-    -> (ignore the aliens)
-Narrator: You decide to get back to doing something. Anything is better than sitting around.
-<<hide Sitting>>
-<<hide_all_objects>>
-// TODO: Need to continue this branch
+        <<hide_all_objects>>
+        <<show ChooseYourCharacterDay2>>
+    // -> (ignore the aliens)
+        // TODO: implement this
 ===
 
 title: CallCatDay2
@@ -80,24 +90,30 @@ title: CallDogDay2
 position: 408,123
 ---
 Narrator: You call {$dogName}.
-<<jump EndDay2>>
+Narrator: But they don't respond. So you instead call {$catName}. (this is not implemented yet)
+<<jump CallCatDay2>>
 ===
 
 title: CallLizardDay2
 position: 409,-43
 ---
 Narrator: You call {$lizardName}.
-<<jump EndDay2>>
+
+Narrator: But they don't respond. So you instead call {$catName}. (this is not implemented yet)
+<<jump CallCatDay2>>
 ===
 
 title: CallBirdDay2
 position: 411,-211
 ---
 Narrator: You call {$birdName}.
-<<jump EndDay2>>
+
+Narrator: But they don't respond. So you instead call {$catName}. (this is not implemented yet)
+<<jump CallCatDay2>>
 ===
 
 title: EndDay2
+position: 762,12
 ---
 Narrator: You are done with the day.
 <<jump End>>

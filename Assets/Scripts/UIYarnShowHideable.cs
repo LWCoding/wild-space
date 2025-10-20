@@ -42,6 +42,12 @@ public class UIYarnShowHideable : MonoBehaviour
         {
             text.enabled = true;
         }
+
+        // Also show any children under this GameObject
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+        }
         Debug.Log($"Showed UI object: {gameObject.name}");
     }
 
@@ -61,6 +67,12 @@ public class UIYarnShowHideable : MonoBehaviour
         if (text != null)
         {
             text.enabled = false;
+        }
+
+        // Also hide any children under this GameObject
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(false);
         }
         Debug.Log($"Hid UI object: {gameObject.name}");
     }

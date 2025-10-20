@@ -1,71 +1,125 @@
 title: StartDay3
-position: -178,-360
+position: -178,-561
 ---
-Narrator: Day 3 has began.
-<<jump DoJobDay3>>
+Narrator: Day 3 has began. You have a job to do.
+<<show_ui ClickToInteract>>
+<<show MonitorOffDay3>>
 ===
 
-title: DoJobDay3
+title: OnClickedMonitorDay3
+position: -185,-367
+---
+<<hide_all_ui_objects>>
+<<show MonitorOnDay3>>
+Narrator: You turn on the monitor to see today's tasks.
+Narrator: Out of the corner of your eye, you see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
+Narrator: Do you wish to report your alien encounter?
+    -> (report the encounter)
+        Narrator: You hesitate for a moment. You're not entirely sure what will happen if you report the aliens, but you may never see them again.
+        -> (report the encounter)
+            Narrator: You get to writing your report.
+            <<hide_all_objects>>
+            <<show_ui TypeToInteract>>
+            <<show MonitorReport>>
+        -> (keep it under wraps)
+            <<hide_all_objects>>
+            Narrator: You get to writing your report.
+            <<show_ui TypeToInteract>>
+            <<show MonitorDontReportDay3>>
+    -> (keep it under wraps)
+        <<hide_all_objects>>
+        Narrator: You get to writing your report.
+        <<show_ui TypeToInteract>>
+        <<show MonitorDontReportDay3>>
+===
+
+title: KeptUnderWrapsDay3
 position: -179,-172
 ---
-Narrator: Day 2 has began.
-<<jump EmbraceDeath>>
-<<jump CallEarth>>
-<<jump CallAliensDay3>>
+Narrator: You finish your report.
+Narrator: All of a sudden, you realize that your oxygen supply is running low.
+Narrator: You need to get help, fast. You're not sure if you can make it past this day alive. What do you do now?
+    -> (call the aliens for help)
+        <<jump CallAliensDay3>>
+    -> (ask the HQ on Earth for help)
+        <<jump CallEarth>>
+    -> (embrace death)
+        <<jump EmbraceDeath>>
 ===
 
 title: CallAliensDay3
 position: 47,10
 ---
-Narrator: Day 2 has began.
-<<jump CallCatDay3>>
-<<jump CallDogDay3>>
-<<jump CallLizardDay3>>
-<<jump CallBirdDay3>>
+Narrator: Who do you call?
+    -> (call {$catName})
+        <<jump CallCatDay3>>
+    -> (call {$dogName})
+        <<jump CallDogDay3>>
+    -> (call {$lizardName})
+        <<jump CallLizardDay3>>
+    -> (call {$birdName})
+        <<jump CallBirdDay3>>
 ===
 
 title: CallCatDay3
 position: 422,282
 ---
 Narrator: You call {$catName}.
-<<jump AcceptHelp>>
-<<jump RefuseHelp>>
+Narrator: They say they can help you.
+    -> (accept help)
+        <<jump AcceptHelp>>
+    -> (refuse help)
+        <<jump RefuseHelp>>
 ===
 
 title: CallDogDay3
 position: 408,123
 ---
 Narrator: You call {$dogName}.
-<<jump AcceptHelp>>
-<<jump RefuseHelp>>
+Narrator: But they don't respond. So you call {$catName}. (this is not implemented yet)
+<<jump CallCatDay3>>
 ===
 
 title: CallLizardDay3
 position: 409,-43
 ---
 Narrator: You call {$lizardName}.
-<<jump AcceptHelp>>
-<<jump RefuseHelp>>
+Narrator: But they don't respond. So you call {$catName}. (this is not implemented yet)
+<<jump CallCatDay3>>
 ===
 
 title: CallBirdDay3
 position: 411,-211
 ---
 Narrator: You call {$birdName}.
-<<jump AcceptHelp>>
-<<jump RefuseHelp>>
+Narrator: But they don't respond. So you call {$catName}. (this is not implemented yet)
+<<jump CallCatDay3>>
 ===
 
 title: CallEarth
-position: -173,227
+position: 9,269
 ---
-Narrator: You call Earth.
+Narrator: You call Earth about your situation.
+Narrator: They claim that they could send help, but it wouldn't make it to you on time.
+Narrator: You have a feeling that you can get them to send their emergency rescue team if you convince them that your life is in danger.
+    -> (tell them about the aliens you saw)
+        <<jump AcceptHelp>>
+    -> (tell them you can manage on your own)
+        Narrator: Back to the drawing board. What do you do, instead?
+            -> (call the aliens for help)
+            <<jump CallAliensDay3>>
+            -> (embrace death)
+                <<jump EmbraceDeath>>
 ===
 
 title: EmbraceDeath
-position: -386,23
+position: -204,101
 ---
-Narrator: You embrace death.
+<<show ScreenBlocker>>
+Narrator: You embrace death. Nobody ever hears from you again. Not that they really cared, anyways.
+Narrator: Somebody eventually ends up replacing your station, and life goes on as usual.
+<<detour End>>
+Narrator: ENDING 3/3: Loveless fate
 ===
 
 title: AcceptHelp

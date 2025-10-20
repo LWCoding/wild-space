@@ -1,15 +1,7 @@
 title: End
 ---
-<<stop_voice_blip Cat>>
-<<hide_character Cat>>
-<<hide_character Dog>>
-<<hide_character DogObscure>>
-<<hide_character CatObscure>>
-Narrator: You've reached the end of the demo.
-Narrator: I couldn't be bothered to code anymore beyond this point. :')
-===
-
-title: AloneEnd
----
-Narrator: You are forever alone. The End.
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<hide_all_characters>>
+<<show_ui UITheEnd>>
 ===
