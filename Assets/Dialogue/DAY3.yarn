@@ -86,14 +86,21 @@ Narrator: You call {$catName}. You see movement, and start tweaking the dials to
             -> I haven't tried yet.
                 {$catName}: Well, I'm flattered that you thought of me first, but... don't you think it's better for your own planet to save you?
                     -> There's no time. I need help now.
-                        {$catName}: ...Alright. Let me see what I can do.
+                        <<if $catLikesYou < $catDislikesYou>>
+                            {$catName}: Sorry, there's nothing I can do.
+                            <<stop_voice_blip Cat>>
+                            Narrator: Stricken by sadness, you end the call.
+                            <<jump EmbraceDeath>>
+                        <<else>>
+                            {$catName}: Alright, I'll help you. But only because I care about you, {$catThinksPlayerNameIs}.
+                        <<endif>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
                 {$catName}: I see. That seems pretty urgent. Let me see what I can do.
             -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $catLikesYou >= $catDislikesYou>>
                 <<show_character Cat Flirt right>>
                 {$catName}: Heh, oh you... Alright, I'll help you out.
 <<show_character Cat Neutral right>>
-{$catName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will send you over to my home planet.
+{$catName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will bring you here, to my home planet.
 {$catName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
     -> Isn't there another way?
         {$catName}: Do you have any plans? Because I sure don't.
