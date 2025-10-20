@@ -268,6 +268,7 @@ Narrator: Suddenly, the figure comes into view.
         {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
 <<show_character Cat Thinking right>>
 {$catName}: Ah! Well as long as you're okay, I just realized I had to do something.
+<<show_character Cat Helmet right>>
 {$catName}: It's not my plan to keep you here for over an orbit. You probably have things to do.
 <<if $catLikesYou >= $catDislikesYou>>
 <<show_character Cat Flirt right>>

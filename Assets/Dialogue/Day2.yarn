@@ -69,6 +69,7 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
     <<show_character Cat Happy right>>
     Narrator: {$catName} appears on the screen, looking relieved to see you.
     <<show_character Cat Happy2 right>>
+    <<start_voice_blip Cat>>
     {$catName}: Hey {$playerName}, I was just thinking about you! Do you need something?
         -> I want to get to know you better.
             <<positive_indicator Cat>>
@@ -78,6 +79,7 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
 <<else>>
     <<show_character Cat Neutral right>>
     Narrator: {$catName} appears on the screen.
+    <<start_voice_blip Cat>>
     {$catName}: Oh, it's you! Hey again, {$playerName}. What's up?
         -> I want to get to know you better.
             <<positive_indicator Cat>>
@@ -85,12 +87,32 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
             <<show_character Cat Thinking right>>
             {$catName}: Huh. Well, I guess we can talk a bit more.
 <<endif>>
+<<declare $askedQuestion1 = false>>
+<<declare $askedQuestion2 = false>>
+<<declare $askedQuestion3 = false>>
+<<jump CatRecurringTreeDay2>>
+===
+
+title: CatRecurringTreeDay2
+---
+<<start_voice_blip Cat>>
 {$catName}: What did you want to talk about?
-    -> What is it like out here?
+    -> What is it like out here? <<if $askedQuestion1 == false>>
+        <<set $askedQuestion1 = true>>
         {$catName}: I actually come from a planet far, far away from where you are.
         {$catName}: We've done some surveils of your planet before! Out here, we don't have the same comforts as you do. 
         {$catName}: For example, the quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
-    -> What is your mission?
+            -> That's scary!
+                <<positive_indicator Cat>>
+                <<set $catLikesYou += 1>>
+                <<show_character Cat Happy right>>
+                {$catName}: Yeah, it can be. But we've learned to adapt over time.
+            -> We have those too.
+                <<show_character Cat Neutral right>>
+                <<set $catDislikesYou += 1>>
+                {$catName}: Sure, you do. But I can say with a pretty good amount of confidence that they're not as bad as ours!
+    -> What is your mission? <<if $askedQuestion2 == false>>
+        <<set $askedQuestion2 = true>>
         {$catName}: Mission? I don't think we have... a "mission". We're just out here trying to survive, same as you.
         <<if $catLikesYou >= $catDislikesYou>>
             <<show_character Cat Happy right>>
@@ -98,9 +120,51 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
             <<show_character Cat Neutral right>>
         <<endif>>
         {$catName}: You make it seem like we're some kind of invaders or something.
-    -> Do you want to play a game?
+        <<set $catDislikesYou += 1>>
+    -> Do you want to play a game? <<if $askedQuestion3 == false>>
+        <<set $askedQuestion3 = true>>
         {$catName}: A game? Sure, why not!
-<<jump EndDay2>>
+        // TODO: Make this an actual game
+        <<stop_voice_blip Cat>>
+        Narrator: You decide to play a game with {$catName} on the monitor to pass the time.
+        Narrator: The game is a simple one where you have to match shapes and colors. It's not very exciting, but it helps to break the ice.
+        Narrator: It seems that {$catName}, however, is struggling quite a bit.
+            -> (win at the game)
+                <<positive_indicator Cat>>
+                <<set $catLikesYou += 1>>
+                <<show_character Cat Happy right>>
+                <<start_voice_blip Cat>>
+                {$catName}: Wow, you're really good at this! Maybe you can teach me sometime.
+            -> (purposefully lose the game)
+                <<show_character Cat Happy2 right>>
+                <<positive_indicator Cat>>
+                <<set $catLikesYou += 1>>
+                <<start_voice_blip Cat>>
+                {$catName}: Hah, I think I won that one! 
+                <<show_character Cat Flirt right>>
+                {$catName}: Maybe some day I'll teach you a thing or two. But it takes quite a lot of practice to get on my level.
+    -> (don't ask any more questions)
+        <<stop_voice_blip Cat>>
+        <<if $posSelfPerception > $negSelfPerception>>
+            Narrator: You decide to end the conversation for now. You had a lot of fun.
+        <<else>>
+            Narrator: You feel your social battery start to drain, so you decide to end the conversation for now.
+        <<endif>>
+        <<start_voice_blip Cat>>
+        <<if $catLikesYou >= $catDislikesYou>>
+            <<show_character Cat Happy right>>
+            {$catName}: Aww, already? I was just starting to have fun!
+            {$catName}: But okay, if you need to go, I understand. Just ping me again sometime, okay {$catThinksPlayerNameIs}?
+        <<else>>
+            <<show_character Cat Neutral right>>
+            {$catName}: Oh, alright. That sounds good to me.
+            {$catName}: Thanks for the talk, I guess.
+        <<endif>>
+        <<stop_voice_blip Cat>>
+        Narrator: You cut the connection and take a step back from your monitor.
+            -> (turn off the monitor)
+        <<jump EndDay2>>
+<<jump CatRecurringTreeDay2>>
 ===
 
 title: CallDogDay2
