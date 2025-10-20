@@ -24,7 +24,7 @@ Narrator: You ponder the details of your next report. Do you report the encounte
             Narrator: You get to writing your report.
             <<hide_all_objects>>
             <<show_ui TypeToInteract>>
-            <<show MonitorReport>>
+            <<show MonitorReportDay2>>
         -> (report that you saw nothing)
             <<hide_all_objects>>
             Narrator: You get to writing your report.

@@ -21,7 +21,7 @@ Narrator: Do you wish to report your alien encounter?
             Narrator: You get to writing your report.
             <<hide_all_objects>>
             <<show_ui TypeToInteract>>
-            <<show MonitorReport>>
+            <<show MonitorReportDay3>>
         -> (report that you saw nothing)
             <<hide_all_objects>>
             Narrator: You get to writing your report.
@@ -149,7 +149,7 @@ Narrator: You have a feeling that you can get them to send their emergency rescu
             <<set $desperate = true>>
             <<hide_all_objects>>
             <<show_ui TypeToInteract>>
-            <<show MonitorReport>>
+            <<show MonitorReportDay3>>
         -> (reconsider)
             Narrator: You reconsider your options. Maybe there's another way to get help without putting the aliens at risk.
             -> (call the aliens for help)
@@ -161,7 +161,7 @@ Narrator: You have a feeling that you can get them to send their emergency rescu
                 <<set $desperate = true>>
                 <<hide_all_objects>>
                 <<show_ui TypeToInteract>>
-                <<show MonitorReport>>
+                <<show MonitorReportDay3>>
     -> (nevermind, you can manage on your own)
         Narrator: You pace back and forth, considering your options.
             -> (call the aliens for help)
