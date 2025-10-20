@@ -196,10 +196,12 @@ Narrator: Suddenly, the figure comes into view.
 <<if $catLikesYou >= $catDislikesYou>>
 <<show_character Cat Happy right>>
 {$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName}.
+<<show_character Cat Happy2 right>>
 <<else>>
 {$catName}: Anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
+<<show_character Cat Neutral right>>
 <<endif>>
-{$catName}: I'm what you'd probably call an "alien".
+{$catName}: To you, I'm an alien. To me, you're an alien. We're all aliens here.
     -> An alien? Those don't exist.
         <<show_character Cat Thinking right>>
         <<set $catDislikesYou += 1>>
@@ -267,9 +269,7 @@ Narrator: Suddenly, the figure comes into view.
         <<show_character Cat Thinking right>>
         {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
 <<show_character Cat Thinking right>>
-{$catName}: Ah! Well as long as you're okay, I just realized I had to do something.
-<<show_character Cat Helmet right>>
-{$catName}: It's not my plan to keep you here for over an orbit. You probably have things to do.
+{$catName}: Ah! Well as long as you're okay, I just realized I had to do something. It's not my plan to keep you here for over an orbit.
 <<if $catLikesYou >= $catDislikesYou>>
 <<show_character Cat Flirt right>>
 {$catName}: I'll talk to you again soon. See ya!
