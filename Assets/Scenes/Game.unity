@@ -1206,12 +1206,12 @@ MonoBehaviour:
     PRIORITY ALERT - IMMEDIATE
     TRANSMISSION REQUIRED
 
-    
+
 
     Anomalous transmission received at 14:37 hours.
     Pattern analysis confirms non-human origin. FIRST CONTACT CONFIRMED.
 
-    
+
 
     END
     TRANSMISSION'
@@ -2800,28 +2800,28 @@ MonoBehaviour:
 
     Response to Day 621 Report
 
-    
 
-    MISSION
-    CONTROL ACKNOWLEDGMENT
 
-    
+    MISSION CONTROL
+    ACKNOWLEDGMENT
 
-    First contact transmission confirmed and
-    logged. Signal data has been forwarded to xenolinguistics division and priority
-    research teams.
 
-    
 
-    Maintain current heading and continue standard observation
-    protocols. Do not attempt response to alien transmission without explicit authorization.
+    First contact transmission confirmed and logged. Signal
+    data has been forwarded to xenolinguistics division and priority research teams.
 
-    
 
-    Continue
-    routine duties as assigned.
 
-    
+    Maintain
+    current heading and continue standard observation protocols. Do not attempt response
+    to alien transmission without explicit authorization.
+
+
+
+    Continue routine
+    duties as assigned.
+
+
 
     MISSION CONTROL OUT
 
@@ -3456,7 +3456,7 @@ MonoBehaviour:
   audioSource1: {fileID: 779370043}
   audioSource2: {fileID: 845041586}
   initialMusicClip: {fileID: 8300000, guid: d7083eb2484dbee4e8f1d43370034b16, type: 3}
-  initialMusicVolume: 0.1
+  initialMusicVolume: 0.2
   defaultTransitionTime: 0.5
 --- !u!1 &1165409720
 GameObject:
