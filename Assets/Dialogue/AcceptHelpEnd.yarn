@@ -1,8 +1,13 @@
 title: AcceptCatHelp
 ---
+<<hide_all_characters>>
+<<hide_all_objects>>
+<<start_voice_blip Cat>>
+<<show_character Cat Neutral right>>
 {$catName}: I've arranged for a rescue mission to come get you. Just hang tight, okay?
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<stop_voice_blip Cat>>
 <<show ScreenBlocker>>
 Narrator: The transmission cuts off as {$catName} supposedly leaves to arrange for your rescue.
 Narrator: You wait. And wait. And wait.

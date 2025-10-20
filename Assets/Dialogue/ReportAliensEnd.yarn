@@ -11,10 +11,18 @@ Narrator: You finish sending the report to HQ. You followed your orders and repo
 <<endif>>
 Narrator: Not soon after, you receive a reply from HQ.
 <<show MonitorReportedMessage>>
-<<wait 4>>
-Narrator: You can't help but feel a bit defensive. You did your best to report the facts.
+===
+
+title: MonitorReportedMessageComplete
+---
+<<wait 2>>
+Narrator: You can't help but feel a bit guilty, but you did your best to report the facts.
+Narrator: And here it is, laid bare in front of you: the response from HQ.
+<<hide_all_objects>>
+<<show ScreenBlocker>>
 <<if $desperate == false>>
     Narrator: Days pass. And afterwards, you never hear from the aliens again.
+    Narrator: You presume that Earth dealt with them. You hope that, if they were found, they were treated well, but you can't shake the feeling that this isn't exactly the case.
     Narrator: You're not even sure if they were real to begin with.
     <<detour End>>
     Narrator: ENDING 1/4: Did it ever happen?

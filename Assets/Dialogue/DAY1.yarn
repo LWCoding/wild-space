@@ -26,7 +26,7 @@ position: -30,-398
 <<declare $bedrollExplored = false>>
 <<declare $cannedFoodExplored = false>>
 <<declare $monitorExplored = false>>
-<<show MonitorOff>>
+<<show MonitorOffDay1>>
 <<show Bedroll>>
 <<show Soup>>
 Narrator: Might as well re-familiarize yourself with your surroundings.
@@ -83,15 +83,13 @@ Narrator: You sigh, after having written the same report for the 620th time.
 Narrator: The report is done for the day.
     -> (turn off the monitor)
 <<hide MonitorReportDay1>>
-<<show MonitorOff>>
 <<jump MonitorOn>>
 ===
 
 title: MonitorOn
 position: 15,-63
 ---
-<<hide Sitting>>
-<<hide MonitorOff>>
+<<hide_all_objects>>
 <<show MonitorOn>>
 Narrator: Just as you turn the monitor off, it flickers and springs back to life.
 <<show_character Cat Obscure right>>

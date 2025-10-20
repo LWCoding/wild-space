@@ -13,7 +13,7 @@ title: OnClickedMonitorDay2
 position: 55,-311
 ---
 <<hide_all_ui_objects>>
-<<show MonitorOnDay2>>
+<<show MonitorOn>>
 Narrator: You turn on the monitor to see today's tasks.
 Narrator: Before you start your report, you notice a new message from HQ.
 Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
@@ -25,12 +25,12 @@ Narrator: You ponder the details of your next report. Do you report the encounte
             <<hide_all_objects>>
             <<show_ui TypeToInteract>>
             <<show MonitorReport>>
-        -> (keep it under wraps)
+        -> (report that you saw nothing)
             <<hide_all_objects>>
             Narrator: You get to writing your report.
             <<show_ui TypeToInteract>>
             <<show MonitorDontReportDay2>>
-    -> (keep it under wraps)
+    -> (report that you saw nothing)
         <<hide_all_objects>>
         Narrator: You get to writing your report.
         <<show_ui TypeToInteract>>
@@ -41,7 +41,7 @@ title: KeptUnderWrapsDay2
 position: 167,29
 ---
 <<hide_all_ui_objects>>
-Narrator: You hesitate before sending the message. You have disobeyed direct orders, but you feel it was the right choice.
+Narrator: You hesitate before sending the message. You disobeyed the rules of your job, but you feel it was the right choice.
 <<if $posSelfPerception > $negSelfPerception>>
     Narrator: You feel a sense of pride in your decision. You trust your instincts and believe that not everything needs to be reported.
 <<else>>
@@ -64,6 +64,9 @@ Narrator: It's a fresh day. The aliens said that you can ping them if you wanted
 title: CallCatDay2
 position: 422,282
 ---
+<<hide_all_objects>>
+<<show MonitorOn>>
+<<show_character Cat Obscure right>>
 Narrator: You call {$catName}. The line remains static for a little while, but you suddenly see movement on the other end.
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy right>>
@@ -87,9 +90,9 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
             <<show_character Cat Thinking right>>
             {$catName}: Huh. Well, I guess we can talk a bit more.
 <<endif>>
-<<declare $askedQuestion1 = false>>
-<<declare $askedQuestion2 = false>>
-<<declare $askedQuestion3 = false>>
+<<declare $day2AskedCatQ1 = false>>
+<<declare $day2AskedCatQ2 = false>>
+<<declare $day2AskedCatQ3 = false>>
 <<jump CatRecurringTreeDay2>>
 ===
 
@@ -97,8 +100,8 @@ title: CatRecurringTreeDay2
 ---
 <<start_voice_blip Cat>>
 {$catName}: What did you want to talk about?
-    -> What is it like out here? <<if $askedQuestion1 == false>>
-        <<set $askedQuestion1 = true>>
+    -> What is it like out here? <<if $day2AskedCatQ1 == false>>
+        <<set $day2AskedCatQ1 = true>>
         {$catName}: I actually come from a planet far, far away from where you are.
         {$catName}: We've done some surveils of your planet before! Out here, we don't have the same comforts as you do. 
         {$catName}: For example, the quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
@@ -111,8 +114,8 @@ title: CatRecurringTreeDay2
                 <<show_character Cat Neutral right>>
                 <<set $catDislikesYou += 1>>
                 {$catName}: Sure, you do. But I can say with a pretty good amount of confidence that they're not as bad as ours!
-    -> What is your mission? <<if $askedQuestion2 == false>>
-        <<set $askedQuestion2 = true>>
+    -> What is your mission? <<if $day2AskedCatQ2 == false>>
+        <<set $day2AskedCatQ2 = true>>
         {$catName}: Mission? I don't think we have... a "mission". We're just out here trying to survive, same as you.
         <<if $catLikesYou >= $catDislikesYou>>
             <<show_character Cat Happy right>>
@@ -121,8 +124,8 @@ title: CatRecurringTreeDay2
         <<endif>>
         {$catName}: You make it seem like we're some kind of invaders or something.
         <<set $catDislikesYou += 1>>
-    -> Do you want to play a game? <<if $askedQuestion3 == false>>
-        <<set $askedQuestion3 = true>>
+    -> Do you want to play a game? <<if $day2AskedCatQ3 == false>>
+        <<set $day2AskedCatQ3 = true>>
         {$catName}: A game? Sure, why not!
         // TODO: Make this an actual game
         <<stop_voice_blip Cat>>
@@ -163,6 +166,7 @@ title: CatRecurringTreeDay2
         <<stop_voice_blip Cat>>
         Narrator: You cut the connection and take a step back from your monitor.
             -> (turn off the monitor)
+        <<hide_all_objects>>
         <<jump EndDay2>>
 <<jump CatRecurringTreeDay2>>
 ===
@@ -198,6 +202,7 @@ position: 762,12
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show MonitorOff>>
 Narrator: Again, after the long conversation, you decide to go to bed.
 <<if $posSelfPerception > $negSelfPerception>>
     Narrator: After talking with these new figures, you've felt a sense of growth. You feel more confident in your ability to handle whatever comes your way.

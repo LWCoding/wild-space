@@ -1,6 +1,14 @@
 title: EmbraceDeath
 ---
+<<hide_all_characters>>
+<<hide_all_objects>>
 <<show ScreenBlocker>>
+Narrator: You decide not to call for help.
+<<if $posSelfPerception > $negSelfPerception>>
+    Narrator: You feel a strange sense of peace with your decision. After all, you've lived a full life, and you're ready to face whatever comes next.
+<<else>>
+    Narrator: You feel a wave of sadness wash over you. You wonder if you made the right choice, but deep down, you know that this is the path you must take.
+<<endif>>
 Narrator: You embrace death. Nobody ever hears from you again. Not that they really cared, anyways.
 Narrator: Somebody eventually ends up replacing your station, and life goes on as usual.
 <<detour End>>
