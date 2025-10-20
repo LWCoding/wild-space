@@ -210,6 +210,7 @@ Narrator: Again, after the long conversation, you decide to go to bed.
 <<else>>
     Narrator: After talking with these new figures, you've felt a bit more uncertain about your place in this situation. You hope that you'll be able to figure things out soon.
 <<endif>>
+<<hide_all_objects>>
 <<show ScreenBlocker>>
 <<wait 2>>
 <<hide ScreenBlocker>>

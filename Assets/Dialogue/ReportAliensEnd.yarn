@@ -26,14 +26,15 @@ Narrator: HQ sent a team to investigate the aliens you reported. They also fixed
 <<if $desperate == false>>
     Narrator: Days pass. And afterwards, you never hear from the aliens again.
     Narrator: You presume that Earth dealt with them. You hope that, if they were found, they were treated well, but you can't shake the feeling that this isn't exactly the case.
-    Narrator: You're not even sure if they were real to begin with.
+    Narrator: You live your life out on your ship, never quite feeling at peace with what happened. You never talk to anyone again.
+    Narrator: You're not even sure if the aliens were real to begin with.
+    Narrator: <b>ENDING 1/4: Did it ever happen?</b>
     <<detour End>>
-    Narrator: ENDING 1/4: Did it ever happen?
 <<else>>
     Narrator: In the span of a few hours, a rapidly-moving rescue vehicle arrives at your location.
     Narrator: They commandeer your ship to study the incoming signals. Meanwhile, you're shipped back to Earth, and eventually, are tasked with piloting a different space vessel.
     Narrator: You never hear from the aliens again.
+    Narrator: <b>ENDING 2/4: Desperation rescue</b>
     <<detour End>>
-    Narrator: ENDING 2/4: Desperation rescue
 <<endif>>
 ===

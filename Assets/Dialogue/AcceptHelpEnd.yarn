@@ -13,8 +13,8 @@ Narrator: The transmission cuts off as {$catName} supposedly leaves to arrange f
 Narrator: You wait. And wait. And wait.
 Narrator: Hours pass. And, just as you start to lose hope, a ship in the shape of a yarnball appears on the horizon.
 Narrator: You made it. {$catName} came through for you.
+Narrator: <b>ENDING 4/4: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
 <<detour End>>
-Narrator: ENDING 4/4: Saved by a friend  // TODO: potentially be lover if relationship is high
 ===
 
 title: AcceptDogHelp

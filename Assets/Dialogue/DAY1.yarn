@@ -4,7 +4,9 @@ position: -31,-584
 <<once>>
 <<declare $saidHello = false>>
 <<hide_all_objects>>
-Narrator: {$playerName}... Yes, you are {$playerName}.
+<<show ScreenBlocker>>
+Narrator: {$playerName}... Right, your name is {$playerName}.
+<<hide ScreenBlocker>>
 <<speed 1>>
 Narrator: You open your eyes, and realize that you are no longer suspended in mid-air.
 Narrator: You're lying down. On a hard surface. Your head feels heavy, and your body aches all over.
@@ -210,7 +212,7 @@ Narrator: Suddenly, the figure comes into view.
         <<show_character Cat Thinking right>>
         {$catName}: It's... hard to explain. It's probably not something I can explain to you.
         <<show_character Cat Happy2 right>>
-        {$catName}: Just call me Cat, it's easier that way.
+        {$catName}: Just call me {$catName}, it's easier that way.
     -> Meowdy.
         <<show_character Cat Thinking right>>
         {$catName}: ...Meowdy? That's an interesting way to greet someone.
@@ -347,6 +349,7 @@ position: 635,249
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show MonitorOn>>
 Narrator: You pull up the communication panel and respond to the figure with the floppy ears.
 <<show_character Dog Obscure right>>
 Narrator: You turn the dials to let the signal through.

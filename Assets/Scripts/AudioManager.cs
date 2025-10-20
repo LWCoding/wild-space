@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     private AudioSource currentSource;
     private AudioSource fadeSource;
     private bool isTransitioning = false;
+    private Coroutine activeStartThenLoopCoroutine;
+    private int startThenLoopToken = 0;
     
     void Awake()
     {
@@ -84,6 +86,9 @@ public class AudioManager : MonoBehaviour
     /// <param name="transitionTime">Time for the crossfade transition (optional)</param>
     public void ChangeAudioClip(AudioClip newClip, float volume = 0.2f, float transitionTime = -1)
     {
+        // Cancel any pending start-then-loop so it can't override this new music
+        CancelStartThenLoop();
+
         if (newClip == null)
         {
             Debug.LogWarning("AudioManager: Cannot change to null audio clip");
@@ -108,6 +113,9 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void StopAudio()
     {
+        // Ensure any start-then-loop coroutine is cancelled as well
+        CancelStartThenLoop();
+
         if (currentSource != null)
             currentSource.Stop();
         
@@ -124,6 +132,9 @@ public class AudioManager : MonoBehaviour
     /// <param name="volume">Volume for the clip (optional)</param>
     public void PlayAudioImmediate(AudioClip clip, float volume = 0.2f)
     {
+        // Cancel any pending start-then-loop so it can't override this immediate play
+        CancelStartThenLoop();
+
         if (clip == null)
         {
             Debug.LogWarning("AudioManager: Cannot play null audio clip");
@@ -171,11 +182,14 @@ public class AudioManager : MonoBehaviour
             Debug.LogWarning("AudioManager: Cannot play null audio clips");
             return;
         }
-        
-        StartCoroutine(PlayStartThenLoopCoroutine(startClip, loopClip, volume, fadeTime));
+
+        // Cancel any existing start-then-loop and start a new guarded coroutine
+        CancelStartThenLoop();
+        int token = ++startThenLoopToken;
+        activeStartThenLoopCoroutine = StartCoroutine(PlayStartThenLoopCoroutine(startClip, loopClip, volume, fadeTime, token));
     }
     
-    private IEnumerator PlayStartThenLoopCoroutine(AudioClip startClip, AudioClip loopClip, float volume, float fadeTime)
+    private IEnumerator PlayStartThenLoopCoroutine(AudioClip startClip, AudioClip loopClip, float volume, float fadeTime, int token)
     {
         // Stop any current audio
         StopAudio();
@@ -188,6 +202,12 @@ public class AudioManager : MonoBehaviour
         
         // Wait for the start clip to finish
         yield return new WaitForSeconds(startClip.length);
+
+        // If another music request came in, abort
+        if (token != startThenLoopToken)
+        {
+            yield break;
+        }
         
         // If there's a fade time, do a smooth transition to the loop clip
         if (fadeTime > 0)
@@ -203,6 +223,10 @@ public class AudioManager : MonoBehaviour
             // Crossfade from start clip to loop clip
             while (elapsedTime < fadeTime)
             {
+                if (token != startThenLoopToken)
+                {
+                    yield break;
+                }
                 elapsedTime += Time.deltaTime;
                 float t = elapsedTime / fadeTime;
                 
@@ -241,6 +265,10 @@ public class AudioManager : MonoBehaviour
         else
         {
             // No fade time, just switch directly to the loop clip
+            if (token != startThenLoopToken)
+            {
+                yield break;
+            }
             currentSource.clip = loopClip;
             currentSource.volume = volume;
             currentSource.loop = true;
@@ -248,6 +276,12 @@ public class AudioManager : MonoBehaviour
         }
         
         Debug.Log($"Now looping: {loopClip.name}");
+
+        // Clear reference if this coroutine is still the active one
+        if (activeStartThenLoopCoroutine != null && token == startThenLoopToken)
+        {
+            activeStartThenLoopCoroutine = null;
+        }
     }
     
     private IEnumerator CrossfadeToNewClip(AudioClip newClip, float volume, float transitionTime)
@@ -301,6 +335,17 @@ public class AudioManager : MonoBehaviour
         fadeSource = temp;
         
         isTransitioning = false;
+    }
+
+    private void CancelStartThenLoop()
+    {
+        if (activeStartThenLoopCoroutine != null)
+        {
+            StopCoroutine(activeStartThenLoopCoroutine);
+            activeStartThenLoopCoroutine = null;
+        }
+        // Bump token so any in-flight coroutine will self-abort on next check
+        startThenLoopToken++;
     }
 
     /// <summary>
