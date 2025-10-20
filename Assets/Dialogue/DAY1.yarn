@@ -220,14 +220,22 @@ Narrator: Suddenly, the figure comes into view.
 <<show_character Cat Happy right>>
 {$catName}: But anyways, who are you? What are you?
     -> My name's {$playerName}.
-        {$catName}: {$playerName}? It's nice to meet you.
-        <<set $catKnowsPlayerName = true>>
+        <<if $playerName == "Dipper">>
+            {$catName}: {$playerName}? That sounds like it'd be a cool name for a group of stars. It's nice to meet you.
+        <<else>>
+            {$catName}: {$playerName}? That's a cool name! It's nice to meet you.
+        <<endif>>
+        <<set $catLikesYou += 1>>
+        <<positive_indicator Cat>>
+        <<set $catThinksPlayerNameIs = $playerName>>
     -> I'm a human.
         <<show_character Cat Thinking right>>
         {$catName}: A human? I've only heard stories about your kind.
         {$catName}: Is it true that you walk on two legs and have opposable thumbs?
         -> Yes.
             <<show_character Cat Happy2 right>>
+            <<set $catLikesYou += 1>>
+            <<positive_indicator Cat>>
             {$catName}: That's incredible! You must be very dexterous.
         -> No.
             <<show_character Cat Neutral right>>
@@ -236,9 +244,12 @@ Narrator: Suddenly, the figure comes into view.
         {$catName}: And what should I call you?
         -> It's {$playerName}.
             {$catName}: {$playerName}? That's a nice name.
-            <<set $catKnowsPlayerName = true>>
+            <<set $catThinksPlayerNameIs = $playerName>>
         -> I don't have a name.
-            {$catName}: Oh, huh. That's okay, I guess.
+            <<show_character Cat Thinking right>>
+            {$catName}: Oh, huh. That's okay. How would people refer to you then?
+            <<show_character Cat Happy right>>
+            {$catName}: I guess I'll just call you "Human". I'm a master at nicknames.
     -> (stay silent)
         {$catName}: Oh, you don't have a name? That's okay, I guess.
 <<show_character Cat Neutral right>>

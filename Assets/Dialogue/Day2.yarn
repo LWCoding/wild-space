@@ -64,9 +64,43 @@ Narrator: It's a fresh day. The aliens said that you can ping them if you wanted
 title: CallCatDay2
 position: 422,282
 ---
-Narrator: You call {$catName}.
+Narrator: You call {$catName}. The line remains static for a little while, but you suddenly see movement on the other end.
+<<if $catLikesYou >= $catDislikesYou>>
+    <<show_character Cat Happy right>>
+    Narrator: {$catName} appears on the screen, looking relieved to see you.
+    <<show_character Cat Happy2 right>>
+    {$catName}: Hey {$playerName}, I was just thinking about you! Do you need something?
+        -> I want to get to know you better.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy right>>
+            {$catName}: I'd like that. It's nice to have someone to talk to out here.
+<<else>>
+    <<show_character Cat Neutral right>>
+    Narrator: {$catName} appears on the screen.
+    {$catName}: Oh, it's you! Hey again, {$playerName}. What's up?
+        -> I want to get to know you better.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Thinking right>>
+            {$catName}: Huh. Well, I guess we can talk a bit more.
+<<endif>>
+{$catName}: What did you want to talk about?
+    -> What is it like out here?
+        {$catName}: I actually come from a planet far, far away from where you are.
+        {$catName}: We've done some surveils of your planet before! Out here, we don't have the same comforts as you do. 
+        {$catName}: For example, the quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
+    -> What is your mission?
+        {$catName}: Mission? I don't think we have... a "mission". We're just out here trying to survive, same as you.
+        <<if $catLikesYou >= $catDislikesYou>>
+            <<show_character Cat Happy right>>
+        <<else>>
+            <<show_character Cat Neutral right>>
+        <<endif>>
+        {$catName}: You make it seem like we're some kind of invaders or something.
+    -> Do you want to play a game?
+        {$catName}: A game? Sure, why not!
 <<jump EndDay2>>
-// TODO: Implement this
 ===
 
 title: CallDogDay2

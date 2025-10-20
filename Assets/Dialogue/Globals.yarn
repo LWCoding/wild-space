@@ -1,6 +1,6 @@
 title: Globals
 ---
-<<declare $catKnowsPlayerName = false>>
+<<declare $catThinksPlayerNameIs = "Human">>
 <<declare $dogKnowsPlayerName = false>>
 <<declare $catLikesYou = 0>>
 <<declare $catDislikesYou = 0>>
@@ -19,5 +19,5 @@ title: Globals
 <<declare $talkedToLizard = false>>
 <<declare $talkedToBird = false>>
 
-<<declare $desperate = false>>  // whether the player is asking for help with oxygen (varies ending)
+<<declare $desperate = false>>  // whether the player is asking for help with oxygen (varies)
 ===
