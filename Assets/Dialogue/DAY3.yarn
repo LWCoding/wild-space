@@ -41,7 +41,7 @@ Narrator: You finish your report.
 <<show MonitorOnDay3>>
 Narrator: You get back to looking around your room.
 Narrator: All of a sudden, you realize that your oxygen supply is running low.
-Narrator: You need to get help, fast. You won't make it past this day alive. What do you do now?
+Narrator: You need to get help, fast. You won't make it past this day alive. What do you do?
     -> (call the aliens for help)
         <<jump CallAliensDay3>>
     -> (ask the HQ on Earth for help)
