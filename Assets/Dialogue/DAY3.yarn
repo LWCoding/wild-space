@@ -1,0 +1,87 @@
+title: StartDay3
+position: -178,-360
+---
+Narrator: Day 3 has began.
+<<jump DoJobDay3>>
+===
+
+title: DoJobDay3
+position: -179,-172
+---
+Narrator: Day 2 has began.
+<<jump EmbraceDeath>>
+<<jump CallEarth>>
+<<jump CallAliensDay3>>
+===
+
+title: CallAliensDay3
+position: 47,10
+---
+Narrator: Day 2 has began.
+<<jump CallCatDay3>>
+<<jump CallDogDay3>>
+<<jump CallLizardDay3>>
+<<jump CallBirdDay3>>
+===
+
+title: CallCatDay3
+position: 422,282
+---
+Narrator: You call {$catName}.
+<<jump AcceptHelp>>
+<<jump RefuseHelp>>
+===
+
+title: CallDogDay3
+position: 408,123
+---
+Narrator: You call {$dogName}.
+<<jump AcceptHelp>>
+<<jump RefuseHelp>>
+===
+
+title: CallLizardDay3
+position: 409,-43
+---
+Narrator: You call {$lizardName}.
+<<jump AcceptHelp>>
+<<jump RefuseHelp>>
+===
+
+title: CallBirdDay3
+position: 411,-211
+---
+Narrator: You call {$birdName}.
+<<jump AcceptHelp>>
+<<jump RefuseHelp>>
+===
+
+title: CallEarth
+position: -173,227
+---
+Narrator: You call Earth.
+===
+
+title: EmbraceDeath
+position: -386,23
+---
+Narrator: You embrace death.
+===
+
+title: AcceptHelp
+position: 764,-127
+---
+<<hide_all_characters>>
+<<hide_all_objects>>
+Narrator: You've reached the end of Day 3.
+<<jump End>>
+===
+
+title: RefuseHelp
+position: 765,105
+---
+<<hide_all_characters>>
+<<hide_all_objects>>
+Narrator: You've reached the end of Day 3.
+<<jump End>>
+===

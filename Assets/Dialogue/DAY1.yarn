@@ -1,0 +1,378 @@
+﻿title: AfterName
+position: -31,-584
+---
+<<once>>
+<<declare $saidHello = false>>
+<<hide_all_objects>>
+Narrator: {$playerName}... Yes, you are {$playerName}.
+<<speed 1>>
+Narrator: You open your eyes, and realize that you are no longer suspended in mid-air.
+Narrator: You're lying down. On a hard surface. Your head feels heavy, and your body aches all over.
+Narrator: You slowly sit up, and take in your surroundings.
+<<endonce>>
+Narrator: You're at home. In your metal spaceship.
+    -> Hello? <<if $saidHello == false>>
+        <<set $saidHello = true>>
+        Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
+        <<jump AfterName>>
+    -> (take a look around)
+        <<jump LookAround>>
+===
+
+title: LookAround
+position: -30,-398
+---
+<<once>>
+<<declare $bedrollExplored = false>>
+<<declare $cannedFoodExplored = false>>
+<<declare $monitorExplored = false>>
+<<show MonitorOff>>
+<<show Bedroll>>
+<<show Soup>>
+Narrator: Might as well re-familiarize yourself with your surroundings.
+<<show_ui ClickToInteract>>
+<<endonce>>
+===
+
+title: AfterInteractedWithItems
+position: 315,-648
+---
+<<hide_all_objects>>
+<<hide_ui ClickToInteract>>
+<<show Sitting>>
+Narrator: This is the life that you've committed yourself to, ever since taking the job to pilot this small exploration vessel.
+Narrator: You are tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
+Narrator: But deep inside, you knew this was just to get a chance away from Earth.
+Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
+    -> (do some push-ups)
+        Narrator: You were never huge on fitness, but you were required to keep in shape for space travel.
+        Narrator: You drop down and do a few push-ups to keep your strength up.
+    -> (contemplate the meaning of life)
+        Narrator: You ponder the vastness of existence and your place within it.
+        Narrator: The silence of space seems to amplify your thoughts, making you feel both insignificant and connected to the universe.
+        -> (hone in on the positive)
+            Narrator: You focus on the small joys in your life, finding solace in the little things that bring you happiness.
+            <<set $posSelfPerception += 1>>
+        -> (dwell on the negative)
+            Narrator: You find yourself sinking deeper into feelings of loneliness and despair, overwhelmed by the vast emptiness around you.
+            <<set $negSelfPerception += 1>>
+    -> (think of something happy)
+        Narrator: You recall a fond memory that brings a smile to your face. It's a small comfort in the loneliness of space.
+        Narrator: The memory gives you a brief respite from your current situation.
+        <<set $posSelfPerception += 1>>
+    -> (no use sitting around. stand back up!)
+Narrator: You decide to get back to doing something. Anything is better than sitting around.
+<<hide Sitting>>
+<<jump DoJobFirstTime>>
+===
+
+title: DoJobFirstTime
+position: 308,-448
+---
+Narrator: You stand up and turn on the computer. 
+Narrator: As part of your job, you need to complete a daily report on your findings.
+Narrator: You're not sure anyone actually reads these, but it gives you a sense of routine.
+<<show MonitorUI>>
+<<show_ui TypeToInteract>>
+===
+
+title: AfterTypedFirstTime
+position: 15,-241
+---
+<<hide_ui TypeToInteract>>
+Narrator: You sigh, after having written the same report for the 620th time. 
+Narrator: The report is done for the day.
+    -> (turn off the monitor)
+<<hide MonitorUI>>
+<<show MonitorOff>>
+<<jump MonitorOn>>
+===
+
+title: MonitorOn
+position: 15,-63
+---
+<<hide Sitting>>
+<<hide MonitorOff>>
+<<show MonitorOn>>
+Narrator: Just as you turn the monitor off, it flickers and springs back to life.
+<<show_character Cat Obscure right>>
+Narrator: A dark figure appears on the screen, accompanied with a static-filled voice.
+<<start_voice_blip Cat>>
+???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
+    -> Who are you?
+        <<start_voice_blip Cat>>
+        ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
+        -> Hello?
+            <<jump EnterMessage>>
+        -> Who are you?
+            <<jump EnterMessage>>
+        -> (stay silent)
+            <<jump EnterMessage>>
+    -> (stay silent)
+        <<stop_voice_blip Cat>>
+        Narrator: The voice from the monitor continues to speak.
+        <<start_voice_blip Cat>>
+        ???: Please... <i>*kshh*</i> if... there... yourself... known...
+        <<stop_voice_blip Cat>>
+        <<jump EnterMessage>>
+===
+
+title: EnterMessage
+position: 312,-227
+---
+<<start_voice_blip Cat>>
+???: Click... <i>*bzzt*</i> comm... cation... panel...
+<<stop_voice_blip Cat>>
+Narrator: With your expertise, you think you can adjust the frequency and let the signal through.
+    -> (let the signal through)
+        <<jump Introduction>>
+    -> (ignore the signal. it's probably nothing.)
+        Narrator: You decide to ignore the signal. It's probably just static interference.
+        <<hide_all_characters>>
+        <<hide MonitorOn>>
+        <<show MonitorOnNoSilhouette>>
+        <<set $negSelfPerception += 1>>
+        Narrator: After a few moments, the screen flickers back to static. You are alone, again.
+        Narrator: How should you pass the time?
+            -> (play a game on the monitor)
+                Narrator: You decide to play a game on the monitor to pass the time.
+                Narrator: The game is simple, but it helps distract you from the loneliness.
+                <<jump Reinterrupted>>
+            -> (try to find the signal again)
+                Narrator: You fiddle with the dials and knobs, trying to find the signal again.
+                <<jump Reinterrupted>>
+===
+
+title: Reinterrupted
+position: 590,-315
+---
+<<hide_all_objects>>
+<<show MonitorOn>>
+<<show_character Cat Obscure right>>
+Narrator: Suddenly, the same character from before reappears on the screen.
+    -> (get it over with. let the signal through)
+<<jump Introduction>>
+===
+
+title: Introduction
+position: 305,91
+---
+Narrator: Suddenly, the figure comes into view.
+<<show_character Cat Neutral right>>
+<<start_voice_blip Cat>>
+<<play_music CatTheme 0.5>>
+???: Hey, I caught your signal from our ship! Are you alright?
+    -> ...What?
+    -> Aww, you're so cute!
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Happy2 right>>
+        ???: Aw, you're too kind. 
+        <<show_character Cat Neutral right>>
+        ???: But seriously, are you okay out there? You look like you're all alone.
+            -> Yeah, I'm fine.
+                <<show_character Cat Thinking right>>
+                ???: Hm, alright. That's at least somewhat reassuring.
+            -> Not really.
+                <<show_character Cat Neutral right>>
+                ???: Oh... I'm sorry to hear that. Space can be a lonely place.
+    -> (scream. what is happening.)
+        <<stop_voice_blip Cat>>
+        Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
+        <<show_character Cat Neutral right>>
+        <<start_voice_blip Cat>>
+        ???: AH! That... surely is a strange introduction, otherbeing.
+<<start_voice_blip Cat>>
+<<show_character Cat Thinking right>>
+???: Well, you don't seem to act like you're in danger. What're you doing in space?
+    -> What the fuck? What <i>are</i> you?
+        <<show_character Cat Neutral right>>
+        <<set $catDislikesYou += 1>>
+        ???: ...don't be rude.
+        ???: It's not everyday that you meet another lifeform just floating around in space.
+    -> Who... are you?
+    -> It's none of your business.
+        <<set $catDislikesYou += 1>>
+        ???: I suppose it isn't, but can you blame someone for having a little bit of empathy?
+<<if $catLikesYou > $catDislikesYou>>
+<<show_character Cat Happy right>>
+{$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName} 
+<<else>>
+{$catName}: But anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName} 
+<<endif>>
+{$catName}: I'm what you'd probably call an "alien".
+    -> An alien? Those don't exist.
+        <<show_character Cat Thinking right>>
+        <<set $catDislikesYou += 1>>
+        {$catName}: Hm? How do I explain this...
+        <<show_character Cat Neutral right>>
+        {$catName}: I'm not from your planet of origin. I come from a place far away.
+        <<show_character Cat Thinking right>>
+        {$catName}: Do they not have manners where you come from?
+    -> 猫喵猫猫喵? What does that mean?
+        <<show_character Cat Thinking right>>
+        {$catName}: It's... hard to explain. It's probably not something I can explain to you.
+        <<show_character Cat Happy2 right>>
+        {$catName}: Just call me Cat, it's easier that way.
+    -> Meowdy.
+        <<show_character Cat Thinking right>>
+        {$catName}: ...Meowdy? That's an interesting way to greet someone.
+        {$catName}: I guess, meowdy to you too.
+<<show_character Cat Happy right>>
+{$catName}: But anyways, who are you? What are you?
+    -> My name's {$playerName}.
+        {$catName}: {$playerName}? It's nice to meet you.
+        <<set $catKnowsPlayerName = true>>
+    -> I'm a human.
+        <<show_character Cat Thinking right>>
+        {$catName}: A human? I've only heard stories about your kind.
+        {$catName}: Is it true that you walk on two legs and have opposable thumbs?
+        -> Yes.
+            <<show_character Cat Happy2 right>>
+            {$catName}: That's incredible! You must be very dexterous.
+        -> No.
+            <<show_character Cat Neutral right>>
+            {$catName}: Hm, that's disappointing. I was hoping to see some cool tricks.
+        <<show_character Cat Happy right>>
+        {$catName}: And what should I call you?
+        -> It's {$playerName}.
+            {$catName}: {$playerName}? That's a nice name.
+            <<set $catKnowsPlayerName = true>>
+        -> I don't have a name.
+            {$catName}: Oh, huh. That's okay, I guess.
+    -> (stay silent)
+        {$catName}: Oh, you don't have a name? That's okay, I guess.
+<<show_character Cat Neutral right>>
+{$catName}: You should be careful here, though. Space is dangerous!
+{$catName}: What are you doing out here? Wouldn't you rather be on your home planet?
+    -> Exploring the cosmos.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: That's commendable! Not many have the courage to venture into the unknown.
+    -> Escaping it all, I guess.
+        <<show_character Cat Neutral right>>
+        {$catName}: I understand that feeling. Sometimes, it's nice to get away from everything.
+    -> I'm... not sure.
+        <<show_character Cat Thinking right>>
+        {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
+{$catName}: Ah! But I shouldn't keep you here all day. You probably have things to do.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<hide MonitorOn>>
+<<show MonitorOnNoSilhouette>>
+<<play_music MainTheme>>
+Narrator: Suddenly, the screen flickers back to static. Cat is gone, for now.
+    -> Cat? Can you hear me?
+        Narrator: You tap the monitor and move around the dials, trying to re-establish contact.
+        Narrator: The screen warps and flickers, but Cat is nowhere to be seen. You are alone, again.
+    -> (take a seat. ponder what just happened)
+        <<hide_all_objects>>
+        <<show Thinking>>
+        Narrator: You sit back down, trying to process the encounter you just had.
+        Narrator: Who was that creature? An alien? How is that even possible?
+<<if $catLikesYou > $catDislikesYou>>
+    Narrator: Strangely enough, you found the encounter with them rather pleasant. They seemed friendly, in their own way.
+    Narrator: You think about what it would be like to have a friend like that. Someone who understands you, even if they are from another world.
+    Narrator: You wonder if you'll ever see them again.
+    <<set $posSelfPerception += 1>>
+<<else>>
+    Narrator: To you, the whole encounter felt off. You couldn't shake the feeling that something was wrong about that creature.
+    Narrator: You think about what others on Earth would say if they found out about this encounter. They'd probably call you crazy.
+    Narrator: "Aliens don't exist," they'd say. "You must be imagining things."
+    Narrator: The idea makes you feel even more isolated.
+    <<set $negSelfPerception += 1>>
+<<endif>>
+<<hide MonitorOnNoSilhouette>>
+<<show MonitorOn>>
+<<show_character Dog Obscure left>>
+<<show_character Lizard Obscure center>>
+<<show_character Bird Obscure right>>
+Narrator: As you sit there, lost in thought, the monitor flickers back to life once more.
+Narrator: You see a total of three figures, all different from the last one.
+Narrator: You can only choose one of them to respond to.
+    -> (respond to the one with the short muzzle)
+        <<jump DogIntro>>
+    -> (respond to the one with the long muzzle)
+        <<jump LizardIntro>>
+    -> (respond to the one with the pointy muzzle)
+        <<jump BirdIntro>>
+===
+
+title: DogIntro
+position: 635,249
+---
+<<hide_all_characters>>
+<<hide_all_objects>>
+<<show_character Dog Happy right>>
+<<start_voice_blip Dog>>
+<<play_music DogTheme 0.5>>
+???: Woofdy.
+    -> Who are you?
+    -> That doesn't make sense.
+        <<set $dogDislikesYou += 1>>
+        <<stop_voice_blip Dog>>
+        Narrator: The figure on the monitor tilts their head in confusion.
+    -> (stay silent)
+<<start_voice_blip Dog>>
+???: What're you doing out here all by yourself? Woof.
+{$dogName}: I'm {$dogName}. Woof. I come in peace. Woof.
+{$dogName}: I saw your signal, and thought I'd come check it out. Woof.
+    -> It's nice to meet you, {$dogName}.
+        <<positive_indicator Dog>>
+        <<set $dogLikesYou += 1>>
+        {$dogName}: Woof! It's nice to meet you too... whatever your name is.
+        -> It's {$playerName}.
+            {$dogName}: Woof! {$playerName}, that's a nice name.
+        -> (stay silent)
+    -> Why do you keep saying woof?
+        {$dogName}: I don't know what you mean. Woof.
+    -> Hi {$dogName}. I'm {$playerName}.
+        <<positive_indicator Dog>>
+        {$dogName}: Woof! It's nice to meet you, {$playerName}!
+{$dogName}: I hope you don't mind me dropping by unannounced. Woof.
+    -> Do you know {$catName}?
+        {$dogName}: {$catName}? Can't say I'm familiar. We're not that interconnected here in space.
+    -> What are you doing here?
+        {$dogName}: Oh, I was just passing by. Woof.
+{$dogName}: It's rare that I even see another living being out here. Woof.
+{$dogName}: I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
+    -> Signal?
+        {$dogName}: Yeah, I picked up on it while I was out exploring. Woof.
+        {$dogName}: I like to wander around and see new places. Woof.
+        {$dogName}: What about you? What are you doing out here? Woof.
+        -> I'm looking for alien life.
+            {$dogName}: Alien life? What for? Woof.
+            {$dogName}: I don't see the point in all that. Woof. Why?
+                -> I'm here to report them to our home planet.
+                    {$dogName}: Report them? Woof. That seems... a bit harsh. Woof.
+                -> I just want to make contact.
+                    {$dogName}: Make contact? Woof. I guess that makes sense. Woof.
+        -> I'm exploring, just like you.
+            {$dogName}: Exploring? Woof. We should go together sometime!
+<<stop_voice_blip Dog>>
+<<jump EndDay1>>
+===
+
+title: LizardIntro
+position: 638,-61
+---
+Narrator: You interact with the lizard.
+<<jump EndDay1>>
+===
+
+title: BirdIntro
+position: 633,86
+---
+Narrator: You interact with the bird.
+<<jump EndDay1>>
+===
+
+title: EndDay1
+position: 925,83
+---
+<<hide_all_characters>>
+<<hide_all_objects>>
+Narrator: You've reached the end of Day 1.
+<<jump End>>
+===

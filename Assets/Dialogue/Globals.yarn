@@ -12,4 +12,6 @@ title: Globals
 <<declare $playerName = "Player">>
 <<declare $catName = "Gnarp">>
 <<declare $dogName = "Doggo">>
+<<declare $lizardName = "Lizzy">>
+<<declare $birdName = "Tweety">>
 ===

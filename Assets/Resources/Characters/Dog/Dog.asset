@@ -16,5 +16,6 @@ MonoBehaviour:
   characterPrefab: {fileID: 3257140566696577627, guid: aa8b524c0596a49478263e3951bb646a, type: 3}
   expressions:
   - {fileID: 11400000, guid: 9c300482b51ed754694e134dce78e212, type: 2}
+  - {fileID: 11400000, guid: 0f6666a7224bd3e40a6e9eb7514f6f72, type: 2}
   defaultExpression: {fileID: 11400000, guid: 9c300482b51ed754694e134dce78e212, type: 2}
   defaultScale: {x: 1, y: 1, z: 1}

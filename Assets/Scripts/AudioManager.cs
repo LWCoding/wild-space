@@ -80,9 +80,9 @@ public class AudioManager : MonoBehaviour
     /// Changes the audio clip with a smooth transition
     /// </summary>
     /// <param name="newClip">The new audio clip to play</param>
-    /// <param name="volume">Volume for the new clip (optional, defaults to 0.1)</param>
+    /// <param name="volume">Volume for the new clip (optional)</param>
     /// <param name="transitionTime">Time for the crossfade transition (optional)</param>
-    public void ChangeAudioClip(AudioClip newClip, float volume = 0.1f, float transitionTime = -1)
+    public void ChangeAudioClip(AudioClip newClip, float volume = 0.2f, float transitionTime = -1)
     {
         if (newClip == null)
         {
@@ -121,8 +121,8 @@ public class AudioManager : MonoBehaviour
     /// Plays an audio clip immediately without transition
     /// </summary>
     /// <param name="clip">The audio clip to play</param>
-    /// <param name="volume">Volume for the clip (optional, defaults to 0.1)</param>
-    public void PlayAudioImmediate(AudioClip clip, float volume = 0.1f)
+    /// <param name="volume">Volume for the clip (optional)</param>
+    public void PlayAudioImmediate(AudioClip clip, float volume = 0.2f)
     {
         if (clip == null)
         {
@@ -155,6 +155,99 @@ public class AudioManager : MonoBehaviour
     public bool IsTransitioning()
     {
         return isTransitioning;
+    }
+    
+    /// <summary>
+    /// Plays a start clip followed by a loopable clip that seamlessly loops
+    /// </summary>
+    /// <param name="startClip">The initial clip to play once</param>
+    /// <param name="loopClip">The clip to loop after the start clip finishes</param>
+    /// <param name="volume">Volume for both clips (optional)</param>
+    /// <param name="fadeTime">Fade time between start and loop clips (optional, defaults to 0.5 seconds)</param>
+    public void PlayStartThenLoop(AudioClip startClip, AudioClip loopClip, float volume = 0.2f, float fadeTime = 0.5f)
+    {
+        if (startClip == null || loopClip == null)
+        {
+            Debug.LogWarning("AudioManager: Cannot play null audio clips");
+            return;
+        }
+        
+        StartCoroutine(PlayStartThenLoopCoroutine(startClip, loopClip, volume, fadeTime));
+    }
+    
+    private IEnumerator PlayStartThenLoopCoroutine(AudioClip startClip, AudioClip loopClip, float volume, float fadeTime)
+    {
+        // Stop any current audio
+        StopAudio();
+        
+        // Play the start clip
+        currentSource.clip = startClip;
+        currentSource.volume = volume;
+        currentSource.loop = false;
+        currentSource.Play();
+        
+        // Wait for the start clip to finish
+        yield return new WaitForSeconds(startClip.length);
+        
+        // If there's a fade time, do a smooth transition to the loop clip
+        if (fadeTime > 0)
+        {
+            // Set up the loop clip on the fade source
+            fadeSource.clip = loopClip;
+            fadeSource.volume = 0f;
+            fadeSource.loop = true;
+            fadeSource.Play();
+            
+            float elapsedTime = 0f;
+            
+            // Crossfade from start clip to loop clip
+            while (elapsedTime < fadeTime)
+            {
+                elapsedTime += Time.deltaTime;
+                float t = elapsedTime / fadeTime;
+                
+                // Fade out current source (start clip)
+                if (currentSource != null && currentSource.isPlaying)
+                {
+                    currentSource.volume = Mathf.Lerp(volume, 0f, t);
+                }
+                
+                // Fade in fade source (loop clip)
+                if (fadeSource != null)
+                {
+                    fadeSource.volume = Mathf.Lerp(0f, volume, t);
+                }
+                
+                yield return null;
+            }
+            
+            // Ensure final volumes are set correctly
+            if (currentSource != null)
+            {
+                currentSource.volume = 0f;
+                currentSource.Stop();
+            }
+            
+            if (fadeSource != null)
+            {
+                fadeSource.volume = volume;
+            }
+            
+            // Swap the sources so the loop clip is now the current source
+            AudioSource temp = currentSource;
+            currentSource = fadeSource;
+            fadeSource = temp;
+        }
+        else
+        {
+            // No fade time, just switch directly to the loop clip
+            currentSource.clip = loopClip;
+            currentSource.volume = volume;
+            currentSource.loop = true;
+            currentSource.Play();
+        }
+        
+        Debug.Log($"Now looping: {loopClip.name}");
     }
     
     private IEnumerator CrossfadeToNewClip(AudioClip newClip, float volume, float transitionTime)

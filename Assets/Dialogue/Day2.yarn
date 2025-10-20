@@ -69,6 +69,34 @@ Narrator: You decide to get back to doing something. Anything is better than sit
 // TODO: Need to continue this branch
 ===
 
+title: CallCatDay2
+position: 422,282
+---
+Narrator: You call {$catName}.
+<<jump EndDay2>>
+===
+
+title: CallDogDay2
+position: 408,123
+---
+Narrator: You call {$dogName}.
+<<jump EndDay2>>
+===
+
+title: CallLizardDay2
+position: 409,-43
+---
+Narrator: You call {$lizardName}.
+<<jump EndDay2>>
+===
+
+title: CallBirdDay2
+position: 411,-211
+---
+Narrator: You call {$birdName}.
+<<jump EndDay2>>
+===
+
 title: EndDay2
 ---
 Narrator: You are done with the day.

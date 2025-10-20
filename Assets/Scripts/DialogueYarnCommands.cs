@@ -98,8 +98,8 @@ public static class DialogueYarnCommands
             return;
         }
 
-        // Parse optional volume (default to 0.1)
-        float vol = 0.1f;
+        // Parse optional volume
+        float vol = 0.2f;
         if (!string.IsNullOrEmpty(volume))
         {
             if (float.TryParse(volume, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float volValue))
@@ -112,8 +112,8 @@ public static class DialogueYarnCommands
             }
         }
 
-        // Parse optional transition time (default to -1 to use AudioManager default)
-        float transition = -1f;
+        // Parse optional transition time
+        float transition = 0.5f;
         if (!string.IsNullOrEmpty(transitionTime))
         {
             if (float.TryParse(transitionTime, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float timeValue))
@@ -146,6 +146,70 @@ public static class DialogueYarnCommands
 
         AudioManager.Instance.StopAudio();
         Debug.Log("Stopped all music");
+    }
+
+    /// <summary>
+    /// Yarn: <<play_music_start_loop "StartClipName" "LoopClipName">> or <<play_music_start_loop "StartClipName" "LoopClipName" 0.8>> or <<play_music_start_loop "StartClipName" "LoopClipName" 0.8 2.0>>
+    /// Plays a start clip followed by a loopable clip with smooth transition.
+    /// Optional parameters: volume (0-1), fade time (seconds).
+    /// </summary>
+    [YarnCommand("play_music_start_loop")]
+    public static void PlayMusicStartLoop(string startClipName, string loopClipName, string volume = "", string fadeTime = "")
+    {
+        // Use the singleton AudioManager instance
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError($"AudioManager singleton not initialized. Cannot play music start/loop '{startClipName}' -> '{loopClipName}'");
+            return;
+        }
+
+        // Load the start audio clip from Resources
+        AudioClip startClip = Resources.Load<AudioClip>($"Audio/{startClipName}");
+        if (startClip == null)
+        {
+            Debug.LogError($"Start audio clip '{startClipName}' not found in Resources/Audio/ folder");
+            return;
+        }
+
+        // Load the loop audio clip from Resources
+        AudioClip loopClip = Resources.Load<AudioClip>($"Audio/{loopClipName}");
+        if (loopClip == null)
+        {
+            Debug.LogError($"Loop audio clip '{loopClipName}' not found in Resources/Audio/ folder");
+            return;
+        }
+
+        // Parse optional volume (default to 0.1)
+        float vol = 0.1f;
+        if (!string.IsNullOrEmpty(volume))
+        {
+            if (float.TryParse(volume, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float volValue))
+            {
+                vol = Mathf.Clamp01(volValue); // Clamp between 0 and 1
+            }
+            else
+            {
+                Debug.LogWarning($"Invalid volume '{volume}'. Using default volume of 0.1.");
+            }
+        }
+
+        // Parse optional fade time (default to 0.5)
+        float fade = 0.5f;
+        if (!string.IsNullOrEmpty(fadeTime))
+        {
+            if (float.TryParse(fadeTime, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float fadeValue))
+            {
+                fade = Mathf.Max(0f, fadeValue); // Ensure non-negative
+            }
+            else
+            {
+                Debug.LogWarning($"Invalid fade time '{fadeTime}'. Using default fade time of 0.5s.");
+            }
+        }
+
+        // Call the AudioManager to play start then loop
+        AudioManager.Instance.PlayStartThenLoop(startClip, loopClip, vol, fade);
+        Debug.Log($"Playing music start/loop: {startClipName} -> {loopClipName} (volume: {vol}, fade: {fade}s)");
     }
 }
 

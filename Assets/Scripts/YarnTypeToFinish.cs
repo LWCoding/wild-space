@@ -35,7 +35,7 @@ public class YarnTypeToFinish : MonoBehaviour
             if (Input.anyKeyDown && !(Input.GetMouseButtonDown(0)
             || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)))
             {
-                _charactersShown = Mathf.Min(_charactersShown + 2, _messageToShow.Length);
+                _charactersShown = Mathf.Min(_charactersShown + 3, _messageToShow.Length);
                 // Skip spaces.
                 while (_charactersShown < _messageToShow.Length && _messageToShow[_charactersShown] == ' ')
                 {
