@@ -180,7 +180,7 @@ Narrator: Suddenly, the figure comes into view.
         Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
         <<show_character Cat Neutral right>>
         <<start_voice_blip Cat>>
-        ???: AH! That... surely is a strange introduction, otherbeing.
+        ???: AH! That... surely is a strange introduction.
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
 ???: Well, you don't seem to act like you're in danger. What're you doing in space?
