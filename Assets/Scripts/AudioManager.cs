@@ -302,4 +302,26 @@ public class AudioManager : MonoBehaviour
         
         isTransitioning = false;
     }
+
+    /// <summary>
+	/// Plays a sound effect one-shot over the current audio without interrupting it
+	/// </summary>
+	/// <param name="clip">The audio clip to play once</param>
+	/// <param name="volume">Volume for the one-shot (0-1, default 1)</param>
+	public void PlaySFXOneShot(AudioClip clip, float volume = 1f)
+	{
+		if (clip == null)
+		{
+			Debug.LogWarning("AudioManager: Cannot PlayOneShot with null clip");
+			return;
+		}
+
+		if (currentSource == null)
+		{
+			Debug.LogWarning("AudioManager: No current AudioSource available for PlayOneShot");
+			return;
+		}
+
+		currentSource.PlayOneShot(clip, Mathf.Clamp01(volume));
+	}
 }

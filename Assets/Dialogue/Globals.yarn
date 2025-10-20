@@ -11,14 +11,13 @@ title: Globals
 
 <<declare $playerName = "Player">>
 <<declare $catName = "Gnarp">>
-<<declare $dogName = "Doggo">>
-<<declare $lizardName = "Lizzy">>
-<<declare $birdName = "Tweety">>
+<<declare $dogName = "Purble">>
+<<declare $lizardName = "Snek">>
+<<declare $birdName = "Alfie">>
 
 <<declare $talkedToDog = false>>
 <<declare $talkedToLizard = false>>
 <<declare $talkedToBird = false>>
 
-<<declare $rescuerName = "DefaultName">>
-<<declare $desperate = false>>  // whether the player is asking for help with oxygen
+<<declare $desperate = false>>  // whether the player is asking for help with oxygen (varies ending)
 ===

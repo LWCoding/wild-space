@@ -1,6 +1,7 @@
 title: StartDay2
 position: 51,-456
 ---
+<<play_sound AlarmClock>>
 Narrator: You wake up to a loud chime on the monitor, your head pounding yet again. You don't know what time it is, but you feel rested. 
 Narrator: Your sleep cycle has been all over the place since you started this job.
 Narrator: You sit up and rub your temples. Time to get ready for another day of work.
@@ -16,7 +17,7 @@ position: 55,-311
 Narrator: You turn on the monitor to see today's tasks.
 Narrator: Before you start your report, you notice a new message from HQ.
 Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
-Narrator: You ponder the details of your next report. Do you report the encounter? Or keep it under wraps?
+Narrator: You ponder the details of your next report. Do you report the encounter with the aliens? Or keep it under wraps?
     -> (report the encounter)
         Narrator: You hesitate for a moment. You're not entirely sure what will happen if you report the aliens, but you may never see them again.
         -> (report the encounter)
@@ -53,8 +54,11 @@ Narrator: It's a fresh day. The aliens said that you can ping them if you wanted
     -> (reestablish contact with the aliens)
         <<hide_all_objects>>
         <<show ChooseYourCharacterDay2>>
-    // -> (ignore the aliens)
-        // TODO: implement this
+    -> (ignore the aliens)
+        Narrator: This option isn't implemented yet. So instead, you re-establish contact with the aliens.
+        <<hide_all_objects>>
+        <<show ChooseYourCharacterDay2>>
+        // TODO: Actually make this branch work!
 ===
 
 title: CallCatDay2
@@ -94,6 +98,16 @@ Narrator: But they don't respond. So you instead call {$catName}. (this is not i
 title: EndDay2
 position: 762,12
 ---
-Narrator: You are done with the day.
-<<jump End>>
+<<hide_all_characters>>
+<<hide_all_objects>>
+Narrator: Again, after the long conversation, you decide to go to bed.
+<<if $posSelfPerception > $negSelfPerception>>
+    Narrator: After talking with these new figures, you've felt a sense of growth. You feel more confident in your ability to handle whatever comes your way.
+<<else>>
+    Narrator: After talking with these new figures, you've felt a bit more uncertain about your place in this situation. You hope that you'll be able to figure things out soon.
+<<endif>>
+<<show ScreenBlocker>>
+<<wait 2>>
+<<hide ScreenBlocker>>
+<<jump StartDay3>>
 ===

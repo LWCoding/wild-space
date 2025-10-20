@@ -1,6 +1,7 @@
 title: StartDay3
 position: -178,-561
 ---
+<<play_sound AlarmClock>>
 Narrator: Day 3 has began. You have a job to do.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay3>>
@@ -53,15 +54,9 @@ Narrator: You need to get help, fast. You won't make it past this day alive. Wha
 title: CallAliensDay3
 position: 87,-45
 ---
-Narrator: Who do you call?
-    -> (call {$catName})
-        <<jump CallCatDay3>>
-    -> (call {$dogName})
-        <<jump CallDogDay3>>
-    -> (call {$lizardName})
-        <<jump CallLizardDay3>>
-    -> (call {$birdName})
-        <<jump CallBirdDay3>>
+Narrator: It's time to make contact with one of the aliens.
+<<hide_all_objects>>
+<<show ChooseYourCharacterDay3>>
 ===
 
 title: CallCatDay3
