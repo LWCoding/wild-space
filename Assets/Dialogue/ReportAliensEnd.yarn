@@ -20,6 +20,9 @@ Narrator: You can't help but feel a bit guilty, but you did your best to report 
 Narrator: And here it is, laid bare in front of you: the response from HQ.
 <<hide_all_objects>>
 <<show ScreenBlocker>>
+<<if $daysPassed == 3>>
+Narrator: HQ sent a team to investigate the aliens you reported. They also fixed an issue with your spaceship's oxygen that you hadn't noticed before.
+<<endif>>
 <<if $desperate == false>>
     Narrator: Days pass. And afterwards, you never hear from the aliens again.
     Narrator: You presume that Earth dealt with them. You hope that, if they were found, they were treated well, but you can't shake the feeling that this isn't exactly the case.

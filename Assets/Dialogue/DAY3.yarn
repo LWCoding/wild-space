@@ -1,6 +1,7 @@
 title: StartDay3
 position: -178,-561
 ---
+<<set $daysPassed = 3>>
 <<play_sound AlarmClock>>
 Narrator: Day 3 has began. You have a job to do.
 <<show_ui ClickToInteract>>
@@ -91,9 +92,13 @@ Narrator: You call {$catName}. You see movement, and start tweaking the dials to
             -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $catLikesYou >= $catDislikesYou>>
                 <<show_character Cat Flirt right>>
                 {$catName}: Heh, oh you... Alright, I'll help you out.
+<<show_character Cat Neutral right>>
 {$catName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will send you over to my home planet.
+{$catName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
     -> Isn't there another way?
         {$catName}: Do you have any plans? Because I sure don't.
+            -> Let's do it.
+                <<jump AcceptCatHelp>>
             -> I think I'll just accept my fate instead.
     -> Let's do it.
         <<jump AcceptCatHelp>>

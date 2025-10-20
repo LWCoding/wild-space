@@ -1,6 +1,7 @@
 title: StartDay2
 position: 51,-456
 ---
+<<set $daysPassed = 2>>
 <<play_sound AlarmClock>>
 Narrator: You wake up to a loud chime on the monitor, your head pounding yet again. You don't know what time it is, but you feel rested. 
 Narrator: Your sleep cycle has been all over the place since you started this job.

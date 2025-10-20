@@ -3,7 +3,7 @@ title: AcceptCatHelp
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<start_voice_blip Cat>>
-<<show_character Cat Neutral right>>
+<<show_character Cat Helmet right>>
 {$catName}: I've arranged for a rescue mission to come get you. Just hang tight, okay?
 <<hide_all_characters>>
 <<hide_all_objects>>
