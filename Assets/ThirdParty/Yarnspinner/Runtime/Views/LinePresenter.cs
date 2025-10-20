@@ -37,6 +37,12 @@ namespace Yarn.Unity
         /// This allows external scripts to be notified when a new line begins.
         /// </summary>
         public static System.Action? OnLineStarted;
+
+        /// <summary>
+        /// Static action that is called when a dialogue line finishes, passing the line data.
+        /// This allows external scripts to capture completed dialogue lines for history systems.
+        /// </summary>
+        public static System.Action<LocalizedLine>? OnDialogueLineCompleted;
         enum TypewriterType
         {
             None, ByLetter, ByWord, Custom,
@@ -213,6 +219,9 @@ namespace Yarn.Unity
 
         [HideInInspector] public IAsyncTypewriter? typewriter;
 
+        // Store the current line for history system
+        private LocalizedLine? currentLine;
+
         /// <inheritdoc/>
         public override YarnTask OnDialogueCompleteAsync(DialogueRunner? dialogueRunner)
         {
@@ -296,6 +305,9 @@ namespace Yarn.Unity
                 return;
             }
 
+            // Store the current line for history system
+            currentLine = line;
+
             // Notify that a new line has started
             OnLineStarted?.Invoke();
 
@@ -364,6 +376,12 @@ namespace Yarn.Unity
 
             // Notify that the typewriter animation has finished
             OnTypewriterFinished?.Invoke();
+            
+            // Notify that the dialogue line has completed (for history system)
+            if (currentLine != null)
+            {
+                OnDialogueLineCompleted?.Invoke(currentLine);
+            }
 
             // if we are set to autoadvance how long do we hold for before continuing?
             if (autoAdvance)
