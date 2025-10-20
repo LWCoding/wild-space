@@ -25,6 +25,8 @@ namespace Yarn.Unity
         [MustNotBeNullWhen(nameof(continueButton), "A " + nameof(DialogueRunner) + " must be provided for the continue button to work.")]
         [SerializeField] DialogueRunner? dialogueRunner;
 
+        private bool isLineFullyRendered = false;
+
         void Awake()
         {
             if (continueButton == null)
@@ -34,6 +36,15 @@ namespace Yarn.Unity
             }
             continueButton.interactable = false;
             continueButton.enabled = false;
+            
+            // Subscribe to the typewriter finished event
+            LinePresenter.OnTypewriterFinished += OnTypewriterFinished;
+        }
+
+        void OnDestroy()
+        {
+            // Unsubscribe to prevent memory leaks
+            LinePresenter.OnTypewriterFinished -= OnTypewriterFinished;
         }
 
         public override void OnPrepareForLine(MarkupParseResult line, TMP_Text text)
@@ -43,6 +54,10 @@ namespace Yarn.Unity
                 Debug.LogWarning($"The {nameof(continueButton)} is null, is it not connected in the inspector?", this);
                 return;
             }
+            
+            // Reset state for new line
+            isLineFullyRendered = false;
+            
             // enable the button
             continueButton.interactable = true;
             continueButton.enabled = true;
@@ -55,7 +70,15 @@ namespace Yarn.Unity
                     return;
                 }
 
-                dialogueRunner.RequestNextLine();
+                // If line is already fully rendered, advance immediately; otherwise hurry it up
+                if (isLineFullyRendered)
+                {
+                    dialogueRunner.RequestNextLine();
+                }
+                else
+                {
+                    dialogueRunner.RequestHurryUpLine();
+                }
             });
         }
 
@@ -84,6 +107,16 @@ namespace Yarn.Unity
             continueButton.onClick.RemoveAllListeners();
             continueButton.interactable = false;
             continueButton.enabled = false;
+        }
+
+        /// <summary>
+        /// Called when the typewriter animation finishes rendering the line.
+        /// We only mark that the line is fully rendered; advancing requires a
+        /// subsequent click.
+        /// </summary>
+        private void OnTypewriterFinished()
+        {
+            isLineFullyRendered = true;
         }
     }
 }
