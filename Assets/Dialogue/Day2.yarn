@@ -36,28 +36,6 @@ Narrator: You ponder the details of your next report. Do you report the encounte
         <<show MonitorDontReportDay2>>
 ===
 
-title: ReportedAliens
-position: 75,230
----
-<<hide_all_ui_objects>>
-<<hide_all_objects>>
-<<show ScreenBlocker>>
-Narrator: You finish sending the report to HQ. You followed your orders and reported everything as you saw it.
-<<if $posSelfPerception > $negSelfPerception>>
-    Narrator: You did your duty and upheld the integrity of your role. But you can't help but feel a bit conflicted about the report.
-<<else>>
-    Narrator: You feel a bit uneasy, but you rationalize that honesty is the best policy.
-<<endif>>
-Narrator: Not soon after, you receive a reply from HQ.
-<<show MonitorReportedMessage>>
-<<wait 4>>
-Narrator: You can't help but feel a bit defensive. You did your best to report the facts.
-Narrator: Days pass. And afterwards, you never hear from the aliens again.
-Narrator: You're not even sure if they were real to begin with.
-<<detour End>>
-Narrator: ENDING 1/3: Did it ever happen?
-===
-
 title: KeptUnderWrapsDay2
 position: 167,29
 ---
@@ -84,6 +62,7 @@ position: 422,282
 ---
 Narrator: You call {$catName}.
 <<jump EndDay2>>
+// TODO: Implement this
 ===
 
 title: CallDogDay2

@@ -37,8 +37,11 @@ title: KeptUnderWrapsDay3
 position: -179,-172
 ---
 Narrator: You finish your report.
+<<hide_all_objects>>
+<<show MonitorOnDay3>>
+Narrator: You get back to looking around your room.
 Narrator: All of a sudden, you realize that your oxygen supply is running low.
-Narrator: You need to get help, fast. You're not sure if you can make it past this day alive. What do you do now?
+Narrator: You need to get help, fast. You won't make it past this day alive. What do you do now?
     -> (call the aliens for help)
         <<jump CallAliensDay3>>
     -> (ask the HQ on Earth for help)
@@ -48,7 +51,7 @@ Narrator: You need to get help, fast. You're not sure if you can make it past th
 ===
 
 title: CallAliensDay3
-position: 47,10
+position: 87,-45
 ---
 Narrator: Who do you call?
     -> (call {$catName})
@@ -97,7 +100,7 @@ Narrator: But they don't respond. So you call {$catName}. (this is not implement
 ===
 
 title: CallEarth
-position: 9,269
+position: 67,225
 ---
 Narrator: You call Earth about your situation.
 Narrator: They claim that they could send help, but it wouldn't make it to you on time.
@@ -110,16 +113,6 @@ Narrator: You have a feeling that you can get them to send their emergency rescu
             <<jump CallAliensDay3>>
             -> (embrace death)
                 <<jump EmbraceDeath>>
-===
-
-title: EmbraceDeath
-position: -204,101
----
-<<show ScreenBlocker>>
-Narrator: You embrace death. Nobody ever hears from you again. Not that they really cared, anyways.
-Narrator: Somebody eventually ends up replacing your station, and life goes on as usual.
-<<detour End>>
-Narrator: ENDING 3/3: Loveless fate
 ===
 
 title: AcceptHelp
