@@ -3,5 +3,6 @@ title: End
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<hide_all_characters>>
+<<play_music Credits 0.4>>
 <<show_ui UITheEnd>>
 ===

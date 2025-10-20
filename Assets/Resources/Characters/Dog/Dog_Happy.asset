@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dog_Happy
   m_EditorClassIdentifier: 
   ExpressionName: Happy
-  ExpressionSprite: {fileID: 21300000, guid: b53b744c6c700194484a4b5d32bd3bcb, type: 3}
+  ExpressionSprite: {fileID: 21300000, guid: ebed9eec0c0f39a49b5e9c6c0320b5bf, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 03252f2e8a5b9524d8a09d4477a8e459, type: 3}
   BlipInterval: 0.1
-  BlipVolume: 0.5
+  BlipVolume: 0.4

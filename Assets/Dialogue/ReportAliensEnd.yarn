@@ -13,8 +13,16 @@ Narrator: Not soon after, you receive a reply from HQ.
 <<show MonitorReportedMessage>>
 <<wait 4>>
 Narrator: You can't help but feel a bit defensive. You did your best to report the facts.
-Narrator: Days pass. And afterwards, you never hear from the aliens again.
-Narrator: You're not even sure if they were real to begin with.
-<<detour End>>
-Narrator: ENDING 1/3: Did it ever happen?
+<<if $desperate == false>>
+    Narrator: Days pass. And afterwards, you never hear from the aliens again.
+    Narrator: You're not even sure if they were real to begin with.
+    <<detour End>>
+    Narrator: ENDING 1/4: Did it ever happen?
+<<else>>
+    Narrator: In the span of a few hours, a rapidly-moving rescue vehicle arrives at your location.
+    Narrator: They commandeer your ship to study the incoming signals. Meanwhile, you're shipped back to Earth, and eventually, are tasked with piloting a different space vessel.
+    Narrator: You never hear from the aliens again.
+    <<detour End>>
+    Narrator: ENDING 2/4: Desperation rescue
+<<endif>>
 ===

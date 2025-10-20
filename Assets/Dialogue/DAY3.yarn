@@ -44,7 +44,7 @@ Narrator: All of a sudden, you realize that your oxygen supply is running low.
 Narrator: You need to get help, fast. You won't make it past this day alive. What do you do?
     -> (call the aliens for help)
         <<jump CallAliensDay3>>
-    -> (ask the HQ on Earth for help)
+    -> (ask Earth HQ for help)
         <<jump CallEarth>>
     -> (embrace death)
         <<jump EmbraceDeath>>
@@ -70,9 +70,9 @@ position: 422,282
 Narrator: You call {$catName}.
 Narrator: They say they can help you.
     -> (accept help)
-        <<jump AcceptHelp>>
+        <<jump AcceptCatHelp>>
     -> (refuse help)
-        <<jump RefuseHelp>>
+        <<jump End>>
 ===
 
 title: CallDogDay3
@@ -106,29 +106,29 @@ Narrator: You call Earth about your situation.
 Narrator: They claim that they could send help, but it wouldn't make it to you on time.
 Narrator: You have a feeling that you can get them to send their emergency rescue team if you convince them that your life is in danger.
     -> (tell them about the aliens you saw)
-        <<jump AcceptHelp>>
+        Narrator: You think about the idea of telling them about the aliens. This could convince them to send help faster, but would put the aliens at risk of being discovered.
+        -> (go through with it)
+            Narrator: You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
+            <<set $desperate = true>>
+            <<hide_all_objects>>
+            <<show_ui TypeToInteract>>
+            <<show MonitorReport>>
+        -> (reconsider)
+            Narrator: You reconsider your options. Maybe there's another way to get help without putting the aliens at risk.
+            -> (call the aliens for help)
+                <<jump CallAliensDay3>>
+            -> (embrace death)
+                <<jump EmbraceDeath>>
+            -> (nevermind, tell earth about the aliens you saw)
+                Narrator: You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
+                <<set $desperate = true>>
+                <<hide_all_objects>>
+                <<show_ui TypeToInteract>>
+                <<show MonitorReport>>
     -> (tell them you can manage on your own)
         Narrator: Back to the drawing board. What do you do, instead?
             -> (call the aliens for help)
-            <<jump CallAliensDay3>>
+                <<jump CallAliensDay3>>
             -> (embrace death)
                 <<jump EmbraceDeath>>
-===
-
-title: AcceptHelp
-position: 764,-127
----
-<<hide_all_characters>>
-<<hide_all_objects>>
-Narrator: You've reached the end of Day 3.
-<<jump End>>
-===
-
-title: RefuseHelp
-position: 765,105
----
-<<hide_all_characters>>
-<<hide_all_objects>>
-Narrator: You've reached the end of Day 3.
-<<jump End>>
 ===

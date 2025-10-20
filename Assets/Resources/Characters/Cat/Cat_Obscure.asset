@@ -16,4 +16,4 @@ MonoBehaviour:
   ExpressionSprite: {fileID: 21300000, guid: 7415cbe9761565e4e884357d708b86cc, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 9e6e2d0c3b56b924f8d4e720969a5d2c, type: 3}
   BlipInterval: 0.1
-  BlipVolume: 0.7
+  BlipVolume: 0.4

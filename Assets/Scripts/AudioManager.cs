@@ -257,6 +257,7 @@ public class AudioManager : MonoBehaviour
         // Set up the fade source with the new clip
         fadeSource.clip = newClip;
         fadeSource.volume = 0f;
+		fadeSource.loop = true;
         fadeSource.Play();
         
         float elapsedTime = 0f;

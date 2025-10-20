@@ -60,7 +60,6 @@ Narrator: Nothing of interest seems to be happening. You take a seat and ponder 
         Narrator: You recall a fond memory that brings a smile to your face. It's a small comfort in the loneliness of space.
         Narrator: The memory gives you a brief respite from your current situation.
         <<set $posSelfPerception += 1>>
-    -> (no use sitting around. stand back up!)
 Narrator: You decide to get back to doing something. Anything is better than sitting around.
 <<hide Sitting>>
 <<jump DoJobFirstTime>>
@@ -194,11 +193,11 @@ Narrator: Suddenly, the figure comes into view.
     -> It's none of your business.
         <<set $catDislikesYou += 1>>
         ???: I suppose it isn't, but can you blame someone for having a little bit of empathy?
-<<if $catLikesYou > $catDislikesYou>>
+<<if $catLikesYou >= $catDislikesYou>>
 <<show_character Cat Happy right>>
-{$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName} 
+{$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName}.
 <<else>>
-{$catName}: But anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName} 
+{$catName}: Anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
 <<endif>>
 {$catName}: I'm what you'd probably call an "alien".
     -> An alien? Those don't exist.
@@ -256,34 +255,40 @@ Narrator: Suddenly, the figure comes into view.
     -> I'm... not sure.
         <<show_character Cat Thinking right>>
         {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
-{$catName}: Ah! But I shouldn't keep you here all day. You probably have things to do.
+<<show_character Cat Thinking right>>
+{$catName}: Ah! Well as long as you're okay, I just realized I had to do something.
+{$catName}: It's not my plan to keep you here for over an orbit. You probably have things to do.
+<<if $catLikesYou >= $catDislikesYou>>
+<<show_character Cat Flirt right>>
+{$catName}: I'll talk to you again soon. See ya!
+<<else>>
+<<show_character Cat Happy right>>
+{$catName}: Well, human, if you want to chat again, just give me a ping.
+<<endif>>
 <<stop_voice_blip Cat>>
 <<hide_all_characters>>
 <<hide MonitorOn>>
 <<show MonitorOnNoSilhouette>>
 <<play_music MainTheme>>
+Narrator: {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
 Narrator: Suddenly, the screen flickers back to static. Cat is gone, for now.
-    -> Cat? Can you hear me?
-        Narrator: You tap the monitor and move around the dials, trying to re-establish contact.
-        Narrator: The screen warps and flickers, but Cat is nowhere to be seen. You are alone, again.
-    -> (take a seat. ponder what just happened)
-        <<hide_all_objects>>
-        <<show Thinking>>
-        Narrator: You sit back down, trying to process the encounter you just had.
-        Narrator: Who was that creature? An alien? How is that even possible?
+    -> {$catName}? Can you hear me?
+        Narrator: You tap the monitor and move around the dials, but nobody responds. You are alone, again.
+<<hide_all_objects>>
+<<show Sitting>>
+Narrator: You sit back down, trying to process the encounter you just had.
+Narrator: Who was that creature? An alien? How is that even possible?
 <<if $catLikesYou > $catDislikesYou>>
     Narrator: Strangely enough, you found the encounter with them rather pleasant. They seemed friendly, in their own way.
     Narrator: You think about what it would be like to have a friend like that. Someone who understands you, even if they are from another world.
     Narrator: You wonder if you'll ever see them again.
     <<set $posSelfPerception += 1>>
 <<else>>
-    Narrator: To you, the whole encounter felt off. You couldn't shake the feeling that something was wrong about that creature.
-    Narrator: You think about what others on Earth would say if they found out about this encounter. They'd probably call you crazy.
-    Narrator: "Aliens don't exist," they'd say. "You must be imagining things."
-    Narrator: The idea makes you feel even more isolated.
-    <<set $negSelfPerception += 1>>
+    Narrator: To you, the whole encounter felt off. Aliens? Of all times, why now?
+    Narrator: You think about what others on Earth would say if they found out about this encounter. Although it is your job to report such things, would they really believe you met friendly animal aliens?
+    Narrator: But you shake this idea off, for now. You'll think about it after a night's rest.
 <<endif>>
-<<hide MonitorOnNoSilhouette>>
+<<hide_all_objects>>
 <<show MonitorOn>>
 <<show_character Dog Obscure left>>
 <<show_character Lizard Obscure center>>
@@ -291,11 +296,39 @@ Narrator: Suddenly, the screen flickers back to static. Cat is gone, for now.
 Narrator: As you sit there, lost in thought, the monitor flickers back to life once more.
 Narrator: You see a total of three figures, all different from the last one.
 Narrator: You can only choose one of them to respond to.
-    -> (respond to the one with the short muzzle)
+    -> (respond to the one with the floppy ears)
+        <<set $talkedToDog = true>>
         <<jump DogIntro>>
-    -> (respond to the one with the long muzzle)
+    -> (respond to the one with the frazzled hair)
+        <<set $talkedToLizard = true>>
         <<jump LizardIntro>>
     -> (respond to the one with the pointy muzzle)
+        <<set $talkedToBird = true>>
+        <<jump BirdIntro>>
+===
+
+title: TalkToOthers
+---
+<<hide_all_characters>>
+<<show MonitorOn>>
+<<if $talkedToDog == false>>
+    <<show_character Dog Obscure left>>
+<<endif>>
+<<if $talkedToLizard == false>>
+    <<show_character Lizard Obscure center>>
+<<endif>>
+<<if $talkedToBird == false>>
+    <<show_character Bird Obscure right>>
+<<endif>>
+Narrator: You notice that others are still live on the feed. You can choose someone to talk to next.
+    -> (respond to the one with the floppy ears) <<if $talkedToDog == false>>
+        <<set $talkedToDog = true>>
+        <<jump DogIntro>>
+    -> (respond to the one with the frazzled hair) <<if $talkedToLizard == false>>
+        <<set $talkedToLizard = true>>
+        <<jump LizardIntro>>
+    -> (respond to the one with the pointy muzzle) <<if $talkedToBird == false>>
+        <<set $talkedToBird = true>>
         <<jump BirdIntro>>
 ===
 
@@ -304,7 +337,10 @@ position: 635,249
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
-<<show_character Dog Happy right>>
+Narrator: You pull up the communication panel and respond to the figure with the floppy ears.
+<<show_character Dog Obscure right>>
+Narrator: You turn the dials to let the signal through.
+<<show_character Dog Neutral right>>
 <<start_voice_blip Dog>>
 <<play_music DogTheme 0.5>>
 ???: Woofdy.
@@ -312,9 +348,11 @@ position: 635,249
     -> That doesn't make sense.
         <<set $dogDislikesYou += 1>>
         <<stop_voice_blip Dog>>
+        <<show_character Dog Thinking right>>
         Narrator: The figure on the monitor tilts their head in confusion.
     -> (stay silent)
 <<start_voice_blip Dog>>
+<<show_character Dog Happy right>>
 ???: What're you doing out here all by yourself? Woof.
 {$dogName}: I'm {$dogName}. Woof. I come in peace. Woof.
 {$dogName}: I saw your signal, and thought I'd come check it out. Woof.
@@ -338,34 +376,73 @@ position: 635,249
 {$dogName}: It's rare that I even see another living being out here. Woof.
 {$dogName}: I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
     -> Signal?
-        {$dogName}: Yeah, I picked up on it while I was out exploring. Woof.
+        {$dogName}: Yeah, I saw it while I was out exploring. Woof.
         {$dogName}: I like to wander around and see new places. Woof.
         {$dogName}: What about you? What are you doing out here? Woof.
-        -> I'm looking for alien life.
+        -> My job is to find alien life.
             {$dogName}: Alien life? What for? Woof.
             {$dogName}: I don't see the point in all that. Woof. Why?
-                -> I'm here to report them to our home planet.
-                    {$dogName}: Report them? Woof. That seems... a bit harsh. Woof.
+                -> I'm here to report them to Earth.
+                    {$dogName}: Report... aliens? Woof. That seems... a bit harsh. Woof.
                 -> I just want to make contact.
                     {$dogName}: Make contact? Woof. I guess that makes sense. Woof.
         -> I'm exploring, just like you.
+            <<positive_indicator Dog>>
             {$dogName}: Exploring? Woof. We should go together sometime!
+{$dogName}: Anyways, I should get going. Woof.
+{$dogName}: Space is a big place, and I have a lot of wandering to do. Woof.
+<<if $dogLikesYou >= $dogDislikesYou>>
+<<show_character Dog Flirt right>>
+{$dogName}: If you ever need anything, just send out a signal. Woof. I'll come find you.
+<<else>>
+<<show_character Dog Happy right>>
+{$dogName}: Well, if you ever need anything, I guess you could send out a signal. Woof.
+<<endif>>
 <<stop_voice_blip Dog>>
-<<jump EndDay1>>
+Narrator: The transmission cuts off as {$dogName} leaves to continue their wandering.
+<<if $talkedToLizard == false || $talkedToBird == false>>
+    <<jump TalkToOthers>>
+<<else>>
+    <<jump EndDay1>>
+<<endif>>
 ===
 
 title: LizardIntro
 position: 638,-61
 ---
-Narrator: You interact with the lizard.
-<<jump EndDay1>>
+<<hide_all_characters>>
+<<hide_all_objects>>
+Narrator: You pull up the communication panel and respond to the figure with the frazzled hair.
+<<show_character Lizard Obscure right>>
+Narrator: You turn the dials to let the signal through.
+<<show_character Lizard Neutral right>>
+<<start_voice_blip Lizard>>
+<<play_music_start_loop LizardThemeStart LizardThemeLoop 0.4 0.5>>
+???: Hi I'm a Lizard. Lol.
+<<if $talkedToDog == false || $talkedToBird == false>>
+    <<jump TalkToOthers>>
+<<else>>
+    <<jump EndDay1>>
+<<endif>>
 ===
 
 title: BirdIntro
 position: 633,86
 ---
-Narrator: You interact with the bird.
-<<jump EndDay1>>
+<<hide_all_characters>>
+<<hide_all_objects>>
+Narrator: You pull up the communication panel and respond to the figure with the pointy muzzle.
+<<show_character Bird Obscure right>>
+Narrator: You turn the dials to let the signal through.
+<<show_character Bird Neutral right>>
+<<start_voice_blip Bird>>
+<<play_music BirdTheme 0.4>>
+???: Hi I'm a Bird. Lol.
+<<if $talkedToDog == false || $talkedToLizard == false>>
+    <<jump TalkToOthers>>
+<<else>>
+    <<jump EndDay1>>
+<<endif>>
 ===
 
 title: EndDay1
@@ -373,6 +450,10 @@ position: 925,83
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
-Narrator: You've reached the end of Day 1.
-<<jump End>>
+Narrator: After talking to so many new figures, a sense of fatigue overcomes you.
+Narrator: You decide to call it a day, and take a short nap. Perhaps afterwards, you can decide what you want to do next.
+<<show ScreenBlocker>>
+<<wait 3>>
+<<hide ScreenBlocker>>
+<<jump StartDay2>>
 ===
