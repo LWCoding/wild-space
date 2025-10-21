@@ -211,6 +211,7 @@ Narrator: Suddenly, the figure comes into view.
     -> Meowdy.
         <<show_character Cat Thinking right>>
         {$catName}: ...Meowdy? That's an interesting way to greet someone.
+        <<show_character Cat Flirt right>>
         {$catName}: I guess, meowdy to you too.
 <<show_character Cat Happy right>>
 {$catName}: But anyways, who are you? What are you?
@@ -242,7 +243,7 @@ Narrator: Suddenly, the figure comes into view.
             <<set $catThinksPlayerNameIs = $playerName>>
         -> I don't have a name.
             <<show_character Cat Thinking right>>
-            {$catName}: Oh, huh. That's okay. How would people refer to you then?
+            {$catName}: Oh, huh. That's okay. How would people refer to you then, though?
             <<show_character Cat Happy right>>
             {$catName}: I guess I'll just call you "Human". I'm a master at nicknames.
     -> (stay silent)
@@ -285,13 +286,13 @@ Narrator: Suddenly, the figure comes into view.
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy2 right>>
             {$catName}: Heh, I knew it! But hey, it's all in good fun, right?
-        -> No, it's true.
+        -> (lie) No, it's true.
             <<positive_indicator Cat>>
             <<set $catDislikesYou += 1>>
             <<show_character Cat Neutral right>>
             {$catName}: Hm, I'm pretty sure that's not true. We've been studying your kind for a while, now.
-            {$catName}: In the planet that I come from, Linnaeus, we take our research very seriously.
-            {$catName}: I'm not sure why your kind would be out here alone, though.
+        {$catName}: In the planet that I come from, Linnaeus, we take our research very seriously.
+        {$catName}: I'm not sure why your kind would be out here alone, though.
     -> Why are you talking to me?
         <<show_character Cat Flirt right>>
         {$catName}: Well, you know what they say. Curiosity killed the felis catus linnaeus!
