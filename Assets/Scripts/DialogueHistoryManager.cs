@@ -19,7 +19,6 @@ public class DialogueHistoryManager : MonoBehaviour
 
     // Events for other systems to subscribe to
     public static event Action<DialogueHistoryEntry> OnDialogueAdded;
-    public static event Action OnHistoryCleared;
 
     // Internal storage
     private List<DialogueHistoryEntry> dialogueHistory = new List<DialogueHistoryEntry>();

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e99d5c4769025de4890f66e2e9e9e403, type: 3}
-  m_Name: Lizard
+  m_Name: Opossum
   m_EditorClassIdentifier: 
-  characterName: Lizard
+  characterName: Opossum
   characterPrefab: {fileID: 3257140566696577627, guid: aa8b524c0596a49478263e3951bb646a, type: 3}
   expressions:
   - {fileID: 11400000, guid: d5dc94f687d7a8347963a5d17f40f984, type: 2}

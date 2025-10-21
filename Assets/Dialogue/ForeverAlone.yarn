@@ -1,0 +1,13 @@
+title: ForeverAlone
+---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<hide_all_characters>>
+<<show ScreenBlocker>>
+Narrator: You never made prolonged contact with any of the aliens.
+Narrator: Feeling isolated, you report your findings to HQ in the most objective way possible. After this, you never hear from the aliens again.
+Narrator: You live your life out on your ship, never quite feeling at peace with what happened. You never talk to anyone again. And nobody ever comes to check on you.
+Narrator: You're not even sure if the aliens were real to begin with.
+Narrator: <b>ENDING 5/5: Forever Alone</b>
+<<detour End>>
+===

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7d91d5b20131d46a2f5362d0167457, type: 3}
-  m_Name: Lizard_Obscure
+  m_Name: Opossum_Obscure
   m_EditorClassIdentifier: 
   ExpressionName: Obscure
   ExpressionSprite: {fileID: 21300000, guid: 7a992bebd43eb044e852ae034bfddee6, type: 3}

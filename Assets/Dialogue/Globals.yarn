@@ -7,17 +7,23 @@ title: Globals
 <<declare $catDislikesYou = 0>>
 <<declare $dogLikesYou = 0>>
 <<declare $dogDislikesYou = 0>>
+
 <<declare $posSelfPerception = 0>>
 <<declare $negSelfPerception = 0>>
+
+<<declare $catSecured = false>>  // Whether the cat stayed around after Day 1
+<<declare $dogSecured = false>>  // Whether the dog stayed around after Day 1
+<<declare $opossumSecured = false>>  // Whether the opossum stayed around after Day 1
+<<declare $birdSecured = false>>  // Whether the bird stayed around after Day 1
 
 <<declare $playerName = "Player">>
 <<declare $catName = "Gnarp">>
 <<declare $dogName = "Purble">>
-<<declare $lizardName = "Snek">>
+<<declare $opossumName = "Snek">>
 <<declare $birdName = "Alfie">>
 
 <<declare $talkedToDog = false>>
-<<declare $talkedToLizard = false>>
+<<declare $talkedToOpossum = false>>
 <<declare $talkedToBird = false>>
 
 <<declare $askedEarthForHelp = false>>  // whether the player asked Earth HQ for help (varies ending)

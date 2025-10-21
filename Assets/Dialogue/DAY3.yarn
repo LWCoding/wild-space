@@ -140,10 +140,10 @@ Narrator: But they don't respond. So you call {$catName}. (this is not implement
 <<jump CallCatDay3>>
 ===
 
-title: CallLizardDay3
+title: CallOpossumDay3
 position: 409,-43
 ---
-Narrator: You call {$lizardName}.
+Narrator: You call {$opossumName}.
 Narrator: But they don't respond. So you call {$catName}. (this is not implemented yet)
 <<jump CallCatDay3>>
 ===

@@ -11,6 +11,9 @@ public class YarnClickForDialogue : MonoBehaviour
     [Header("Object Assignments")]
     [SerializeField] private bool _onlyInteractableOnce = false;
     [SerializeField] private string _nodeName;
+    
+    [Header("Conditional Interaction")]
+    [SerializeField] private List<string> _requiredVariables = new List<string>();  // Checks these booleans in yarnspinner variable storage; only interactable if all are true
 
     [Header("Pre-interaction Pulse")]
     [SerializeField] private bool _enablePulse = true;
@@ -43,7 +46,14 @@ public class YarnClickForDialogue : MonoBehaviour
 
     private void OnEnable()
     {
-        // Begin pulsing if not yet interacted
+        // Hide object if required variables are not met
+        if (!AreRequiredVariablesMet())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        
+        // Begin pulsing if not yet interacted and variables are met
         if (_enablePulse && _timesRan == 0)
         {
             _pulseCoroutine = StartCoroutine(PulseRoutine());
@@ -91,6 +101,7 @@ public class YarnClickForDialogue : MonoBehaviour
         {
             return;
         }
+        
         HandleClick();
     }
 
@@ -134,6 +145,37 @@ public class YarnClickForDialogue : MonoBehaviour
             yield return null;
         }
         transform.localScale = _initialScale;
+    }
+
+    private bool AreRequiredVariablesMet()
+    {
+        // If no required variables are specified, object is always interactable
+        if (_requiredVariables == null || _requiredVariables.Count == 0)
+        {
+            return true;
+        }
+
+        // Check if all required variables are true
+        foreach (string variableName in _requiredVariables)
+        {
+            if (string.IsNullOrEmpty(variableName))
+                continue;
+                
+            if (_dialogueRunner.VariableStorage.TryGetValue<bool>($"${variableName}", out bool variableValue))
+            {
+                if (!variableValue)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                Debug.LogError($"Variable {variableName} (as a boolean) does not exist in yarnspinner variable storage");
+                return false;
+            }
+        }
+
+        return true;
     }
 
 }

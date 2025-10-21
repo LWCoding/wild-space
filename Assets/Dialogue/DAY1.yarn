@@ -280,6 +280,18 @@ Narrator: Suddenly, the figure comes into view.
     -> Yes, I've met a few.
         <<show_character Cat Neutral right>>
         {$catName}: Really? I'm calling your bluff. Your kind hasn't even discovered intergalactic travel yet!
+        -> Okay, you got me.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy2 right>>
+            {$catName}: Heh, I knew it! But hey, it's all in good fun, right?
+        -> No, it's true.
+            <<positive_indicator Cat>>
+            <<set $catDislikesYou += 1>>
+            <<show_character Cat Neutral right>>
+            {$catName}: Hm, I'm pretty sure that's not true. We've been studying your kind for a while, now.
+            {$catName}: In the planet that I come from, Linnaeus, we take our research very seriously.
+            {$catName}: I'm not sure why your kind would be out here alone, though.
     -> Why are you talking to me?
         <<show_character Cat Flirt right>>
         {$catName}: Well, you know what they say. Curiosity killed the felis catus linnaeus!
@@ -299,7 +311,7 @@ Narrator: Suddenly, the figure comes into view.
 {$catName}: Ah! I just realized I had to do something. It's not my plan to keep you here for over an orbit.
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Flirt right>>
-    {$catName}: I'll talk to you again soon, {$catThinksPlayerNameIs}. This has been really nice.
+    {$catName}: It's been nice talking to you, though! We can chat again soon, {$catThinksPlayerNameIs}.
     {$catName}: If you want to chat again, just give me a ping. See ya!~
     <<set $catSecured = true>>
 <<else>>
@@ -340,7 +352,7 @@ Narrator: Who was that creature? An alien? How is that even possible?
 <<hide_all_objects>>
 <<show MonitorOn>>
 <<show_character Dog Obscure left>>
-<<show_character Lizard Obscure center>>
+<<show_character Opossum Obscure center>>
 <<show_character Bird Obscure right>>
 Narrator: As you sit there, lost in thought, the monitor flickers back to life once more.
 Narrator: You see a total of three figures, all different from the last one.
@@ -349,8 +361,8 @@ Narrator: They all seem like they'll stick around for a bit. Who do you talk to 
         <<set $talkedToDog = true>>
         <<jump DogIntro>>
     -> (respond to the one with the frazzled hair)
-        <<set $talkedToLizard = true>>
-        <<jump LizardIntro>>
+        <<set $talkedToOpossum = true>>
+        <<jump OpossumIntro>>
     -> (respond to the one with the pointy muzzle)
         <<set $talkedToBird = true>>
         <<jump BirdIntro>>
@@ -363,8 +375,8 @@ title: TalkToOthers
 <<if $talkedToDog == false>>
     <<show_character Dog Obscure left>>
 <<endif>>
-<<if $talkedToLizard == false>>
-    <<show_character Lizard Obscure center>>
+<<if $talkedToOpossum == false>>
+    <<show_character Opossum Obscure center>>
 <<endif>>
 <<if $talkedToBird == false>>
     <<show_character Bird Obscure right>>
@@ -373,9 +385,9 @@ Narrator: You notice that others are still live on the feed. You can choose some
     -> (respond to the one with the floppy ears) <<if $talkedToDog == false>>
         <<set $talkedToDog = true>>
         <<jump DogIntro>>
-    -> (respond to the one with the frazzled hair) <<if $talkedToLizard == false>>
-        <<set $talkedToLizard = true>>
-        <<jump LizardIntro>>
+    -> (respond to the one with the frazzled hair) <<if $talkedToOpossum == false>>
+        <<set $talkedToOpossum = true>>
+        <<jump OpossumIntro>>
     -> (respond to the one with the pointy muzzle) <<if $talkedToBird == false>>
         <<set $talkedToBird = true>>
         <<jump BirdIntro>>
@@ -444,12 +456,15 @@ Narrator: You turn the dials to let the signal through.
         <<set $dogThinksPlayerNameIs = $playerName>>
         <<set $dogKnowsPlayerName = true>>
         {$dogName}: Woof! It's nice to meet you, {$dogThinksPlayerNameIs}!
+        <<if $playerName == "Dipper">>
+            {$dogName}: That's a pretty silly name. It rhymes with Bipper. Woof.
+        <<endif>>
 <<show_character Dog Neutral right>>
 {$dogName}: I hope you don't mind me dropping by unannounced. Woof.
-    -> I do mind. What are you trying to do here?
+    -> Alien... why are you still here?
         <<set $dogDislikesYou += 1>>
         <<show_character Dog Sad right>>
-        {$dogName}: Oh... Woof. I'm sorry if I bothered you. Woof.
+        {$dogName}: Woof. I'm sorry if I bothered you. Woof.
         {$dogName}: I just saw your signal and thought I'd come check it out. Woof.
     -> What are you doing here?
         {$dogName}: Oh, I was just passing by. Woof.
@@ -469,32 +484,43 @@ Narrator: You turn the dials to let the signal through.
     <<set $dogKnowsPlayerName = true>>
     {$dogName}: But. Woof. What should I call you?
         -> {$playerName}.
+            <<positive_indicator Dog>>
+            <<set $dogLikesYou += 1>>
             {$dogName}: Woof! {$playerName}, that's a nice name.
+            <<if $playerName == "Dipper">>
+                {$dogName}: It rhymes with Bipper. Woof.
+            <<endif>>
             <<set $dogThinksPlayerNameIs = $playerName>>
         -> (stay silent)
             {$dogName}: Hm, that's okay. Woof. I guess I'll just call you "Human". You're a human, right? Woof.
 <<endif>>
 {$dogName}: Anyways, I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
-    -> Signal?
+    -> Signal? 
         {$dogName}: Yeah, I saw it while I was out exploring. Woof.
         <<show_character Dog Happy right>>
-        {$dogName}: I like to wander around and see new places. Woof.
-        {$dogName}: What about you? What are you doing out here? Woof.
-        -> My job is to find alien life.
-            <<show_character Dog Thinking right>>
-            {$dogName}: Alien life? What for? Woof.
-            {$dogName}: I don't see the point in all that. Woof. Why?
-                -> I'm here to report them to Earth.
-                    <<show_character Dog Sad right>>
-                    {$dogName}: Report... aliens? Woof. That seems a bit harsh. Most of the aliens I've met aren't the nicest, but they're not all bad. Woof.
-                    <<set $dogDislikesYou += 1>>
-                -> I just want to make contact.
-                    {$dogName}: Make contact? Woof. You should join me sometime. I see a lot of interesting beings everyday.
-                    {$dogName}: The most interesting ones are the ones that ask a lot of questions. Woof.
-
-        -> I'm exploring, just like you.
-            <<positive_indicator Dog>>
-            {$dogName}: Exploring? Woof. We should go together sometime!
+        {$dogName}: I like to wander around and see new places. Woof. I've traveled thousands of barksecs from my home planet. Woof.
+    -> That sounds pretty lonely.
+        <<show_character Dog Thinking right>>
+        <<set $dogDislikesYou += 1>>
+        {$dogName}: Lonely? Woof. Not really. Woof.
+        {$dogName}: I like my own company. Woof. Plus, I meet new people all the time. Woof.
+<<show_character Dog Neutral right>>
+{$dogName}: What about you? What are you doing out here? Woof.
+    -> My job is to find alien life.
+        <<show_character Dog Thinking right>>
+        {$dogName}: Alien life? What for? Woof.
+        {$dogName}: I don't see the point in all that. Woof. Why?
+            -> I'm here to report them to Earth.
+                <<show_character Dog Sad right>>
+                {$dogName}: Report... aliens? Woof. That seems a bit harsh. 
+                {$dogName}: Most of the aliens I've met aren't the nicest, but they're not all bad. Woof.
+                <<set $dogDislikesYou += 1>>
+            -> I just want to make contact.
+                {$dogName}: Make contact? Woof. You should join me sometime. I see a lot of interesting beings everyday.
+                {$dogName}: The most interesting ones are the ones that ask a lot of questions. Woof.
+    -> I'm exploring, just like you.
+        <<positive_indicator Dog>>
+        {$dogName}: Exploring? Woof. We should go together sometime!
 {$dogName}: Anyways, I should get going. Woof.
 {$dogName}: Space is a big place, and I have a lot of wandering to do. Woof.
 <<if $dogLikesYou >= $dogDislikesYou>>
@@ -512,27 +538,27 @@ Narrator: The transmission cuts off as {$dogName} leaves to continue their wande
 <<if $dogSecured == true>>
     Narrator: You notice a transmission from {$dogName} saved onto your monitor. You can likely use this to ping them again in the future.
 <<endif>>
-<<if $talkedToLizard == false || $talkedToBird == false>>
+<<if $talkedToOpossum == false || $talkedToBird == false>>
     <<jump TalkToOthers>>
 <<else>>
     <<jump EndDay1>>
 <<endif>>
 ===
 
-title: LizardIntro
+title: OpossumIntro
 position: 638,-61
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
 Narrator: You pull up the communication panel and respond to the figure with the frazzled hair.
-<<show_character Lizard Obscure right>>
+<<show_character Opossum Obscure right>>
 Narrator: You turn the dials to let the signal through.
-<<show_character Lizard Neutral right>>
-<<start_voice_blip Lizard>>
-<<play_music_start_loop LizardThemeStart LizardThemeLoop 0.4 0.5>>
-???: Hi I'm a Lizard. This section is unimplemented.
+<<show_character Opossum Neutral right>>
+<<start_voice_blip Opossum>>
+<<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
+???: Hi I'm a Opossum. This section is unimplemented.
 ???: As such, we will skip to the next section.
-<<stop_voice_blip Lizard>>
+<<stop_voice_blip Opossum>>
 <<play_music MainTheme>>
 <<hide_all_characters>>
 <<if $talkedToDog == false || $talkedToBird == false>>
@@ -558,7 +584,7 @@ Narrator: You turn the dials to let the signal through.
 <<stop_voice_blip Bird>>
 <<play_music MainTheme>>
 <<hide_all_characters>>
-<<if $talkedToDog == false || $talkedToLizard == false>>
+<<if $talkedToDog == false || $talkedToOpossum == false>>
     <<jump TalkToOthers>>
 <<else>>
     <<jump EndDay1>>
