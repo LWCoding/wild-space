@@ -112,7 +112,7 @@ title: CatRecurringTreeDay2
 <<endif>>
 <<once>>
 <<stop_voice_blip Cat>>
-Narrator: <i>Note: From now on, some options may be available or unavailable depending on your previous choices. You can view special options based on parenthesized text before the option.</i>
+Narrator: <i>Note: From now on, some options may be available or unavailable depending on your choices. You can view special options based on parenthesized text before the option.</i>
     -> <b>(POSITIVE SELF-IMAGE)</b> Wow, that's cool! <<if $posSelfPerception >= $negSelfPerception>>
     -> <b>(NEGATIVE SELF-IMAGE)</b> Okay, whatever. <<if $posSelfPerception < $negSelfPerception>>
 <<start_voice_blip Cat>>
@@ -120,9 +120,9 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
 {$catName}: What did you want to talk about?
     -> What is it like out here? <<if $day2AskedCatQ1 == false>>
         <<set $day2AskedCatQ1 = true>>
-        {$catName}: I actually come from a planet far, far away from where you are.
+        {$catName}: I actually come from a planet far, far away from you.
         <<show_character Cat Neutral right>>
-        {$catName}: We've done some surveils of your planet before! Out here, we don't have the same comforts as you do. 
+        {$catName}: We've done surveils of your planet before! Out here, we don't have the same comforts as you do. 
         {$catName}: For example, the quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
             -> That's scary!
                 <<positive_indicator Cat>>
@@ -130,29 +130,35 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
                 <<show_character Cat Happy right>>
                 {$catName}: Yeah, it can be. But we've learned to adapt over time.
             -> Oh, those aren't bad. We have those too.
-                <<show_character Cat Neutral right>>
+                <<show_character Cat Sad right>>
                 <<set $catDislikesYou += 1>>
-                {$catName}: Sure, you do. But I can say with a pretty good amount of confidence that they're not as bad as ours!
+                {$catName}: Sure, you do. But I can say with a pretty good amount of confidence that they're not as bad as ours.
                 {$catName}: We have a lot of casualties from them every year. It's pretty unfortunate.
+            -> Surveils of our planet?
+                <<positive_indicator Cat>>
+                <<set $catLikesYou += 1>>
+                <<show_character Cat Happy right>>
+                {$catName}: Yeah! We've been watching your planet for a while now. It's really interesting to see how different life is there compared to out here.
+                {$catName}: Your technology is pretty advanced too, from what we've seen!
+                <<show_character Cat Flirt right>>
+                {$catName}: Just not as advanced as us, yet~ but I bet you'll discover intergalactic travel too, someday.
     -> What is your mission? <<if $day2AskedCatQ2 == false>>
         <<set $day2AskedCatQ2 = true>>
         {$catName}: Mission? I don't think we have... a "mission". We're just out here trying to survive, same as you.
             -> But what is your <i>mission</i>? You know, as an alien?
-                <<if $catLikesYou >= $catDislikesYou>>
-                    <<show_character Cat Happy right>>
-                <<else>>
-                    <<show_character Cat Neutral right>>
-                <<endif>>
+                <<show_character Cat Angry right>>
                 {$catName}: You make it seem like we're some kind of invaders or something.
+                <<show_character Cat Neutral right>>
+                {$catName}: I'm telling you, we're just trying to get by out here. We're not looking to conquer anyone.
                 <<set $catDislikesYou += 1>>
             -> I guess, what do you work as? <<if $knowCatJob == false>>
                 <<set $knowCatJob = true>>
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Happy right>>
-                {$catName}: Well, I work for safety. Which is very general! I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
+                {$catName}: I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
+                {$catName}: I just work for safety. I make sure our planet is safe, our adventurers come back safely from space, and everything you can think of in between.
                 <<show_character Cat Thinking right>>
-                {$catName}: I make sure our infrastructure is safe, our adventurers come back safely from space, and everything you can think of in between.
                 {$catName}: Safety across the galaxy is tougher than you think. There are a lot of different species out here, and not all of them are friendly.
             -> Oh, I see.
     -> What do you do for work? <<if $knowCatJob == false>>
@@ -160,7 +166,8 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<show_character Cat Happy right>>
-        {$catName}: Well, I work for safety. Which is very general! I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
+        {$catName}: I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
+        {$catName}: My job is pretty simple. I just work for safety.
         <<show_character Cat Thinking right>>
         {$catName}: I make sure our infrastructure is safe, our adventurers come back safely from space, and everything you can think of in between.
         {$catName}: Safety across the galaxy is tougher than you think. There are a lot of different species out here, and not all of them are friendly.
@@ -189,7 +196,7 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
         Narrator: You decide to play a game with {$catName} on the monitor to pass the time.
         Narrator: {$catName} beams the game to your device, and you both start playing.
         Narrator: The game is a simple one where you have to match shapes and colors. It's not very exciting, but it helps to break the ice.
-        <<show_character Cat Thinking right>>
+        <<show_character Cat Sad right>>
         Narrator: It seems that {$catName}, however, is struggling quite a bit.
             -> (win at the game)
                 <<positive_indicator Cat>>
@@ -208,7 +215,7 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
     -> (don't ask any more questions)
         <<stop_voice_blip Cat>>
         <<if $posSelfPerception > $negSelfPerception>>
-            Narrator: You decide to end the conversation for now. You had a lot of fun.
+            Narrator: You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
         <<else>>
             Narrator: You feel your social battery start to drain, so you decide to end the conversation for now.
         <<endif>>

@@ -3,7 +3,7 @@ position: -178,-561
 ---
 <<set $daysPassed = 3>>
 <<play_sound AlarmClock>>
-Narrator: Day 3 has began. You have a job to do.
+Narrator: You wake up again to the sound of your alarm clock. It's time to get to your job.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay3>>
 ===
