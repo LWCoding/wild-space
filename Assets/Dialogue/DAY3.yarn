@@ -96,6 +96,13 @@ Narrator: You call {$catName}. You see movement, and start tweaking the dials to
                         <<else>>
                             {$catName}: Alright, I'll help you. But only because I care about you, {$catThinksPlayerNameIs}.
                         <<endif>>
+                    -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
+                        Narrator: You decide to disconnect the call with {$catName} for now.
+                        <<play_music MainTheme>>
+                        <<hide_all_characters>>
+                        <<hide_all_objects>>
+                        <<show MonitorOff>>
+                        <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
                 {$catName}: I see. That seems pretty urgent. Let me see what I can do.
             -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $catLikesYou >= $catDislikesYou>>
