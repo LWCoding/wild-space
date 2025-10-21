@@ -1,7 +1,6 @@
 title: AcceptCatHelp
 ---
-<<hide_all_characters>>
-<<hide_all_objects>>
+<<play_music MainTheme>>
 <<start_voice_blip Cat>>
 <<show_character Cat Helmet right>>
 {$catName}: I've arranged for a rescue mission to come get you. Just hang tight, okay?
@@ -19,6 +18,7 @@ Narrator: <b>ENDING 4/4: Saved by a friend</b>  // TODO: potentially be lover if
 
 title: AcceptDogHelp
 ---
+<<play_music MainTheme>>
 <<hide_all_characters>>
 <<hide_all_objects>>
 Narrator: You've reached the end of Day 3.
@@ -27,6 +27,7 @@ Narrator: You've reached the end of Day 3.
 
 title: AcceptLizardHelp
 ---
+<<play_music MainTheme>>
 <<hide_all_characters>>
 <<hide_all_objects>>
 Narrator: You've reached the end of Day 3.
@@ -35,6 +36,7 @@ Narrator: You've reached the end of Day 3.
 
 title: AcceptBirdHelp
 ---
+<<play_music MainTheme>>
 <<hide_all_characters>>
 <<hide_all_objects>>
 Narrator: You've reached the end of Day 3.

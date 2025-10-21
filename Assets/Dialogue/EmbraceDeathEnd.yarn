@@ -2,6 +2,7 @@ title: EmbraceDeath
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<hide_all_ui_objects>>
 <<show ScreenBlocker>>
 Narrator: You decide not to call for help.
 <<if $posSelfPerception > $negSelfPerception>>

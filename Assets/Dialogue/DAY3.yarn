@@ -38,6 +38,7 @@ Narrator: Do you wish to report your alien encounter?
 title: KeptUnderWrapsDay3
 position: -179,-172
 ---
+<<hide_all_ui_objects>>
 Narrator: You finish your report, choosing not to mention the aliens.
 <<hide_all_objects>>
 <<show MonitorOnNoSilhouette>>
@@ -68,6 +69,7 @@ position: 422,282
 <<show_character Cat Obscure right>>
 Narrator: You call {$catName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Cat>>
+<<play_music CatTheme 0.5>>
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy right>>
     {$catName}: Hi again! I missed you. It's been a while.
@@ -179,5 +181,9 @@ Narrator: You have a feeling that you can get them to send their emergency rescu
             -> (call the aliens for help)
                 <<jump CallAliensDay3>>
             -> (embrace death)
-                <<jump EmbraceDeath>>
+                Narrator: You hesitate for a moment. Do you really want to give up?
+                -> (yes)
+                    <<jump EmbraceDeath>>
+                -> (no)
+                    <<jump CallAliensDay3>>
 ===

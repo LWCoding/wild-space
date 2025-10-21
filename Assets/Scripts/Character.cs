@@ -228,7 +228,11 @@ public class Character : MonoBehaviour
         {
             if (expression.VoiceBlip != null)
             {
-                audioSource.PlayOneShot(expression.VoiceBlip, expression.BlipVolume);
+                // Stop any currently playing voice blip to prevent volume accumulation
+                audioSource.Stop();
+                audioSource.clip = expression.VoiceBlip;
+                audioSource.volume = expression.BlipVolume;
+                audioSource.Play();
             }
 
             yield return new WaitForSeconds(expression.BlipInterval);

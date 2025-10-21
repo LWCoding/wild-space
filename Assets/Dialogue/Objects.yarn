@@ -3,7 +3,7 @@
 title: MonitorOffClick
 ---
 Narrator: The monitor is currently off. You use it every day to send in your daily reports.
-Narrator: Since day one, you haven't reported anything out of the ordinary.
+Narrator: Since day one, you haven't reported anything out of the ordinary. You've been out here for almost two years now.
 <<set $monitorExplored = true>>
 <<if $bedrollExplored and $cannedFoodExplored and $monitorExplored>>
     <<jump AfterInteractedWithItems>>

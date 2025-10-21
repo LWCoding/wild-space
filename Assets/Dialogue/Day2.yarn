@@ -14,7 +14,7 @@ title: OnClickedMonitorDay2
 position: 55,-311
 ---
 <<hide_all_ui_objects>>
-<<show MonitorOn>>
+<<show MonitorOnNoSilhouette>>
 Narrator: You turn on the monitor to see today's tasks.
 Narrator: Before you start your report, you notice a new message from HQ.
 Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
@@ -68,9 +68,11 @@ position: 422,282
 <<hide_all_objects>>
 <<show MonitorOn>>
 <<show_character Cat Obscure right>>
+<<stop_voice_blip Cat>>
 Narrator: You call {$catName}. The line remains static for a little while, but you suddenly see movement on the other end.
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy right>>
+    <<play_music CatTheme 0.5>>
     Narrator: {$catName} appears on the screen, looking relieved to see you.
     <<show_character Cat Happy2 right>>
     <<start_voice_blip Cat>>
@@ -119,6 +121,7 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
     -> What is it like out here? <<if $day2AskedCatQ1 == false>>
         <<set $day2AskedCatQ1 = true>>
         {$catName}: I actually come from a planet far, far away from where you are.
+        <<show_character Cat Neutral right>>
         {$catName}: We've done some surveils of your planet before! Out here, we don't have the same comforts as you do. 
         {$catName}: For example, the quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
             -> That's scary!
@@ -182,9 +185,11 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
         {$catName}: A game? Sure, why not!
         // TODO: Make this an actual game
         <<stop_voice_blip Cat>>
+        <<show_character Cat Happy right>>
         Narrator: You decide to play a game with {$catName} on the monitor to pass the time.
         Narrator: {$catName} beams the game to your device, and you both start playing.
         Narrator: The game is a simple one where you have to match shapes and colors. It's not very exciting, but it helps to break the ice.
+        <<show_character Cat Thinking right>>
         Narrator: It seems that {$catName}, however, is struggling quite a bit.
             -> (win at the game)
                 <<positive_indicator Cat>>
@@ -218,6 +223,8 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
             {$catName}: Thanks for the talk, I guess.
         <<endif>>
         <<stop_voice_blip Cat>>
+        <<hide_all_characters>>
+        <<play_music MainTheme>>
         Narrator: You cut the connection and take a step back from your monitor.
             -> (turn off the monitor)
         <<hide_all_objects>>

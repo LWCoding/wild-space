@@ -1,6 +1,7 @@
 title: Globals
 ---
 <<declare $catThinksPlayerNameIs = "Human">>
+<<declare $dogThinksPlayerNameIs = "Human">>
 <<declare $dogKnowsPlayerName = false>>
 <<declare $catLikesYou = 0>>
 <<declare $catDislikesYou = 0>>

@@ -99,21 +99,11 @@ Narrator: A dark figure appears on the screen, accompanied with a static-filled 
 <<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
-        <<start_voice_blip Cat>>
-        ???: <i>*kshh*</i> If... you... there... <i>*bzzt*</i> please... respond...
-        -> Hello?
-            <<jump EnterMessage>>
-        -> Who are you?
-            <<jump EnterMessage>>
-        -> (stay silent)
-            <<jump EnterMessage>>
     -> (stay silent)
-        <<stop_voice_blip Cat>>
-        Narrator: The voice from the monitor continues to speak.
-        <<start_voice_blip Cat>>
-        ???: Please... <i>*kshh*</i> if... there... yourself... known...
-        <<stop_voice_blip Cat>>
-        <<jump EnterMessage>>
+    Narrator: The voice from the monitor continues to speak.
+    ???: Please... <i>*kshh*</i> if... there... yourself... known...
+    <<stop_voice_blip Cat>>
+    <<jump EnterMessage>>
 ===
 
 title: EnterMessage
@@ -283,7 +273,7 @@ Narrator: Suddenly, the figure comes into view.
 <<show MonitorOnNoSilhouette>>
 <<play_music MainTheme>>
 Narrator: {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
-Narrator: Suddenly, the screen flickers back to static. Cat is gone, for now.
+Narrator: Suddenly, the screen flickers back to static. {$catName} is gone, for now.
     -> {$catName}? Can you hear me?
         Narrator: You tap the monitor and move around the dials, but nobody responds. You are alone, again.
 <<hide_all_objects>>
@@ -369,25 +359,34 @@ Narrator: You turn the dials to let the signal through.
 ???: What're you doing out here all by yourself? Woof.
 {$dogName}: I'm {$dogName}. Woof. I come in peace. Woof.
 {$dogName}: I saw your signal, and thought I'd come check it out. Woof.
-    -> It's nice to meet you, {$dogName}.
+    -> What... are you?
         <<positive_indicator Dog>>
-        <<set $dogLikesYou += 1>>
-        {$dogName}: Woof! It's nice to meet you too... whatever your name is.
-        -> It's {$playerName}.
-            {$dogName}: Woof! {$playerName}, that's a nice name.
-        -> (stay silent)
+        <<set $dogLikesYou -= 1>>
+        {$dogName}: I don't know what you'd call it. I'm just a space creature. Woof.
+        {$dogName}: Just like you, I'm exploring space. Woof.
     -> Why do you keep saying woof?
         {$dogName}: I don't know what you mean. Woof.
     -> Hi {$dogName}. I'm {$playerName}.
         <<positive_indicator Dog>>
-        {$dogName}: Woof! It's nice to meet you, {$playerName}!
+        <<set $dogThinksPlayerNameIs = $playerName>>
+        <<set $dogKnowsPlayerName = true>>
+        {$dogName}: Woof! It's nice to meet you, {$dogThinksPlayerNameIs}!
 {$dogName}: I hope you don't mind me dropping by unannounced. Woof.
     -> Do you know {$catName}?
         {$dogName}: {$catName}? Can't say I'm familiar. We're not that interconnected here in space.
     -> What are you doing here?
         {$dogName}: Oh, I was just passing by. Woof.
-{$dogName}: It's rare that I even see another living being out here. Woof.
-{$dogName}: I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
+{$dogName}: It's rare that I even see another living being out here. Woof. 
+<<if $dogKnowsPlayerName == false>>
+    <<set $dogKnowsPlayerName = true>>
+    {$dogName}: But. Woof. What should I call you?
+        -> {$playerName}.
+            {$dogName}: Woof! {$playerName}, that's a nice name.
+            <<set $dogThinksPlayerNameIs = $playerName>>
+        -> (stay silent)
+            {$dogName}: Hm, that's okay. Woof. I guess I'll just call you "Human". You're a human, right? Woof.
+<<endif>>
+{$dogName}: Anyways, I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
     -> Signal?
         {$dogName}: Yeah, I saw it while I was out exploring. Woof.
         {$dogName}: I like to wander around and see new places. Woof.
