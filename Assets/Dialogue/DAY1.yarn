@@ -114,7 +114,7 @@ position: 312,-227
 <<stop_voice_blip Cat>>
 Narrator: With your expertise, you think you can adjust the frequency and let the signal through.
     -> (let the signal through)
-        <<jump Introduction>>
+        <<jump CatIntro>>
     -> (ignore the signal. it's probably nothing.)
         Narrator: You decide to ignore the signal. It's probably just static interference.
         <<hide_all_characters>>
