@@ -23,7 +23,8 @@ Narrator: It reads, "Remember your duty to report accurately and without bias. Y
 <<endif>>
 Narrator: You ponder the details of your next report. Do you report the encounter with the aliens? Or keep it under wraps?
     -> (report the encounter)
-        Narrator: You hesitate for a moment. You're not entirely sure what will happen if you report the aliens, but you may never see them again.
+        Narrator: You hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
+        Narrator: You're not entirely sure what will happen to the aliens, but you may never see them again.
         -> (report the encounter)
             Narrator: You get to writing your report.
             <<hide_all_objects>>

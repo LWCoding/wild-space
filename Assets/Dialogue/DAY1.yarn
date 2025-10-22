@@ -2,7 +2,6 @@
 position: -31,-584
 ---
 <<once>>
-<<declare $saidHello = false>>
 <<hide_all_objects>>
 <<show ScreenBlocker>>
 Narrator: {$playerName}... Right, your name is {$playerName}.
@@ -13,10 +12,10 @@ Narrator: You're lying down. On a hard surface. Your head feels heavy, and your 
 Narrator: You slowly sit up, and take in your surroundings.
 <<endonce>>
 Narrator: You're at home. In your metal spaceship.
-    -> Hello? <<if $saidHello == false>>
-        <<set $saidHello = true>>
+    -> Hello?
         Narrator: A voice responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
-        <<jump AfterName>>
+        -> (take a look around)
+            <<jump LookAround>>
     -> (take a look around)
         <<jump LookAround>>
 ===
