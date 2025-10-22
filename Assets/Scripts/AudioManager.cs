@@ -149,6 +149,7 @@ public class AudioManager : MonoBehaviour
         StopAudio();
         currentSource.clip = clip;
         currentSource.volume = volume;
+        currentSource.pitch = 1.0f; // Ensure normal pitch
         currentSource.Play();
     }
     
@@ -202,6 +203,7 @@ public class AudioManager : MonoBehaviour
         // Play the start clip
         currentSource.clip = startClip;
         currentSource.volume = volume;
+        currentSource.pitch = 1.0f; // Ensure normal pitch
         currentSource.loop = false;
         currentSource.Play();
         
@@ -220,6 +222,7 @@ public class AudioManager : MonoBehaviour
             // Set up the loop clip on the fade source
             fadeSource.clip = loopClip;
             fadeSource.volume = 0f;
+            fadeSource.pitch = 1.0f; // Ensure normal pitch
             fadeSource.loop = true;
             fadeSource.Play();
             
@@ -276,6 +279,7 @@ public class AudioManager : MonoBehaviour
             }
             currentSource.clip = loopClip;
             currentSource.volume = volume;
+            currentSource.pitch = 1.0f; // Ensure normal pitch
             currentSource.loop = true;
             currentSource.Play();
         }
@@ -296,6 +300,7 @@ public class AudioManager : MonoBehaviour
         // Set up the fade source with the new clip
         fadeSource.clip = newClip;
         fadeSource.volume = 0f;
+        fadeSource.pitch = 1.0f; // Ensure normal pitch
 		fadeSource.loop = true;
         fadeSource.Play();
         
@@ -372,6 +377,8 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 
+		// Ensure pitch is at normal value before playing
+		currentSource.pitch = 1.0f;
 		currentSource.PlayOneShot(clip, Mathf.Clamp01(volume));
 	}
 
@@ -392,9 +399,6 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 
-		// Store original pitch
-		float originalPitch = currentSource.pitch;
-		
 		// Apply random pitch variation
 		float pitchVariationAmount = Random.Range(-pitchVariation, pitchVariation);
 		currentSource.pitch = 1f + pitchVariationAmount;
@@ -402,16 +406,16 @@ public class AudioManager : MonoBehaviour
 		// Play the typing sound
 		currentSource.PlayOneShot(typingSoundClip, typingSoundVolume);
 		
-		// Restore original pitch after a short delay
-		StartCoroutine(RestorePitchAfterDelay(originalPitch, 0.1f));
+		// Always restore pitch to 1.0 after a short delay
+		StartCoroutine(RestorePitchAfterDelay(1.0f, 0.1f));
 	}
 
-	private IEnumerator RestorePitchAfterDelay(float originalPitch, float delay)
+	private IEnumerator RestorePitchAfterDelay(float targetPitch, float delay)
 	{
 		yield return new WaitForSeconds(delay);
 		if (currentSource != null)
 		{
-			currentSource.pitch = originalPitch;
+			currentSource.pitch = targetPitch;
 		}
 	}
 }
