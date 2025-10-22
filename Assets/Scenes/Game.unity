@@ -7426,6 +7426,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource1: {fileID: 779370043}
   audioSource2: {fileID: 845041586}
+  typingSoundClip: {fileID: 8300000, guid: dda5b66c9893e5243bfaa776a0bebb84, type: 3}
+  typingSoundVolume: 0.25
+  pitchVariation: 0.2
   initialMusicClip: {fileID: 8300000, guid: d7083eb2484dbee4e8f1d43370034b16, type: 3}
   initialMusicVolume: 0.2
   defaultTransitionTime: 0.5

@@ -9,6 +9,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioSource audioSource1;
     [SerializeField] private AudioSource audioSource2;
     
+    [Header("SFX Audio")]
+    [SerializeField] private AudioClip typingSoundClip;
+    [SerializeField] private float typingSoundVolume = 0.3f;
+    [SerializeField] private float pitchVariation = 0.2f; // How much the pitch can vary
+    
     [Header("Initial Music")]
     [SerializeField] private AudioClip initialMusicClip;
     [SerializeField] private float initialMusicVolume;
@@ -348,7 +353,7 @@ public class AudioManager : MonoBehaviour
         startThenLoopToken++;
     }
 
-    /// <summary>
+	/// <summary>
 	/// Plays a sound effect one-shot over the current audio without interrupting it
 	/// </summary>
 	/// <param name="clip">The audio clip to play once</param>
@@ -368,5 +373,45 @@ public class AudioManager : MonoBehaviour
 		}
 
 		currentSource.PlayOneShot(clip, Mathf.Clamp01(volume));
+	}
+
+	/// <summary>
+	/// Plays the typing sound with random pitch variation
+	/// </summary>
+	public void PlayTypingSound()
+	{
+		if (typingSoundClip == null)
+		{
+			Debug.LogWarning("AudioManager: Typing sound clip is not assigned");
+			return;
+		}
+
+		if (currentSource == null)
+		{
+			Debug.LogWarning("AudioManager: No current AudioSource available for typing sound");
+			return;
+		}
+
+		// Store original pitch
+		float originalPitch = currentSource.pitch;
+		
+		// Apply random pitch variation
+		float pitchVariationAmount = Random.Range(-pitchVariation, pitchVariation);
+		currentSource.pitch = 1f + pitchVariationAmount;
+		
+		// Play the typing sound
+		currentSource.PlayOneShot(typingSoundClip, typingSoundVolume);
+		
+		// Restore original pitch after a short delay
+		StartCoroutine(RestorePitchAfterDelay(originalPitch, 0.1f));
+	}
+
+	private IEnumerator RestorePitchAfterDelay(float originalPitch, float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		if (currentSource != null)
+		{
+			currentSource.pitch = originalPitch;
+		}
 	}
 }

@@ -19,11 +19,13 @@ public class YarnTypeToFinish : MonoBehaviour
     private DialogueRunner _dialogueRunner;
     private int _charactersShown = 0;
     private bool _loadedNode = false;
+    private AudioManager _audioManager;
 
     private void Awake()
     {
         _dialogueRunner = FindObjectOfType<DialogueRunner>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _audioManager = AudioManager.Instance;
         _textToChange.text = "";  // Hide text initially
     }
 
@@ -35,6 +37,12 @@ public class YarnTypeToFinish : MonoBehaviour
             if (Input.anyKeyDown && !(Input.GetMouseButtonDown(0)
             || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)))
             {
+                // Only play typing sound if there are still characters to reveal
+                if (_charactersShown < _messageToShow.Length && _audioManager != null)
+                {
+                    _audioManager.PlayTypingSound();
+                }
+                
                 _charactersShown = Mathf.Min(_charactersShown + 3, _messageToShow.Length);
                 // Skip spaces.
                 while (_charactersShown < _messageToShow.Length && _messageToShow[_charactersShown] == ' ')
