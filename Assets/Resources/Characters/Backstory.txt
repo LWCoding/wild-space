@@ -1,7 +1,48 @@
+PROTAG:
+---
+Backstory: Overstressed, resentment
+Present: No passion, uninspired
+Motivation: Quiet, peace
+Goal: Home, community
+Inciting incident: Job
+===
+
 CAT:
+---
+Backstory: Lack of will, restoring control (home planet very dangerous)
+Present: Ambition, desire, diligence (wants to make it safer)
+Motivation: Home, community (lost a sibling to a quake at an early age)
+Goal: A zest for life, joy (wants to make the world a happier place)
+Inciting incident: Impatience, anxiety about politics (dealing with bureaucracy)
+===
 
 DOG:
+---
+Backstory: Fear of unknown, fear of change (home planet very authoritative)
+Present: Maintaining control over their life (wanted to have a voice)
+Motivation: Getting away from their past (decided the only way was to escape)
+Goal: Freedom, going against the grain  (wanders space, carves their own story)
+Inciting incident: Betrayal, deception, trickery
+===
 
 OPOSSUM:
+---
+Backstory: Loss, grief
+Present: Heavy partying, isolation
+Motivation: Choosing happiness, sudden awareness
+Goal: Seeking love, connection
+Inciting incident: Weakness, insecurity, raw emotion, pride
+
+As a young joey, [Opossum] was abandoned by their parents at an early age. Most joeys don't survive on their own, but miraculously, [Opossum] developed street smarts, living to chase highs and go out for nights of partying and isolation -- but none of this ever scratches the itch. 
+
+One night, however, they joined a gang, hoping to find belonging. But during this, they were peer pressured into doing the unthinkable: causing a death on the streets, another young joey, which shook them to their core. This could have been the life set out for [Opossum], if they weren't spared. They couldn't continue keep living this life, and is now on a search for what makes life meaningful, looking out to the cosmos.
+===
 
 BIRD:
+---
+Backstory: Love, relationships, passion (initially lovebirds, partner passed away)
+Present: Materialism, dissatisfaction (sunk himself into their work, self-deprecating)
+Motivation: Quiet power 
+Goal: Control, direction, courage (wants to prove their worth through hard work)
+Inciting incident: Optimism, trust in life, new beginnings
+===

@@ -15,7 +15,7 @@ Narrator: You slowly sit up, and take in your surroundings.
 Narrator: You're at home. In your metal spaceship.
     -> Hello? <<if $saidHello == false>>
         <<set $saidHello = true>>
-        Narrator: A voice, soft and distant, responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
+        Narrator: A voice responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
         <<jump AfterName>>
     -> (take a look around)
         <<jump LookAround>>

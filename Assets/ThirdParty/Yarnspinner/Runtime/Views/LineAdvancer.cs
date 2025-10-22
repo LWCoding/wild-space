@@ -338,12 +338,28 @@ namespace Yarn.Unity
         [SerializeField] KeyCode hurryUpLineKeyCode = KeyCode.Space;
 
         /// <summary>
+        /// Additional <see cref="KeyCode"/>s that trigger a request to advance to the
+        /// next piece of content.
+        /// </summary>
+        [ShowIf(nameof(UsedInputMode), InputMode.KeyCodes)]
+        [Indent]
+        [SerializeField] KeyCode[] additionalHurryUpLineKeyCodes = { KeyCode.Return, KeyCode.RightArrow };
+
+        /// <summary>
         /// The <see cref="KeyCode"/> that triggers an instruction to cancel the
         /// current line.
         /// </summary>
         [ShowIf(nameof(UsedInputMode), InputMode.KeyCodes)]
         [Indent]
         [SerializeField] KeyCode nextLineKeyCode = KeyCode.Escape;
+
+        /// <summary>
+        /// Additional <see cref="KeyCode"/>s that trigger smart line advancement.
+        /// These keys will hurry up the line if it's still rendering, or advance to the next line if it's complete.
+        /// </summary>
+        [ShowIf(nameof(UsedInputMode), InputMode.KeyCodes)]
+        [Indent]
+        [SerializeField] KeyCode[] additionalNextLineKeyCodes = { KeyCode.Return, KeyCode.RightArrow };
 
         /// <summary>
         /// The <see cref="KeyCode"/> that triggers an instruction to cancel the
@@ -557,6 +573,43 @@ namespace Yarn.Unity
         }
 
         /// <summary>
+        /// Checks if any of the provided keycodes are pressed this frame.
+        /// </summary>
+        /// <param name="keyCodes">Array of keycodes to check</param>
+        /// <returns>True if any keycode is pressed</returns>
+        private bool IsAnyKeyDown(KeyCode[] keyCodes)
+        {
+            if (keyCodes == null) return false;
+            
+            foreach (KeyCode keyCode in keyCodes)
+            {
+                if (InputSystemAvailability.GetKeyDown(keyCode))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Intelligently handles line advancement based on line status.
+        /// If line is still rendering, hurries it up. If line is complete, advances to next.
+        /// </summary>
+        private void RequestSmartAdvance()
+        {
+            // If line is waiting (fully rendered), advance to next line
+            if (status == LineStatus.Waiting)
+            {
+                RequestNextLine();
+            }
+            else
+            {
+                // Otherwise, hurry up the current line
+                RequestLineHurryUp();
+            }
+        }
+
+        /// <summary>
         /// Called by Unity every frame to check to see if, depending on <see
         /// cref="UsedInputMode"/>, the <see cref="LineAdvancer"/> should take
         /// action.
@@ -569,6 +622,12 @@ namespace Yarn.Unity
                     if (InputSystemAvailability.GetKeyDown(hurryUpLineKeyCode)) { this.RequestLineHurryUp(); }
                     if (InputSystemAvailability.GetKeyDown(nextLineKeyCode)) { this.RequestNextLine(); }
                     if (InputSystemAvailability.GetKeyDown(cancelDialogueKeyCode)) { this.RequestDialogueCancellation(); }
+                    
+                    // Check additional hurry up line keycodes (these should behave like hurry up, not next line)
+                    if (IsAnyKeyDown(additionalHurryUpLineKeyCodes)) { this.RequestLineHurryUp(); }
+                    
+                    // Check additional smart advance keycodes (hurry up if rendering, advance if complete)
+                    if (IsAnyKeyDown(additionalNextLineKeyCodes)) { this.RequestSmartAdvance(); }
                     break;
                 case InputMode.LegacyInputAxes:
                     if (string.IsNullOrEmpty(hurryUpLineAxis) == false && Input.GetButtonDown(hurryUpLineAxis)) { this.RequestLineHurryUp(); }
