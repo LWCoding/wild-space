@@ -1,7 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Yarn.Unity;
 
 /// <summary>
@@ -12,10 +15,19 @@ public class DialogueHistoryManager : MonoBehaviour
 {
     public static DialogueHistoryManager Instance { get; private set; }
 
-    [Header("History Settings")]
-    [SerializeField] private int maxHistoryEntries = 100;
-    [SerializeField] private bool includeTimestamps = false;
-    [SerializeField] private string timestampFormat = "HH:mm:ss";
+    [Header("UI References")]
+    [SerializeField] private GameObject historyPanel;      // The parent panel to show/hide
+    [SerializeField] private Button historyButton;        // UI Button for toggling history
+    [SerializeField] private Button previousPageButton;    // UI Button for previous page
+    [SerializeField] private Button nextPageButton;       // UI Button for next page
+    [SerializeField] private TMP_Text historyText;         // Text box under ScrollView > Content
+    [SerializeField] private TMP_Text pageLabel;           // Page indicator (optional)
+    [SerializeField] private ScrollRect scrollRect;        // ScrollRect to handle scrolling
+
+    [Header("UI Settings")]
+    [SerializeField] private int entriesPerPage = 20;     // Number of dialogue entries per page
+    [SerializeField] private string openHistoryText = "Open History [H]";
+    [SerializeField] private string closeHistoryText = "Close History [H]";
 
     // Events for other systems to subscribe to
     public static event Action<DialogueHistoryEntry> OnDialogueAdded;
@@ -23,6 +35,7 @@ public class DialogueHistoryManager : MonoBehaviour
     // Internal storage
     private List<DialogueHistoryEntry> dialogueHistory = new List<DialogueHistoryEntry>();
     private StringBuilder historyStringBuilder = new StringBuilder();
+    private int currentPageIndex = 0;
 
     /// <summary>
     /// Represents a single entry in the dialogue history
@@ -41,14 +54,9 @@ public class DialogueHistoryManager : MonoBehaviour
             this.timestamp = DateTime.Now;
         }
 
-        public string GetFormattedText(bool includeTimestamp = false, string timestampFormat = "HH:mm:ss")
+        public string GetFormattedText()
         {
             StringBuilder sb = new StringBuilder();
-
-            if (includeTimestamp)
-            {
-                sb.Append($"[{timestamp.ToString(timestampFormat)}] ");
-            }
 
             if (!string.IsNullOrEmpty(characterName))
             {
@@ -75,12 +83,40 @@ public class DialogueHistoryManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        // Automatically wire up the history button if it's assigned
+        SetupHistoryButton();
+        SetupPageNavigationButtons();
+        SetInitialButtonText();
+    }
+
+    void OnEnable()
+    {
+        // Subscribe to our own events for UI updates
+        OnDialogueAdded += OnDialogueAddedInternal;
+    }
+
+    void OnDisable()
+    {
+        // Unsubscribe from our own events
+        OnDialogueAdded -= OnDialogueAddedInternal;
+    }
+
     void OnDestroy()
     {
         // Unsubscribe from events when destroyed
         if (Instance == this)
         {
             LinePresenter.OnDialogueLineCompleted -= OnDialogueLineCompleted;
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            ToggleHistory();
         }
     }
 
@@ -124,16 +160,303 @@ public class DialogueHistoryManager : MonoBehaviour
         // Add to history list
         dialogueHistory.Add(entry);
         
-        // Maintain max history size
-        if (dialogueHistory.Count > maxHistoryEntries)
-        {
-            dialogueHistory.RemoveAt(0);
-        }
-        
         // Notify subscribers with the new entry
         OnDialogueAdded?.Invoke(entry);
         
-        Debug.Log($"Added to dialogue history: {entry.GetFormattedText(includeTimestamps, timestampFormat)}");
+        Debug.Log($"Added to dialogue history: {entry.GetFormattedText()}");
+    }
+
+    /// <summary>
+    /// Internal handler for when dialogue is added (for UI updates)
+    /// </summary>
+    private void OnDialogueAddedInternal(DialogueHistoryEntry entry)
+    {
+        // Calculate total pages
+        int totalPages = GetTotalPages();
+
+        // If we're not on the last page, jump to it
+        if (currentPageIndex != totalPages - 1)
+        {
+            currentPageIndex = totalPages - 1;
+            RefreshPage(scrollToBottom: true);
+            return;
+        }
+
+        // If we're on the last page, refresh it
+        if (currentPageIndex == totalPages - 1)
+        {
+            RefreshPage(scrollToBottom: true);
+        }
+    }
+
+    /// <summary>
+    /// Refreshes the current page, optionally scrolling to the bottom.
+    /// </summary>
+    public void RefreshPage(bool scrollToBottom = false)
+    {
+        int totalPages = GetTotalPages();
+        
+        if (totalPages == 0)
+        {
+            if (historyText != null)
+                historyText.text = "<i>No history yet...</i>";
+            if (pageLabel != null) pageLabel.text = "";
+            return;
+        }
+
+        currentPageIndex = Mathf.Clamp(currentPageIndex, 0, totalPages - 1);
+        var pageEntries = GetPageEntries(currentPageIndex);
+
+        if (historyText != null)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+            foreach (var entry in pageEntries)
+            {
+                string speaker = string.IsNullOrEmpty(entry.characterName) ? "Narrator" : entry.characterName;
+                string line = entry.dialogueText.Replace("\n", " ");
+
+                bool isPlayerOrNarrator =
+                    speaker.Equals("You", System.StringComparison.OrdinalIgnoreCase) ||
+                    speaker.Equals("Narrator", System.StringComparison.OrdinalIgnoreCase);
+
+                // Use italics for narrator/player, normal text for other characters
+                string italicTag = isPlayerOrNarrator ? "<i>" : "";
+                string italicCloseTag = isPlayerOrNarrator ? "</i>" : "";
+
+                sb.AppendLine($"<b>{speaker}:</b> {italicTag}{line}{italicCloseTag}");
+            }
+
+            historyText.text = sb.ToString();
+        }
+
+        // Update label
+        if (pageLabel != null)
+            pageLabel.text = $"{currentPageIndex + 1}/{totalPages}";
+
+        // Scroll logic
+        if (scrollRect != null)
+        {
+            Canvas.ForceUpdateCanvases();
+            if (scrollToBottom)
+                StartCoroutine(ScrollToBottomNextFrame());
+            else
+                scrollRect.verticalNormalizedPosition = 1f;
+        }
+
+        // Update page navigation button states
+        UpdatePageNavigationButtons();
+    }
+
+    public void PreviousPage()
+    {
+        int totalPages = GetTotalPages();
+        if (totalPages == 0) return;
+
+        if (currentPageIndex > 0)
+        {
+            currentPageIndex--;
+            RefreshPage();
+            UpdatePageNavigationButtons();
+        }
+    }
+
+    public void NextPage()
+    {
+        int totalPages = GetTotalPages();
+        if (totalPages == 0) return;
+
+        if (currentPageIndex < totalPages - 1)
+        {
+            currentPageIndex++;
+            RefreshPage();
+            UpdatePageNavigationButtons();
+        }
+    }
+
+    public void ToggleHistory()
+    {
+        if (historyPanel == null)
+        {
+            Debug.LogWarning("No history panel assigned!");
+            return;
+        }
+
+        // Check if history is currently open
+        bool isHistoryOpen = historyPanel.activeSelf;
+
+        // Toggle the history panel
+        historyPanel.SetActive(!isHistoryOpen);
+
+        // Update the button text if button is assigned
+        if (historyButton != null)
+        {
+            TMP_Text buttonLabel = historyButton.GetComponentInChildren<TMP_Text>();
+            if (buttonLabel != null)
+            {
+                buttonLabel.text = isHistoryOpen ? openHistoryText : closeHistoryText;
+            }
+        }
+
+        // If we just opened the panel, refresh to show the latest content
+        if (!isHistoryOpen)
+        {
+            int totalPages = GetTotalPages();
+            if (totalPages > 0)
+            {
+                currentPageIndex = totalPages - 1;
+                RefreshPage(scrollToBottom: true);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Public method to be called by Unity Button OnClick events
+    /// This is the method you should connect to your history button
+    /// </summary>
+    public void OnHistoryButtonClicked()
+    {
+        ToggleHistory();
+    }
+
+    /// <summary>
+    /// Automatically sets up the history button to call ToggleHistory when clicked
+    /// </summary>
+    private void SetupHistoryButton()
+    {
+        if (historyButton != null)
+        {
+            // Remove any existing listeners to avoid duplicates
+            historyButton.onClick.RemoveAllListeners();
+            // Add our toggle method as a listener
+            historyButton.onClick.AddListener(OnHistoryButtonClicked);
+        }
+    }
+
+    /// <summary>
+    /// Public method to manually set up the history button
+    /// Call this if you want to wire up the button programmatically
+    /// </summary>
+    public void SetHistoryButton(Button button)
+    {
+        historyButton = button;
+        SetupHistoryButton();
+    }
+
+    /// <summary>
+    /// Automatically sets up the page navigation buttons
+    /// </summary>
+    private void SetupPageNavigationButtons()
+    {
+        if (previousPageButton != null)
+        {
+            previousPageButton.onClick.RemoveAllListeners();
+            previousPageButton.onClick.AddListener(PreviousPage);
+        }
+
+        if (nextPageButton != null)
+        {
+            nextPageButton.onClick.RemoveAllListeners();
+            nextPageButton.onClick.AddListener(NextPage);
+        }
+    }
+
+    /// <summary>
+    /// Updates the enabled state of page navigation buttons
+    /// </summary>
+    private void UpdatePageNavigationButtons()
+    {
+        int totalPages = GetTotalPages();
+        
+        if (previousPageButton != null)
+        {
+            previousPageButton.interactable = currentPageIndex > 0;
+        }
+        
+        if (nextPageButton != null)
+        {
+            nextPageButton.interactable = currentPageIndex < totalPages - 1;
+        }
+    }
+
+    /// <summary>
+    /// Sets the initial button text when the game starts
+    /// </summary>
+    private void SetInitialButtonText()
+    {
+        if (historyButton != null)
+        {
+            TMP_Text buttonLabel = historyButton.GetComponentInChildren<TMP_Text>();
+            if (buttonLabel != null)
+            {
+                // Set initial text based on whether history panel is open or closed
+                bool isHistoryOpen = historyPanel != null && historyPanel.activeSelf;
+                buttonLabel.text = isHistoryOpen ? closeHistoryText : openHistoryText;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Waits a frame, then scrolls to the bottom.
+    /// This prevents Unity's layout system from snapping back up.
+    /// </summary>
+    private IEnumerator ScrollToBottomNextFrame()
+    {
+        yield return null; // wait one frame
+        if (scrollRect != null)
+            scrollRect.verticalNormalizedPosition = 0f; // 0 = bottom
+    }
+
+    /// <summary>
+    /// Calculates the total number of pages based on entries per page
+    /// </summary>
+    private int GetTotalPages()
+    {
+        if (dialogueHistory.Count == 0) return 0;
+        return Mathf.CeilToInt((float)dialogueHistory.Count / entriesPerPage);
+    }
+
+    /// <summary>
+    /// Gets the entries for a specific page
+    /// </summary>
+    private List<DialogueHistoryEntry> GetPageEntries(int pageIndex)
+    {
+        int startIndex = pageIndex * entriesPerPage;
+        int endIndex = Mathf.Min(startIndex + entriesPerPage, dialogueHistory.Count);
+        
+        var pageEntries = new List<DialogueHistoryEntry>();
+        for (int i = startIndex; i < endIndex; i++)
+        {
+            pageEntries.Add(dialogueHistory[i]);
+        }
+        
+        return pageEntries;
+    }
+
+    /// <summary>
+    /// Get all dialogue history entries (for external access)
+    /// </summary>
+    public List<DialogueHistoryEntry> GetAllHistoryEntries()
+    {
+        return new List<DialogueHistoryEntry>(dialogueHistory);
+    }
+
+    /// <summary>
+    /// Clear all dialogue history
+    /// </summary>
+    public void ClearHistory()
+    {
+        dialogueHistory.Clear();
+        currentPageIndex = 0;
+        RefreshPage();
+    }
+
+    /// <summary>
+    /// Get the current history count
+    /// </summary>
+    public int GetHistoryCount()
+    {
+        return dialogueHistory.Count;
     }
     
 }
