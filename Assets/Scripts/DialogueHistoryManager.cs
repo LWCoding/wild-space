@@ -89,6 +89,7 @@ public class DialogueHistoryManager : MonoBehaviour
         SetupHistoryButton();
         SetupPageNavigationButtons();
         SetInitialButtonText();
+        UpdatePageNavigationButtons();
     }
 
     void OnEnable()

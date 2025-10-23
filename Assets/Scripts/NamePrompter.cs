@@ -33,6 +33,9 @@ public class NamePrompter : MonoBehaviour
     public async void EnterName()
     {
         string name = _inputField.text;
+        if (name == "") {
+            name = "Dipper";
+        }
         _dialogueRunner.VariableStorage.SetValue("$playerName", name);
         _uiPromptContainer.SetActive(false);
         await _dialogueRunner.StartDialogue("AfterName");
