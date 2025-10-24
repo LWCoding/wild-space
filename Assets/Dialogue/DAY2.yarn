@@ -17,7 +17,7 @@ position: 55,-311
 <<show MonitorOnNoSilhouette>>
 Narrator: You turn on the monitor to see today's tasks.
 Narrator: Before you start your report, you notice a new message from HQ.
-Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
+Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and potential eradication of these new lifeforms."
 <<if $catSecured == false && $dogSecured == false && $opossumSecured == false && $birdSecured == false>>
     <<jump ForeverAlone>>
 <<endif>>

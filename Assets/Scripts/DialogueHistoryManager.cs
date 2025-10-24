@@ -179,7 +179,9 @@ public class DialogueHistoryManager : MonoBehaviour
 
         // Always jump to the last page when new dialogue is added
         currentPageIndex = totalPages - 1;
-        RefreshPage(scrollToBottom: true);
+        
+        // Force scroll to bottom when new dialogue is added
+        StartCoroutine(ScrollToBottomOnNewDialogue());
     }
 
     /// <summary>
@@ -232,9 +234,17 @@ public class DialogueHistoryManager : MonoBehaviour
         {
             Canvas.ForceUpdateCanvases();
             if (scrollToBottom)
+            {
                 StartCoroutine(ScrollToBottomNextFrame());
+            }
             else
-                scrollRect.verticalNormalizedPosition = 0f; // 0 = bottom, 1 = top
+            {
+                // Only set scroll position if content actually needs scrolling
+                StartCoroutine(ResetScrollPositionIfNeeded());
+            }
+            
+            // Force scroll bar refresh for page changes
+            StartCoroutine(ForceScrollBarRefresh());
         }
 
         // Update page navigation button states
@@ -281,8 +291,8 @@ public class DialogueHistoryManager : MonoBehaviour
         // Toggle the history panel
         historyPanel.SetActive(!isHistoryOpen);
 
-        // Update the button text if buttons are assigned
-        UpdateButtonTexts(isHistoryOpen);
+        // Update the button text if buttons are assigned (use the new state after toggling)
+        UpdateButtonTexts(!isHistoryOpen);
 
         // If we just opened the panel, refresh to show the latest content
         if (!isHistoryOpen)
@@ -437,6 +447,124 @@ public class DialogueHistoryManager : MonoBehaviour
             Canvas.ForceUpdateCanvases();
             // Set to 0 to scroll to the very bottom
             scrollRect.verticalNormalizedPosition = 0f;
+            // Update scroll bar visibility
+            UpdateScrollBarVisibility();
+        }
+    }
+
+    /// <summary>
+    /// Waits a frame, then resets scroll position only if content needs scrolling.
+    /// This prevents unnecessary scroll bar appearance on short content.
+    /// </summary>
+    private IEnumerator ResetScrollPositionIfNeeded()
+    {
+        yield return null; // wait one frame
+        if (scrollRect != null)
+        {
+            // Force update canvases to ensure layout is complete
+            Canvas.ForceUpdateCanvases();
+            
+            // Check if content actually needs scrolling
+            RectTransform content = scrollRect.content;
+            RectTransform viewport = scrollRect.viewport;
+            
+            if (content != null && viewport != null)
+            {
+                // Only reset scroll position if content height exceeds viewport height
+                if (content.rect.height > viewport.rect.height)
+                {
+                    scrollRect.verticalNormalizedPosition = 0f; // 0 = bottom, 1 = top
+                }
+                else
+                {
+                    // Content fits in viewport, don't manipulate scroll position
+                    // This prevents unnecessary scroll bar appearance
+                    scrollRect.verticalNormalizedPosition = 1f; // Keep at top for short content
+                }
+            }
+            
+            // Force scroll bar update
+            UpdateScrollBarVisibility();
+        }
+    }
+    
+    /// <summary>
+    /// Updates the scroll bar visibility based on content size
+    /// </summary>
+    private void UpdateScrollBarVisibility()
+    {
+        if (scrollRect != null)
+        {
+            RectTransform content = scrollRect.content;
+            RectTransform viewport = scrollRect.viewport;
+            
+            if (content != null && viewport != null)
+            {
+                // Always enable scrolling first, then check if we need to disable it
+                scrollRect.vertical = true;
+                
+                // Force a layout update to get accurate measurements
+                LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+                LayoutRebuilder.ForceRebuildLayoutImmediate(viewport);
+                
+                // Now check if content actually needs scrolling
+                bool needsScrolling = content.rect.height > viewport.rect.height;
+                
+                // Only disable scrolling if content definitely doesn't need it
+                if (!needsScrolling)
+                {
+                    scrollRect.vertical = false;
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    /// Forces a complete scroll bar refresh after a delay to ensure proper state
+    /// </summary>
+    private IEnumerator ForceScrollBarRefresh()
+    {
+        yield return new WaitForEndOfFrame(); // Wait for layout to complete
+        yield return null; // Wait one more frame for everything to settle
+        
+        if (scrollRect != null)
+        {
+            // Force canvas update
+            Canvas.ForceUpdateCanvases();
+            
+            // Reset scroll bar state completely
+            scrollRect.vertical = true;
+            
+            // Update visibility based on actual content
+            UpdateScrollBarVisibility();
+        }
+    }
+    
+    /// <summary>
+    /// Scrolls to bottom when new dialogue is added, with proper timing
+    /// </summary>
+    private IEnumerator ScrollToBottomOnNewDialogue()
+    {
+        // First refresh the page content
+        RefreshPage();
+        
+        // Wait for content to be updated
+        yield return new WaitForEndOfFrame();
+        yield return null; // Wait one more frame for text to render
+        
+        if (scrollRect != null)
+        {
+            // Force canvas update to ensure layout is complete
+            Canvas.ForceUpdateCanvases();
+            
+            // Ensure scrolling is enabled
+            scrollRect.vertical = true;
+            
+            // Force scroll to the very bottom
+            scrollRect.verticalNormalizedPosition = 0f;
+            
+            // Update scroll bar visibility
+            UpdateScrollBarVisibility();
         }
     }
 

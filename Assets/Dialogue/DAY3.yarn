@@ -14,7 +14,7 @@ position: -185,-367
 <<hide_all_ui_objects>>
 <<show MonitorOnNoSilhouette>>
 Narrator: You turn on the monitor to see today's tasks.
-Narrator: Out of the corner of your eye, you see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding of these new lifeforms."
+Narrator: Out of the corner of your eye, you see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and potential eradication of these new lifeforms."
 Narrator: Do you wish to report your alien encounter?
     -> (report the encounter)
         Narrator: You hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.

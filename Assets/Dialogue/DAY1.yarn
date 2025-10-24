@@ -306,8 +306,7 @@ Narrator: Suddenly, the figure comes into view.
         {$catName}: Well, you know what they say. Curiosity killed the felis catus linnaeus!
         <<show_character Cat Happy right>>
         {$catName}: I was on patrol for my planet, and I picked up your ship's signal. I thought I'd check in and see if you were alright.
-        {$catName}: I'm from the planet Linnaeus, though I don't expect you've heard of it.
-        {$catName}: We're a peaceful species, mostly just trying to explore the galaxy and make friends.
+        {$catName}: I don't suppose you've heard of Linnaeus, but we're a peaceful species, mostly just trying to explore the galaxy and make friends.
         -> I find that hard to believe.
             <<show_character Cat Sad right>>
             <<set $catDislikesYou += 1>>
@@ -605,7 +604,64 @@ Narrator: You turn the dials to let the signal through.
             <<jump EndDay1>>
         <<endif>>
     -> Who are you?
+        {$opossumName}: The name's {$opossumName}. I'm... from nowhere, really.
     -> What's your story?
+        ???: Nothing I'm comfortable with sharing with a stranger. I'm just from a little messed up planet in the middle of nowhere.
+        {$opossumName}: The name's {$opossumName}, by the way.
+    {$opossumName}: And you? What should I call you?
+        -> I'm {$playerName}.
+            <<set $opossumThinksPlayerNameIs = $playerName>>
+            <<show_character Opossum Happy right>>
+            <<positive_indicator Opossum>>
+            <<set $opossumLikesYou += 1>>
+            {$opossumName}: That's a pretty sweet name. I dig it.
+        -> A human.
+            <<show_character Opossum Thinking right>>
+            {$opossumName}: A human, huh? Never met one of you before.
+            {$opossumName}: I guess I'll just call you "Human" for now.
+        -> What the fuck?
+            <<show_character Opossum Confused right>>
+            {$opossumName}: Whoa, no need to be rude. I can just go, if you want to.
+                -> Yes, please.
+                    <<stop_voice_blip Opossum>>
+                    <<hide_all_characters>>
+                    <<play_music MainTheme>>
+                    Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
+                    <<if $talkedToDog == false || $talkedToBird == false>>
+                        <<jump TalkToOthers>>
+                    <<else>>
+                        <<jump EndDay1>>
+                    <<endif>>
+                -> ...
+                    <<show_character Opossum Confused right>>
+                    {$opossumName}: Okay, I can sense when I'm not wanted.
+                    <<stop_voice_blip Opossum>>
+                    <<hide_all_characters>>
+                    <<play_music MainTheme>>
+                    Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
+                    <<if $talkedToDog == false || $talkedToBird == false>>
+                        <<jump TalkToOthers>>
+                    <<else>>
+                        <<jump EndDay1>>
+                    <<endif>>
+                -> No, stay.
+                    <<show_character Opossum Flirt right>>
+                    <<positive_indicator Opossum>>
+                    <<set $opossumLikesYou += 1>>
+                    {$opossumName}: ...alright, if you say so.
+<<show_character Opossum Neutral right>>
+// {$opossumName}: So, what brings you out here?
+//     -> Exploring the cosmos.
+//         <<positive_indicator Opossum>>
+//         <<set $opossumLikesYou += 1>>
+//         <<show_character Opossum Happy right>>
+//         {$opossumName}: Huh, that's pretty cool. I guess we're both explorers then.
+//     -> Escaping it all, I guess.
+//         <<show_character Opossum Neutral right>>
+//         {$opossumName}: Yeah, I get that. Sometimes it's nice to get away from everything.
+//     -> I'm... not sure.
+//         <<show_character Opossum Thinking right>>
+//         {$opossumName}: That's okay. Sometimes we don't have all the answers right away.
 <<stop_voice_blip Opossum>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
