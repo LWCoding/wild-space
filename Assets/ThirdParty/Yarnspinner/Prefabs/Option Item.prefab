@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 2576261519635394348}
   - component: {fileID: 5304106805916645415}
   - component: {fileID: 2576261519635394347}
+  - component: {fileID: 3049005416929959115}
   m_Layer: 5
   m_Name: Option Item
   m_TagString: Untagged
@@ -340,3 +341,15 @@ MonoBehaviour:
     sprite: {fileID: 0}
     colour: {r: 0.5, g: 0.5, b: 0.5, a: 0.5019608}
   disabledStrikeThrough: 1
+--- !u!114 &3049005416929959115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8135782471263027723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e092cc420f752f4595cf3aeacec27c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15,6 +15,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private float typingSoundVolume = 0.3f;
     [SerializeField] private float pitchVariation = 0.2f; // How much the pitch can vary
     
+    [Header("Dialogue SFX")]
+    [SerializeField] private AudioClip dialogueHoverSoundClip;
+    [SerializeField] private float dialogueHoverSoundVolume = 0.5f;
+    
     [Header("Initial Music")]
     [SerializeField] private AudioClip initialMusicClip;
     [SerializeField] private float initialMusicVolume;
@@ -427,6 +431,28 @@ public class AudioManager : MonoBehaviour
 		
 		// Always restore pitch to 1.0 after a short delay
 		StartCoroutine(RestoreSFXPitchAfterDelay(1.0f, 0.1f));
+	}
+
+	/// <summary>
+	/// Plays the dialogue option hover sound effect
+	/// </summary>
+	public void PlayDialogueHoverSound()
+	{
+		if (dialogueHoverSoundClip == null)
+		{
+			Debug.LogWarning("AudioManager: Dialogue hover sound clip is not assigned");
+			return;
+		}
+
+		if (sfxAudioSource == null)
+		{
+			Debug.LogWarning("AudioManager: No SFX AudioSource available for dialogue hover sound");
+			return;
+		}
+
+		// Play the hover sound with normal pitch
+		sfxAudioSource.pitch = 1.0f;
+		sfxAudioSource.PlayOneShot(dialogueHoverSoundClip, dialogueHoverSoundVolume);
 	}
 
 	private IEnumerator RestorePitchAfterDelay(float targetPitch, float delay)

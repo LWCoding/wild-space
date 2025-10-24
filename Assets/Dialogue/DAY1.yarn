@@ -52,15 +52,15 @@ Narrator: Nothing of interest seems to be happening. You take a seat and ponder 
         Narrator: You ponder the vastness of existence and your place within it.
         Narrator: The silence of space seems to amplify your thoughts, making you feel both insignificant and connected to the universe.
         -> (hone in on the positive)
-            Narrator: You focus on the small joys in your life, finding solace in the little things that bring you happiness.
             <<set $posSelfPerception += 1>>
+            Narrator: You focus on the small joys in your life, finding solace in the little things that bring you happiness.
         -> (dwell on the negative)
-            Narrator: You find yourself sinking deeper into feelings of loneliness and despair, overwhelmed by the vast emptiness around you.
             <<set $negSelfPerception += 1>>
+            Narrator: You find yourself sinking deeper into feelings of loneliness and despair, overwhelmed by the vast emptiness around you.
     -> (think of something happy)
+        <<set $posSelfPerception += 1>>
         Narrator: You recall a fond memory that brings a smile to your face. It's a small comfort in the loneliness of space.
         Narrator: The memory gives you a brief respite from your current situation.
-        <<set $posSelfPerception += 1>>
 Narrator: You decide to get back to doing something. Anything is better than sitting around.
 <<hide Sitting>>
 <<jump DoJobFirstTime>>
@@ -350,10 +350,10 @@ title: ThinkingAfterCatLeaves
 Narrator: You sit back down, trying to process the encounter you just had.
 Narrator: Who was that creature? An alien? How is that even possible?
 <<if $catLikesYou > $catDislikesYou>>
+    <<set $posSelfPerception += 1>>
     Narrator: Strangely enough, you found the encounter with them rather pleasant. They seemed friendly, in their own way.
     Narrator: You think about what it would be like to have a friend like that. Someone who understands you, even if they are from another world.
     Narrator: You wonder if you'll ever see them again.
-    <<set $posSelfPerception += 1>>
 <<else>>
     Narrator: To you, the whole encounter felt off. Aliens? Of all times, why now?
     Narrator: You think about what others on Earth would say if they found out about this encounter. Although it is your job to report such things, would they really believe you met friendly animal aliens?

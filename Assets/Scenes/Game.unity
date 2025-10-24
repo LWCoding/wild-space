@@ -294,7 +294,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &20899016
 GameObject:
@@ -4796,7 +4796,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &736126889
 GameObject:
@@ -6192,6 +6192,54 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
+--- !u!1 &806508852
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806508853}
+  - component: {fileID: 806508854}
+  m_Layer: 0
+  m_Name: PerceptionManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &806508853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806508852}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1763548298}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &806508854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806508852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edb6fb2f1f39b9847b5896712af7efbd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  globalVolume: {fileID: 1806722012}
+  intensityPerPoint: 0.15
+  minimumIntensity: 0.25
+  transitionDuration: 0.4
 --- !u!1 &826410418
 GameObject:
   m_ObjectHideFlags: 0
@@ -7342,7 +7390,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &980761043
 GameObject:
@@ -7851,6 +7899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   historyPanel: {fileID: 1348012489}
   historyButton: {fileID: 435178695}
+  historyButton2: {fileID: 0}
   previousPageButton: {fileID: 939646239}
   nextPageButton: {fileID: 1445013161}
   historyText: {fileID: 1994441658}
@@ -8574,9 +8623,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource1: {fileID: 779370043}
   audioSource2: {fileID: 845041586}
+  sfxAudioSource: {fileID: 596843862}
   typingSoundClip: {fileID: 8300000, guid: dda5b66c9893e5243bfaa776a0bebb84, type: 3}
   typingSoundVolume: 0.25
   pitchVariation: 0.2
+  dialogueHoverSoundClip: {fileID: 8300000, guid: ed103397ad1525248ba22103aceb5444, type: 3}
+  dialogueHoverSoundVolume: 0.15
   initialMusicClip: {fileID: 8300000, guid: d7083eb2484dbee4e8f1d43370034b16, type: 3}
   initialMusicVolume: 0.2
   defaultTransitionTime: 0.5
@@ -8783,7 +8835,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1191041545
 GameObject:
@@ -9743,7 +9795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: CallDogDay2
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
@@ -11563,6 +11615,7 @@ Transform:
   - {fileID: 1938885701}
   - {fileID: 383792394}
   - {fileID: 633537302}
+  - {fileID: 806508853}
   - {fileID: 1164221561}
   - {fileID: 1011379594}
   - {fileID: 1806722011}
@@ -11864,7 +11917,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1843665257
 GameObject:
