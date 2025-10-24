@@ -590,6 +590,7 @@ Narrator: You turn the dials to let the signal through.
 <<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
 ???: Hi I'm a Opossum. This section is unimplemented.
 ???: As such, we will skip to the next section.
+???: I am gay.
 <<stop_voice_blip Opossum>>
 <<play_music MainTheme>>
 <<hide_all_characters>>

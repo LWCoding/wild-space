@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Sources")]
     [SerializeField] private AudioSource audioSource1;
     [SerializeField] private AudioSource audioSource2;
+    [SerializeField] private AudioSource sfxAudioSource;
     
     [Header("SFX Audio")]
     [SerializeField] private AudioClip typingSoundClip;
@@ -54,6 +55,12 @@ public class AudioManager : MonoBehaviour
         if (audioSource2 == null)
         {
             Debug.LogError("AudioManager: AudioSource2 is not assigned!");
+            return;
+        }
+        
+        if (sfxAudioSource == null)
+        {
+            Debug.LogError("AudioManager: SFX AudioSource is not assigned!");
             return;
         }
         
@@ -131,6 +138,20 @@ public class AudioManager : MonoBehaviour
     }
     
     /// <summary>
+    /// Stops the current audio without cancelling start-then-loop operations
+    /// </summary>
+    private void StopAudioWithoutCancelling()
+    {
+        if (currentSource != null)
+            currentSource.Stop();
+        
+        if (fadeSource != null)
+            fadeSource.Stop();
+        
+        isTransitioning = false;
+    }
+    
+    /// <summary>
     /// Plays an audio clip immediately without transition
     /// </summary>
     /// <param name="clip">The audio clip to play</param>
@@ -197,8 +218,8 @@ public class AudioManager : MonoBehaviour
     
     private IEnumerator PlayStartThenLoopCoroutine(AudioClip startClip, AudioClip loopClip, float volume, float fadeTime, int token)
     {
-        // Stop any current audio
-        StopAudio();
+        // Stop any current audio without cancelling this coroutine
+        StopAudioWithoutCancelling();
         
         // Play the start clip
         currentSource.clip = startClip;
@@ -283,8 +304,6 @@ public class AudioManager : MonoBehaviour
             currentSource.loop = true;
             currentSource.Play();
         }
-        
-        Debug.Log($"Now looping: {loopClip.name}");
 
         // Clear reference if this coroutine is still the active one
         if (activeStartThenLoopCoroutine != null && token == startThenLoopToken)
@@ -371,15 +390,15 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 
-		if (currentSource == null)
+		if (sfxAudioSource == null)
 		{
-			Debug.LogWarning("AudioManager: No current AudioSource available for PlayOneShot");
+			Debug.LogWarning("AudioManager: No SFX AudioSource available for PlayOneShot");
 			return;
 		}
 
-		// Ensure pitch is at normal value before playing
-		currentSource.pitch = 1.0f;
-		currentSource.PlayOneShot(clip, Mathf.Clamp01(volume));
+		// Use dedicated SFX AudioSource to avoid interfering with music
+		sfxAudioSource.pitch = 1.0f;
+		sfxAudioSource.PlayOneShot(clip, Mathf.Clamp01(volume));
 	}
 
 	/// <summary>
@@ -393,21 +412,21 @@ public class AudioManager : MonoBehaviour
 			return;
 		}
 
-		if (currentSource == null)
+		if (sfxAudioSource == null)
 		{
-			Debug.LogWarning("AudioManager: No current AudioSource available for typing sound");
+			Debug.LogWarning("AudioManager: No SFX AudioSource available for typing sound");
 			return;
 		}
 
 		// Apply random pitch variation
 		float pitchVariationAmount = Random.Range(-pitchVariation, pitchVariation);
-		currentSource.pitch = 1f + pitchVariationAmount;
+		sfxAudioSource.pitch = 1f + pitchVariationAmount;
 		
 		// Play the typing sound
-		currentSource.PlayOneShot(typingSoundClip, typingSoundVolume);
+		sfxAudioSource.PlayOneShot(typingSoundClip, typingSoundVolume);
 		
 		// Always restore pitch to 1.0 after a short delay
-		StartCoroutine(RestorePitchAfterDelay(1.0f, 0.1f));
+		StartCoroutine(RestoreSFXPitchAfterDelay(1.0f, 0.1f));
 	}
 
 	private IEnumerator RestorePitchAfterDelay(float targetPitch, float delay)
@@ -416,6 +435,15 @@ public class AudioManager : MonoBehaviour
 		if (currentSource != null)
 		{
 			currentSource.pitch = targetPitch;
+		}
+	}
+
+	private IEnumerator RestoreSFXPitchAfterDelay(float targetPitch, float delay)
+	{
+		yield return new WaitForSeconds(delay);
+		if (sfxAudioSource != null)
+		{
+			sfxAudioSource.pitch = targetPitch;
 		}
 	}
 }

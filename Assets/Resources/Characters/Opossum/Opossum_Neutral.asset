@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7d91d5b20131d46a2f5362d0167457, type: 3}
-  m_Name: Opossum_Obscure
+  m_Name: Opossum_Neutral
   m_EditorClassIdentifier: 
-  ExpressionName: Obscure
-  ExpressionSprite: {fileID: 21300000, guid: 8dad157105ef1d5498a268e634216571, type: 3}
+  ExpressionName: Neutral
+  ExpressionSprite: {fileID: 21300000, guid: 07f153971c3b8e848b891290abf1cc50, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 56bb848944a0e7646a82e45ab476e297, type: 3}
   BlipInterval: 0.1
   BlipVolume: 0.6

@@ -175,19 +175,9 @@ public class DialogueHistoryManager : MonoBehaviour
         // Calculate total pages
         int totalPages = GetTotalPages();
 
-        // If we're not on the last page, jump to it
-        if (currentPageIndex != totalPages - 1)
-        {
-            currentPageIndex = totalPages - 1;
-            RefreshPage(scrollToBottom: true);
-            return;
-        }
-
-        // If we're on the last page, refresh it
-        if (currentPageIndex == totalPages - 1)
-        {
-            RefreshPage(scrollToBottom: true);
-        }
+        // Always jump to the last page when new dialogue is added
+        currentPageIndex = totalPages - 1;
+        RefreshPage(scrollToBottom: true);
     }
 
     /// <summary>
@@ -242,7 +232,7 @@ public class DialogueHistoryManager : MonoBehaviour
             if (scrollToBottom)
                 StartCoroutine(ScrollToBottomNextFrame());
             else
-                scrollRect.verticalNormalizedPosition = 1f;
+                scrollRect.verticalNormalizedPosition = 0f; // 0 = bottom, 1 = top
         }
 
         // Update page navigation button states
@@ -405,7 +395,12 @@ public class DialogueHistoryManager : MonoBehaviour
     {
         yield return null; // wait one frame
         if (scrollRect != null)
-            scrollRect.verticalNormalizedPosition = 0f; // 0 = bottom
+        {
+            // Force update canvases to ensure layout is complete
+            Canvas.ForceUpdateCanvases();
+            // Set to 0 to scroll to the very bottom
+            scrollRect.verticalNormalizedPosition = 0f;
+        }
     }
 
     /// <summary>
