@@ -193,15 +193,15 @@ Narrator: Suddenly, the figure comes into view.
 {$catName}: Anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
 <<show_character Cat Neutral right>>
 <<endif>>
-{$catName}: To you, I'm an alien. To me, you're an alien. We're all aliens here.
-    -> An alien? Those don't exist.
+{$catName}: I'm a lifeform from the planet Linnaeus. It's nice to meet you.
+    -> So, an alien?
         <<show_character Cat Thinking right>>
         <<set $catDislikesYou += 1>>
-        {$catName}: Hm? How do I explain this...
+        {$catName}: Hm? I guess so...
         <<show_character Cat Neutral right>>
         {$catName}: I'm not from your planet of origin. I come from a place far away.
         <<show_character Cat Angry right>>
-        {$catName}: And, for the record, aliens do exist! Have some manners.
+        {$catName}: But please, don't go labeling me as an "alien". It's a bit demeaning, don't you think?
     -> 猫喵猫猫喵? What does that mean?
         <<show_character Cat Thinking right>>
         {$catName}: It's... hard to explain. It's probably not something I can explain to you.
@@ -213,7 +213,7 @@ Narrator: Suddenly, the figure comes into view.
         <<show_character Cat Flirt right>>
         {$catName}: I guess, meowdy to you too.
 <<show_character Cat Happy right>>
-{$catName}: But anyways, who are you? What are you?
+{$catName}: But anyways, I'm out here on a mission to learn more about other lifeforms. What should I call you?
     -> My name's {$playerName}.
         <<if $playerName == "Dipper">>
             {$catName}: {$playerName}? That sounds like it'd be a cool name for a group of stars. It's nice to meet you.
@@ -249,7 +249,8 @@ Narrator: Suddenly, the figure comes into view.
         {$catName}: Oh, you don't have a name? That's okay, I guess.
 <<show_character Cat Neutral right>>
 {$catName}: You should be careful here, though. Space is dangerous!
-{$catName}: What are you doing out here? Wouldn't you rather be on your home planet?
+<<show_character Cat Thinking right>>
+{$catName}: What brings you out here? Wouldn't you rather be on your home planet?
     -> Exploring the cosmos.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
@@ -261,12 +262,12 @@ Narrator: Suddenly, the figure comes into view.
     -> I'm... not sure.
         <<show_character Cat Thinking right>>
         {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
-{$catName}: Well, as long as you're okay. Have you met other lifeforms around here much?
+{$catName}: Well, I'm glad to hear you're doing fine. Have you met others around here?
     -> No. What... are you?
         <<set $catLikesYou += 1>>
         <<show_character Cat Happy right>>
         {$catName}: Aww, that's too bad. I'm glad I could be your first contact then!
-        {$catName}: I'm from the planet Linnaeus, though I don't expect you've heard of it.
+        {$catName}: As I mentioned, I'm from the planet Linnaeus, though I don't expect you've heard of it.
         <<show_character Cat Happy2 right>>
         {$catName}: We're a peaceful species, mostly just trying to explore the galaxy and make friends.
         -> I find that hard to believe.
@@ -277,20 +278,28 @@ Narrator: Suddenly, the figure comes into view.
             <<show_character Cat Happy right>>
             <<set $catLikesYou += 1>>
             {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
-    -> Yes, I've met a few.
+    -> (lie) Yeah, I've met a few.
         <<show_character Cat Neutral right>>
-        {$catName}: Really? I'm calling your bluff. Your kind hasn't even discovered intergalactic travel yet!
-        -> Okay, you got me.
+        {$catName}: Oh? You should introduce to them sometime!
+        {$catName}: Can you name some planets that you've talked to before?
+        -> Okay, you got me. I don't know any others.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy2 right>>
-            {$catName}: Heh, I knew it! But hey, it's all in good fun, right?
-        -> (lie) No, it's true.
-            <<positive_indicator Cat>>
-            <<set $catDislikesYou += 1>>
-            <<show_character Cat Neutral right>>
-            {$catName}: Hm, I'm pretty sure that's not true. We've been studying your kind for a while, now.
-        {$catName}: In the planet that I come from, Linnaeus, we take our research very seriously.
+            {$catName}: Heh, alright. It's all in good fun, right?
+        -> (lie) Frakasa.
+            {$catName}: Hm, I've never heard of that place before.
+        -> (lie) Zorblax-9.
+            {$catName}: Hm, I've never heard of that place before.
+        -> (lie) Nebulon Prime.
+            {$catName}: Hm, I've never heard of that place before.
+        -> (lie) Venus.
+            {$catName}: Venus? Isn't that pretty nearby? I've checked that place already.
+        <<positive_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        <<show_character Cat Neutral right>>
+        {$catName}: Are you sure you're not making this up?
+        <<show_character Cat Thinking right>>
         {$catName}: I'm not sure why your kind would be out here alone, though.
     -> Why are you talking to me?
         <<show_character Cat Flirt right>>
@@ -308,7 +317,7 @@ Narrator: Suddenly, the figure comes into view.
             <<set $catLikesYou += 1>>
             {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
 <<show_character Cat Surprised right>>
-{$catName}: Ah! I just realized I had to do something. It's not my plan to keep you here for over an orbit.
+{$catName}: Ah! Right, I have a meeting to get to. It's not my plan to keep you here for over an orbit.
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Flirt right>>
     {$catName}: It's been nice talking to you, though! We can chat again soon, {$catThinksPlayerNameIs}.
@@ -316,13 +325,14 @@ Narrator: Suddenly, the figure comes into view.
     <<set $catSecured = true>>
 <<else>>
     <<show_character Cat Neutral right>>
-    {$catName}: Well, ${$catThinksPlayerNameIs}. I'll have to get back to my patrol. Bye!
+    {$catName}: Well, ${$catThinksPlayerNameIs}. I'll be on my way then. Take care of yourself out there.
 <<endif>>
 <<stop_voice_blip Cat>>
 <<hide_all_characters>>
 <<hide MonitorOn>>
 <<show MonitorOnNoSilhouette>>
 <<play_music MainTheme>>
+Narrator: The transmission cuts off as {$catName} takes their leave.
 <<if $catSecured == true>>
     Narrator: {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
     Narrator: Suddenly, the screen flickers back to static. {$catName} is gone, for now.
@@ -396,6 +406,7 @@ Narrator: You notice that others are still live on the feed. You can choose some
 title: DogIntro
 position: 635,249
 ---
+<<declare $knowsAboutBarklonian = false>>
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show MonitorOn>>
@@ -405,14 +416,18 @@ Narrator: You turn the dials to let the signal through.
 <<show_character Dog Neutral right>>
 <<start_voice_blip Dog>>
 <<play_music DogTheme 0.5>>
-???: Woofdy.
-???: What're you doing out here all by yourself? Woof.
+???: Oh, woofdy. I didn't think anyone would answer my signal.
+???: What're you doing out here? Woof.
     -> Who are you?
     -> What in the world? A purple dog?
         <<set $dogDislikesYou += 1>>
         <<stop_voice_blip Dog>>
         <<show_character Dog Thinking right>>
         Narrator: The figure on the monitor tilts their head in confusion. They seem a little offended.
+        <<start_voice_blip Dog>>
+        {$dogName}: Woof? A dog? Woof. I'm not sure what you mean. Woof.
+        {$dogName}: I'm a Barklonian, if you've heard of us. A former one. Woof.
+        <<set $knowsAboutBarklonian = true>>
     -> (stay silent)
 <<start_voice_blip Dog>>
 <<show_character Dog Happy right>>
@@ -421,8 +436,16 @@ Narrator: You turn the dials to let the signal through.
     -> What... are you?
         <<positive_indicator Dog>>
         <<set $dogLikesYou += 1>>
-        {$dogName}: I don't know what you'd call it. I'm just a space creature. Woof.
-        {$dogName}: Just like you, I'm exploring space. Woof.
+        <<if $knowsAboutBarklonian == false>>
+            <<set $knowsAboutBarklonian = true>>
+            {$dogName}: I don't know what you'd call it. I'm a Barklonian. Woof.
+        <<else>>
+            {$dogName}: Like I said, I'm a Barklonian. Woof.
+        <<endif>>
+        <<show_character Dog Thinking right>>
+        {$dogName}: Just like you, I'm exploring space. Been out here for some days now. Woof.
+        <<show_character Dog Neutral right>>
+        {$dogName}: It's a big place out here. I kind of like it. Woof.
         -> But... where do you come from?
             {$dogName}: Hm? Oh, I come from a place far away. Woof. Haven't been there in a while. Not many of us stay.
             {$dogName}: It's a planet called Barklon. Woof.
@@ -431,10 +454,10 @@ Narrator: You turn the dials to let the signal through.
             <<show_character Dog Surprised right>>
             {$dogName}: A dog? What is that? Woof.
             <<show_character Dog Neutral right>>
-            {$dogName}: You're not the first one to ask this, though. Woof. I should look into this "dog" thing. Woof.
+            {$dogName}: I should look into this "dog" thing. Woof.
             <<show_character Dog Happy right>>
             {$dogName}: But no, I'm from a planet called Barklon. Woof.
-            {$dogName}: It's a nice place. Lots of open fields to run around in. Woof.
+            {$dogName}: It's... a pretty miserable place. Would not recommend it. Lots of bad people. Woof.
         -> (stay silent)
     -> Why do you keep saying woof?
         {$dogName}: I don't know what you mean. Woof.
@@ -470,7 +493,7 @@ Narrator: You turn the dials to let the signal through.
         {$dogName}: Oh, I was just passing by. Woof.
     -> Do you know {$catName}?
         {$dogName}: {$catName}? Can't say I'm familiar. We're not that interconnected here in space.
-        {$dogName}: Besides, I meet tons of people. It's hard to keep track. Woof.
+        {$dogName}: Besides, I've been meeting tons of people. It's hard to keep track. Woof.
         <<if $dogLikesYou >= $dogDislikesYou>>
             <<show_character Dog Happy right>>
             {$dogName}: You're pretty friendly, though. Woof. Don't see many of those around here.
@@ -494,7 +517,7 @@ Narrator: You turn the dials to let the signal through.
         -> (stay silent)
             {$dogName}: Hm, that's okay. Woof. I guess I'll just call you "Human". You're a human, right? Woof.
 <<endif>>
-{$dogName}: Anyways, I mostly just wander around on my own. Woof. Picked up on your signal. Woof.
+{$dogName}: Anyways, I've mostly wandered on my own, recently. Woof. Picked up on your signal. Woof.
     -> Signal? 
         {$dogName}: Yeah, I saw it while I was out exploring. Woof.
         <<show_character Dog Happy right>>
@@ -504,23 +527,32 @@ Narrator: You turn the dials to let the signal through.
         <<set $dogDislikesYou += 1>>
         {$dogName}: Lonely? Woof. Not really. Woof.
         {$dogName}: I like my own company. Woof. Plus, I meet new people all the time. Woof.
+    -> Do you do this often?
+        <<show_character Dog Sad right>>
+        {$dogName}: Mmm... not really. 
+    <<show_character Dog Angry right>>
+    {$dogName}: My home planet is kind of a dump. I decided to leave and explore the galaxy. Woof.
 <<show_character Dog Neutral right>>
 {$dogName}: What about you? What are you doing out here? Woof.
-    -> My job is to find alien life.
+    -> My job is to report alien life.
         <<show_character Dog Thinking right>>
         {$dogName}: Alien life? What for? Woof.
         {$dogName}: I don't see the point in all that. Woof. Why?
-            -> I'm here to report them to Earth.
+            -> My planet, Earth, is searching for them.
                 <<show_character Dog Sad right>>
-                {$dogName}: Report... aliens? Woof. That seems a bit harsh. 
-                {$dogName}: Most of the aliens I've met aren't the nicest, but they're not all bad. Woof.
+                {$dogName}: That sounds a little scary... 
+                {$dogName}: I hope that doesn't mean your planet is out to get me. Woof.
                 <<set $dogDislikesYou += 1>>
-            -> I just want to make contact.
-                {$dogName}: Make contact? Woof. You should join me sometime. I see a lot of interesting beings everyday.
-                {$dogName}: The most interesting ones are the ones that ask a lot of questions. Woof.
+            -> I'm here to meet new beings.
+                <<positive_indicator Dog>>
+                <<set $dogLikesYou += 1>>
+                <<show_character Dog Happy right>>
+                {$dogName}: Woof. You should join me sometime. I see a lot of interesting beings everyday.
     -> I'm exploring, just like you.
         <<positive_indicator Dog>>
+        <<set $dogLikesYou += 1>>
         {$dogName}: Exploring? Woof. We should go together sometime!
+<<show_character Dog Neutral right>>
 {$dogName}: Anyways, I should get going. Woof.
 {$dogName}: Space is a big place, and I have a lot of wandering to do. Woof.
 <<if $dogLikesYou >= $dogDislikesYou>>
