@@ -98,7 +98,7 @@ Narrator: A dark figure appears on the screen, accompanied with a static-filled 
 <<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Who are you?
-    -> (stay silent)
+    -> ...
     Narrator: The voice from the monitor continues to speak.
     ???: Please... <i>*kshh*</i> if... there... yourself... known...
     <<stop_voice_blip Cat>>
@@ -245,7 +245,7 @@ Narrator: Suddenly, the figure comes into view.
             {$catName}: Oh, huh. That's okay. How would people refer to you then, though?
             <<show_character Cat Happy right>>
             {$catName}: I guess I'll just call you "Human". I'm a master at nicknames.
-    -> (stay silent)
+    -> ...
         {$catName}: Oh, you don't have a name? That's okay, I guess.
 <<show_character Cat Neutral right>>
 {$catName}: You should be careful here, though. Space is dangerous!
@@ -428,7 +428,7 @@ Narrator: You turn the dials to let the signal through.
         {$dogName}: Woof? A dog? Woof. I'm not sure what you mean. Woof.
         {$dogName}: I'm a Barklonian, if you've heard of us. A former one. Woof.
         <<set $knowsAboutBarklonian = true>>
-    -> (stay silent)
+    -> ...
 <<start_voice_blip Dog>>
 <<show_character Dog Happy right>>
 {$dogName}: I'm {$dogName}. Woof. I come in peace. Woof.
@@ -458,7 +458,7 @@ Narrator: You turn the dials to let the signal through.
             <<show_character Dog Happy right>>
             {$dogName}: But no, I'm from a planet called Barklon. Woof.
             {$dogName}: It's... a pretty miserable place. Would not recommend it. Lots of bad people. Woof.
-        -> (stay silent)
+        -> ...
     -> Why do you keep saying woof?
         {$dogName}: I don't know what you mean. Woof.
         -> Like that! It's weird.
@@ -472,7 +472,7 @@ Narrator: You turn the dials to let the signal through.
             <<show_character Dog Happy right>>
             {$dogName}: Woof! Even though I don't know what I'm doing, I'm glad you like it. Woof.
             {$dogName}: It's just how we talk back home. Woof.
-        -> (stay silent)
+        -> ...
     -> Hi {$dogName}. I'm {$playerName}.
         <<positive_indicator Dog>>
         <<set $dogLikesYou += 1>>
@@ -514,7 +514,7 @@ Narrator: You turn the dials to let the signal through.
                 {$dogName}: It rhymes with Bipper. Woof.
             <<endif>>
             <<set $dogThinksPlayerNameIs = $playerName>>
-        -> (stay silent)
+        -> ...
             {$dogName}: Hm, that's okay. Woof. I guess I'll just call you "Human". You're a human, right? Woof.
 <<endif>>
 {$dogName}: Anyways, I've mostly wandered on my own, recently. Woof. Picked up on your signal. Woof.
@@ -588,12 +588,31 @@ Narrator: You turn the dials to let the signal through.
 <<show_character Opossum Neutral right>>
 <<start_voice_blip Opossum>>
 <<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
-???: Hi I'm a Opossum. This section is unimplemented.
-???: As such, we will skip to the next section.
-???: I am gay.
+???: Oh, hey. Sorry, I didn't expect anyone to actually answer.
+???: I... don't really interact with people much. It's cool to meet you, I guess.
+    -> Holy shit. Are you a rat?
+        <<show_character Opossum Angry right>>
+        ???: What the fuck is a rat...
+        <<set $opossumDislikesYou += 1>>
+        ???: Forget I asked. Peace.
+        <<stop_voice_blip Opossum>>
+        <<hide_all_characters>>
+        <<play_music MainTheme>>
+        Narrator: The transmission cuts off abruptly. It seems they didn't want to talk to you anymore.
+        <<if $talkedToDog == false || $talkedToBird == false>>
+            <<jump TalkToOthers>>
+        <<else>>
+            <<jump EndDay1>>
+        <<endif>>
+    -> Who are you?
+    -> What's your story?
 <<stop_voice_blip Opossum>>
-<<play_music MainTheme>>
 <<hide_all_characters>>
+<<play_music MainTheme>>
+Narrator: The transmission cuts off as ...
+<<if $opossumSecured == true>>
+    Narrator: You notice a transmission from {$opossumName} saved onto your monitor. They're letting you ping them again in the future.
+<<endif>>
 <<if $talkedToDog == false || $talkedToBird == false>>
     <<jump TalkToOthers>>
 <<else>>
@@ -615,8 +634,12 @@ Narrator: You turn the dials to let the signal through.
 ???: Hi I'm a Bird. This section is unimplemented.
 ???: As such, we will skip to the next section.
 <<stop_voice_blip Bird>>
-<<play_music MainTheme>>
 <<hide_all_characters>>
+<<play_music MainTheme>>
+Narrator: The transmission cuts off as ...
+<<if $birdSecured == true>>
+    Narrator: You notice a transmission from {$birdName} saved onto your monitor. If you'd like, you can ping them again in the future.
+<<endif>>
 <<if $talkedToDog == false || $talkedToOpossum == false>>
     <<jump TalkToOthers>>
 <<else>>

@@ -5,6 +5,7 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using Yarn.Unity;
 
 /// <summary>
@@ -18,6 +19,7 @@ public class DialogueHistoryManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject historyPanel;      // The parent panel to show/hide
     [SerializeField] private Button historyButton;        // UI Button for toggling history
+    [SerializeField] private Button historyButton2;       // Second UI Button for toggling history
     [SerializeField] private Button previousPageButton;    // UI Button for previous page
     [SerializeField] private Button nextPageButton;       // UI Button for next page
     [SerializeField] private TMP_Text historyText;         // Text box under ScrollView > Content
@@ -85,8 +87,8 @@ public class DialogueHistoryManager : MonoBehaviour
 
     void Start()
     {
-        // Automatically wire up the history button if it's assigned
-        SetupHistoryButton();
+        // Automatically wire up the history buttons if they're assigned
+        SetupHistoryButtons();
         SetupPageNavigationButtons();
         SetInitialButtonText();
         UpdatePageNavigationButtons();
@@ -279,15 +281,8 @@ public class DialogueHistoryManager : MonoBehaviour
         // Toggle the history panel
         historyPanel.SetActive(!isHistoryOpen);
 
-        // Update the button text if button is assigned
-        if (historyButton != null)
-        {
-            TMP_Text buttonLabel = historyButton.GetComponentInChildren<TMP_Text>();
-            if (buttonLabel != null)
-            {
-                buttonLabel.text = isHistoryOpen ? openHistoryText : closeHistoryText;
-            }
-        }
+        // Update the button text if buttons are assigned
+        UpdateButtonTexts(isHistoryOpen);
 
         // If we just opened the panel, refresh to show the latest content
         if (!isHistoryOpen)
@@ -308,12 +303,18 @@ public class DialogueHistoryManager : MonoBehaviour
     public void OnHistoryButtonClicked()
     {
         ToggleHistory();
+        
+        // Remove focus from the button to prevent Space key from re-triggering it
+        if (EventSystem.current != null)
+        {
+            EventSystem.current.SetSelectedGameObject(null);
+        }
     }
 
     /// <summary>
-    /// Automatically sets up the history button to call ToggleHistory when clicked
+    /// Automatically sets up the history buttons to call ToggleHistory when clicked
     /// </summary>
-    private void SetupHistoryButton()
+    private void SetupHistoryButtons()
     {
         if (historyButton != null)
         {
@@ -322,16 +323,34 @@ public class DialogueHistoryManager : MonoBehaviour
             // Add our toggle method as a listener
             historyButton.onClick.AddListener(OnHistoryButtonClicked);
         }
+        
+        if (historyButton2 != null)
+        {
+            // Remove any existing listeners to avoid duplicates
+            historyButton2.onClick.RemoveAllListeners();
+            // Add our toggle method as a listener
+            historyButton2.onClick.AddListener(OnHistoryButtonClicked);
+        }
     }
 
     /// <summary>
-    /// Public method to manually set up the history button
+    /// Public method to manually set up the first history button
     /// Call this if you want to wire up the button programmatically
     /// </summary>
     public void SetHistoryButton(Button button)
     {
         historyButton = button;
-        SetupHistoryButton();
+        SetupHistoryButtons();
+    }
+    
+    /// <summary>
+    /// Public method to manually set up the second history button
+    /// Call this if you want to wire up the button programmatically
+    /// </summary>
+    public void SetHistoryButton2(Button button)
+    {
+        historyButton2 = button;
+        SetupHistoryButtons();
     }
 
     /// <summary>
@@ -375,14 +394,32 @@ public class DialogueHistoryManager : MonoBehaviour
     /// </summary>
     private void SetInitialButtonText()
     {
+        bool isHistoryOpen = historyPanel != null && historyPanel.activeSelf;
+        UpdateButtonTexts(isHistoryOpen);
+    }
+    
+    /// <summary>
+    /// Updates the text for both history buttons
+    /// </summary>
+    private void UpdateButtonTexts(bool isHistoryOpen)
+    {
+        string buttonText = isHistoryOpen ? closeHistoryText : openHistoryText;
+        
         if (historyButton != null)
         {
             TMP_Text buttonLabel = historyButton.GetComponentInChildren<TMP_Text>();
             if (buttonLabel != null)
             {
-                // Set initial text based on whether history panel is open or closed
-                bool isHistoryOpen = historyPanel != null && historyPanel.activeSelf;
-                buttonLabel.text = isHistoryOpen ? closeHistoryText : openHistoryText;
+                buttonLabel.text = buttonText;
+            }
+        }
+        
+        if (historyButton2 != null)
+        {
+            TMP_Text buttonLabel2 = historyButton2.GetComponentInChildren<TMP_Text>();
+            if (buttonLabel2 != null)
+            {
+                buttonLabel2.text = buttonText;
             }
         }
     }

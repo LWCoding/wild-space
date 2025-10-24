@@ -7,6 +7,8 @@ title: Globals
 <<declare $catDislikesYou = 0>>
 <<declare $dogLikesYou = 0>>
 <<declare $dogDislikesYou = 0>>
+<<declare $opossumLikesYou = 0>>
+<<declare $opossumDislikesYou = 0>>
 
 <<declare $posSelfPerception = 0>>
 <<declare $negSelfPerception = 0>>
