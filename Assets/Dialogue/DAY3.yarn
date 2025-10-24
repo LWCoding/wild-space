@@ -136,9 +136,65 @@ Narrator: You call {$catName}. You see movement, and start tweaking the dials to
 title: CallDogDay3
 position: 408,123
 ---
-Narrator: You call {$dogName}.
-Narrator: But they don't respond. So you call {$catName}. (this is not implemented yet)
-<<jump CallCatDay3>>
+<<hide_all_objects>>
+<<show MonitorOn>>
+<<show_character Dog Obscure right>>
+Narrator: You call {$dogName}. You see movement, and start tweaking the dials to get the figure to appear clear.
+<<start_voice_blip Dog>>
+<<play_music DogTheme 0.5>>
+<<if $dogLikesYou >= $dogDislikesYou>>
+    <<show_character Dog Happy right>>
+    {$dogName}: Oh! Woof. It's you again. Hi, {$dogThinksPlayerNameIs}. Woof.
+<<else>>
+    <<show_character Dog Neutral right>>
+    {$dogName}: Oh? Woof. It's you again. What do you want?
+<<endif>>
+<<show_character Dog Sad right>>
+{$dogName}: Are things okay? Woof. You look... worried.
+    -> (explain your situation)
+        <<stop_voice_blip Dog>>
+        Narrator: You explain that your oxygen supply is running low, and you need help fast.
+        <<start_voice_blip Dog>>
+        <<show_character Dog Thinking right>>
+        {$dogName}: Woof... have you tried asking the people from your planet for help?
+            -> I haven't tried yet.
+                <<show_character Dog Angry right>>
+                {$dogName}: Woof. I understand. Planet leaders can be frustrating.
+                    -> Is there anything you can do?
+                        <<if $dogLikesYou < $dogDislikesYou>>
+                            <<show_character Dog Sad right>>
+                            {$dogName}: Woof... I don't know. I can't think of anything, {$dogThinksPlayerNameIs}. I'm sorry.
+                            {$dogName}: I hope you can figure it out.
+                            <<stop_voice_blip Dog>>
+                            Narrator: Stricken by sadness, you end the call.
+                            <<jump EmbraceDeath>>
+                        <<else>>
+                            <<show_character Dog Neutral right>>
+                            {$dogName}: Alright, I'll help you. You're a good human, {$dogThinksPlayerNameIs}. Woof.
+                        <<endif>>
+                    -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
+                        Narrator: You decide to disconnect the call with {$dogName} for now.
+                        <<play_music MainTheme>>
+                        <<hide_all_characters>>
+                        <<hide_all_objects>>
+                        <<show MonitorOff>>
+                        <<jump CallEarth>>
+            -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
+                {$dogName}: Woof... I see. That seems pretty urgent. Let me see what I can do.
+            -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $dogLikesYou >= $dogDislikesYou>>
+                <<show_character Dog Flirt right>>
+                {$dogName}: Heh, oh you... Alright, I'll help you out. Woof.
+<<show_character Dog Neutral right>>
+{$dogName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will bring you here, to my home planet. Woof.
+{$dogName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
+    -> Isn't there another way?
+        {$dogName}: Woof... do you have any plans? Because I sure don't.
+            -> Let's do it.
+                <<jump AcceptDogHelp>>
+            -> I think I'll just accept my fate instead.
+    -> Let's do it.
+        <<jump AcceptDogHelp>>
+    -> <b>(POOR SELF-PERCEPTION)</b> I think I'll just accept my fate instead. <<if $posSelfPerception <= $negSelfPerception>>
 ===
 
 title: CallOpossumDay3

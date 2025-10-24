@@ -19,6 +19,8 @@ title: Globals
 <<declare $opossumSecured = false>>  // Whether the opossum stayed around after Day 1
 <<declare $birdSecured = false>>  // Whether the bird stayed around after Day 1
 
+<<declare $knowsAboutConditionalChoices = false>> // Whether the player knows about the conditional choices
+
 <<declare $playerName = "Player">>
 <<declare $catName = "Gnarp">>
 <<declare $dogName = "Purble">>
@@ -33,4 +35,6 @@ title: Globals
 <<declare $desperate = false>>  // whether the player is asking for help with oxygen (varies ending)
 
 <<declare $daysPassed = 1>>
+
+<<declare $talkedToPersonDay2 = false>>  // Whether the player talked to a character on Day 2
 ===

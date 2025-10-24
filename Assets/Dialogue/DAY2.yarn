@@ -66,6 +66,16 @@ Narrator: It's a fresh day. The aliens said that you can ping them if you wanted
         // TODO: Actually make this branch work!
 ===
 
+title: LearnAboutConditionalChoices
+---
+<<if $knowsAboutConditionalChoices == false>>
+    <<set $knowsAboutConditionalChoices = true>>
+    Narrator: <i>Note: From now on, some options may ONLY be available depending on past choices. Special options have parenthesized text before the option.</i>
+        -> <b>(POSITIVE SELF-IMAGE)</b> Wow, that's cool! <<if $posSelfPerception >= $negSelfPerception>>
+        -> <b>(NEGATIVE SELF-IMAGE)</b> Okay, whatever. <<if $posSelfPerception < $negSelfPerception>>
+<<endif>>
+===
+
 title: CallCatDay2
 position: 422,282
 ---
@@ -74,7 +84,7 @@ position: 422,282
 <<show_character Cat Obscure right>>
 <<stop_voice_blip Cat>>
 Narrator: You call {$catName}. The line remains static for a little while, but you suddenly see movement on the other end.
-<<if $catLikesYou >= $catDislikesYou>>
+<<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
     <<play_music CatTheme 0.5>>
     Narrator: {$catName} appears on the screen, looking relieved to see you.
@@ -92,8 +102,6 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
     <<start_voice_blip Cat>>
     {$catName}: Oh, it's you! Hey again, {$playerName}. What's up?
         -> I want to get to know you better.
-            <<positive_indicator Cat>>
-            <<set $catLikesYou += 1>>
             <<show_character Cat Thinking right>>
             {$catName}: Huh. Well, I guess we can talk a bit more.
 <<endif>>
@@ -101,6 +109,7 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
 <<declare $day2AskedCatQ2 = false>>
 <<declare $day2AskedCatQ3 = false>>
 <<declare $day2AskedCatQ4 = false>>
+<<declare $day2AskedCatQ5 = false>>
 <<declare $knowCatPasttime = false>>
 <<declare $knowCatJob = false>>
 <<jump CatRecurringTreeDay2>>
@@ -109,43 +118,45 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
 title: CatRecurringTreeDay2
 ---
 <<start_voice_blip Cat>>
+<<once>>
+<<stop_voice_blip Cat>>
+<<detour LearnAboutConditionalChoices>>
+<<start_voice_blip Cat>>
+<<endonce>>
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy right>>
 <<else>>
     <<show_character Cat Neutral right>>
 <<endif>>
-<<once>>
-<<stop_voice_blip Cat>>
-Narrator: <i>Note: From now on, some options may be available or unavailable depending on your choices. You can view special options based on parenthesized text before the option.</i>
-    -> <b>(POSITIVE SELF-IMAGE)</b> Wow, that's cool! <<if $posSelfPerception >= $negSelfPerception>>
-    -> <b>(NEGATIVE SELF-IMAGE)</b> Okay, whatever. <<if $posSelfPerception < $negSelfPerception>>
-<<start_voice_blip Cat>>
-<<endonce>>
 {$catName}: What did you want to talk about?
     -> What is it like out here? <<if $day2AskedCatQ1 == false>>
         <<set $day2AskedCatQ1 = true>>
-        {$catName}: I actually come from a planet far, far away from you.
         <<show_character Cat Neutral right>>
-        {$catName}: We've done surveils of your planet before! Out here, we don't have the same comforts as you do. 
-        {$catName}: For example, the quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
-            -> That's scary!
+        {$catName}: Oh, I'm not actually usually around here. As I mentioned before, I'm from a planet far, far away from you.
+        {$catName}: It's pretty dangerous back at home. Much worse than most other planets.
+        <<show_character Cat Sad right>>
+        {$catName}: The quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
+            -> That's terrifying.
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
-                <<show_character Cat Happy right>>
-                {$catName}: Yeah, it can be. But we've learned to adapt over time.
+                <<show_character Cat Sad right>>
+                {$catName}: Yeah, it hasn't been the safest it could be too. Kits die all the time, unfortunately.
             -> Oh, those aren't bad. We have those too.
                 <<show_character Cat Sad right>>
                 <<set $catDislikesYou += 1>>
-                {$catName}: Sure, you do. But I can say with a pretty good amount of confidence that they're not as bad as ours.
+                {$catName}: Oh? I guess that's possible. But I can say with a pretty good amount of confidence that they're not as bad as ours.
                 {$catName}: We have a lot of casualties from them every year. It's pretty unfortunate.
-            -> Surveils of our planet?
-                <<positive_indicator Cat>>
-                <<set $catLikesYou += 1>>
-                <<show_character Cat Happy right>>
-                {$catName}: Yeah! We've been watching your planet for a while now. It's really interesting to see how different life is there compared to out here.
-                {$catName}: Your technology is pretty advanced too, from what we've seen!
-                <<show_character Cat Flirt right>>
-                {$catName}: Just not as advanced as us, yet~ but I bet you'll discover intergalactic travel too, someday.
+        <<show_character Cat Neutral right>>
+        {$catName}: We've had to adapt a lot to survive out here. All of our houses are practically on springs.
+            -> How many of there are you?
+                <<show_character Cat Thinking right>>
+                {$catName}: Quite a few. We have small colonies all over this sector of space.
+                {$catName}: Linnaeus is one of the major ones, though.
+            -> Springs? Like... boi-oi-oing?
+                <<set $catDislikesYou += 1>>
+                <<show_character Cat Angry right>>
+                {$catName}: ...
+                {$catName}: It's not really a silly matter. It's a constant fight for survival.
     -> What is your mission? <<if $day2AskedCatQ2 == false>>
         <<set $day2AskedCatQ2 = true>>
         {$catName}: Mission? I don't think we have... a "mission". We're just out here trying to survive, same as you.
@@ -161,9 +172,9 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Happy right>>
                 {$catName}: I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
-                {$catName}: I just work for safety. I make sure our planet is safe, our adventurers come back safely from space, and everything you can think of in between.
-                <<show_character Cat Thinking right>>
-                {$catName}: Safety across the galaxy is tougher than you think. There are a lot of different species out here, and not all of them are friendly.
+                <<show_character Cat Neutral right>>
+                {$catName}: I work for safety, as a whole. I've been working hard to try to keep people on our planet safe.
+                {$catName}: A huge reason why I'm out here is because I'm seeking inspiration to make things safer for my people.
             -> Oh, I see.
     -> What do you do for work? <<if $knowCatJob == false>>
         <<set $knowCatJob = true>>
@@ -171,10 +182,46 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
         <<set $catLikesYou += 1>>
         <<show_character Cat Happy right>>
         {$catName}: I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
-        {$catName}: My job is pretty simple. I just work for safety.
-        <<show_character Cat Thinking right>>
-        {$catName}: I make sure our infrastructure is safe, our adventurers come back safely from space, and everything you can think of in between.
-        {$catName}: Safety across the galaxy is tougher than you think. There are a lot of different species out here, and not all of them are friendly.
+        <<show_character Cat Neutral right>>
+        {$catName}: I work for safety, as a whole. I've been working hard to try to keep people on our planet safe.
+        {$catName}: A huge reason why I'm out here is because I'm seeking inspiration to make things safer for my people.
+    -> Do you have a family? <<if $day2AskedCatQ5 == false>>
+        <<set $day2AskedCatQ5 = true>>
+        <<show_character Cat Happy2 right>>
+        {$catName}: I do! I'm very close with my family back home.
+        {$catName}: I worry about them a lot, especially with how dangerous things are back home.
+            -> That must be hard.
+                <<positive_indicator Cat>>
+                <<set $catLikesYou += 1>>
+                <<show_character Cat Sad right>>
+                {$catName}: Yeah, it is. But I try to stay strong for them.
+            -> Why don't you bring them here?
+                <<set $catDislikesYou += 1>>
+                <<show_character Cat Angry right>>
+                {$catName}: It's not that simple! There are so many complications with intergalactic travel.
+                {$catName}: I can't just bring them all here. It would be too dangerous for everyone involved.
+        <<if $catLikesYou > $catDislikesYou>>
+            <<stop_voice_blip Cat>>
+            <<show_character Cat Sad right>>
+            Narrator: You notice that {$catName} seems a bit down while talking about their family.
+                -> (POSITIVE RELATIONSHIP) You seemed a little sad just now. Is everything okay?
+                    <<start_voice_blip Cat>>
+                    {$catName}: I'm fine, just thinking about them. I...
+                    <<positive_indicator Cat>>
+                    <<set $catLikesYou += 1>>
+                    {$catName}: I actually recently lost a sibling back home. It was really sudden, and I've been having a hard time coping with it.
+                    <<show_character Cat Neutral right>>
+                    {$catName}: But talking to you has helped take my mind off of things, so thank you for that.
+                    {$catName}: Thanks for asking, though. It means a lot to me.
+                -> Change the subject.
+                    <<jump CatRecurringTreeDay2>>
+        <<else>>
+            <<stop_voice_blip Cat>>
+            <<show_character Cat Sad right>>
+            Narrator: You notice that {$catName} seems off, but you don't know them well enough to tell why.
+                -> ...
+                    <<jump CatRecurringTreeDay2>>
+        <<endif>>
     -> What do you do for fun? <<if $knowCatPasttime == false>>
         <<set $knowCatPasttime = true>>
         {$catName}: Fun? Hm, I guess I like to play games on my monitor when I'm not working. It's a nice way to pass the time.
@@ -234,11 +281,6 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
             {$catName}: Thanks for the talk, I guess.
         <<endif>>
         <<stop_voice_blip Cat>>
-        <<hide_all_characters>>
-        <<play_music MainTheme>>
-        Narrator: You cut the connection and take a step back from your monitor.
-            -> (turn off the monitor)
-        <<hide_all_objects>>
         <<jump EndDay2>>
 <<jump CatRecurringTreeDay2>>
 ===
@@ -246,9 +288,230 @@ Narrator: <i>Note: From now on, some options may be available or unavailable dep
 title: CallDogDay2
 position: 408,123
 ---
-Narrator: You call {$dogName}.
-Narrator: But they don't respond. So you instead call {$catName}. (this is not implemented yet)
-<<jump CallCatDay2>>
+<<hide_all_objects>>
+<<show MonitorOn>>
+<<show_character Dog Obscure right>>
+<<stop_voice_blip Dog>>
+Narrator: You call {$dogName}. The line remains static for a little while, but you suddenly see movement on the other end.
+<<if $dogLikesYou > $dogDislikesYou>>
+    <<show_character Dog Happy right>>
+    <<play_music DogTheme 0.5>>
+    Narrator: {$dogName} appears on the screen, looking chill as always.
+    <<show_character Dog Happy2 right>>
+    <<start_voice_blip Dog>>
+    {$dogName}: Hey {$playerName}! Woof. How's it going?
+        -> I want to get to know you better.
+            <<positive_indicator Dog>>
+            <<set $dogLikesYou += 1>>
+            <<show_character Dog Happy right>>
+            {$dogName}: Sure! Woof. I like talking.
+<<else>>
+    <<show_character Dog Neutral right>>
+    Narrator: {$dogName} appears on the screen.
+    <<start_voice_blip Dog>>
+    {$dogName}: Oh. Woof. Hey again, {$playerName}. What's up?
+        -> I want to get to know you better.
+            <<show_character Dog Thinking right>>
+            {$dogName}: Woof. Well, I guess we can talk a bit more.
+<<endif>>
+<<declare $day2AskedDogQ1 = false>>
+<<declare $day2AskedDogQ2 = false>>
+<<declare $day2AskedDogQ3 = false>>
+<<declare $day2AskedDogQ4 = false>>
+<<declare $day2AskedDogQ5 = false>>
+<<declare $knowDogJob = false>>
+<<jump DogRecurringTreeDay2>>
+===
+
+title: DogRecurringTreeDay2
+---
+<<start_voice_blip Dog>>
+<<once>>
+<<stop_voice_blip Dog>>
+<<detour LearnAboutConditionalChoices>>
+<<start_voice_blip Dog>>
+<<endonce>>
+<<if $dogLikesYou >= $dogDislikesYou>>
+    <<show_character Dog Happy right>>
+<<else>>
+    <<show_character Dog Neutral right>>
+<<endif>>
+{$dogName}: What did you want to talk about?
+    -> What is it like out here? <<if $day2AskedDogQ1 == false>>
+        <<set $day2AskedDogQ1 = true>>
+        <<show_character Dog Happy right>>
+        {$dogName}: Oh, so peaceful! Many friends. Woof. Many not-friends too, but enough friends to keep me company. Woof.
+        <<show_character Dog Angry right>>
+        {$dogName}: I'm happy that it's not like my home planet. Woof. It's too much sometimes. Woof.
+            -> What's your home planet like?
+                <<show_character Dog Sad right>>
+                {$dogName}: Woof. It's very... strict. Woof. Barklon watches everything all the time. Woof.
+            -> What's wrong with it?
+                <<show_character Dog Sad right>>
+                {$dogName}: Woof. It's very... strict. Woof. Barklon watches everything all the time. Woof.
+            -> But you must love your planet. You're from it!
+                <<set $dogDislikesYou += 1>>
+                <<show_character Dog Angry right>>
+                {$dogName}: Woof. I don't know about that. Woof. I just want to be where I feel safe. Woof.
+                {$dogName}: Barklon is very... controlling. Woof. Everything is being watched all the time. Woof.
+        <<show_character Dog Surprised right>>
+        {$dogName}: Actually, can you keep a secret? Woof.
+            -> (POSITIVE SELF-IMAGE) Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
+                <<positive_indicator Dog>>
+                <<set $dogLikesYou += 1>>
+                <<show_character Dog Neutral right>>
+                {$dogName}: So, {$playerName}. Woof. I don't usually tell anyone this, but...
+                <<show_character Dog Angry right>>
+                {$dogName}: I saved a group of young pups. Woof. From a big shot. Big woofer.
+                {$dogName}: They were in trouble. Woof. I couldn't just leave them there. Woof.
+                    -> And?
+                    -> ...
+                <<show_character Dog Happy right>>
+                {$dogName}: I brought them to a safe place. I felt so proud. Woof. But when I told my family...
+                <<show_character Dog Sad right>>
+                {$dogName}: They didn't like it. Woof. They thought I was being disloyal. Woof.
+                {$dogName}: I noticed that mom and dad were scared. Woof. They thought the big shots would come after us. Woof.
+                <<show_character Dog Angry right>>
+                {$dogName}: Then I noticed that they were being patrolled more often. Woof. They think they can do anything. Woof.
+                {$dogName}: Family was in danger if I stayed. Woof. So I left. Forever.
+                    -> That's brave of you.
+                        <<positive_indicator Dog>>
+                        <<set $dogLikesYou += 1>>
+                        <<show_character Dog Neutral right>>
+                        {$dogName}: Woof... Thank you, {$playerName}.
+                        <<if $dogLikesYou >= $dogDislikesYou>>
+                            <<show_character Dog Flirt right>>
+                            {$dogName}: I can tell you're one of the good ones, {$catThinksPlayerNameIs}. Woof.
+                        <<endif>>
+                    -> That sounds impulsive.
+                        <<set $dogDislikesYou += 1>>
+                        <<show_character Dog Sad right>>
+                        {$dogName}: Woof...
+                    {$dogName}: But I don't regret it. Woof. I do wish I could see my parents again, though. Woof.
+            -> (NEGATIVE SELF-IMAGE) I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
+                <<show_character Dog Neutral right>>
+                {$dogName}: Oh, that's okay. Nevermind, then. Woof.
+            -> ...
+                <<show_character Dog Neutral right>>
+                {$dogName}: ...Nevermind, then. Woof.
+    -> What is your mission? <<if $day2AskedDogQ2 == false>>
+        <<set $day2AskedDogQ2 = true>>
+        {$dogName}: Mission? Woof. I want to wander and find a better place. Anywhere better than Barklon. Woof.
+            -> But what is your <i>mission</i>? You know, as an alien?
+                <<show_character Dog Sad right>>
+                {$dogName}: Woof? I don't understand.
+                <<set $dogDislikesYou += 1>>
+                <<show_character Dog Neutral right>>
+                {$dogName}: I just want to adventure. Woof. I've never felt as free as I do out here. Woof.
+            -> Do you have a job? <<if $knowDogJob == false>>
+                <<set $knowDogJob = true>>
+                <<positive_indicator Dog>>
+                <<set $dogLikesYou += 1>>
+                <<show_character Dog Happy right>>
+                {$dogName}: I worked in a fabric store. Woof. Made a lot of stuff. Woof.
+                {$dogName}: Neck rags, paw covers, those sorts of things. Woof.
+                <<show_character Dog Neutral right>>
+                {$dogName}: Nothing I'm too proud of, but it paid the bills on Barklon. Woof.
+            -> Oh, I see.
+    -> What do you do for work? <<if $knowDogJob == false>>
+        <<set $knowDogJob = true>>
+        <<positive_indicator Dog>>
+        <<set $dogLikesYou += 1>>
+        <<show_character Dog Happy right>>
+        {$dogName}: I worked with my family in the fabric store. Woof. We made a lot of stuff. Woof.
+        {$dogName}: Neck rags, paw covers, those sorts of things. Woof.
+        <<show_character Dog Neutral right>>
+        {$dogName}: Nothing I'm too proud of, but it paid the bills on Barklon. Woof.
+    -> What do you do for fun? <<if $day2AskedDogQ3 == false>>
+        <<set $day2AskedDogQ3 = true>>
+        {$dogName}: Fun? Woof. I like to run around and explore new places. Woof.
+        {$dogName}: Back on Barklon, I never got to do that. Woof. Always had to stay inside and work. Woof.
+    -> Do you have a family? <<if $day2AskedDogQ4 == false>>
+        <<set $day2AskedDogQ4 = true>>
+        <<show_character Dog Surprised right>>
+        {$dogName}: Woof! Yeah, I do! Woof. I'm pretty close with them, even though I'm far away now. Woof.
+        {$dogName}: They live a hard life. Woof. They make thingies with rags. Woof.
+            -> That must be hard.
+                <<positive_indicator Dog>>
+                <<set $dogLikesYou += 1>>
+                <<show_character Dog Sad right>>
+                {$dogName}: It is. But there's not a big chance I'll see them again. Woof.
+                <<show_character Dog Angry right>>
+                {$dogName}: Maybe someday, I'll be able to help them out. Woof. Get rid of the bigger people. Woof.
+            -> Why don't you bring them here?
+                <<set $dogDislikesYou += 1>>
+                <<show_character Dog Sad right>>
+                {$dogName}: I asked. Woof. They said no. Woof.
+                {$dogName}: They've always told me to keep my head down. Woof. Not make waves. Woof.
+                <<show_character Dog Thinking right>>
+                {$dogName}: I'll never understand why they think that way. Woof.
+        {$dogName}: Actually, can you keep a secret? Woof.
+            -> (POSITIVE SELF-IMAGE) Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
+                <<positive_indicator Dog>>
+                <<set $dogLikesYou += 1>>
+                <<show_character Dog Neutral right>>
+                {$dogName}: So, {$playerName}. Woof. I don't usually tell anyone this, but...
+                <<show_character Dog Angry right>>
+                {$dogName}: I saved a group of young pups. Woof. From a big shot. Big woofer.
+                {$dogName}: They were in trouble. Woof. I couldn't just leave them there. Woof.
+                    -> And?
+                    -> ...
+                <<show_character Dog Happy right>>
+                {$dogName}: I brought them to a safe place. I felt so proud. Woof. But when I told my family...
+                <<show_character Dog Sad right>>
+                {$dogName}: They didn't like it. Woof. They thought I was being disloyal. Woof.
+                {$dogName}: I noticed that mom and dad were scared. Woof. They thought the big shots would come after us. Woof.
+                <<show_character Dog Angry right>>
+                {$dogName}: Then I noticed that they were being patrolled more often. Woof. They think they can do anything. Woof.
+                {$dogName}: Family was in danger if I stayed. Woof. So I left. Forever.
+                    -> That's brave of you.
+                        <<positive_indicator Dog>>
+                        <<set $dogLikesYou += 1>>
+                        <<show_character Dog Neutral right>>
+                        {$dogName}: Woof... Thank you, {$playerName}.
+                        <<if $dogLikesYou >= $dogDislikesYou>>
+                            <<show_character Dog Flirt right>>
+                            {$dogName}: I can tell you're one of the good ones, {$catThinksPlayerNameIs}. Woof.
+                        <<endif>>
+                    -> That sounds impulsive.
+                        <<set $dogDislikesYou += 1>>
+                        <<show_character Dog Sad right>>
+                        {$dogName}: Woof...
+                    {$dogName}: But I don't regret it. Woof. I do wish I could see my parents again, though. Woof.
+            -> (NEGATIVE SELF-IMAGE) I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
+                <<show_character Dog Neutral right>>
+                {$dogName}: Oh, that's okay. Nevermind, then. Woof.
+            -> ...
+                <<show_character Dog Neutral right>>
+                {$dogName}: ...Nevermind, then. Woof.
+    -> (POSITIVE RELATIONSHIP) You're cute. <<if $day2AskedDogQ5 == false && $dogLikesYou >= $dogDislikesYou>>
+        <<set $day2AskedDogQ5 = true>>
+        <<show_character Dog Happy right>>
+        <<positive_indicator Dog>>
+        <<set $dogLikesYou += 1>>
+        {$dogName}: Aw, woof. That's kind of you, {$dogThinksPlayerNameIs}. Woof.
+        <<show_character Dog Flirt right>>
+        {$dogName}: You're not so bad yourself. Woof.
+    -> (don't ask any more questions)
+        <<stop_voice_blip Dog>>
+        <<if $posSelfPerception > $negSelfPerception>>
+            Narrator: You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
+        <<else>>
+            Narrator: You feel your social battery start to drain, so you decide to end the conversation for now.
+        <<endif>>
+        <<start_voice_blip Dog>>
+        <<if $dogLikesYou >= $dogDislikesYou>>
+            <<show_character Dog Happy right>>
+            {$dogName}: Aw, okay. Woof. It was really fun talking! Woof.
+            {$dogName}: We should talk more, {$dogThinksPlayerNameIs}. Woof.
+        <<else>>
+            <<show_character Dog Neutral right>>
+            {$dogName}: Oh, alright. Woof. Sounds good.
+            {$dogName}: Thanks for talking. Woof.
+        <<endif>>
+        <<stop_voice_blip Dog>>
+        <<jump EndDay2>>
+<<jump DogRecurringTreeDay2>>
 ===
 
 title: CallOpossumDay2
@@ -273,6 +536,17 @@ title: EndDay2
 position: 762,12
 ---
 <<hide_all_characters>>
+<<play_music MainTheme>>
+<<if $talkedToPersonDay2 == false>>
+    <<set $talkedToPersonDay2 = true>>
+    Narrator: After finishing your conversation, you notice the day is still young. You could try reaching out to one other alien before ending the day.
+        -> (call another alien)
+            <<hide_all_objects>>
+            <<show ChooseYourCharacterDay2>>
+        -> (end the day)
+<<endif>>
+Narrator: You cut the connection and take a step back from your monitor.
+    -> (turn off the monitor)
 <<hide_all_objects>>
 <<show MonitorOff>>
 Narrator: Again, after the long conversation, you decide to go to bed.

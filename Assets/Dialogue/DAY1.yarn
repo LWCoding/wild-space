@@ -122,24 +122,25 @@ Narrator: With your expertise, you think you can adjust the frequency and let th
         <<set $negSelfPerception += 1>>
         Narrator: After a few moments, the screen flickers back to static. You are alone, again.
         Narrator: How should you pass the time?
-            -> (play a game on the monitor)
+            -> (block them out of your head)
+                <<set $negSelfPerception += 1>>
                 Narrator: You decide to play a game on the monitor to pass the time.
                 Narrator: The game is simple, but it helps distract you from the loneliness.
-                <<jump Reinterrupted>>
             -> (try to find the signal again)
                 Narrator: You fiddle with the dials and knobs, trying to find the signal again.
-                <<jump Reinterrupted>>
-===
-
-title: Reinterrupted
-position: 590,-315
----
 <<hide_all_objects>>
 <<show MonitorOn>>
 <<show_character Cat Obscure right>>
 Narrator: Suddenly, the same character from before reappears on the screen.
-    -> (get it over with. let the signal through)
-<<jump CatIntro>>
+    -> (get it over with. let the signal through.)
+        <<jump CatIntro>>
+    -> (unplug the monitor)
+        <<hide_all_characters>>
+        <<hide MonitorOn>>
+        <<show MonitorOff>>
+        Narrator: You decide to unplug the monitor, cutting off the signal entirely.
+        Narrator: After a few moments, the screen flickers back to static. You are alone, again.
+        <<jump ForeverAloneNoContact>>
 ===
 
 title: CatIntro
@@ -649,25 +650,44 @@ Narrator: You turn the dials to let the signal through.
                     <<positive_indicator Opossum>>
                     <<set $opossumLikesYou += 1>>
                     {$opossumName}: ...alright, if you say so.
-<<show_character Opossum Neutral right>>
-// {$opossumName}: So, what brings you out here?
-//     -> Exploring the cosmos.
-//         <<positive_indicator Opossum>>
-//         <<set $opossumLikesYou += 1>>
-//         <<show_character Opossum Happy right>>
-//         {$opossumName}: Huh, that's pretty cool. I guess we're both explorers then.
-//     -> Escaping it all, I guess.
-//         <<show_character Opossum Neutral right>>
-//         {$opossumName}: Yeah, I get that. Sometimes it's nice to get away from everything.
-//     -> I'm... not sure.
-//         <<show_character Opossum Thinking right>>
-//         {$opossumName}: That's okay. Sometimes we don't have all the answers right away.
+<<show_character Opossum Thinking right>>
 <<stop_voice_blip Opossum>>
+Narrator: You notice that {$opossumName} seems a bit distant, not really making eye contact with you.
+    -> Why are so many aliens showing up today?
+        <<set $opossumDislikesYou += 1>>
+        Narrator: {$opossumName} sighs heavily. They seem annoyed by your question.
+    -> What's wrong?
+        <<show_character Opossum Neutral right>>
+        <<positive_indicator Opossum>>
+        <<set $opossumLikesYou += 1>>
+        <<start_voice_blip Opossum>>
+        {$opossumName}: It's... complicated. I don't really like talking about it.
+    -> ...
+    <<start_voice_blip Opossum>>
+    <<show_character Opossum Thinking right>>
+    {$opossumName}: I don't know. I guess space is just full of weirdos like me.
+    {$opossumName}: I don't belong out here, but I don't really have anywhere else to go.
+    <<show_character Opossum Angry right>>
+    {$opossumName}: God... I hate space. It's so... empty.
+    {$opossumName}: I just want to find a place where I belong.
+    <<show_character Opossum Sad right>>
+    {$opossumName}: Ah! Sorry, I didn't mean to unload all that on you.
+<<show_character Opossum Happy right>>
+{$opossumName}: I'm fine, really. I'm doing great!
+<<show_character Opossum Thinking right>>
+{$opossumName}: Why am I like this...
+<<if $opossumLikesYou >= $opossumDislikesYou>>
+    <<show_character Opossum Happy right>>
+    {$opossumName}: Thanks for listening, though. I enjoyed the short talk. Let's talk more later...
+<<else>>
+    <<show_character Opossum Thinking right>>
+    {$opossumName}: Sorry for dumping all that on you. You probably don't want to hear about my problems. I'll leave you alone.
+<<endif>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
-Narrator: The transmission cuts off as ...
+Narrator: The transmission cuts off abruptly. {$opossumName} takes their leave.
 <<if $opossumSecured == true>>
-    Narrator: You notice a transmission from {$opossumName} saved onto your monitor. They're letting you ping them again in the future.
+    Narrator: You notice a transmission from {$opossumName} recorded on your monitor. They're letting you ping them again in the future.
 <<endif>>
 <<if $talkedToDog == false || $talkedToBird == false>>
     <<jump TalkToOthers>>

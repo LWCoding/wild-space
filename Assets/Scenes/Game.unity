@@ -817,9 +817,9 @@ RectTransform:
   m_Father: {fileID: 991697084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &139324756
 MonoBehaviour:
@@ -6879,10 +6879,10 @@ RectTransform:
   - {fileID: 1903654067}
   m_Father: {fileID: 268516398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 67.013336, y: -20.11}
+  m_SizeDelta: {x: 134.02667, y: 40.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &939646239
 MonoBehaviour:
@@ -7851,7 +7851,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   historyPanel: {fileID: 1348012489}
   historyButton: {fileID: 435178695}
-  historyButton2: {fileID: 375236025}
   previousPageButton: {fileID: 939646239}
   nextPageButton: {fileID: 1445013161}
   historyText: {fileID: 1994441658}
@@ -8150,10 +8149,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 268516398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 217.5, y: 0}
+  m_SizeDelta: {x: 166.94667, y: 40.22}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1085592338
 MonoBehaviour:
@@ -8575,7 +8574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioSource1: {fileID: 779370043}
   audioSource2: {fileID: 845041586}
-  sfxAudioSource: {fileID: 596843862}
   typingSoundClip: {fileID: 8300000, guid: dda5b66c9893e5243bfaa776a0bebb84, type: 3}
   typingSoundVolume: 0.25
   pitchVariation: 0.2
@@ -9745,7 +9743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: Start
+      value: CallDogDay2
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
@@ -10278,7 +10276,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1348012490
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10295,11 +10293,11 @@ RectTransform:
   - {fileID: 991697084}
   m_Father: {fileID: 721317835}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 1}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -50, y: -50}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 500, y: 500}
-  m_Pivot: {x: 1, y: 1}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &1348012491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10669,10 +10667,10 @@ RectTransform:
   - {fileID: 737354558}
   m_Father: {fileID: 268516398}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 367.98666, y: -20.11}
+  m_SizeDelta: {x: 134.02667, y: 40.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1445013161
 MonoBehaviour:
@@ -11602,7 +11600,7 @@ RectTransform:
   m_Father: {fileID: 1304890135}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -11854,7 +11852,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -302.5642}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1843665259
 MonoBehaviour:
@@ -12852,7 +12850,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 241.5, y: -0}
-  m_SizeDelta: {x: 435, y: 0}
+  m_SizeDelta: {x: 435, y: 107.64}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1994441658
 MonoBehaviour:

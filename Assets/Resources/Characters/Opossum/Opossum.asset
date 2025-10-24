@@ -22,5 +22,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 572f8441b38c2844fb5162efeb1ea5c2, type: 2}
   - {fileID: 11400000, guid: a6323c448b1bfea4b91535ebf73ca333, type: 2}
   - {fileID: 11400000, guid: 41bc5e312083fa442a2f55c0c40a54b1, type: 2}
-  defaultExpression: {fileID: 11400000, guid: d5dc94f687d7a8347963a5d17f40f984, type: 2}
+  - {fileID: 11400000, guid: c4e3dc8d457f97a4ebc3fd03240ae7a5, type: 2}
+  defaultExpression: {fileID: 11400000, guid: 572f8441b38c2844fb5162efeb1ea5c2, type: 2}
   defaultScale: {x: 1, y: 1, z: 1}
