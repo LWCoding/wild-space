@@ -19,7 +19,7 @@ title: Globals
 <<declare $playerName = "Player">>
 <<declare $catName = "Gnarp">>
 <<declare $dogName = "Purble">>
-<<declare $opossumName = "Snek">>
+<<declare $opossumName = "Joey">>
 <<declare $birdName = "Alfie">>
 
 <<declare $talkedToDog = false>>
