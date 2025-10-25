@@ -705,7 +705,7 @@ position: 633,86
 Narrator: You pull up the communication panel and respond to the figure with the pointy muzzle.
 <<show_character Bird Obscure right>>
 Narrator: You turn the dials to let the signal through.
-<<show_character Bird Neutral right>>
+<<show_character Bird Happy right>>
 <<start_voice_blip Bird>>
 <<play_music BirdTheme 0.4>>
 ???: Ah, hello alternate lifeform! It's so nice to meet.
@@ -715,6 +715,11 @@ Narrator: You turn the dials to let the signal through.
         {$birdName}: Ah, apologies. I take it you haven't heard of my species before.
         {$birdName}: I am a Avianthrope, hailing from the planet Aviaris.
     -> ...
+<<stop_voice_blip Bird>>
+<<show_character Bird Sad right>>
+Narrator: You notice that the figure seems a little nervous. They fidget slightly as they speak.
+<<start_voice_blip Bird>>
+<<show_character Bird Neutral right>>
 {$birdName}: If you don't mind, I have a brief questionnaire about your species. It's nothing intrusive, I promise.
     -> Sure..?
         <<positive_indicator Bird>>
@@ -778,10 +783,10 @@ Narrator: You turn the dials to let the signal through.
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
         <<set $birdThinksPlayerNameIs = $playerName>>
-        {$birdName}: {$playerName}? Lovely name.
+        {$birdName}: {$birdThinksPlayerNameIs}? Lovely name.
     -> (lie) Fox.
         <<set $birdThinksPlayerNameIs = "Fox">>
-        {$birdName}: {$playerName}? Lovely name.
+        {$birdName}: {$birdThinksPlayerNameIs}? Interesting and lovely name.
     -> I don't have a name.
         <<show_character Bird Thinking right>>
         {$birdName}: Oh, I see. That's... inconvenient. I'll call you human, then. That is what you are, no?
@@ -814,14 +819,65 @@ Narrator: You turn the dials to let the signal through.
                 <<show_character Bird Happy right>>
                 {$birdName}: Thank you! I appreciate it.
 <<show_character Bird Neutral right>>
-{$birdName}: Thank you for your cooperation. Now, onto the next question.
-{$birdName}: What is your purpose out here in the vastness of space?
-    -> Exploring.
+{$birdName}: Second question. What is your purpose out here in space?
+    -> Exploring the cosmos.
         <<show_character Bird Happy right>>
-        {$birdName}: Fascinating... that's truly a noble pursuit.
-    -> Escaping.
+        {$birdName}: Oh, wow... that's... noble. You actually <i>enjoy</i> being in space?
+        {$birdName}: That's surprising. Can you tell me more?
+            -> I like the quiet.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy right>>
+                {$birdName}: Ah, I see. Space is indeed quite peaceful.
+                {$birdName}: I'd be interested to learn more about that, perhaps later.
+            -> I like the adventure.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy right>>
+                {$birdName}: Ah, a thrill-seeker. I don't see many of those out there!
+                {$birdName}: I'd like to know more about that, perhaps later.
+            -> I like reporting your kind.
+                {$birdName}: Is that... a threat?
+                <<set $birdDislikesYou += 1>>
+                <<if $birdLikesYou <= $birdDislikesYou>>
+                    <<show_character Bird Sad right>>
+                    {$birdName}: I... see. Well, um. I should take my leave, then. Farewell.
+                    <<stop_voice_blip Bird>>
+                    <<hide_all_characters>>
+                    <<play_music MainTheme>>
+                    Narrator: The transmission cuts off abruptly. That was strange.
+                    <<if $talkedToDog == false || $talkedToOpossum == false>>
+                        <<jump TalkToOthers>>
+                    <<else>>
+                        <<jump EndDay1>>
+                    <<endif>>
+                <<endif>>
+    -> Escaping humanity.
+        <<show_character Bird Thinking right>>
+        {$birdName}: Hm... Space can be a refuge for some.
         <<show_character Bird Neutral right>>
-        {$birdName}: I see. Space can be a refuge for some.
+        {$birdName}: Tell me more about that. What do you not like about humanity?
+            -> People are cruel.
+                <<set $birdDislikesYou += 1>>
+                <<show_character Bird Sad right>>
+                {$birdName}: Oh? I... I'm sorry to hear that.
+                {$birdName}: I'd like to know more about that, perhaps later.
+            -> They don't understand me.
+                <<set $birdDislikesYou += 1>>
+                <<show_character Bird Sad right>>
+                {$birdName}: Ah... I'm sorry to hear that.
+                {$birdName}: I'd like to know more about that, perhaps later.
+            -> I just don't fit in.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy right>>
+                {$birdName}: I understand. Space can be a good place to clear one's mind.
+            -> ...
+                <<set $birdDislikesYou += 1>>
+                <<show_character Bird Surprised right>>
+                {$birdName}: Ah, perhaps I overstepped.
+                <<show_character Bird Thinking right>>
+                {$birdName}: Let's just... move onto the last question.
     -> I'm not sure.
         <<show_character Bird Thinking right>>
         <<set $birdDislikesYou += 1>>
@@ -835,15 +891,26 @@ Narrator: You turn the dials to let the signal through.
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
         {$birdName}: Interesting! I appreciate the exact answer.
-    -> Extremely hot.
+    -> Very mild.
         <<show_character Bird Neutral right>>
-        {$birdName}: I see. A warm planet, then.
-    -> Extremely cold.
-        <<show_character Bird Neutral right>>
-        {$birdName}: I see. A chilly planet, then.
-    -> Varies greatly.
-        <<show_character Bird Thinking right>>
-        {$birdName}: Hm, a planet with diverse climates. Fascinating.
+        {$birdName}: Can you... be more specific? Sorry, I just need a better idea of what it's like.
+        -> It kind of changes? Like... it's hot sometimes, and cold other times.
+            <<positive_indicator Bird>>
+            <<set $birdLikesYou += 1>>
+            <<show_character Bird Happy right>>
+            {$birdName}: Ah, a planet with varying seasons. Noted!
+        -> Like springtime.
+            <<set $birdDislikesYou += 1>>
+            <<show_character Bird Neutral right>>
+            {$birdName}: ...
+            <<stop_voice_blip Bird>>
+            Narrator: {$birdName} seems unsatisfied by your vague answer, but seems not to ask further out of politeness.
+            <<start_voice_blip Bird>>
+    -> It varies... hot... and cold? Rainy? Windy?
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy right>>
+        {$birdName}: Ah, a planet with varying seasons. Noted!
 <<show_character Bird Happy right>>
 {$birdName}: That concludes our little questionnaire. Thank you for your cooperation.
     -> No problem.
@@ -871,7 +938,7 @@ Narrator: You turn the dials to let the signal through.
         <<endif>>
 <<show_character Bird Neutral right>>
 {$birdName}: I suppose I should take my leave, then. Do you have any closing thoughts?
-    -> Why me? <<if $birdExplainedIntention == false>>
+    -> Why talk to me? <<if $birdExplainedIntention == false>>
         <<set $birdExplainedIntention = true>>
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
@@ -887,7 +954,7 @@ Narrator: You turn the dials to let the signal through.
             {$birdName}: Likewise! I hope we can converse again in the future.
             <<set $birdSecured = true>>
         <<endif>>
-    -> Goodbye.
+    -> Bye...
         <<show_character Bird Neutral right>>
         {$birdName}: Farewell, then. Safe travels out there in the cosmos.
     -> ...
