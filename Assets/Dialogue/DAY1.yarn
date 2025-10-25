@@ -705,10 +705,11 @@ position: 633,86
 Narrator: You pull up the communication panel and respond to the figure with the pointy muzzle.
 <<show_character Bird Obscure right>>
 Narrator: You turn the dials to let the signal through.
-<<show_character Bird Happy right>>
+<<show_character Bird Happy2 right>>
 <<start_voice_blip Bird>>
 <<play_music BirdTheme 0.4>>
-???: Ah, hello alternate lifeform! It's so nice to meet.
+???: Ah, hello alternate lifeform! It's so nice to meet you.
+<<show_character Bird Happy right>>
 {$birdName}: I am {$birdName}, scientist of Aviaris and... um, seeker of knowledge.
     -> What... are you?
         <<show_character Bird Surprised right>>
@@ -716,10 +717,9 @@ Narrator: You turn the dials to let the signal through.
         {$birdName}: I am a Avianthrope, hailing from the planet Aviaris.
     -> ...
 <<stop_voice_blip Bird>>
-<<show_character Bird Sad right>>
+<<show_character Bird Nervous right>>
 Narrator: You notice that the figure seems a little nervous. They fidget slightly as they speak.
 <<start_voice_blip Bird>>
-<<show_character Bird Neutral right>>
 {$birdName}: If you don't mind, I have a brief questionnaire about your species. It's nothing intrusive, I promise.
     -> Sure..?
         <<positive_indicator Bird>>
@@ -728,7 +728,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         {$birdName}: Wonderful! I appreciate your cooperation.
     -> No.
         <<set $birdDislikesYou += 1>>
-        <<show_character Bird Neutral right>>
+        <<show_character Bird Nervous right>>
         {$birdName}: Hm. I see. Are you sure? It wouldn't take up too much of your time.
             -> Yes, I'm sure.
                 <<show_character Bird Sad right>>
@@ -751,9 +751,10 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Sad right>>
         {$birdName}: Oh... I apologize if I offended you. That was not my intention.
+        <<show_character Bird Nervous right>>
         {$birdName}: But if you insist, I suppose I can answer a question of yours.
         -> What are you studying?
-            <<show_character Bird Neutral right>>
+            <<show_character Bird Happy right>>
             {$birdName}: Ah, well, I'm primarily interested in exploring the unknown.
             <<show_character Bird Thinking right>>
             {$birdName}: It's... hard to explain why I'm so interested in this. It's been a fascination of mine recently.
@@ -776,12 +777,12 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             <<else>>
                 <<jump EndDay1>>
             <<endif>>
-<<show_character Bird Neutral right>>
+<<show_character Bird Happy right>>
 {$birdName}: Anyways, first question. What is your name?
     -> {$playerName}.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
-        <<show_character Bird Happy right>>
+        <<show_character Bird Happy2 right>>
         <<set $birdThinksPlayerNameIs = $playerName>>
         {$birdName}: {$birdThinksPlayerNameIs}? Lovely name.
     -> (lie) Fox.
@@ -818,11 +819,12 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<set $birdLikesYou += 1>>
                 <<show_character Bird Happy right>>
                 {$birdName}: Thank you! I appreciate it.
-<<show_character Bird Neutral right>>
+<<show_character Bird Happy right>>
 {$birdName}: Second question. What is your purpose out here in space?
     -> Exploring the cosmos.
-        <<show_character Bird Happy right>>
+        <<show_character Bird Confused right>>
         {$birdName}: Oh, wow... that's... noble. You actually <i>enjoy</i> being in space?
+        <<show_character Bird Neutral right>>
         {$birdName}: That's surprising. Can you tell me more?
             -> I like the quiet.
                 <<positive_indicator Bird>>
@@ -833,12 +835,13 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             -> I like the adventure.
                 <<positive_indicator Bird>>
                 <<set $birdLikesYou += 1>>
-                <<show_character Bird Happy right>>
-                {$birdName}: Ah, a thrill-seeker. I don't see many of those out there!
+                <<show_character Bird Happy2 right>>
+                {$birdName}: Ah, a thrill-seeker. I don't get out too much myself, but I admire it.
                 {$birdName}: I'd like to know more about that, perhaps later.
             -> I like reporting your kind.
+                <<show_character Bird Confused right>>
                 {$birdName}: Is that... a threat?
-                <<set $birdDislikesYou += 1>>
+                <<set $birdDislikesYou += 2>>
                 <<if $birdLikesYou <= $birdDislikesYou>>
                     <<show_character Bird Sad right>>
                     {$birdName}: I... see. Well, um. I should take my leave, then. Farewell.
@@ -851,30 +854,30 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                     <<else>>
                         <<jump EndDay1>>
                     <<endif>>
+                <<else>>
+                    <<show_character Bird Nervous right>>
+                    {$birdName}: I suppose... maybe I can understand that, from a scientific perspective.
+                    {$birdName}: I'd like to know more about that, perhaps later.
                 <<endif>>
     -> Escaping humanity.
         <<show_character Bird Thinking right>>
         {$birdName}: Hm... Space can be a refuge for some.
-        <<show_character Bird Neutral right>>
+        <<show_character Bird Nervous right>>
         {$birdName}: Tell me more about that. What do you not like about humanity?
             -> People are cruel.
-                <<set $birdDislikesYou += 1>>
                 <<show_character Bird Sad right>>
                 {$birdName}: Oh? I... I'm sorry to hear that.
-                {$birdName}: I'd like to know more about that, perhaps later.
+                {$birdName}: I am curious, but perhaps that conversation is best for later.
             -> They don't understand me.
-                <<set $birdDislikesYou += 1>>
                 <<show_character Bird Sad right>>
                 {$birdName}: Ah... I'm sorry to hear that.
                 {$birdName}: I'd like to know more about that, perhaps later.
             -> I just don't fit in.
-                <<positive_indicator Bird>>
-                <<set $birdLikesYou += 1>>
-                <<show_character Bird Happy right>>
-                {$birdName}: I understand. Space can be a good place to clear one's mind.
+                <<show_character Bird Sad right>>
+                {$birdName}: I... can get that. Space can be a good place to clear one's mind.
             -> ...
                 <<set $birdDislikesYou += 1>>
-                <<show_character Bird Surprised right>>
+                <<show_character Bird Nervous right>>
                 {$birdName}: Ah, perhaps I overstepped.
                 <<show_character Bird Thinking right>>
                 {$birdName}: Let's just... move onto the last question.
@@ -882,7 +885,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<show_character Bird Thinking right>>
         <<set $birdDislikesYou += 1>>
         {$birdName}: Hm, that's understandable. I'll put that down as...
-        <<show_character Bird Neutral right>>
+        <<show_character Bird Sweat right>>
         {$birdName}: Um, I guess I'll leave that one as blank.
 <<show_character Bird Happy right>>
 {$birdName}: Final question! What is the ambient temperature of your home planet?
@@ -890,9 +893,9 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
-        {$birdName}: Interesting! I appreciate the exact answer.
+        {$birdName}: Interesting! I appreciate the exact answer. You know your stuff.
     -> Very mild.
-        <<show_character Bird Neutral right>>
+        <<show_character Bird Confused right>>
         {$birdName}: Can you... be more specific? Sorry, I just need a better idea of what it's like.
         -> It kind of changes? Like... it's hot sometimes, and cold other times.
             <<positive_indicator Bird>>
@@ -901,7 +904,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             {$birdName}: Ah, a planet with varying seasons. Noted!
         -> Like springtime.
             <<set $birdDislikesYou += 1>>
-            <<show_character Bird Neutral right>>
+            <<show_character Bird Disgusted right>>
             {$birdName}: ...
             <<stop_voice_blip Bird>>
             Narrator: {$birdName} seems unsatisfied by your vague answer, but seems not to ask further out of politeness.
@@ -916,14 +919,17 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
     -> No problem.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
-        <<show_character Bird Happy right>>
+        <<show_character Bird Happy2 right>>
         {$birdName}: Wonderful! I appreciate your willingness to help further scientific knowledge.
     -> ...that's it?
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Neutral right>>
-        {$birdName}: Hm, yes. Well, thank you for your time, regardless.
+        {$birdName}: Um, yes. Thank you for your time.
+        <<show_character Bird Sweat right>>
+        {$birdName}: I don't know what else to say here...
     -> Why are you so interested in this? <<if $birdExplainedIntention == false>>
         <<set $birdExplainedIntention = true>>
+        <<show_character Bird Thinking right>>
         {$birdName}: Mmm, well, as a scientist, I'm always eager to learn more about different lifeforms.
         {$birdName}: Your species is particularly intriguing to me, given your unique characteristics.
         <<if $birdLikesYou >= $birdDislikesYou>>
@@ -936,21 +942,21 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             <<set $birdDislikesYou += 1>>
             {$birdName}: But I understand if you're not interested in sharing more.
         <<endif>>
-<<show_character Bird Neutral right>>
-{$birdName}: I suppose I should take my leave, then. Do you have any closing thoughts?
+<<show_character Bird Nervous right>>
+{$birdName}: I guess, um, I'll take my leave, then. Do you have any closing thoughts?
     -> Why talk to me? <<if $birdExplainedIntention == false>>
         <<set $birdExplainedIntention = true>>
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
         <<show_character Bird Thinking right>>
         {$birdName}: Ah, that's a good question. One I haven't really thought much about myself yet.
-        <<show_character Bird Neutral right>>
+        <<show_character Bird Nervous right>>
         {$birdName}: I suppose I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
     -> It was nice talking to you.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
         <<if $birdLikesYou >= $birdDislikesYou>>
-            <<show_character Bird Happy right>>
+            <<show_character Bird Happy2 right>>
             {$birdName}: Likewise! I hope we can converse again in the future.
             <<set $birdSecured = true>>
         <<endif>>
@@ -960,7 +966,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
     -> ...
 <<if $birdLikesYou >= $birdDislikesYou && $birdSecured == false>>
     <<show_character Bird Flirt right>>
-    {$birdName}: If you ever wish to converse again, simply send out a signal. I would be delighted to respond.
+    {$birdName}: If you ever wish to converse again, just ping me. I would be delighted to respond.
     <<set $birdSecured = true>>
 <<endif>>
 <<stop_voice_blip Bird>>
