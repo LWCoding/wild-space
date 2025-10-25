@@ -15,6 +15,16 @@ MonoBehaviour:
   characterName: Bird
   characterPrefab: {fileID: 3257140566696577627, guid: aa8b524c0596a49478263e3951bb646a, type: 3}
   expressions:
+  - {fileID: 11400000, guid: 3a49745fd0fc6f94c8bd6438c6d3a279, type: 2}
+  - {fileID: 11400000, guid: c6fb8921cd731434b923992159df48b6, type: 2}
+  - {fileID: 11400000, guid: 2fecf6be5f45cdf4fa9a463c4b39b29f, type: 2}
+  - {fileID: 11400000, guid: 4500ae576d19c684c8e0111cca3a3d5f, type: 2}
+  - {fileID: 11400000, guid: 464c3736cb3bbdb4d9acbe4f99c4a8d4, type: 2}
+  - {fileID: 11400000, guid: a11a99e30b3229343baaed1c969870eb, type: 2}
+  - {fileID: 11400000, guid: c23eb23431c150d47a5671fb3c522a22, type: 2}
+  - {fileID: 11400000, guid: 89cc190b65cb42b48b5fc6134e0543bc, type: 2}
+  - {fileID: 11400000, guid: 31ad83e4b11dec344aedd59ae4d5f56d, type: 2}
   - {fileID: 11400000, guid: d779f4e27d067204f886a384caf40f80, type: 2}
-  defaultExpression: {fileID: 11400000, guid: d779f4e27d067204f886a384caf40f80, type: 2}
+  - {fileID: 11400000, guid: f88376b1ebaaed54ab0e3eabb232b862, type: 2}
+  defaultExpression: {fileID: 11400000, guid: 31ad83e4b11dec344aedd59ae4d5f56d, type: 2}
   defaultScale: {x: 1, y: 1, z: 1}

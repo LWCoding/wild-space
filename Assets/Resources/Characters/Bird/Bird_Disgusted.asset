@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7d91d5b20131d46a2f5362d0167457, type: 3}
-  m_Name: Bird_Obscure
+  m_Name: Bird_Disgusted
   m_EditorClassIdentifier: 
-  ExpressionName: Obscure
-  ExpressionSprite: {fileID: 21300000, guid: 7489301a49fff6a419e442270292d010, type: 3}
+  ExpressionName: Disgusted
+  ExpressionSprite: {fileID: 21300000, guid: 17ba59c1320473b42b5a6eef37f93fda, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 522f2955e55a554419e4a5451fec0715, type: 3}
   BlipInterval: 0.1
   BlipVolume: 5
