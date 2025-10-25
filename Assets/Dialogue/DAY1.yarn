@@ -699,6 +699,7 @@ Narrator: The transmission cuts off abruptly. {$opossumName} takes their leave.
 title: BirdIntro
 position: 633,86
 ---
+<<declare $birdExplainedIntention = false>>
 <<hide_all_characters>>
 <<hide_all_objects>>
 Narrator: You pull up the communication panel and respond to the figure with the pointy muzzle.
@@ -707,14 +708,200 @@ Narrator: You turn the dials to let the signal through.
 <<show_character Bird Neutral right>>
 <<start_voice_blip Bird>>
 <<play_music BirdTheme 0.4>>
-???: Hi I'm a Bird. This section is unimplemented.
-???: As such, we will skip to the next section.
+???: Ah, hello alternate lifeform! It's so nice to meet.
+{$birdName}: I am {$birdName}, scientist of Aviaris and... um, seeker of knowledge.
+    -> What... are you?
+        <<show_character Bird Surprised right>>
+        {$birdName}: Ah, apologies. I take it you haven't heard of my species before.
+        {$birdName}: I am a Avianthrope, hailing from the planet Aviaris.
+    -> ...
+{$birdName}: If you don't mind, I have a brief questionnaire about your species. It's nothing intrusive, I promise.
+    -> Sure..?
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy right>>
+        {$birdName}: Wonderful! I appreciate your cooperation.
+    -> No.
+        <<set $birdDislikesYou += 1>>
+        <<show_character Bird Neutral right>>
+        {$birdName}: Hm. I see. Are you sure? It wouldn't take up too much of your time.
+            -> Yes, I'm sure.
+                <<show_character Bird Sad right>>
+                {$birdName}: Okay then, I know when I'm not wanted. Farewell.
+                <<stop_voice_blip Bird>>
+                <<hide_all_characters>>
+                <<play_music MainTheme>>
+                Narrator: The transmission cuts off abruptly. That was strange.
+                <<if $talkedToDog == false || $talkedToOpossum == false>>
+                    <<jump TalkToOthers>>
+                <<else>>
+                    <<jump EndDay1>>
+                <<endif>>
+            -> ...fine.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy right>>
+                {$birdName}: Thank you! I appreciate it.
+    -> I should be the one asking you questions!
+        <<set $birdDislikesYou += 1>>
+        <<show_character Bird Sad right>>
+        {$birdName}: Oh... I apologize if I offended you. That was not my intention.
+        {$birdName}: But if you insist, I suppose I can answer a question of yours.
+        -> What are you studying?
+            <<show_character Bird Neutral right>>
+            {$birdName}: Ah, well, I'm primarily interested in exploring the unknown.
+            <<show_character Bird Thinking right>>
+            {$birdName}: It's... hard to explain why I'm so interested in this. It's been a fascination of mine recently.
+            {$birdName}: I suppose I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
+            <<set $birdExplainedIntention = true>>
+        -> Why do you want to know about me?
+            <<show_character Bird Thinking right>>
+            {$birdName}: Hm... it's pretty hard to pinpoint.
+            {$birdName}: I suppose I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
+            <<set $birdExplainedIntention = true>>
+        -> I don't want to answer your questions.
+            <<show_character Bird Sad right>>
+            {$birdName}: Okay then, I know when I'm not wanted. Farewell.
+            <<stop_voice_blip Bird>>
+            <<hide_all_characters>>
+            <<play_music MainTheme>>
+            Narrator: The transmission cuts off abruptly. That was strange.
+            <<if $talkedToDog == false || $talkedToOpossum == false>>
+                <<jump TalkToOthers>>
+            <<else>>
+                <<jump EndDay1>>
+            <<endif>>
+<<show_character Bird Neutral right>>
+{$birdName}: Anyways, first question. What is your name?
+    -> {$playerName}.
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy right>>
+        <<set $birdThinksPlayerNameIs = $playerName>>
+        {$birdName}: {$playerName}? Lovely name.
+    -> (lie) Fox.
+        <<set $birdThinksPlayerNameIs = "Fox">>
+        {$birdName}: {$playerName}? Lovely name.
+    -> I don't have a name.
+        <<show_character Bird Thinking right>>
+        {$birdName}: Oh, I see. That's... inconvenient. I'll call you human, then. That is what you are, no?
+        -> Yes.
+            <<positive_indicator Bird>>
+            <<set $birdLikesYou += 1>>
+            {$birdName}: Excellent. Human it is.
+        -> No.
+            <<set $birdDislikesYou += 1>>
+            <<show_character Bird Sad right>>
+            {$birdName}: Hm. That's... troubling. I'll call you "MW-012", then. After your galaxy and coordinates.
+            <<set $birdThinksPlayerNameIs = "MW-012">>
+    -> I don't want to take your "quiz".
+        {$birdName}: Oh? Really? Are you sure? It'd be quick.
+            -> Yes, I'm sure.
+                <<show_character Bird Sad right>>
+                {$birdName}: Okay then, I know when I'm not wanted. Farewell.
+                <<stop_voice_blip Bird>>
+                <<hide_all_characters>>
+                <<play_music MainTheme>>
+                Narrator: The transmission cuts off abruptly. That was strange.
+                <<if $talkedToDog == false || $talkedToOpossum == false>>
+                    <<jump TalkToOthers>>
+                <<else>>
+                    <<jump EndDay1>>
+                <<endif>>
+            -> ...fine.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy right>>
+                {$birdName}: Thank you! I appreciate it.
+<<show_character Bird Neutral right>>
+{$birdName}: Thank you for your cooperation. Now, onto the next question.
+{$birdName}: What is your purpose out here in the vastness of space?
+    -> Exploring.
+        <<show_character Bird Happy right>>
+        {$birdName}: Fascinating... that's truly a noble pursuit.
+    -> Escaping.
+        <<show_character Bird Neutral right>>
+        {$birdName}: I see. Space can be a refuge for some.
+    -> I'm not sure.
+        <<show_character Bird Thinking right>>
+        <<set $birdDislikesYou += 1>>
+        {$birdName}: Hm, that's understandable. I'll put that down as...
+        <<show_character Bird Neutral right>>
+        {$birdName}: Um, I guess I'll leave that one as blank.
+<<show_character Bird Happy right>>
+{$birdName}: Final question! What is the ambient temperature of your home planet?
+    -> Around 15 degrees Celsius.
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy right>>
+        {$birdName}: Interesting! I appreciate the exact answer.
+    -> Extremely hot.
+        <<show_character Bird Neutral right>>
+        {$birdName}: I see. A warm planet, then.
+    -> Extremely cold.
+        <<show_character Bird Neutral right>>
+        {$birdName}: I see. A chilly planet, then.
+    -> Varies greatly.
+        <<show_character Bird Thinking right>>
+        {$birdName}: Hm, a planet with diverse climates. Fascinating.
+<<show_character Bird Happy right>>
+{$birdName}: That concludes our little questionnaire. Thank you for your cooperation.
+    -> No problem.
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy right>>
+        {$birdName}: Wonderful! I appreciate your willingness to help further scientific knowledge.
+    -> ...that's it?
+        <<set $birdDislikesYou += 1>>
+        <<show_character Bird Neutral right>>
+        {$birdName}: Hm, yes. Well, thank you for your time, regardless.
+    -> Why are you so interested in this? <<if $birdExplainedIntention == false>>
+        <<set $birdExplainedIntention = true>>
+        {$birdName}: Mmm, well, as a scientist, I'm always eager to learn more about different lifeforms.
+        {$birdName}: Your species is particularly intriguing to me, given your unique characteristics.
+        <<if $birdLikesYou >= $birdDislikesYou>>
+            <<show_character Bird Happy right>>
+            <<positive_indicator Bird>>
+            <<set $birdLikesYou += 1>>
+            {$birdName}: I hope to learn about you more in the future.
+        <<else>>
+            <<show_character Bird Neutral right>>
+            <<set $birdDislikesYou += 1>>
+            {$birdName}: But I understand if you're not interested in sharing more.
+        <<endif>>
+<<show_character Bird Neutral right>>
+{$birdName}: I suppose I should take my leave, then. Do you have any closing thoughts?
+    -> Why me? <<if $birdExplainedIntention == false>>
+        <<set $birdExplainedIntention = true>>
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Thinking right>>
+        {$birdName}: Ah, that's a good question. One I haven't really thought much about myself yet.
+        <<show_character Bird Neutral right>>
+        {$birdName}: I suppose I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
+    -> It was nice talking to you.
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<if $birdLikesYou >= $birdDislikesYou>>
+            <<show_character Bird Happy right>>
+            {$birdName}: Likewise! I hope we can converse again in the future.
+            <<set $birdSecured = true>>
+        <<endif>>
+    -> Goodbye.
+        <<show_character Bird Neutral right>>
+        {$birdName}: Farewell, then. Safe travels out there in the cosmos.
+    -> ...
+<<if $birdLikesYou >= $birdDislikesYou && $birdSecured == false>>
+    <<show_character Bird Flirt right>>
+    {$birdName}: If you ever wish to converse again, simply send out a signal. I would be delighted to respond.
+    <<set $birdSecured = true>>
+<<endif>>
 <<stop_voice_blip Bird>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
-Narrator: The transmission cuts off as ...
+Narrator: The transmission cuts off as {$birdName} takes their leave.
 <<if $birdSecured == true>>
-    Narrator: You notice a transmission from {$birdName} saved onto your monitor. If you'd like, you can ping them again in the future.
+    Narrator: You notice a transmission from {$birdName} saved onto your monitor. You can reach out at any time later.
 <<endif>>
 <<if $talkedToDog == false || $talkedToOpossum == false>>
     <<jump TalkToOthers>>

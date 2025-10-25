@@ -3,6 +3,7 @@ title: Globals
 <<declare $catThinksPlayerNameIs = "Human">>
 <<declare $dogThinksPlayerNameIs = "Human">>
 <<declare $opossumThinksPlayerNameIs = "Human">>
+<<declare $birdThinksPlayerNameIs = "Human">>
 <<declare $dogKnowsPlayerName = false>>
 <<declare $catLikesYou = 0>>
 <<declare $catDislikesYou = 0>>
@@ -10,6 +11,8 @@ title: Globals
 <<declare $dogDislikesYou = 0>>
 <<declare $opossumLikesYou = 0>>
 <<declare $opossumDislikesYou = 0>>
+<<declare $birdLikesYou = 0>>
+<<declare $birdDislikesYou = 0>>
 
 <<declare $posSelfPerception = 0>>
 <<declare $negSelfPerception = 0>>
