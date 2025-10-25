@@ -707,14 +707,21 @@ Narrator: You pull up the communication panel and respond to the figure with the
 Narrator: You turn the dials to let the signal through.
 <<show_character Bird Happy2 right>>
 <<start_voice_blip Bird>>
-<<play_music BirdTheme 0.4>>
+<<play_music BirdTheme 0.3>>
 ???: Ah, hello alternate lifeform! It's so nice to meet you.
-<<show_character Bird Happy right>>
+<<show_character Bird Nervous right>>
 {$birdName}: I am {$birdName}, scientist of Aviaris and... um, seeker of knowledge.
     -> What... are you?
-        <<show_character Bird Surprised right>>
-        {$birdName}: Ah, apologies. I take it you haven't heard of my species before.
-        {$birdName}: I am a Avianthrope, hailing from the planet Aviaris.
+        <<show_character Bird Confused right>>
+        {$birdName}: Oh, right. I take it you haven't heard of us before.
+        <<show_character Bird Neutral right>>
+        {$birdName}: I'm an Avianthrope, hailing from the planet Aviaris.
+    -> Aviaris? Is that a word?
+        <<show_character Bird Confused right>>
+        {$birdName}: Oh, right. I take it you haven't heard of us before.
+        <<show_character Bird Neutral right>>
+        {$birdName}: It's just the name of my home planet! Don't worry, I come in peace.
+        {$birdName}: I'm an Avianthrope, and Aviaris is the name of our planet.
     -> ...
 <<stop_voice_blip Bird>>
 <<show_character Bird Nervous right>>
@@ -726,7 +733,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
         {$birdName}: Wonderful! I appreciate your cooperation.
-    -> No.
+    -> I don't do questions.
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Nervous right>>
         {$birdName}: Hm. I see. Are you sure? It wouldn't take up too much of your time.
@@ -778,27 +785,26 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<jump EndDay1>>
             <<endif>>
 <<show_character Bird Happy right>>
-{$birdName}: Anyways, first question. What is your name?
+{$birdName}: Anyways, first question. An easy one! What should I call you?
     -> {$playerName}.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy2 right>>
         <<set $birdThinksPlayerNameIs = $playerName>>
         {$birdName}: {$birdThinksPlayerNameIs}? Lovely name.
-    -> (lie) Fox.
-        <<set $birdThinksPlayerNameIs = "Fox">>
-        {$birdName}: {$birdThinksPlayerNameIs}? Interesting and lovely name.
     -> I don't have a name.
         <<show_character Bird Thinking right>>
         {$birdName}: Oh, I see. That's... inconvenient. I'll call you human, then. That is what you are, no?
-        -> Yes.
+        -> Yes, human works.
             <<positive_indicator Bird>>
             <<set $birdLikesYou += 1>>
             {$birdName}: Excellent. Human it is.
-        -> No.
+        -> No. I'm not a human.
             <<set $birdDislikesYou += 1>>
-            <<show_character Bird Sad right>>
-            {$birdName}: Hm. That's... troubling. I'll call you "MW-012", then. After your galaxy and coordinates.
+            <<show_character Bird Confused right>>
+            {$birdName}: Hm. That's... troubling. I'll just list down your galaxy and coordinates.
+            <<show_character Bird Nervous right>>
+            {$birdName}: It's... a pleasure to meet you, MW-012!
             <<set $birdThinksPlayerNameIs = "MW-012">>
     -> I don't want to take your "quiz".
         {$birdName}: Oh? Really? Are you sure? It'd be quick.
@@ -839,7 +845,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 {$birdName}: Ah, a thrill-seeker. I don't get out too much myself, but I admire it.
                 {$birdName}: I'd like to know more about that, perhaps later.
             -> I like reporting your kind.
-                <<show_character Bird Confused right>>
+                <<show_character Bird Disgusted right>>
                 {$birdName}: Is that... a threat?
                 <<set $birdDislikesYou += 2>>
                 <<if $birdLikesYou <= $birdDislikesYou>>
