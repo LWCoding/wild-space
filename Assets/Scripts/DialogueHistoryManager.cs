@@ -38,6 +38,10 @@ public class DialogueHistoryManager : MonoBehaviour
     private List<DialogueHistoryEntry> dialogueHistory = new List<DialogueHistoryEntry>();
     private StringBuilder historyStringBuilder = new StringBuilder();
     private int currentPageIndex = 0;
+    
+    // Centralized typing state management
+    private static bool _isTypingInProgress = false;
+    private int _activeTypingCount = 0; // Track how many YarnTypeToFinish scripts are typing
 
     /// <summary>
     /// Represents a single entry in the dialogue history
@@ -98,12 +102,18 @@ public class DialogueHistoryManager : MonoBehaviour
     {
         // Subscribe to our own events for UI updates
         OnDialogueAdded += OnDialogueAddedInternal;
+        
+        // Subscribe to YarnSpinner typewriter events
+        LinePresenter.OnTypewriterFinished += OnYarnTypewriterFinished;
     }
 
     void OnDisable()
     {
         // Unsubscribe from our own events
         OnDialogueAdded -= OnDialogueAddedInternal;
+        
+        // Unsubscribe from YarnSpinner events
+        LinePresenter.OnTypewriterFinished -= OnYarnTypewriterFinished;
     }
 
     void OnDestroy()
@@ -112,6 +122,7 @@ public class DialogueHistoryManager : MonoBehaviour
         if (Instance == this)
         {
             LinePresenter.OnDialogueLineCompleted -= OnDialogueLineCompleted;
+            LinePresenter.OnTypewriterFinished -= OnYarnTypewriterFinished;
         }
     }
 
@@ -285,6 +296,13 @@ public class DialogueHistoryManager : MonoBehaviour
             return;
         }
 
+        // Don't allow history toggle if typing is currently in progress
+        if (_isTypingInProgress)
+        {
+            Debug.Log("Cannot toggle history while typing is in progress");
+            return;
+        }
+
         // Check if history is currently open
         bool isHistoryOpen = historyPanel.activeSelf;
 
@@ -312,6 +330,13 @@ public class DialogueHistoryManager : MonoBehaviour
     /// </summary>
     public void OnHistoryButtonClicked()
     {
+        // Don't allow history toggle if typing is currently in progress
+        if (_isTypingInProgress)
+        {
+            Debug.Log("Cannot toggle history while typing is in progress");
+            return;
+        }
+        
         ToggleHistory();
         
         // Remove focus from the button to prevent Space key from re-triggering it
@@ -618,6 +643,35 @@ public class DialogueHistoryManager : MonoBehaviour
     public int GetHistoryCount()
     {
         return dialogueHistory.Count;
+    }
+    
+    /// <summary>
+    /// Set typing in progress state (called by YarnTypeToFinish scripts)
+    /// </summary>
+    public void SetTypingInProgress(bool isTyping)
+    {
+        if (isTyping)
+        {
+            _activeTypingCount++;
+        }
+        else
+        {
+            _activeTypingCount = Mathf.Max(0, _activeTypingCount - 1);
+        }
+        
+        _isTypingInProgress = _activeTypingCount > 0;
+        
+        Debug.Log($"Typing state updated: {_isTypingInProgress} (active count: {_activeTypingCount})");
+    }
+    
+    /// <summary>
+    /// Called when YarnSpinner typewriter finishes
+    /// </summary>
+    private void OnYarnTypewriterFinished()
+    {
+        // YarnSpinner typewriter finished, but we still need to check if YarnTypeToFinish is active
+        // This is handled by the individual YarnTypeToFinish scripts calling SetTypingInProgress
+        Debug.Log("YarnSpinner typewriter finished");
     }
     
 }

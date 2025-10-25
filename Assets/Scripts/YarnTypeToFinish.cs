@@ -20,6 +20,7 @@ public class YarnTypeToFinish : MonoBehaviour
     private int _charactersShown = 0;
     private bool _loadedNode = false;
     private AudioManager _audioManager;
+    private bool _isCurrentlyTyping = false;
 
     private void Awake()
     {
@@ -28,6 +29,7 @@ public class YarnTypeToFinish : MonoBehaviour
         _audioManager = AudioManager.Instance;
         _textToChange.text = "";  // Hide text initially
     }
+    
 
     private void Update()
     {
@@ -43,7 +45,10 @@ public class YarnTypeToFinish : MonoBehaviour
                     _audioManager.PlayTypingSound();
                 }
                 
+                // Track typing state changes
+                bool wasTyping = _isCurrentlyTyping;
                 _charactersShown = Mathf.Min(_charactersShown + 3, _messageToShow.Length);
+                
                 // Skip spaces.
                 while (_charactersShown < _messageToShow.Length && _messageToShow[_charactersShown] == ' ')
                 {
@@ -51,11 +56,29 @@ public class YarnTypeToFinish : MonoBehaviour
                 }
 
                 _textToChange.text = _messageToShow[.._charactersShown];
+                
+                // Update typing state based on progress
+                bool isNowTyping = _charactersShown < _messageToShow.Length;
+                if (wasTyping != isNowTyping)
+                {
+                    _isCurrentlyTyping = isNowTyping;
+                    DialogueHistoryManager.Instance?.SetTypingInProgress(isNowTyping);
+                }
+                
                 if (!_loadedNode && _charactersShown == _messageToShow.Length)
                 {
                     _loadedNode = true;
                     StartCoroutine(StartYarnScriptAfterDelayCoroutine(1));
                 }
+            }
+        }
+        else
+        {
+            // If sprite renderer is disabled, we're not typing
+            if (_isCurrentlyTyping)
+            {
+                _isCurrentlyTyping = false;
+                DialogueHistoryManager.Instance?.SetTypingInProgress(false);
             }
         }
     }
@@ -65,5 +88,6 @@ public class YarnTypeToFinish : MonoBehaviour
         yield return new WaitForSeconds(delay);
         _dialogueRunner.StartDialogue(_nodeName);
     }
+    
 
 }
