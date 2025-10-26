@@ -588,8 +588,8 @@ Narrator: You turn the dials to let the signal through.
 <<show_character Opossum Neutral right>>
 <<start_voice_blip Opossum>>
 <<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
-???: Oh, hey. Sorry, I didn't expect anyone to actually answer.
-???: I... don't really interact with people much. It's cool to meet you, I guess.
+???: Oh, hey. I didn't expect anyone to actually answer.
+???: I... don't really chat with others much. It's cool to meet you, I guess.
     -> Holy shit. Are you a rat?
         <<show_character Opossum Angry right>>
         ???: What the fuck is a rat...
@@ -607,7 +607,9 @@ Narrator: You turn the dials to let the signal through.
     -> Who are you?
         {$opossumName}: The name's {$opossumName}. I'm... from nowhere, really.
     -> What's your story?
+        <<show_character Opossum Confused right>>
         ???: Nothing I'm comfortable with sharing with a stranger. I'm just from a little messed up planet in the middle of nowhere.
+        <<show_character Opossum Neutral right>>
         {$opossumName}: The name's {$opossumName}, by the way.
     {$opossumName}: And you? What should I call you?
         -> I'm {$playerName}.
@@ -619,7 +621,7 @@ Narrator: You turn the dials to let the signal through.
         -> A human.
             <<show_character Opossum Thinking right>>
             {$opossumName}: A human, huh? Never met one of you before.
-            {$opossumName}: I guess I'll just call you "Human" for now.
+            {$opossumName}: "Human" it is.
         -> What the fuck?
             <<show_character Opossum Confused right>>
             {$opossumName}: Whoa, no need to be rude. I can just go, if you want to.
@@ -661,27 +663,55 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
         <<positive_indicator Opossum>>
         <<set $opossumLikesYou += 1>>
         <<start_voice_blip Opossum>>
-        {$opossumName}: It's... complicated. I don't really like talking about it.
+        {$opossumName}: ...
     -> ...
     <<start_voice_blip Opossum>>
     <<show_character Opossum Thinking right>>
-    {$opossumName}: I don't know. I guess space is just full of weirdos like me.
-    {$opossumName}: I don't belong out here, but I don't really have anywhere else to go.
+    {$opossumName}: I don't know. Space just has a lot of weirdos.
+    {$opossumName}: I feel like I just don't really have anywhere else to go.
     <<show_character Opossum Angry right>>
-    {$opossumName}: God... I hate space. It's so... empty.
-    {$opossumName}: I just want to find a place where I belong.
+    {$opossumName}: God... I <i>hate</i> space. It's so... <i>empty</i>. 
+        -> What are you doing out here, then?
+        -> I find it relaxing.
+        -> ...
     <<show_character Opossum Sad right>>
     {$opossumName}: Ah! Sorry, I didn't mean to unload all that on you.
-<<show_character Opossum Happy right>>
-{$opossumName}: I'm fine, really. I'm doing great!
 <<show_character Opossum Thinking right>>
-{$opossumName}: Why am I like this...
+{$opossumName}: <i>Why am I like this...</i>
+<<show_character Opossum Flirt right>>
+{$opossumName}: Look, I reached out because I'm looking for some people to talk to.
+<<show_character Opossum Neutral right>>
+{$opossumName}: I don't really have anywhere else to go right now, so it'd be nice to have a bit of company.
+    -> Sure, I can do that.
+        <<show_character Opossum Confused right>>
+        <<positive_indicator Opossum>>
+        <<set $opossumLikesYou += 1>>
+        {$opossumName}: R-really? Just like that?
+    -> Um, I don't even know you.
+        <<show_character Opossum Confused right>>
+        {$opossumName}: That's... fair.
+        <<show_character Opossum Neutral right>>
+        {$opossumName}: Thanks for dealing with me being around for a while, anyways.
+    -> Go away!
+        <<show_character Opossum Angry right>>
+        {$opossumName}: ...
+        {$opossumName}: I don't even know why I try...
+        <<stop_voice_blip Opossum>>
+        <<hide_all_characters>>
+        <<play_music MainTheme>>
+        Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
+        <<if $talkedToDog == false || $talkedToBird == false>>
+            <<jump TalkToOthers>>
+        <<else>>
+            <<jump EndDay1>>
+        <<endif>>
 <<if $opossumLikesYou >= $opossumDislikesYou>>
     <<show_character Opossum Happy right>>
-    {$opossumName}: Thanks for listening, though. I enjoyed the short talk. Let's talk more later...
+    <<set $opossumSecured = true>>
+    {$opossumName}: Thanks for listening, though. I enjoyed the short talk. Maybe we can talk for real, later.
 <<else>>
     <<show_character Opossum Thinking right>>
-    {$opossumName}: Sorry for dumping all that on you. You probably don't want to hear about my problems. I'll leave you alone.
+    {$opossumName}: Sorry for that. You probably don't want to hear about my problems. I'll leave you alone.
 <<endif>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
@@ -733,7 +763,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
         {$birdName}: Wonderful! I appreciate your cooperation.
-    -> I don't do questions.
+    -> I'd rather not.
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Nervous right>>
         {$birdName}: Hm. I see. Are you sure? It wouldn't take up too much of your time.
@@ -754,12 +784,12 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<set $birdLikesYou += 1>>
                 <<show_character Bird Happy right>>
                 {$birdName}: Thank you! I appreciate it.
-    -> I should be the one asking you questions!
+    -> I have so many questions...
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Sad right>>
-        {$birdName}: Oh... I apologize if I offended you. That was not my intention.
+        {$birdName}: Oh... I apologize if I was too forward!
         <<show_character Bird Nervous right>>
-        {$birdName}: But if you insist, I suppose I can answer a question of yours.
+        {$birdName}: If you want, I suppose I can answer a question of yours first.
         -> What are you studying?
             <<show_character Bird Happy right>>
             {$birdName}: Ah, well, I'm primarily interested in exploring the unknown.
@@ -774,7 +804,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             <<set $birdExplainedIntention = true>>
         -> I don't want to answer your questions.
             <<show_character Bird Sad right>>
-            {$birdName}: Okay then, I know when I'm not wanted. Farewell.
+            {$birdName}: Okay then. Thanks for your time anyways. Bye.
             <<stop_voice_blip Bird>>
             <<hide_all_characters>>
             <<play_music MainTheme>>
@@ -807,10 +837,12 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             {$birdName}: It's... a pleasure to meet you, MW-012!
             <<set $birdThinksPlayerNameIs = "MW-012">>
     -> I don't want to take your "quiz".
-        {$birdName}: Oh? Really? Are you sure? It'd be quick.
+        <<set $birdDislikesYou += 1>>
+        <<show_character Bird Nervous right>>
+        {$birdName}: Aw, are you sure? It'd be quick.
             -> Yes, I'm sure.
                 <<show_character Bird Sad right>>
-                {$birdName}: Okay then, I know when I'm not wanted. Farewell.
+                {$birdName}: Okay then. Thanks for your time anyways. Bye.
                 <<stop_voice_blip Bird>>
                 <<hide_all_characters>>
                 <<play_music MainTheme>>
@@ -894,7 +926,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<show_character Bird Sweat right>>
         {$birdName}: Um, I guess I'll leave that one as blank.
 <<show_character Bird Happy right>>
-{$birdName}: Final question! What is the ambient temperature of your home planet?
+{$birdName}: Final question! How would you describe the ambient temperature of your home planet?
     -> Around 15 degrees Celsius.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>

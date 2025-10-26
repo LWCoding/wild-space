@@ -15,5 +15,5 @@ MonoBehaviour:
   ExpressionName: Confused
   ExpressionSprite: {fileID: 21300000, guid: 78164428bdf8db34eb9273149f0561a5, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 522f2955e55a554419e4a5451fec0715, type: 3}
-  BlipInterval: 0.12
-  BlipVolume: 0.1
+  BlipInterval: 0.125
+  BlipVolume: 0.25

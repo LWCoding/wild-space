@@ -15,5 +15,5 @@ MonoBehaviour:
   ExpressionName: Disgusted
   ExpressionSprite: {fileID: 21300000, guid: 17ba59c1320473b42b5a6eef37f93fda, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 522f2955e55a554419e4a5451fec0715, type: 3}
-  BlipInterval: 0.12
-  BlipVolume: 0.1
+  BlipInterval: 0.125
+  BlipVolume: 0.25
