@@ -71,7 +71,7 @@ position: 422,282
 Narrator: You call {$catName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Cat>>
 <<play_music CatTheme 0.5>>
-<<if $catLikesYou >= $catDislikesYou>>
+<<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
     {$catName}: Hi again! I missed you. It's been a while.
 <<else>>
@@ -98,6 +98,7 @@ Narrator: You call {$catName}. You see movement, and start tweaking the dials to
                             {$catName}: Alright, I'll help you. But only because I care about you, {$catThinksPlayerNameIs}.
                         <<endif>>
                     -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
+                        <<stop_voice_blip Cat>>
                         Narrator: You decide to disconnect the call with {$catName} for now.
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
@@ -142,7 +143,7 @@ position: 408,123
 Narrator: You call {$dogName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Dog>>
 <<play_music DogTheme 0.5>>
-<<if $dogLikesYou >= $dogDislikesYou>>
+<<if $dogLikesYou > $dogDislikesYou>>
     <<show_character Dog Happy right>>
     {$dogName}: Oh! Woof. It's you again. Hi, {$dogThinksPlayerNameIs}. Woof.
 <<else>>
@@ -173,6 +174,7 @@ Narrator: You call {$dogName}. You see movement, and start tweaking the dials to
                             {$dogName}: Alright, I'll help you. You're a good human, {$dogThinksPlayerNameIs}. Woof.
                         <<endif>>
                     -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
+                        <<stop_voice_blip Dog>>
                         Narrator: You decide to disconnect the call with {$dogName} for now.
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
@@ -180,6 +182,7 @@ Narrator: You call {$dogName}. You see movement, and start tweaking the dials to
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
+            
                 {$dogName}: Woof... I see. That seems pretty urgent. Let me see what I can do.
             -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $dogLikesYou >= $dogDislikesYou>>
                 <<show_character Dog Flirt right>>
@@ -206,24 +209,24 @@ position: 409,-43
 Narrator: You call {$opossumName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Opossum>>
 <<play_music OpossumTheme 0.5>>
-<<if $opossumLikesYou >= $opossumDislikesYou>>
+<<if $opossumLikesYou > $opossumDislikesYou>>
     <<show_character Opossum Happy right>>
     {$opossumName}: Oh! It's you again. Hi, {$opossumThinksPlayerNameIs}.
 <<else>>
     <<show_character Opossum Neutral right>>
     {$opossumName}: Oh? It's you again. What do you want?
 <<endif>>
-<<show_character Opossum Sad right>>
+<<show_character Opossum Confused right>>
 {$opossumName}: Are things okay? You look... worried.
     -> (explain your situation)
         <<stop_voice_blip Opossum>>
         Narrator: You explain that your oxygen supply is running low, and you need help fast.
         <<start_voice_blip Opossum>>
         <<show_character Opossum Thinking right>>
-        {$opossumName}: Woof... have you tried asking the people from your planet for help?
+        {$opossumName}: Huh, that is a pickle. Your home planet's not trying to save you?
             -> I haven't tried yet.
                 <<show_character Opossum Angry right>>
-                {$opossumName}: Woof. I understand. Planet leaders can be frustrating.
+                {$opossumName}: Heh, well as much as I appreciate you thinking of me first, I'm not entirely sure what I can do. My home planet's a bit... different.
                     -> Is there anything you can do?
                         <<if $opossumLikesYou < $opossumDislikesYou>>
                             <<show_character Opossum Sad right>>
@@ -234,9 +237,10 @@ Narrator: You call {$opossumName}. You see movement, and start tweaking the dial
                             <<jump EmbraceDeath>>
                         <<else>>
                             <<show_character Opossum Neutral right>>
-                            {$opossumName}: Alright, I'll help you. You're a good human, {$opossumThinksPlayerNameIs}. Woof.
+                            {$opossumName}: Mmm, I really don't want to do this. But, I guess I can try to get you back to my planet.
                         <<endif>>
-                    -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
+                    -> I'll try calling Earth first. (call earth) <<if $askedEarthForHelp == false>>
+                        <<stop_voice_blip Opossum>>
                         Narrator: You decide to disconnect the call with {$opossumName} for now.
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
@@ -244,15 +248,17 @@ Narrator: You call {$opossumName}. You see movement, and start tweaking the dial
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-                {$opossumName}: Woof... I see. That seems pretty urgent. Let me see what I can do.
+                <<show_character Opossum Neutral right>>
+                {$opossumName}: Ugh, that is pretty inconvenient.
             -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $opossumLikesYou >= $opossumDislikesYou>>
                 <<show_character Opossum Flirt right>>
-                {$opossumName}: Heh, oh you... Alright, I'll help you out. Woof.
+                {$opossumName}: ...Pretty bold.
+                {$opossumName}: I guess, the best I can do is get you to my planet. I... won't like it, but maybe I can stay with you there for a while.
 <<show_character Opossum Neutral right>>
-{$opossumName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will bring you here, to my home planet. Woof.
-{$opossumName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
+{$opossumName}: Be prepared for a rescue mission soon.
+{$opossumName}: If I can get the pod sent, just note you'll probably never be able to return to your home planet again.
     -> Isn't there another way?
-        {$opossumName}: Woof... do you have any plans? Because I sure don't.
+        {$opossumName}: I wish I could help you some other way, but... this is all I have.
             -> Let's do it.
                 <<jump AcceptOpossumHelp>>
             -> I think I'll just accept my fate instead.
