@@ -271,7 +271,7 @@ title: CatRecurringTreeDay2
             Narrator: You feel your social battery start to drain, so you decide to end the conversation for now.
         <<endif>>
         <<start_voice_blip Cat>>
-        <<if $catLikesYou >= $catDislikesYou>>
+        <<if $catLikesYou > $catDislikesYou>>
             <<show_character Cat Happy right>>
             {$catName}: Aww, already? I was just starting to have fun!
             {$catName}: But okay, if you need to go, I understand. Just ping me again sometime, okay {$catThinksPlayerNameIs}?
@@ -500,7 +500,7 @@ title: DogRecurringTreeDay2
             Narrator: You feel your social battery start to drain, so you decide to end the conversation for now.
         <<endif>>
         <<start_voice_blip Dog>>
-        <<if $dogLikesYou >= $dogDislikesYou>>
+        <<if $dogLikesYou > $dogDislikesYou>>
             <<show_character Dog Happy right>>
             {$dogName}: Aw, okay. Woof. It was really fun talking! Woof.
             {$dogName}: We should talk more, {$dogThinksPlayerNameIs}. Woof.
@@ -543,6 +543,12 @@ Narrator: You call {$opossumName}. The line remains static for a little while, b
             {$opossumName}: Oh, sure. I wouldn't mind giving that a shot.
 <<endif>>
 <<jump OpossumRecurringTreeDay2>>
+<<declare $day2AskedOpossumQ1 = false>>
+<<declare $day2AskedOpossumQ2 = false>>
+<<declare $day2AskedOpossumQ3 = false>>
+<<declare $day2AskedOpossumQ4 = false>>
+<<declare $day2AskedOpossumQ5 = false>>
+<<declare $knowOpossumBackstory = false>>
 ===
 
 title: OpossumRecurringTreeDay2
@@ -555,179 +561,192 @@ title: OpossumRecurringTreeDay2
 <<endonce>>
 <<show_character Opossum Neutral right>>
 {$opossumName}: What did you want to talk about?
-    -> What is it like out here? <<if $day2AskedDogQ1 == false>>
-        <<set $day2AskedDogQ1 = true>>
-        <<show_character Dog Happy right>>
-        {$dogName}: Oh, so peaceful! Many friends. Woof. Many not-friends too, but enough friends to keep me company. Woof.
-        <<show_character Dog Angry right>>
-        {$dogName}: I'm happy that it's not like my home planet. Woof. It's too much sometimes. Woof.
-            -> What's your home planet like?
-                <<show_character Dog Sad right>>
-                {$dogName}: Woof. It's very... strict. Woof. Barklon watches everything all the time. Woof.
-            -> What's wrong with it?
-                <<show_character Dog Sad right>>
-                {$dogName}: Woof. It's very... strict. Woof. Barklon watches everything all the time. Woof.
-            -> But you must love your planet. You're from it!
-                <<set $dogDislikesYou += 1>>
-                <<show_character Dog Angry right>>
-                {$dogName}: Woof. I don't know about that. Woof. I just want to be where I feel safe. Woof.
-                {$dogName}: Barklon is very... controlling. Woof. Everything is being watched all the time. Woof.
-        <<show_character Dog Surprised right>>
-        {$dogName}: Actually, can you keep a secret? Woof.
-            -> (POSITIVE SELF-IMAGE) Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
-                <<positive_indicator Dog>>
-                <<set $dogLikesYou += 1>>
-                <<show_character Dog Neutral right>>
-                {$dogName}: So, {$playerName}. Woof. I don't usually tell anyone this, but...
-                <<show_character Dog Angry right>>
-                {$dogName}: I saved a group of young pups. Woof. From a big shot. Big woofer.
-                {$dogName}: They were in trouble. Woof. I couldn't just leave them there. Woof.
-                    -> And?
+    -> What is it like out here? <<if $day2AskedOpossumQ1 == false>>
+        <<set $day2AskedOpossumQ1 = true>>
+        <<show_character Opossum Confused right>>
+        {$opossumName}: Honestly, pretty miserable. I didn't choose to leave home.
+        {$opossumName}: But here I am, stuck on some rock floating in space.
+            -> Why did you leave home?
+                <<show_character Opossum Sad right>>
+                {$opossumName}: Yeah... I made some bad choices.
+                <<show_character Opossum Neutral right>>
+                {$opossumName}: Basically, I didn't have parents that cared about me. Abandoned at birth.
+                {$opossumName}: I... got in with the wrong crowd. Did some things I'm not proud of.
+                -> Sorry to hear that.
+                    <<positive_indicator Opossum>>
+                    <<set $opossumLikesYou += 1>>
+                    <<show_character Opossum Sad right>>
+                    {$opossumName}: Thanks. It still hurts a lot.
+                    <<show_character Opossum Happy right>>
+                    {$opossumName}: But I'm trying to turn my life around. Being out here is a fresh start.
+                -> (POSITIVE RELATIONSHIP) What did you do? <<if $opossumLikesYou > $opossumDislikesYou && $knowOpossumBackstory == false>>
+                    <<show_character Opossum Angry right>>
+                    {$opossumName}: I... I was pressured to kill a child.
+                    <<show_character Opossum Sad right>>
+                    {$opossumName}: It was awful. I regret it every day. I can't forgive myself.
+                    {$opossumName}: It could've been me, you know? I could've been one of the unlucky ones. But somehow, I figured out how to survive on my own.
+                    -> You're... terrible.
+                        <<set $opossumDislikesYou += 3>>
+                        <<show_character Opossum Sad right>>
+                        {$opossumName}: Yeah... I know. 
+                        {$opossumName}: I hate myself for it too.
+                    -> I'm sorry you had to go through that.
+                        <<positive_indicator Opossum>>
+                        <<set $opossumLikesYou += 1>>
+                        <<show_character Opossum Happy right>>
+                        {$opossumName}: Thanks. It doesn't make up for what I did, but it means a lot to hear that.
+                -> ...
+                <<show_character Opossum Confused right>>
+                {$opossumName}: ...
+                {$opossumName}: Sorry, I can get a bit emotional.
+                    -> No, you're okay.
+                        <<positive_indicator Opossum>>
+                        <<set $opossumLikesYou += 1>>
+                        {$opossumName}: It... it means a lot that you're being so understanding.
                     -> ...
-                <<show_character Dog Happy right>>
-                {$dogName}: I brought them to a safe place. I felt so proud. Woof. But when I told my family...
-                <<show_character Dog Sad right>>
-                {$dogName}: They didn't like it. Woof. They thought I was being disloyal. Woof.
-                {$dogName}: I noticed that mom and dad were scared. Woof. They thought the big shots would come after us. Woof.
-                <<show_character Dog Angry right>>
-                {$dogName}: Then I noticed that they were being patrolled more often. Woof. They think they can do anything. Woof.
-                {$dogName}: Family was in danger if I stayed. Woof. So I left. Forever.
-                    -> That's brave of you.
-                        <<positive_indicator Dog>>
-                        <<set $dogLikesYou += 1>>
-                        <<show_character Dog Neutral right>>
-                        {$dogName}: Woof... Thank you, {$playerName}.
-                        <<if $dogLikesYou >= $dogDislikesYou>>
-                            <<show_character Dog Flirt right>>
-                            {$dogName}: I can tell you're one of the good ones, {$catThinksPlayerNameIs}. Woof.
-                        <<endif>>
-                    -> That sounds impulsive.
-                        <<set $dogDislikesYou += 1>>
-                        <<show_character Dog Sad right>>
-                        {$dogName}: Woof...
-                    {$dogName}: But I don't regret it. Woof. I do wish I could see my parents again, though. Woof.
-            -> (NEGATIVE SELF-IMAGE) I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
-                <<show_character Dog Neutral right>>
-                {$dogName}: Oh, that's okay. Nevermind, then. Woof.
-            -> ...
-                <<show_character Dog Neutral right>>
-                {$dogName}: ...Nevermind, then. Woof.
-    -> What is your mission? <<if $day2AskedDogQ2 == false>>
-        <<set $day2AskedDogQ2 = true>>
-        {$dogName}: Mission? Woof. I want to wander and find a better place. Anywhere better than Barklon. Woof.
-            -> But what is your <i>mission</i>? You know, as an alien?
-                <<show_character Dog Sad right>>
-                {$dogName}: Woof? I don't understand.
-                <<set $dogDislikesYou += 1>>
-                <<show_character Dog Neutral right>>
-                {$dogName}: I just want to adventure. Woof. I've never felt as free as I do out here. Woof.
-            -> Do you have a job? <<if $knowDogJob == false>>
-                <<set $knowDogJob = true>>
-                <<positive_indicator Dog>>
-                <<set $dogLikesYou += 1>>
-                <<show_character Dog Happy right>>
-                {$dogName}: I worked in a fabric store. Woof. Made a lot of stuff. Woof.
-                {$dogName}: Neck rags, paw covers, those sorts of things. Woof.
-                <<show_character Dog Neutral right>>
-                {$dogName}: Nothing I'm too proud of, but it paid the bills on Barklon. Woof.
-            -> Oh, I see.
-    -> What do you do for work? <<if $knowDogJob == false>>
-        <<set $knowDogJob = true>>
-        <<positive_indicator Dog>>
-        <<set $dogLikesYou += 1>>
-        <<show_character Dog Happy right>>
-        {$dogName}: I worked with my family in the fabric store. Woof. We made a lot of stuff. Woof.
-        {$dogName}: Neck rags, paw covers, those sorts of things. Woof.
-        <<show_character Dog Neutral right>>
-        {$dogName}: Nothing I'm too proud of, but it paid the bills on Barklon. Woof.
-    -> What do you do for fun? <<if $day2AskedDogQ3 == false>>
-        <<set $day2AskedDogQ3 = true>>
-        {$dogName}: Fun? Woof. I like to run around and explore new places. Woof.
-        {$dogName}: Back on Barklon, I never got to do that. Woof. Always had to stay inside and work. Woof.
-    -> Do you have a family? <<if $day2AskedDogQ4 == false>>
-        <<set $day2AskedDogQ4 = true>>
-        <<show_character Dog Surprised right>>
-        {$dogName}: Woof! Yeah, I do! Woof. I'm pretty close with them, even though I'm far away now. Woof.
-        {$dogName}: They live a hard life. Woof. They make thingies with rags. Woof.
-            -> That must be hard.
-                <<positive_indicator Dog>>
-                <<set $dogLikesYou += 1>>
-                <<show_character Dog Sad right>>
-                {$dogName}: It is. But there's not a big chance I'll see them again. Woof.
-                <<show_character Dog Angry right>>
-                {$dogName}: Maybe someday, I'll be able to help them out. Woof. Get rid of the bigger people. Woof.
-            -> Why don't you bring them here?
-                <<set $dogDislikesYou += 1>>
-                <<show_character Dog Sad right>>
-                {$dogName}: I asked. Woof. They said no. Woof.
-                {$dogName}: They've always told me to keep my head down. Woof. Not make waves. Woof.
-                <<show_character Dog Thinking right>>
-                {$dogName}: I'll never understand why they think that way. Woof.
-        {$dogName}: Actually, can you keep a secret? Woof.
-            -> (POSITIVE SELF-IMAGE) Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
-                <<positive_indicator Dog>>
-                <<set $dogLikesYou += 1>>
-                <<show_character Dog Neutral right>>
-                {$dogName}: So, {$playerName}. Woof. I don't usually tell anyone this, but...
-                <<show_character Dog Angry right>>
-                {$dogName}: I saved a group of young pups. Woof. From a big shot. Big woofer.
-                {$dogName}: They were in trouble. Woof. I couldn't just leave them there. Woof.
-                    -> And?
-                    -> ...
-                <<show_character Dog Happy right>>
-                {$dogName}: I brought them to a safe place. I felt so proud. Woof. But when I told my family...
-                <<show_character Dog Sad right>>
-                {$dogName}: They didn't like it. Woof. They thought I was being disloyal. Woof.
-                {$dogName}: I noticed that mom and dad were scared. Woof. They thought the big shots would come after us. Woof.
-                <<show_character Dog Angry right>>
-                {$dogName}: Then I noticed that they were being patrolled more often. Woof. They think they can do anything. Woof.
-                {$dogName}: Family was in danger if I stayed. Woof. So I left. Forever.
-                    -> That's brave of you.
-                        <<positive_indicator Dog>>
-                        <<set $dogLikesYou += 1>>
-                        <<show_character Dog Neutral right>>
-                        {$dogName}: Woof... Thank you, {$playerName}.
-                        <<if $dogLikesYou >= $dogDislikesYou>>
-                            <<show_character Dog Flirt right>>
-                            {$dogName}: I can tell you're one of the good ones, {$catThinksPlayerNameIs}. Woof.
-                        <<endif>>
-                    -> That sounds impulsive.
-                        <<set $dogDislikesYou += 1>>
-                        <<show_character Dog Sad right>>
-                        {$dogName}: Woof...
-                    {$dogName}: But I don't regret it. Woof. I do wish I could see my parents again, though. Woof.
-            -> (NEGATIVE SELF-IMAGE) I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
-                <<show_character Dog Neutral right>>
-                {$dogName}: Oh, that's okay. Nevermind, then. Woof.
-            -> ...
-                <<show_character Dog Neutral right>>
-                {$dogName}: ...Nevermind, then. Woof.
-    -> (POSITIVE RELATIONSHIP) You're cute. <<if $day2AskedDogQ5 == false && $dogLikesYou >= $dogDislikesYou>>
-        <<set $day2AskedDogQ5 = true>>
-        <<show_character Dog Happy right>>
-        <<positive_indicator Dog>>
-        <<set $dogLikesYou += 1>>
-        {$dogName}: Aw, woof. That's kind of you, {$dogThinksPlayerNameIs}. Woof.
-        <<show_character Dog Flirt right>>
-        {$dogName}: You're not so bad yourself. Woof.
+                        <<set $opossumDislikesYou += 1>>
+    -> What is your mission? <<if $day2AskedOpossumQ2 == false>>
+        <<set $day2AskedOpossumQ2 = true>>
+        {$opossumName}: ...Mission? Pfft, that's a funny way to put it.
+        <<if $knowOpossumBackstory == false>>
+            <<show_character Opossum Angry right>>
+            {$opossumName}: I... I was pressured to kill a child.
+            <<show_character Opossum Sad right>>
+            {$opossumName}: It was awful. I regret it every day. I can't forgive myself.
+            {$opossumName}: It could've been me, you know? I could've been one of the unlucky ones. But somehow, I figured out how to survive on my own.
+            -> You're... terrible.
+                <<set $opossumDislikesYou += 3>>
+                <<show_character Opossum Sad right>>
+                {$opossumName}: Yeah... I know. 
+                {$opossumName}: I hate myself for it too.
+            -> I'm sorry you had to go through that.
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 1>>
+                <<show_character Opossum Happy right>>
+                {$opossumName}: Thanks. It doesn't make up for what I did, but it means a lot to hear that.
+        <<else>>
+            {$opossumName}: ...Mission? Pfft, that's a funny way to put it.
+            {$opossumName}: Outside of what I told you, I guess...
+        <<endif>>
+        <<show_character Opossum Neutral right>>
+        {$opossumName}: I don't really know what my mission is, I guess. That's what I'm trying to figure out.
+        <<show_character Opossum Happy right>>
+        {$opossumName}: Is it cheesy to say my mission is to find a mission?
+            -> No! That's so brave.
+                <<set $opossumDislikesYou += 1>>
+                <<show_character Opossum Neutral right>>
+                {$opossumName}: Hah, I don't know about brave... that's a little much.
+            -> Maybe a little bit.
+                <<set $opossumLikesYou += 1>>
+                <<show_character Opossum Proud right>>
+                {$opossumName}: Pfft, yeah. You're right to clock me on that one.
+            -> (POSITIVE RELATIONSHIP) Maybe we can find your mission, together. <<if $opossumLikesYou > $opossumDislikesYou>>
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 3>>
+                <<show_character Opossum Flirt right>>
+                {$opossumName}: That sounds... really nice, actually.
+    -> What do you do for work? <<if $day2AskedOpossumQ3 == false>>
+        <<set $day2AskedOpossumQ3 = true>>
+        <<show_character Opossum Happy right>>
+        {$opossumName}: Work? Hah, I don't really have a job right now.
+        <<show_character Opossum Thinking right>>
+        {$opossumName}: Honestly, I don't think I'll be looking into that any time soon. Do you have a job?
+            -> Yeah, I report aliens.
+                <<show_character Opossum Happy right>>
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 1>>
+                {$opossumName}: Wait, really?? That's pretty intense.
+                {$opossumName}: I'd take a job like that any day, especially over any other dead-end job.
+            -> (lie) No, I don't have a job.
+                <<show_character Opossum Proud right>>
+                {$opossumName}: Yeah, jobs can be a pain. All the power to you!
+    -> What do you do for fun? <<if $day2AskedOpossumQ4 == false>>
+        <<set $day2AskedOpossumQ4 = true>>
+        <<show_character Opossum Happy right>>
+        {$opossumName}: Believe it or not, I'm a huge artist. Painting, drawing, sculpting...
+        {$opossumName}: Heck, I even tried my paw at music once or twice. But that never really took off.
+            -> What do you usually draw?
+            -> Can you draw me?
+                <<show_character Opossum Confused right>>
+                <<set $opossumDislikesYou += 1>>
+                {$opossumName}: Uh, I don't really draw others. Sorry.
+            -> What? You? Art? No way.
+                <<show_character Opossum Happy right>>
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 1>>
+                {$opossumName}: Yes way! I know it's not what people expect from me.
+                {$opossumName}: But art is a great way to express myself. Helps me deal with... everything.
+        <<show_character Opossum Thinking right>>
+        {$opossumName}: Been drawing a lot of things I found in space. Random metal bits, space plants, that sort of thing.
+        <<show_character Opossum Proud right>>
+        {$opossumName}: Here! Take a look at this.
+        <<stop_voice_blip Opossum>>
+        Narrator: {$opossumName} sends you a picture of their art. It shows a beautiful depiction of a small space plant growing out of a rock, with stars twinkling in the background.
+            -> Wow, that's really good!
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 1>>
+                <<start_voice_blip Opossum>>
+                <<show_character Opossum Flirt right>>
+                {$opossumName}: Thanks! I really appreciate that.
+            -> It's... okay, I guess.
+                <<start_voice_blip Opossum>>
+                <<set $opossumDislikesYou += 1>>
+                <<show_character Opossum Angry right>>
+                {$opossumName}: Hey, screw you. I'd like to see you do better.
+    -> Do you have a family? <<if $knowOpossumBackstory == false>>
+        <<if $knowOpossumBackstory == false>>
+            <<show_character Opossum Sad right>>
+            {$opossumName}: No, actually. I didn't have parents that cared about me. Abandoned at birth.
+        <<else>>
+            <<show_character Opossum Neutral right>>
+            {$opossumName}: Like I told you before, I didn't have parents that cared about me. Abandoned at birth.
+        <<endif>>
+        {$opossumName}: Sometimes I wonder what it's like to have someone care about you like that.
+            -> Yeah. I'm in the same boat.
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 1>>
+                <<show_character Opossum Sad right>>
+                {$opossumName}: Oh? Sorry to hear about that, {$playerName}. 
+                <<show_character Opossum Happy right>>
+                {$opossumName}: This may be a little selfish but, I'm glad to be with someone that understands that.
+            -> That sucks.
+                <<show_character Opossum Confused right>>
+                <<set $opossumDislikesYou += 1>>
+                {$opossumName}: Yeah, yeah. I know it does, I don't need your pity.
+                {$opossumName}: I've been moving past it. I want to be my own being now.
+            -> I'm here for you.
+                <<show_character Opossum Flirt right>>
+                {$opossumName}: ...
+                {$opossumName}: Cheesy. But thanks, I guess.
+    -> (POSITIVE RELATIONSHIP) You're cute. <<if $day2AskedOpossumQ5 == false && $opossumLikesYou >= $opossumDislikesYou>>
+        <<set $day2AskedOpossumQ5 = true>>
+        <<show_character Opossum Confused right>>
+        {$opossumName}: ...Thanks? I don't really think I'm going for "cute", though.
+        <<show_character Opossum Flirt right>>
+        <<if $opossumLikesYou >= $opossumDislikesYou>>
+            <<positive_indicator Opossum>>
+            <<set $opossumLikesYou += 1>>
+            {$opossumName}: But, you are pretty cool, I have to admit.
+        <<endif>>
     -> (don't ask any more questions)
-        <<stop_voice_blip Dog>>
+        <<stop_voice_blip Opossum>>
         <<if $posSelfPerception > $negSelfPerception>>
             Narrator: You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
         <<else>>
             Narrator: You feel your social battery start to drain, so you decide to end the conversation for now.
         <<endif>>
-        <<start_voice_blip Dog>>
-        <<if $dogLikesYou >= $dogDislikesYou>>
-            <<show_character Dog Happy right>>
-            {$dogName}: Aw, okay. Woof. It was really fun talking! Woof.
-            {$dogName}: We should talk more, {$dogThinksPlayerNameIs}. Woof.
+        <<start_voice_blip Opossum>>
+        <<if $opossumLikesYou > $opossumDislikesYou>>
+            <<show_character Opossum Happy right>>
+            {$opossumName}: Thanks for the talk. I appreciated it.
+            <<show_character Opossum Flirt right>>
+            {$opossumName}: As much as I'm a little embarrassed to say it, I enjoyed your company. We should talk more, {$playerName}.
         <<else>>
-            <<show_character Dog Neutral right>>
-            {$dogName}: Oh, alright. Woof. Sounds good.
-            {$dogName}: Thanks for talking. Woof.
+            <<show_character Opossum Neutral right>>
+            {$opossumName}: Oh, alright.
+            {$opossumName}: Thanks for the chat, {$playerName}.
         <<endif>>
-        <<stop_voice_blip Dog>>
+        <<stop_voice_blip Opossum>>
         <<jump EndDay2>>
 <<jump OpossumRecurringTreeDay2>>
 ===
