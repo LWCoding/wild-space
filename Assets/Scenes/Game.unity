@@ -8270,7 +8270,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   historyPanel: {fileID: 1348012489}
   historyButton: {fileID: 435178695}
-  historyButton2: {fileID: 0}
+  historyButton2: {fileID: 375236025}
   previousPageButton: {fileID: 939646239}
   nextPageButton: {fileID: 1445013161}
   historyText: {fileID: 1994441658}
@@ -10182,7 +10182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: CallOpossumDay2
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject

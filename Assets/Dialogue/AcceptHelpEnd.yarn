@@ -4,7 +4,6 @@ title: AcceptCatHelp
 <<start_voice_blip Cat>>
 <<show_character Cat Helmet right>>
 {$catName}: I've arranged for a rescue mission to come get you. Just hang tight, okay?
-<<show_character Cat Flirt right>>
 {$catName}: And again, thank you for the company, {$playerName}. I loved the past few days.
 <<hide_all_characters>>
 <<hide_all_objects>>
@@ -14,7 +13,11 @@ Narrator: The transmission cuts off as {$catName} supposedly leaves to arrange f
 Narrator: You wait. And wait. And wait.
 Narrator: Hours pass. And, just as you start to lose hope, a ship in the shape of a yarnball appears on the horizon.
 Narrator: You made it. {$catName} came through for you.
-Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<if $catLikesYou > $catDislikesYou * 1.5>>
+    Narrator: <b>ENDING 4/5: Saved by a lover</b>
+<<else>>
+    Narrator: <b>ENDING 4/5: Saved by a friend</b> 
+<<endif>>
 <<detour End>>
 ===
 
@@ -34,7 +37,11 @@ Narrator: The transmission cuts off as {$dogName} supposedly leaves to arrange f
 Narrator: You wait. And wait. And wait.
 Narrator: Hours pass. And, just as you start to lose hope, a spherical ball-like ship appears on the horizon.
 Narrator: You made it. {$dogName} came through for you.
-Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<if $dogLikesYou > $dogDislikesYou * 1.5>>
+    Narrator: <b>ENDING 4/5: Saved by a lover</b>
+<<else>>
+    Narrator: <b>ENDING 4/5: Saved by a friend</b>
+<<endif>>
 <<detour End>>
 ===
 
@@ -54,7 +61,11 @@ Narrator: The transmission cuts off as {$opossumName} supposedly leaves to arran
 Narrator: You wait. And wait. And wait.
 Narrator: Hours pass. And, just as you start to lose hope, a dart-shaped ship appears on the horizon.
 Narrator: You made it. {$opossumName} came through for you.
-Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<if $opossumLikesYou > $opossumDislikesYou * 1.5>>
+    Narrator: <b>ENDING 4/5: Saved by a lover</b>
+<<else>>
+    Narrator: <b>ENDING 4/5: Saved by a friend</b> 
+<<endif>>
 <<detour End>>
 ===
 
@@ -74,7 +85,11 @@ Narrator: The transmission cuts off as {$birdName} supposedly leaves to arrange 
 Narrator: You wait. And wait. And wait.
 Narrator: Hours pass. And, just as you start to lose hope, an egg-shaped ship appears on the horizon.
 Narrator: You made it. {$birdName} came through for you.
-Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<if $birdLikesYou > $birdDislikesYou * 1.5>>
+    Narrator: <b>ENDING 4/5: Saved by a lover</b>
+<<else>>
+    Narrator: <b>ENDING 4/5: Saved by a friend</b> 
+<<endif>>
 <<detour End>>
 ===
 
