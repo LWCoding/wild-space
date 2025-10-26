@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af7d91d5b20131d46a2f5362d0167457, type: 3}
-  m_Name: Opossum_Happy
+  m_Name: Opossum_Afraid
   m_EditorClassIdentifier: 
-  ExpressionName: Happy
-  ExpressionSprite: {fileID: 21300000, guid: f63718b7ade58fb41a582067aaedd1b0, type: 3}
+  ExpressionName: Afraid
+  ExpressionSprite: {fileID: 21300000, guid: 947056c0c1b4a7f40a96bd9249a33819, type: 3}
   VoiceBlip: {fileID: 8300000, guid: 56bb848944a0e7646a82e45ab476e297, type: 3}
   BlipInterval: 0.1
   BlipVolume: 0.6

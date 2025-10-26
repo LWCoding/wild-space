@@ -169,6 +169,31 @@ public class Character : MonoBehaviour
     }
 
     /// <summary>
+    /// Deactivates this character's icon.
+    /// Usage in Yarn: <<deactivate_icon CharacterName>>
+    /// </summary>
+    [YarnCommand("deactivate_icon")]
+    public void DeactivateIcon()
+    {
+        if (characterManager == null)
+        {
+            Debug.LogError("CharacterManager not found in scene!");
+            return;
+        }
+
+        // Get the character's icon and deactivate it
+        CharacterInfo charInfo = characterManager.GetCharacterInfo(gameObject.name);
+        if (charInfo != null && charInfo.icon != null)
+        {
+            charInfo.icon.Deactivate();
+        }
+        else
+        {
+            Debug.LogWarning($"No icon found for character '{gameObject.name}'");
+        }
+    }
+
+    /// <summary>
     /// Makes the character stop playing voice blips.
     /// </summary>
     private void ShutUp()

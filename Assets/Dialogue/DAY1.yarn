@@ -332,6 +332,9 @@ Narrator: Suddenly, the figure comes into view.
 <<hide MonitorOn>>
 <<show MonitorOnNoSilhouette>>
 <<play_music MainTheme>>
+<<if $catSecured == false>>
+    <<deactivate_icon Cat>>
+<<endif>>
 Narrator: The transmission cuts off as {$catName} takes their leave.
 <<if $catSecured == true>>
     Narrator: {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
@@ -566,6 +569,9 @@ Narrator: You turn the dials to let the signal through.
 <<stop_voice_blip Dog>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
+<<if $dogSecured == false>>
+    <<deactivate_icon Dog>>
+<<endif>>
 Narrator: The transmission cuts off as {$dogName} leaves to continue their wandering.
 <<if $dogSecured == true>>
     Narrator: You notice a transmission from {$dogName} saved onto your monitor. You can likely use this to ping them again in the future.
@@ -598,6 +604,7 @@ Narrator: You turn the dials to let the signal through.
         <<stop_voice_blip Opossum>>
         <<hide_all_characters>>
         <<play_music MainTheme>>
+        <<deactivate_icon Opossum>>
         Narrator: The transmission cuts off abruptly. It seems they didn't want to talk to you anymore.
         <<if $talkedToDog == false || $talkedToBird == false>>
             <<jump TalkToOthers>>
@@ -629,6 +636,7 @@ Narrator: You turn the dials to let the signal through.
                     <<stop_voice_blip Opossum>>
                     <<hide_all_characters>>
                     <<play_music MainTheme>>
+                    <<deactivate_icon Opossum>>
                     Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
                     <<if $talkedToDog == false || $talkedToBird == false>>
                         <<jump TalkToOthers>>
@@ -641,6 +649,7 @@ Narrator: You turn the dials to let the signal through.
                     <<stop_voice_blip Opossum>>
                     <<hide_all_characters>>
                     <<play_music MainTheme>>
+                    <<deactivate_icon Opossum>>
                     Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
                     <<if $talkedToDog == false || $talkedToBird == false>>
                         <<jump TalkToOthers>>
@@ -699,6 +708,7 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
         <<stop_voice_blip Opossum>>
         <<hide_all_characters>>
         <<play_music MainTheme>>
+        <<deactivate_icon Opossum>>
         Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
         <<if $talkedToDog == false || $talkedToBird == false>>
             <<jump TalkToOthers>>
@@ -712,6 +722,9 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
 <<else>>
     <<show_character Opossum Thinking right>>
     {$opossumName}: Sorry for that. You probably don't want to hear about my problems. I'll leave you alone.
+<<endif>>
+<<if $opossumSecured == false>>
+    <<deactivate_icon Opossum>>
 <<endif>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
@@ -773,6 +786,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<stop_voice_blip Bird>>
                 <<hide_all_characters>>
                 <<play_music MainTheme>>
+                <<deactivate_icon Bird>>
                 Narrator: The transmission cuts off abruptly. That was strange.
                 <<if $talkedToDog == false || $talkedToOpossum == false>>
                     <<jump TalkToOthers>>
@@ -804,6 +818,12 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             {$birdName}: It's... hard to explain why I'm so interested in this. It's been a fascination of mine recently.
             {$birdName}: I suppose I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
             <<set $birdExplainedIntention = true>>
+        -> What is like being a bird? Can you fly?
+            <<show_character Bird Confused right>>
+            {$birdName}: Oh, um. I don't know what a "bird" is. But, I can fly, yes.
+            {$birdName}: It's... hard to explain what it's like. It's just part of who I am, I suppose.
+            <<show_character Bird Sweat right>>
+            {$birdName}: I'm not even going to ask how you knew I <i>had</i> wings.
         -> Why do you want to know about me?
             <<show_character Bird Thinking right>>
             {$birdName}: Hm... it's pretty hard to pinpoint.
@@ -815,6 +835,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             <<stop_voice_blip Bird>>
             <<hide_all_characters>>
             <<play_music MainTheme>>
+            <<deactivate_icon Bird>>
             Narrator: The transmission cuts off abruptly. That was strange.
             <<if $talkedToDog == false || $talkedToOpossum == false>>
                 <<jump TalkToOthers>>
@@ -853,6 +874,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<stop_voice_blip Bird>>
                 <<hide_all_characters>>
                 <<play_music MainTheme>>
+                <<deactivate_icon Bird>>
                 Narrator: The transmission cuts off abruptly. That was strange.
                 <<if $talkedToDog == false || $talkedToOpossum == false>>
                     <<jump TalkToOthers>>
@@ -893,6 +915,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                     <<stop_voice_blip Bird>>
                     <<hide_all_characters>>
                     <<play_music MainTheme>>
+                    <<deactivate_icon Bird>>
                     Narrator: The transmission cuts off abruptly. That was strange.
                     <<if $talkedToDog == false || $talkedToOpossum == false>>
                         <<jump TalkToOthers>>
@@ -1039,6 +1062,9 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
 <<stop_voice_blip Bird>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
+<<if $birdSecured == false>>
+    <<deactivate_icon Bird>>
+<<endif>>
 Narrator: The transmission cuts off as {$birdName} takes their leave.
 <<if $birdSecured == true>>
     Narrator: You notice a transmission from {$birdName} saved onto your monitor. You can reach out at any time later.

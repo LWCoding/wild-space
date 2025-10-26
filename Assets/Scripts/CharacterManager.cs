@@ -158,7 +158,7 @@ public class CharacterManager : MonoBehaviour
     /// </summary>
     /// <param name="characterName">Name of the character</param>
     /// <returns>The CharacterInfo if found, otherwise null</returns>
-    private CharacterInfo GetCharacterInfo(string characterName)
+    public CharacterInfo GetCharacterInfo(string characterName)
     {
         foreach (var charInfo in characterInfos)
         {
