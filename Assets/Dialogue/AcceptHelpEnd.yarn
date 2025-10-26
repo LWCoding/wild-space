@@ -25,7 +25,7 @@ Narrator: You've reached the end of Day 3.
 <<jump End>>
 ===
 
-title: AcceptLizardHelp
+title: AcceptOpossumHelp
 ---
 <<play_music MainTheme>>
 <<hide_all_characters>>

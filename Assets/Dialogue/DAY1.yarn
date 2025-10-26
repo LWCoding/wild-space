@@ -737,10 +737,10 @@ Narrator: You pull up the communication panel and respond to the figure with the
 Narrator: You turn the dials to let the signal through.
 <<show_character Bird Happy2 right>>
 <<start_voice_blip Bird>>
-<<play_music BirdTheme 0.3>>
+<<play_music BirdTheme 0.25>>
 ???: Ah, hello alternate lifeform! It's so nice to meet you.
 <<show_character Bird Nervous right>>
-{$birdName}: I am {$birdName}, scientist of Aviaris and... um, seeker of knowledge.
+{$birdName}: I'm {$birdName}, a scientist of the planet Aviaris and... um, seeker of knowledge.
     -> What... are you?
         <<show_character Bird Confused right>>
         {$birdName}: Oh, right. I take it you haven't heard of us before.
@@ -757,7 +757,7 @@ Narrator: You turn the dials to let the signal through.
 <<show_character Bird Nervous right>>
 Narrator: You notice that the figure seems a little nervous. They fidget slightly as they speak.
 <<start_voice_blip Bird>>
-{$birdName}: If you don't mind, I have a brief questionnaire about your species. It's nothing intrusive, I promise.
+{$birdName}: If you don't mind, I have a few questions about your species. It's nothing intrusive, I promise.
     -> Sure..?
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
@@ -784,6 +784,13 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<set $birdLikesYou += 1>>
                 <<show_character Bird Happy right>>
                 {$birdName}: Thank you! I appreciate it.
+    -> What are you studying?
+            <<show_character Bird Happy right>>
+            {$birdName}: Ah, well, I'm primarily interested in exploring the unknown.
+            <<show_character Bird Thinking right>>
+            {$birdName}: It's... hard to explain why I'm so interested in this. It's been a fascination of mine recently.
+            {$birdName}: I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
+            <<set $birdExplainedIntention = true>>
     -> I have so many questions...
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Sad right>>
@@ -815,7 +822,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<jump EndDay1>>
             <<endif>>
 <<show_character Bird Happy right>>
-{$birdName}: Anyways, first question. An easy one! What should I call you?
+{$birdName}: Anyways, before we start, what should I call you?
     -> {$playerName}.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
@@ -836,7 +843,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
             <<show_character Bird Nervous right>>
             {$birdName}: It's... a pleasure to meet you, MW-012!
             <<set $birdThinksPlayerNameIs = "MW-012">>
-    -> I don't want to take your "quiz".
+    -> I don't want to take your quiz.
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Nervous right>>
         {$birdName}: Aw, are you sure? It'd be quick.
@@ -858,7 +865,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 <<show_character Bird Happy right>>
                 {$birdName}: Thank you! I appreciate it.
 <<show_character Bird Happy right>>
-{$birdName}: Second question. What is your purpose out here in space?
+{$birdName}: Okay, first question. What's your reason for being out here in space?
     -> Exploring the cosmos.
         <<show_character Bird Confused right>>
         {$birdName}: Oh, wow... that's... noble. You actually <i>enjoy</i> being in space?
@@ -926,7 +933,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<show_character Bird Sweat right>>
         {$birdName}: Um, I guess I'll leave that one as blank.
 <<show_character Bird Happy right>>
-{$birdName}: Final question! How would you describe the ambient temperature of your home planet?
+{$birdName}: Next question! How would you describe the ambient temperature of your home planet?
     -> Around 15 degrees Celsius.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
@@ -952,6 +959,28 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
         {$birdName}: Ah, a planet with varying seasons. Noted!
+<<show_character Bird Happy right>>
+{$birdName}: And then, may I ask, how are relationships typically formed on your planet?
+    -> Through mutual interest.
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy2 right>>
+        {$birdName}: A very sensible approach. Very nice.
+        <<show_character Bird Nervous right>>
+        {$birdName}: Very... akin to how we do it back in Aviarian society.
+    -> I wouldn't really know.
+        <<set $birdDislikesYou += 1>>
+        <<show_character Bird Sad right>>
+        {$birdName}: Aw, I'm sorry to hear that.
+        <<show_character Bird Confused right>>
+        {$birdName}: Surely love is still a construct that exists?
+    -> It's kind of random.
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        <<show_character Bird Happy right>>
+        {$birdName}: Ah, the thrill of serendipity! I like that.
+        <<show_character Bird Nervous right>>
+        {$birdName}: Very... akin to how we do it back in Aviarian society. You never really know when love will strike.
 <<show_character Bird Happy right>>
 {$birdName}: That concludes our little questionnaire. Thank you for your cooperation.
     -> No problem.
