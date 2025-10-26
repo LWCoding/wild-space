@@ -111,20 +111,20 @@ public class UICharacterIcon : MonoBehaviour, IPointerEnterHandler, IPointerExit
         float ratio = ((float)likes - dislikes) / total;
         
         // Map ratio to 0-6 scale:
-        // -100% to -66%: 0 (very negative)
-        // -66% to -33%: 1 (negative)
-        // -33% to 0%: 2 (slightly negative)
+        // -100% to -50%: 0 (very negative)
+        // -50% to -25%: 1 (negative)
+        // -25% to 0%: 2 (slightly negative)
         // 0%: 3 (neutral)
-        // 0% to +33%: 4 (slightly positive)
-        // +33% to +66%: 5 (positive)
-        // +66% to +100%: 6 (very positive)
+        // 0% to +25%: 4 (slightly positive)
+        // +25% to +50%: 5 (positive)
+        // +50% to +100%: 6 (very positive)
         
-        if (ratio <= -0.66f) return 0;
-        if (ratio <= -0.33f) return 1;
+        if (ratio <= -0.5f) return 0;
+        if (ratio <= -0.25f) return 1;
         if (ratio < 0f) return 2;
         if (ratio == 0f) return 3;
-        if (ratio <= 0.33f) return 4;
-        if (ratio <= 0.66f) return 5;
+        if (ratio <= 0.25f) return 4;
+        if (ratio <= 0.5f) return 5;
         return 6;
     }
 
