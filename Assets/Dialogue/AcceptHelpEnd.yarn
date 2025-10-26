@@ -4,6 +4,8 @@ title: AcceptCatHelp
 <<start_voice_blip Cat>>
 <<show_character Cat Helmet right>>
 {$catName}: I've arranged for a rescue mission to come get you. Just hang tight, okay?
+<<show_character Cat Flirt right>>
+{$catName}: And again, thank you for the company, {$playerName}. I loved the past few days.
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<stop_voice_blip Cat>>
@@ -19,27 +21,60 @@ Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if
 title: AcceptDogHelp
 ---
 <<play_music MainTheme>>
+<<start_voice_blip Dog>>
+<<show_character Dog Happy right>>
+{$dogName}: Okay, woof. I'll get a friend to send a ship for you. Woof.
+<<show_character Dog Happy2 right>>
+{$dogName}: I'm looking forward to seeing you, {$playerName}. Woof!
 <<hide_all_characters>>
 <<hide_all_objects>>
-Narrator: You've reached the end of Day 3.
-<<jump End>>
+<<stop_voice_blip Dog>>
+<<show ScreenBlocker>>
+Narrator: The transmission cuts off as {$dogName} supposedly leaves to arrange for your rescue.
+Narrator: You wait. And wait. And wait.
+Narrator: Hours pass. And, just as you start to lose hope, a spherical ball-like ship appears on the horizon.
+Narrator: You made it. {$dogName} came through for you.
+Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<detour End>>
 ===
 
 title: AcceptOpossumHelp
 ---
 <<play_music MainTheme>>
+<<start_voice_blip Opossum>>
+<<show_character Opossum Neutral right>>
+{$opossumName}: Okay, hold tight. I'll make some calls.
+<<show_character Opossum Happy right>>
+{$opossumName}: And... thanks, {$playerName}. For sticking by me through all of this.
 <<hide_all_characters>>
 <<hide_all_objects>>
-Narrator: You've reached the end of Day 3.
-<<jump End>>
+<<stop_voice_blip Opossum>>
+<<show ScreenBlocker>>
+Narrator: The transmission cuts off as {$opossumName} supposedly leaves to arrange for your rescue.
+Narrator: You wait. And wait. And wait.
+Narrator: Hours pass. And, just as you start to lose hope, a dart-shaped ship appears on the horizon.
+Narrator: You made it. {$opossumName} came through for you.
+Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<detour End>>
 ===
 
 title: AcceptBirdHelp
 ---
 <<play_music MainTheme>>
+<<start_voice_blip Bird>>
+<<show_character Bird Happy2 right>>
+{$birdName}: Alright, I'll send for help. Just hang tight.
+<<show_character Bird Happy right>>
+{$birdName}: And... thank you, {$playerName}, for the company. I... appreciate it.
 <<hide_all_characters>>
 <<hide_all_objects>>
-Narrator: You've reached the end of Day 3.
-<<jump End>>
+<<stop_voice_blip Bird>>
+<<show ScreenBlocker>>
+Narrator: The transmission cuts off as {$birdName} supposedly leaves to arrange for your rescue.
+Narrator: You wait. And wait. And wait.
+Narrator: Hours pass. And, just as you start to lose hope, an egg-shaped ship appears on the horizon.
+Narrator: You made it. {$birdName} came through for you.
+Narrator: <b>ENDING 4/5: Saved by a friend</b>  // TODO: potentially be lover if relationship is high
+<<detour End>>
 ===
 

@@ -188,8 +188,8 @@ Narrator: You call {$dogName}. You see movement, and start tweaking the dials to
                 <<show_character Dog Flirt right>>
                 {$dogName}: Heh, oh you... Alright, I'll help you out. Woof.
 <<show_character Dog Neutral right>>
-{$dogName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will bring you here, to my home planet. Woof.
-{$dogName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
+{$dogName}: Be prepared for a rescue mission soon. I know a friend that can take you on their home planet. Woof. We can spend some time together there. Woof.
+{$dogName}: Also, woof. You may never be able to return to your home planet again. Woof. Can't cause problems with them.
     -> Isn't there another way?
         {$dogName}: Woof... do you have any plans? Because I sure don't.
             -> Let's do it.
@@ -225,12 +225,12 @@ Narrator: You call {$opossumName}. You see movement, and start tweaking the dial
         <<show_character Opossum Thinking right>>
         {$opossumName}: Huh, that is a pickle. Your home planet's not trying to save you?
             -> I haven't tried yet.
-                <<show_character Opossum Angry right>>
+                <<show_character Opossum Thinking right>>
                 {$opossumName}: Heh, well as much as I appreciate you thinking of me first, I'm not entirely sure what I can do. My home planet's a bit... different.
                     -> Is there anything you can do?
                         <<if $opossumLikesYou < $opossumDislikesYou>>
                             <<show_character Opossum Sad right>>
-                            {$opossumName}: Woof... I don't know. I can't think of anything, {$opossumThinksPlayerNameIs}. I'm sorry.
+                            {$opossumName}: I don't know. I can't think of anything, {$opossumThinksPlayerNameIs}. I'm sorry.
                             {$opossumName}: I hope you can figure it out.
                             <<stop_voice_blip Opossum>>
                             Narrator: Stricken by sadness, you end the call.
@@ -255,9 +255,9 @@ Narrator: You call {$opossumName}. You see movement, and start tweaking the dial
                 {$opossumName}: ...Pretty bold.
                 {$opossumName}: I guess, the best I can do is get you to my planet. I... won't like it, but maybe I can stay with you there for a while.
 <<show_character Opossum Neutral right>>
-{$opossumName}: Be prepared for a rescue mission soon.
 {$opossumName}: If I can get the pod sent, just note you'll probably never be able to return to your home planet again.
     -> Isn't there another way?
+        <<show_character Opossum Sad right>>
         {$opossumName}: I wish I could help you some other way, but... this is all I have.
             -> Let's do it.
                 <<jump AcceptOpossumHelp>>
@@ -278,22 +278,24 @@ Narrator: You call {$birdName}. You see movement, and start tweaking the dials t
 <<play_music BirdTheme 0.5>>
 <<if $birdLikesYou >= $birdDislikesYou>>
     <<show_character Bird Happy right>>
-    {$birdName}: Oh! It's you again. Hi, {$birdThinksPlayerNameIs}.
+    {$birdName}: Oh! Hey, {$birdThinksPlayerNameIs}. A nice surprise as always!
 <<else>>
     <<show_character Bird Neutral right>>
-    {$birdName}: Oh? It's you again. What do you want?
+    {$birdName}: Oh? Hi again. What do you want?
 <<endif>>
-<<show_character Bird Sad right>>
+<<show_character Bird Confused right>>
 {$birdName}: Are things okay? You look... worried.
     -> (explain your situation)
         <<stop_voice_blip Bird>>
         Narrator: You explain that your oxygen supply is running low, and you need help fast.
         <<start_voice_blip Bird>>
+        <<show_character Bird Afraid right>>
+        {$birdName}: Th-that's terrible! 
         <<show_character Bird Thinking right>>
-        {$birdName}: Have you tried asking the people from your planet for help?
+        {$birdName}: And what about your home planet? What are they doing to help you?
             -> I haven't tried yet.
-                <<show_character Bird Angry right>>
-                {$birdName}: I understand. Planet leaders can be frustrating.
+                <<show_character Bird Nervous right>>
+                {$birdName}: Oh? Is there a reason you're calling me instead?
                     -> Is there anything you can do?
                         <<if $birdLikesYou < $birdDislikesYou>>
                             <<show_character Bird Sad right>>
@@ -304,9 +306,9 @@ Narrator: You call {$birdName}. You see movement, and start tweaking the dials t
                             <<jump EmbraceDeath>>
                         <<else>>
                             <<show_character Bird Neutral right>>
-                            {$birdName}: Alright, I'll help you. You're a good human, {$birdThinksPlayerNameIs}. Woof.
+                            {$birdName}: ...I think I may know of something. I can try to get you to my planet.
                         <<endif>>
-                    -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
+                    -> Let me call them. (call earth) <<if $askedEarthForHelp == false>>
                         Narrator: You decide to disconnect the call with {$birdName} for now.
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
@@ -314,15 +316,17 @@ Narrator: You call {$birdName}. You see movement, and start tweaking the dials t
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-                {$birdName}: Woof... I see. That seems pretty urgent. Let me see what I can do.
+                <<show_character Bird Sad right>>
+                {$birdName}: Oh... oh, no.
+                {$birdName}: I-I... it's not ideal, but I think I may be able to help you after all. I can try to get you to my planet.
             -> <b>(GOOD RELATIONSHIP)</b> I'd rather have your help instead. <<if $birdLikesYou >= $birdDislikesYou>>
                 <<show_character Bird Flirt right>>
-                {$birdName}: Heh, oh you... Alright, I'll help you out. Woof.
+                {$birdName}: Heh, oh you... Alright, I'll help you out. Maybe... we can spend some time together. I can try to get a ship arranged to get you here.
 <<show_character Bird Neutral right>>
-{$birdName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will bring you here, to my home planet. Woof.
-{$birdName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
+{$birdName}: But, note that if I get you here, you may never be able to return to your home planet again. I can't risk getting into trouble with their leaders.
     -> Isn't there another way?
-        {$birdName}: Woof... do you have any plans? Because I sure don't.
+        <<show_character Bird Sad right>>
+        {$birdName}: Sadly, this is the only thing I can think of.
             -> Let's do it.
                 <<jump AcceptBirdHelp>>
             -> I think I'll just accept my fate instead.
