@@ -696,7 +696,7 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
         <<positive_indicator Opossum>>
         <<set $opossumLikesYou += 1>>
         {$opossumName}: R-really? Just like that?
-    -> Um, I don't even know you.
+    -> I don't really know you.
         <<show_character Opossum Confused right>>
         {$opossumName}: That's... fair.
         <<show_character Opossum Neutral right>>
@@ -718,7 +718,7 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
 <<if $opossumLikesYou >= $opossumDislikesYou>>
     <<show_character Opossum Happy right>>
     <<set $opossumSecured = true>>
-    {$opossumName}: Thanks for listening, though. I enjoyed the short talk. Maybe we can talk for real, later.
+    {$opossumName}: Thanks for listening, though. I enjoyed the short talk. Let's talk for real, later.
 <<else>>
     <<show_character Opossum Thinking right>>
     {$opossumName}: Sorry for that. You probably don't want to hear about my problems. I'll leave you alone.
