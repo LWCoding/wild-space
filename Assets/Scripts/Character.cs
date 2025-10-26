@@ -95,12 +95,8 @@ public class Character : MonoBehaviour
             transform.localScale = new Vector3(-currentScale.x, currentScale.y, currentScale.z);
         }
 
-        // Enable the character's SpriteRenderer
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = true;
-        }
+        // Show the character via CharacterManager (this will also show/hide UI icons)
+        characterManager.ShowCharacter(gameObject.name);
     }
 
     /// <summary>
@@ -113,11 +109,19 @@ public class Character : MonoBehaviour
         // Stop any active voice blips
         StopVoiceBlip();
 
-        // Disable the character's SpriteRenderer
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
+        // Hide the character via CharacterManager (this will also hide UI icons)
+        if (characterManager != null)
         {
-            spriteRenderer.enabled = false;
+            characterManager.HideCharacter(gameObject.name);
+        }
+        else
+        {
+            // Fallback to direct hiding if CharacterManager not found
+            SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = false;
+            }
         }
     }
 

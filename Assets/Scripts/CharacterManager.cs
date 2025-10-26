@@ -3,13 +3,30 @@ using System.Collections.Generic;
 using Yarn.Unity;
 
 /// <summary>
-/// Manager that handles character spawning and basic visibility management.
+/// Data structure for character information including character GameObject, UI, and yarn variable names
+/// </summary>
+[System.Serializable]
+public class CharacterInfo
+{
+    [Header("Character Assignment")]
+    public GameObject characterObject;
+    
+    [Header("UI Icon Assignment")]
+    public UICharacterIcon icon;
+    
+    [Header("Yarn Variable Names")]
+    public string likeVariableName;  // e.g., "catLikesYou"
+    public string dislikeVariableName;  // e.g., "catDislikesYou"
+}
+
+/// <summary>
+/// Manager that handles character visibility and UI icon management.
+/// Characters are pre-made in the scene, not spawned at runtime.
 /// </summary>
 public class CharacterManager : MonoBehaviour
 {
     [Header("Character System")]
-    [SerializeField] private Transform characterContainer;
-    [SerializeField] private GameObject _characterPrefab; // Default character prefab
+    [SerializeField] private List<CharacterInfo> characterInfos = new List<CharacterInfo>();
 
     // Character anchor positions
     [SerializeField] private Transform leftAnchor;
@@ -18,90 +35,166 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private Transform leftFarAnchor;
     [SerializeField] private Transform rightFarAnchor;
 
-    // Track spawned characters
-    private static Dictionary<string, GameObject> spawnedCharacters = new Dictionary<string, GameObject>();
+    private DialogueRunner dialogueRunner;
 
-    // Must be on start since singletons initialize on awake.
     void Start()
     {
-        SpawnAllCharacters();
+        dialogueRunner = FindObjectOfType<DialogueRunner>();
+        
+        // Hide all characters and their UI icons by default
+        InitializeCharacters();
     }
 
     /// <summary>
-    /// Spawns all registered characters at startup and hides them by default
+    /// Initializes all characters and their UI icons to be hidden by default
     /// </summary>
-    private void SpawnAllCharacters()
+    private void InitializeCharacters()
     {
-        if (!CharacterDatabase.IsInitialized())
+        foreach (var charInfo in characterInfos)
         {
-            Debug.LogError("Character database singleton is not initialized!");
-            return;
-        }
-
-        string[] characterNames = CharacterDatabase.Instance.GetCharacterNames();
-        Debug.Log($"Spawning {characterNames.Length} characters at startup...");
-
-        foreach (string characterName in characterNames)
-        {
-            CharacterData characterData = CharacterDatabase.Instance.GetCharacter(characterName);
-            if (characterData != null)
+            if (charInfo?.characterObject != null)
             {
-                SpawnCharacter(characterName, characterData);
+                // Hide the character sprite
+                SpriteRenderer spriteRenderer = charInfo.characterObject.GetComponent<SpriteRenderer>();
+                if (spriteRenderer != null)
+                {
+                    spriteRenderer.enabled = false;
+                }
+            }
+
+            if (charInfo?.icon != null)
+            {
+                // Hide the UI icon
+                charInfo.icon.Hide();
+            }
+        }
+    }
+
+    /// <summary>
+    /// Shows a character by enabling their sprite and UI icon
+    /// Called from Character.cs ShowCharacter method
+    /// </summary>
+    /// <param name="characterName">Name of the character to show</param>
+    public void ShowCharacter(string characterName)
+    {
+        CharacterInfo charInfo = GetCharacterInfo(characterName);
+        if (charInfo == null) return;
+
+        // Show the character's sprite
+        if (charInfo.characterObject != null)
+        {
+            SpriteRenderer spriteRenderer = charInfo.characterObject.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = true;
             }
         }
 
-        Debug.Log($"Spawned {spawnedCharacters.Count} characters. All hidden by default.");
+        // Show and update the UI icon
+        if (charInfo.icon != null)
+        {
+            // Get like and dislike counts from yarn variables
+            int likes = GetYarnVariable(charInfo.likeVariableName);
+            int dislikes = GetYarnVariable(charInfo.dislikeVariableName);
+            
+            // Show the icon with like/dislike counts
+            charInfo.icon.Show(likes, dislikes);
+        }
     }
 
     /// <summary>
-    /// Spawns a single character and hides it by default
+    /// Hides a character by disabling their sprite and UI icon
+    /// Called from Character.cs HideCharacter method
+    /// </summary>
+    /// <param name="characterName">Name of the character to hide</param>
+    public void HideCharacter(string characterName)
+    {
+        CharacterInfo charInfo = GetCharacterInfo(characterName);
+        if (charInfo == null) return;
+
+        // Hide the character's sprite
+        if (charInfo.characterObject != null)
+        {
+            SpriteRenderer spriteRenderer = charInfo.characterObject.GetComponent<SpriteRenderer>();
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = false;
+            }
+        }
+
+        // Hide the UI icon
+        if (charInfo.icon != null)
+        {
+            charInfo.icon.Hide();
+        }
+    }
+
+    /// <summary>
+    /// Gets a Yarn variable value as an integer
+    /// </summary>
+    /// <param name="variableName">Name of the variable (without $ prefix)</param>
+    /// <returns>Variable value as integer, 0 if not found</returns>
+    private int GetYarnVariable(string variableName)
+    {
+        if (dialogueRunner?.VariableStorage == null || string.IsNullOrEmpty(variableName))
+        {
+            return 0;
+        }
+
+        // Get as float (Yarn stores numbers as floats)
+        if (dialogueRunner.VariableStorage.TryGetValue<float>($"${variableName}", out float floatValue))
+        {
+            return Mathf.RoundToInt(floatValue);
+        }
+        else
+        {
+            // Variable doesn't exist yet, return 0
+            return 0;
+        }
+    }
+
+    /// <summary>
+    /// Gets the CharacterInfo for a character by name
     /// </summary>
     /// <param name="characterName">Name of the character</param>
-    /// <param name="characterData">Character data</param>
-    private void SpawnCharacter(string characterName, CharacterData characterData)
+    /// <returns>The CharacterInfo if found, otherwise null</returns>
+    private CharacterInfo GetCharacterInfo(string characterName)
     {
-        // Use the character's specific prefab or the default prefab
-        GameObject prefabToUse = characterData.characterPrefab != null ? characterData.characterPrefab : _characterPrefab;
-
-        if (prefabToUse == null)
+        foreach (var charInfo in characterInfos)
         {
-            Debug.LogError($"No character prefab assigned for character '{characterName}' and no default prefab set!");
-            return;
+            if (charInfo?.characterObject != null && charInfo.characterObject.name == characterName)
+            {
+                return charInfo;
+            }
         }
-
-        // Spawn at center position initially (will be repositioned when shown)
-        Transform spawnPosition = centerAnchor != null ? centerAnchor : transform;
-        GameObject characterInstance = Instantiate(prefabToUse, spawnPosition.position, spawnPosition.rotation, characterContainer);
-        characterInstance.name = characterName;
-
-        // Hide the character by default
-        SpriteRenderer spriteRenderer = characterInstance.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = false;
-        }
-
-        // Set default expression and scale
-        SetCharacterExpression(characterInstance, characterData, characterData.defaultExpression?.ExpressionName);
-
-        // Track the character
-        spawnedCharacters[characterName] = characterInstance;
-
-        Debug.Log($"Spawned character '{characterName}' (hidden by default)");
+        Debug.LogWarning($"CharacterInfo not found for character '{characterName}'");
+        return null;
     }
 
     // Function for hiding all characters. Should be called by yarn command.
     public static void HideAllCharacters()
     {
-        foreach (var character in spawnedCharacters.Values)
+        CharacterManager instance = FindObjectOfType<CharacterManager>();
+        if (instance == null)
         {
-            if (character != null)
+            Debug.LogError("CharacterManager instance not found in scene!");
+            return;
+        }
+
+        foreach (var charInfo in instance.characterInfos)
+        {
+            if (charInfo?.characterObject != null)
             {
-                SpriteRenderer spriteRenderer = character.GetComponent<SpriteRenderer>();
+                SpriteRenderer spriteRenderer = charInfo.characterObject.GetComponent<SpriteRenderer>();
                 if (spriteRenderer != null)
                 {
                     spriteRenderer.enabled = false;
                 }
+            }
+
+            if (charInfo?.icon != null)
+            {
+                charInfo.icon.Hide();
             }
         }
         Debug.Log("Hid all characters");
@@ -132,41 +225,13 @@ public class CharacterManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Sets the expression/sprite for a character instance using character data.
-    /// </summary>
-    /// <param name="characterInstance">The character GameObject</param>
-    /// <param name="characterData">The character's data containing expressions</param>
-    /// <param name="expressionName">The expression name</param>
-    private void SetCharacterExpression(GameObject characterInstance, CharacterData characterData, string expressionName)
-    {
-        // Get the expression data
-        CharacterExpression expression = characterData.GetExpression(expressionName);
-        if (expression == null)
-        {
-            Debug.LogWarning($"No expression data found for '{expressionName}' on character '{characterData.characterName}'");
-            return;
-        }
-
-        // Set the sprite if the character has a SpriteRenderer
-        SpriteRenderer spriteRenderer = characterInstance.GetComponent<SpriteRenderer>();
-        if (spriteRenderer != null && expression.ExpressionSprite != null)
-        {
-            spriteRenderer.sprite = expression.ExpressionSprite;
-        }
-
-        // Apply default scale from character data
-        characterInstance.transform.localScale = characterData.defaultScale;
-    }
-
-
-    /// <summary>
-    /// Gets a character instance by name
+    /// Gets a character GameObject by name
     /// </summary>
     /// <param name="characterName">Name of the character</param>
     /// <returns>The character GameObject if found, otherwise null</returns>
     public GameObject GetCharacter(string characterName)
     {
-        return spawnedCharacters.TryGetValue(characterName, out GameObject character) ? character : null;
+        CharacterInfo charInfo = GetCharacterInfo(characterName);
+        return charInfo?.characterObject;
     }
-
 }
