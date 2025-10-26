@@ -90,7 +90,7 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
     Narrator: {$catName} appears on the screen, looking relieved to see you.
     <<show_character Cat Happy2 right>>
     <<start_voice_blip Cat>>
-    {$catName}: Hey {$playerName}, I was just thinking about you! Do you need something?
+    {$catName}: Hey {$catThinksPlayerNameIs}, I was just thinking about you! Do you need something?
         -> I want to get to know you better.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
@@ -100,7 +100,7 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
     <<show_character Cat Neutral right>>
     Narrator: {$catName} appears on the screen.
     <<start_voice_blip Cat>>
-    {$catName}: Oh, it's you! Hey again, {$playerName}. What's up?
+    {$catName}: Oh, it's you! Hey again, {$catThinksPlayerNameIs}. What's up?
         -> I want to get to know you better.
             <<show_character Cat Thinking right>>
             {$catName}: Huh. Well, I guess we can talk a bit more.
@@ -299,7 +299,7 @@ Narrator: You call {$dogName}. The line remains static for a little while, but y
     Narrator: {$dogName} appears on the screen, looking chill as always.
     <<show_character Dog Happy2 right>>
     <<start_voice_blip Dog>>
-    {$dogName}: Hey {$playerName}! Woof. How's it going?
+    {$dogName}: Hey {$dogThinksPlayerNameIs}! Woof. How's it going?
         -> I want to get to know you better.
             <<positive_indicator Dog>>
             <<set $dogLikesYou += 1>>
@@ -309,7 +309,7 @@ Narrator: You call {$dogName}. The line remains static for a little while, but y
     <<show_character Dog Neutral right>>
     Narrator: {$dogName} appears on the screen.
     <<start_voice_blip Dog>>
-    {$dogName}: Oh. Woof. Hey again, {$playerName}. What's up?
+    {$dogName}: Oh. Woof. Hey again, {$dogThinksPlayerNameIs}. What's up?
         -> I want to get to know you better.
             <<show_character Dog Thinking right>>
             {$dogName}: Woof. Well, I guess we can talk a bit more.
@@ -360,7 +360,7 @@ title: DogRecurringTreeDay2
                 <<positive_indicator Dog>>
                 <<set $dogLikesYou += 1>>
                 <<show_character Dog Neutral right>>
-                {$dogName}: So, {$playerName}. Woof. I don't usually tell anyone this, but...
+                {$dogName}: So, {$dogThinksPlayerNameIs}. Woof. I don't usually tell anyone this, but...
                 <<show_character Dog Angry right>>
                 {$dogName}: I saved a group of young pups. Woof. From a big shot. Big woofer.
                 {$dogName}: They were in trouble. Woof. I couldn't just leave them there. Woof.
@@ -378,10 +378,10 @@ title: DogRecurringTreeDay2
                         <<positive_indicator Dog>>
                         <<set $dogLikesYou += 1>>
                         <<show_character Dog Neutral right>>
-                        {$dogName}: Woof... Thank you, {$playerName}.
+                        {$dogName}: Woof... Thank you, {$dogThinksPlayerNameIs}.
                         <<if $dogLikesYou >= $dogDislikesYou>>
                             <<show_character Dog Flirt right>>
-                            {$dogName}: I can tell you're one of the good ones, {$catThinksPlayerNameIs}. Woof.
+                            {$dogName}: I can tell you're one of the good ones, {$dogThinksPlayerNameIs}. Woof.
                         <<endif>>
                     -> That sounds impulsive.
                         <<set $dogDislikesYou += 1>>
@@ -450,7 +450,7 @@ title: DogRecurringTreeDay2
                 <<positive_indicator Dog>>
                 <<set $dogLikesYou += 1>>
                 <<show_character Dog Neutral right>>
-                {$dogName}: So, {$playerName}. Woof. I don't usually tell anyone this, but...
+                {$dogName}: So, {$dogThinksPlayerNameIs}. Woof. I don't usually tell anyone this, but...
                 <<show_character Dog Angry right>>
                 {$dogName}: I saved a group of young pups. Woof. From a big shot. Big woofer.
                 {$dogName}: They were in trouble. Woof. I couldn't just leave them there. Woof.
@@ -468,10 +468,10 @@ title: DogRecurringTreeDay2
                         <<positive_indicator Dog>>
                         <<set $dogLikesYou += 1>>
                         <<show_character Dog Neutral right>>
-                        {$dogName}: Woof... Thank you, {$playerName}.
+                        {$dogName}: Woof... Thank you, {$dogThinksPlayerNameIs}.
                         <<if $dogLikesYou >= $dogDislikesYou>>
                             <<show_character Dog Flirt right>>
-                            {$dogName}: I can tell you're one of the good ones, {$catThinksPlayerNameIs}. Woof.
+                            {$dogName}: I can tell you're one of the good ones, {$dogThinksPlayerNameIs}. Woof.
                         <<endif>>
                     -> That sounds impulsive.
                         <<set $dogDislikesYou += 1>>
@@ -527,17 +527,17 @@ Narrator: You call {$opossumName}. The line remains static for a little while, b
     <<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
     Narrator: {$opossumName} appears on the screen, looking strangely happy.
     <<start_voice_blip Opossum>>
-    {$opossumName}: Hey {$playerName}, how's it going? It's been a while...
+    {$opossumName}: Hey {$opossumThinksPlayerNameIs}, how's it going? It's been a while...
         -> I want to get to know you better.
             <<positive_indicator Opossum>>
-            <<set $dogLikesYou += 1>>
+            <<set $opossumLikesYou += 1>>
             <<show_character Opossum Flirt right>>
             {$opossumName}: Sure, let's do that.
 <<else>>
     <<show_character Opossum Neutral right>>
     Narrator: {$opossumName} appears on the screen.
     <<start_voice_blip Opossum>>
-    {$opossumName}: Oh, hey. {$playerName}, right? What's on your mind?
+    {$opossumName}: Oh, hey. {$opossumThinksPlayerNameIs}, right? What's on your mind?
         -> I want to get to know you better.
             <<show_character Opossum Thinking right>>
             {$opossumName}: Oh, sure. I wouldn't mind giving that a shot.
@@ -706,7 +706,7 @@ title: OpossumRecurringTreeDay2
                 <<positive_indicator Opossum>>
                 <<set $opossumLikesYou += 1>>
                 <<show_character Opossum Sad right>>
-                {$opossumName}: Oh? Sorry to hear about that, {$playerName}. 
+                {$opossumName}: Oh? Sorry to hear about that, {$opossumThinksPlayerNameIs}. 
                 <<show_character Opossum Happy right>>
                 {$opossumName}: This may be a little selfish but, I'm glad to be with someone that understands that.
             -> That sucks.
@@ -740,11 +740,11 @@ title: OpossumRecurringTreeDay2
             <<show_character Opossum Happy right>>
             {$opossumName}: Thanks for the talk. I appreciated it.
             <<show_character Opossum Flirt right>>
-            {$opossumName}: As much as I'm a little embarrassed to say it, I enjoyed your company. We should talk more, {$playerName}.
+            {$opossumName}: As much as I'm a little embarrassed to say it, I enjoyed your company. We should talk more, {$opossumThinksPlayerNameIs}.
         <<else>>
             <<show_character Opossum Neutral right>>
             {$opossumName}: Oh, alright.
-            {$opossumName}: Thanks for the chat, {$playerName}.
+            {$opossumName}: Thanks for the chat, {$opossumThinksPlayerNameIs}.
         <<endif>>
         <<stop_voice_blip Opossum>>
         <<jump EndDay2>>
@@ -762,7 +762,7 @@ Narrator: You call {$birdName}. The line remains static for a little while, but 
 <<play_music BirdTheme 0.25>>
 Narrator: {$birdName} appears on the screen.
 <<start_voice_blip Bird>>
-{$birdName}: Oh hi, {$playerName}! You caught me in the middle of some work...
+{$birdName}: Oh hi, {$birdThinksPlayerNameIs}! You caught me in the middle of some work...
     -> I want to get to know you better.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
@@ -783,6 +783,10 @@ Narrator: {$birdName} appears on the screen.
 <<declare $day2AskedBirdQ4 = false>>
 <<declare $day2AskedBirdQ5 = false>>
 <<declare $day2AskedBirdQ6 = false>>
+<<declare $day2AskedBirdQ7 = false>>
+<<declare $knowBirdBackstory = false>>
+<<declare $knowBirdSlowWork = false>>
+<<declare $recommendedBirdSelfCare = false>>
 ===
 
 title: BirdRecurringTreeDay2
@@ -795,18 +799,199 @@ title: BirdRecurringTreeDay2
 <<endonce>>
 <<show_character Bird Neutral right>>
 {$birdName}: What did you want to talk about?
-    -> What is it like out here? <<if $day2AskedBirdQ1 == false>>
-        ...
+    -> What is it like on your planet? <<if $day2AskedBirdQ1 == false>>
+        <<set $day2AskedBirdQ1 = true>>
+        <<show_character Bird Happy right>>
+        {$birdName}: Oh, it's pretty nice! Lots of trees, open skies, and fresh air.
+        <<show_character Bird Sad right>>
+        <<set $knowBirdBackstory = true>>
+        {$birdName}: It's all pretty peaceful, actually. Albeit... it's been very lonely the past couple of months.
+            -> Lonely? Why's that?
+                <<show_character Bird Sad right>>
+                {$birdName}: It's... kind of a beakful.
+                {$birdName}: Me and my partner were very close. I was pretty quiet and kept to myself, and they were <i>extremely</i> adventurous.
+                <<show_character Bird Nervous right>>
+                {$birdName}: They loved going out and exploring new places, meeting new people.
+                {$birdName}: I admired that about them. They always encouraged me to come out of my shell.
+                <<stop_voice_blip Bird>>
+                <<show_character Bird Sad right>>
+                Narrator: {$birdName} pauses for a moment, looking down.
+                <<start_voice_blip Bird>>
+                    -> Then? What happened?
+                        <<set $birdDislikesYou += 1>>
+                    -> (give them some space)
+                {$birdName}: Then, all of a sudden, they fell very ill. Aviaris had no cure for it.
+                {$birdName}: They passed away a few months ago. I've been feeling pretty lost since then.
+                    -> I'm so sorry for your loss.
+                        <<positive_indicator Bird>>
+                        <<set $birdLikesYou += 1>>
+                        <<show_character Bird Neutral right>>
+                        {$birdName}: Thank you, {$birdThinksPlayerNameIs}. It's been hard. But talking about it helps me more than you can imagine.
+                    -> That's rough.
+                        <<set $birdDislikesYou += 2>>
+                        <<show_character Bird Sad right>>
+                        {$birdName}: Yeah... it really is.
+        <<show_character Bird Sweat right>>
+        {$birdName}: But, um, I-I didn't mean to steal the spotlight.
+        <<if $birdLikesYou >= $birdDislikesYou>>
+            <<show_character Bird Happy right>>
+        <<else>>
+            <<show_character Bird Neutral right>>
+        <<endif>>
+        {$birdName}: Thanks for hearing me out.
     -> What is your mission? <<if $day2AskedBirdQ2 == false>>
-        ...
+        <<set $day2AskedBirdQ2 = true>>
+        <<if $knowBirdSlowWork == false>>
+            <<set $knowBirdSlowWork = true>>
+            {$birdName}: Mission? I guess, I'm doing research right now on different planets and species.
+            <<show_character Bird Thinking right>>
+            {$birdName}: But, to be honest, it... it hasn't been getting me anywhere.
+            <<show_character Bird Sad right>>
+            {$birdName}: I feel like I'm just grasping at straws. But I know that I need to be doing this work.
+                -> You need to be doing this? How come?
+                -> Why continue?
+                -> Don't waste your time.
+                    <<set $birdDislikesYou += 2>>
+                {$birdName}: I... I just feel like I have to do this...
+                <<stop_voice_blip Bird>>
+                <<show_character Bird Thinking right>>
+                Narrator: {$birdName} looks off into the distance, contemplating their work.
+                <<start_voice_blip Bird>>
+                {$birdName}: You know, I think it's been hard to focus since... since my partner... disappeared.
+                {$birdName}: They were always so driven and passionate about their work. I felt like I had to keep up.
+                    -> (POSITIVE RELATIONSHIP) I'm sure they'd be proud of you. <<if $birdLikesYou > $birdDislikesYou>>
+                        <<positive_indicator Bird>>
+                        <<set $birdLikesYou += 3>>
+                        <<show_character Bird Flustered right>>
+                        {$birdName}: Th-thank you, {$birdThinksPlayerNameIs}...
+                        <<show_character Bird Neutral right>>
+                        {$birdName}: That means a lot to me.
+                        <<show_character Bird Happy right>>
+                        {$birdName}: I just need to keep pushing forward.
+                    -> Maybe it's time to take a break.
+                        <<set $birdDislikesYou += 1>>
+                        <<show_character Bird Sad right>>
+                        {$birdName}: M-maybe... but I don't know what else to do.
+                        {$birdName}: I feel like my work is all I have left of them.
+        <<else>>
+            {$birdName}: Other than doing work, I guess my mission is to... find purpose again.
+            {$birdName}: It's been hard since my partner passed away. I feel like I'm just going through the motions.
+        <<endif>>
+        <<if $recommendedBirdSelfCare == false>>
+            {$birdName}: I just don't know how to move on.
+                -> You should take spend more time having fun, or relaxing.
+                    <<positive_indicator Bird>>
+                    <<set $recommendedBirdSelfCare = true>>
+                    <<show_character Bird Confused right>>
+                    {$birdName}: I... I don't know if I can. There's just so much to do.
+        <<endif>>
     -> What do you do for work? <<if $day2AskedBirdQ3 == false>>
-        ...
+        <<set $day2AskedBirdQ3 = true>>
+        <<show_character Bird Neutral right>>
+        {$birdName}: Well, as you know, I'm a researcher trying to gather information on other planets and species.
+        {$birdName}: I've been stuck for a while, so I'm just in an interviewing and needfinding stage.
+        <<show_character Bird Sad right>>
+        {$birdName}: But it's... it's been a bit slow going, to be honest.
+        <<if $knowBirdSlowWork == false>>
+            <<set $knowBirdSlowWork = true>>
+            {$birdName}: I feel like I'm just grasping at straws. But I know that I need to be doing this work.
+                -> You need to be doing this? How come?
+                -> Why continue?
+                -> Don't waste your time.
+                    <<set $birdDislikesYou += 2>>
+                {$birdName}: I... I just feel like I have to do this...
+                <<stop_voice_blip Bird>>
+                <<show_character Bird Thinking right>>
+                Narrator: {$birdName} looks off into the distance, contemplating their work.
+                <<start_voice_blip Bird>>
+                {$birdName}: You know, I think it's been hard to focus since... since my partner... disappeared.
+                {$birdName}: They were always so driven and passionate about their work. I felt like I had to keep up.
+                    -> (POSITIVE RELATIONSHIP) I'm sure they'd be proud of you. <<if $birdLikesYou > $birdDislikesYou>>
+                        <<positive_indicator Bird>>
+                        <<set $birdLikesYou += 3>>
+                        <<show_character Bird Flustered right>>
+                        {$birdName}: Th-thank you, {$birdThinksPlayerNameIs}...
+                        <<show_character Bird Neutral right>>
+                        {$birdName}: That means a lot to me.
+                        <<show_character Bird Happy right>>
+                        {$birdName}: I just need to keep pushing forward.
+                    -> Maybe it's time to take a break.
+                        <<set $birdDislikesYou += 1>>
+                        <<show_character Bird Sad right>>
+                        {$birdName}: M-maybe... but I don't know what else to do.
+                        {$birdName}: I feel like my work is all I have left of them.
+        <<else>>
+            {$birdName}: I feel like I'm just going through the motions.
+        <<endif>>
     -> What do you do for fun? <<if $day2AskedBirdQ4 == false>>
-        ...
+        <<show_character Bird Confused right>>
+        {$birdName}: F-fun? Gosh, I don't really have time for that these days.
+        {$birdName}: I used to enjoy flying around and exploring new places with my partner.
+        <<show_character Bird Sad right>>
+        {$birdName}: Those days are gone, though. Now, I just focus on my work.
+            -> You should make time for fun.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Confused right>>
+                {$birdName}: Y-yeah, maybe you're right. I should try to relax more often.
+                <<set $recommendedBirdSelfCare = true>>
+            -> Work is more important.
+                <<set $birdDislikesYou += 1>>
+                <<show_character Bird Sad right>>
+                {$birdName}: I... I guess so. But it's hard to think about anything else right now.
     -> Do you have a family? <<if $day2AskedBirdQ5 == false>>
-        ...
+        <<set $day2AskedBirdQ5 = true>>
+        <<show_character Bird Neutral right>>
+        {$birdName}: Yes! I have a mother and father. 
+        <<show_character Bird Thinking right>>
+        {$birdName}: They're both living separately from me right now, though. I spend most of my days in the lab.
+            -> Do you get to see them often?
+            -> Are you close?
+        {$birdName}: I don't see them all the time, but I fly over to visit when I can.
+        {$birdName}: Maybe I should call them more often, now that I think about it... I've just been so busy with work.
     -> (POSITIVE RELATIONSHIP) You're cute. <<if $day2AskedBirdQ6 == false && $birdLikesYou >= $birdDislikesYou>>
-        ...
+        <<show_character Bird Flustered right>>
+        <<positive_indicator Bird>>
+        <<set $birdLikesYou += 1>>
+        {$birdName}: Oh! Uh, th-thank you, {$birdThinksPlayerNameIs}...
+        {$birdName}: You're... you're very nice to me.
+    -> <b>(POSITIVE RELATIONSHIP)</b> Do you want to play a game? <<if $recommendedBirdSelfCare == false && $birdLikesYou >= $birdDislikesYou>>
+        <<show_character Bird Sweat right>>
+        {$birdName}: A game? I-I don't know. Will it take a while?
+            -> Just loosen up a bit!
+            -> Okay, you're right. Maybe another time.
+                <<show_character Bird Nervous right>>
+                {$birdName}: Y-yeah. Sorry about that. I haven't played games in a long time anyways.
+                <<jump BirdRecurringTreeDay2>>
+        // TODO: Make this an actual game
+        <<set $day2AskedBirdQ7 = true>>
+        <<show_character Bird Nervous right>>
+        {$birdName}: O-okay. I'll try. No promises I'll do good at it, though.
+        <<stop_voice_blip Bird>>
+        <<show_character Bird Happy right>>
+        Narrator: You decide to play a game with {$birdName} on the monitor to pass the time.
+        Narrator: {$birdName} beams an old game they used to play to your device, and you both start playing.
+        Narrator: The game is a pretty complicated game, involving mixing chemical compounds to create new elements.
+        Narrator: You struggle immensely.
+        <<show_character Bird Happy2 right>>
+        Narrator: It seems that {$birdName}, however, is doing very well.
+            -> (try your best to win)
+                Narrator: You push yourself to focus, but ultimately, you just can't keep up with {$birdName}'s skill. You lose the game.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 3>>
+                <<start_voice_blip Bird>>
+                {$birdName}: Heh, good game! You tried your best, {$birdThinksPlayerNameIs}.
+            -> (give up)
+                Narrator: You decide to forfeit the game, admitting that you're outmatched.
+                <<show_character Bird Happy right>>
+                <<set $birdDislikesYou += 1>>
+                <<start_voice_blip Bird>>
+                {$birdName}: Heh, sorry. I didn't mean to crush you like that, {$birdThinksPlayerNameIs}.
+                <<show_character Bird Happy2 right>>
+                {$birdName}: You could've put up a bit more of a fight though! You could've had a good chance there.
+        {$birdName}: That was fun! Thanks for playing with me, {$birdThinksPlayerNameIs}.
+        <<show_character Bird Happy right>>
+        {$birdName}: I... really needed that more than I realized.
     -> (don't ask any more questions)
         <<stop_voice_blip Bird>>
         <<if $posSelfPerception > $negSelfPerception>>
@@ -817,12 +1002,13 @@ title: BirdRecurringTreeDay2
         <<start_voice_blip Bird>>
         <<if $birdLikesYou >= $birdDislikesYou>>
             <<show_character Bird Happy right>>
-            {$birdName}: Aw, okay. It was really fun talking!
-            {$birdName}: We should talk more, {$birdThinksPlayerNameIs}.
+            {$birdName}: I... rather enjoyed that.
+            <<show_character Bird Flirt right>>
+            {$birdName}: We should talk more, {$birdThinksPlayerNameIs}. Bye for now!
         <<else>>
             <<show_character Bird Neutral right>>
-            {$birdName}: Oh, alright. Thanks for talking.
-            {$birdName}: Maybe next time.
+            {$birdName}: Oh, alright. Enjoyed the chat!
+            {$birdName}: Maybe I'll see you next time.
         <<endif>>
         <<stop_voice_blip Bird>>
         <<jump EndDay2>>
