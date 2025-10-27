@@ -11,9 +11,6 @@ public class GameRetryButton : MonoBehaviour
 {
     [Header("Dependencies")]
     [SerializeField] private DialogueRunner dialogueRunner;
-    
-    [Header("Start Node")]
-    [SerializeField] private string startNodeName = "Start";
 
     private Button retryButton;
 
