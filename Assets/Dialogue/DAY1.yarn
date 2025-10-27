@@ -1073,8 +1073,8 @@ position: 925,83
 <<hide_all_objects>>
 Narrator: After talking to so many new figures, a sense of fatigue overcomes you.
 Narrator: You decide to call it a day, and take a short nap. Perhaps afterwards, you can decide what you want to do next.
-<<show ScreenBlocker>>
+<<show_ui UIScreenBlocker>>
 <<wait 2>>
-<<hide ScreenBlocker>>
+<<hide_ui UIScreenBlocker>>
 <<jump StartDay2>>
 ===
