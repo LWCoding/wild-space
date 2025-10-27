@@ -45,6 +45,9 @@ public class YarnTypeToFinish : MonoBehaviour
                 if (canRespond && _charactersShown < _messageToShow.Length)
                 {
                     // Only play typing sound if there are still characters to reveal
+                    if (_audioManager == null) {
+                        _audioManager = AudioManager.Instance;
+                    }
                     if (_audioManager != null)
                     {
                         _audioManager.PlayTypingSound();

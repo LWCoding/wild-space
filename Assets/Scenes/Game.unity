@@ -8998,7 +8998,7 @@ MonoBehaviour:
   audioSource2: {fileID: 845041586}
   sfxAudioSource: {fileID: 596843862}
   typingSoundClip: {fileID: 8300000, guid: dda5b66c9893e5243bfaa776a0bebb84, type: 3}
-  typingSoundVolume: 0.25
+  typingSoundVolume: 0.2
   pitchVariation: 0.2
   dialogueHoverSoundClip: {fileID: 8300000, guid: ed103397ad1525248ba22103aceb5444, type: 3}
   dialogueHoverSoundVolume: 0.15
@@ -10027,7 +10027,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueRunner: {fileID: 1540949741}
-  startNodeName: Start
 --- !u!114 &1264586458
 MonoBehaviour:
   m_ObjectHideFlags: 0
