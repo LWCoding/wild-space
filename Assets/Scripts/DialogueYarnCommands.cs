@@ -1,5 +1,6 @@
 using UnityEngine;
 using Yarn.Unity;
+using TMPro;
 
 /// <summary>
 /// Adds additional Yarn command functionality for dialogue control.
@@ -212,42 +213,77 @@ public static class DialogueYarnCommands
         Debug.Log($"Playing music start/loop: {startClipName} -> {loopClipName} (volume: {vol}, fade: {fade}s)");
     }
 
-	/// <summary>
-	/// Yarn: <<play_sound "SfxClipName">> or <<play_sound "SfxClipName" 0.7>>
-	/// Plays a one-shot sound effect without interrupting current music.
-	/// </summary>
-	[YarnCommand("play_sound")]
-	public static void PlaySound(string clipName, string volume = "")
-	{
-		if (AudioManager.Instance == null)
-		{
-			Debug.LogError($"AudioManager singleton not initialized. Cannot play sound '{clipName}'");
-			return;
-		}
+    /// <summary>
+    /// Yarn: <<play_sound "SfxClipName">> or <<play_sound "SfxClipName" 0.7>>
+    /// Plays a one-shot sound effect without interrupting current music.
+    /// </summary>
+    [YarnCommand("play_sound")]
+    public static void PlaySound(string clipName, string volume = "")
+    {
+        if (AudioManager.Instance == null)
+        {
+            Debug.LogError($"AudioManager singleton not initialized. Cannot play sound '{clipName}'");
+            return;
+        }
 
-		AudioClip clip = Resources.Load<AudioClip>($"Audio/SFX/{clipName}");
-		if (clip == null)
-		{
-			Debug.LogError($"Sound effect clip '{clipName}' not found in Resources/Audio/SFX/ folder");
-			return;
-		}
+        AudioClip clip = Resources.Load<AudioClip>($"Audio/SFX/{clipName}");
+        if (clip == null)
+        {
+            Debug.LogError($"Sound effect clip '{clipName}' not found in Resources/Audio/SFX/ folder");
+            return;
+        }
 
-		float vol = 1f;
-		if (!string.IsNullOrEmpty(volume))
-		{
-			if (float.TryParse(volume, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float volValue))
-			{
-				vol = Mathf.Clamp01(volValue);
-			}
-			else
-			{
-				Debug.LogWarning($"Invalid volume '{volume}'. Using default volume of 1.0.");
-			}
-		}
+        float vol = 1f;
+        if (!string.IsNullOrEmpty(volume))
+        {
+            if (float.TryParse(volume, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float volValue))
+            {
+                vol = Mathf.Clamp01(volValue);
+            }
+            else
+            {
+                Debug.LogWarning($"Invalid volume '{volume}'. Using default volume of 1.0.");
+            }
+        }
 
-		AudioManager.Instance.PlaySFXOneShot(clip, vol);
-		Debug.Log($"Played sound: {clipName} (volume: {vol})");
-	}
+        AudioManager.Instance.PlaySFXOneShot(clip, vol);
+        Debug.Log($"Played sound: {clipName} (volume: {vol})");
+    }
+
+    /// <summary>
+    /// Yarn: <<the_end "Ending 4/5: Loveless Fate">>
+    /// Displays the game ending message on a UI text component.
+    /// The ending message is fully configurable via the string parameter.
+    /// </summary>
+    [YarnCommand("the_end")]
+    public static void ShowTheEnd(string endingMessage)
+    {
+        if (string.IsNullOrEmpty(endingMessage))
+        {
+            Debug.LogWarning("the_end command called with empty ending message");
+            return;
+        }
+
+        // Look for the specific "EndingSubtext" GameObject
+        GameObject endingSubtextObject = GameObject.Find("EndingSubtext");
+        if (endingSubtextObject != null)
+        {
+            // Get the TextMeshProUGUI component directly on the EndingSubtext object
+            var textComponent = endingSubtextObject.GetComponent<TextMeshProUGUI>();
+            if (textComponent != null)
+            {
+                textComponent.text = endingMessage;
+                textComponent.enabled = true;
+                endingSubtextObject.SetActive(true);
+                Debug.Log($"Displayed ending message on EndingSubtext: {endingMessage}");
+                return;
+            }
+        }
+        else
+        {
+            Debug.LogError("EndingSubtext GameObject not found in the scene. Cannot display ending message.");
+        }
+    }
 }
 
 

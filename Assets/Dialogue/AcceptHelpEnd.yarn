@@ -19,6 +19,11 @@ Narrator: You made it. {$catName} came through for you.
     Narrator: <b>ENDING 4/5: Saved by a friend</b> 
 <<endif>>
 <<detour End>>
+<<if $catLikesYou > $catDislikesYou * 1.5>>
+    <<the_end "ENDING 4/5: Saved by a lover">>
+<<else>>
+    <<the_end "ENDING 4/5: Saved by a friend">>
+<<endif>>
 ===
 
 title: AcceptDogHelp
@@ -43,6 +48,11 @@ Narrator: You made it. {$dogName} came through for you.
     Narrator: <b>ENDING 4/5: Saved by a friend</b>
 <<endif>>
 <<detour End>>
+<<if $dogLikesYou > $dogDislikesYou * 1.5>>
+    <<the_end "ENDING 4/5: Saved by a lover">>
+<<else>>
+    <<the_end "ENDING 4/5: Saved by a friend">>
+<<endif>>
 ===
 
 title: AcceptOpossumHelp
@@ -67,6 +77,11 @@ Narrator: You made it. {$opossumName} came through for you.
     Narrator: <b>ENDING 4/5: Saved by a friend</b> 
 <<endif>>
 <<detour End>>
+<<if $opossumLikesYou > $opossumDislikesYou * 1.5>>
+    <<the_end "ENDING 4/5: Saved by a lover">>
+<<else>>
+    <<the_end "ENDING 4/5: Saved by a friend">>
+<<endif>>
 ===
 
 title: AcceptBirdHelp
@@ -91,5 +106,10 @@ Narrator: You made it. {$birdName} came through for you.
     Narrator: <b>ENDING 4/5: Saved by a friend</b> 
 <<endif>>
 <<detour End>>
+<<if $birdLikesYou > $birdDislikesYou * 1.5>>
+    <<the_end "ENDING 4/5: Saved by a lover">>
+<<else>>
+    <<the_end "ENDING 4/5: Saved by a friend">>
+<<endif>>
 ===
 

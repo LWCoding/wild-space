@@ -11,7 +11,7 @@ public class YarnClickForDialogue : MonoBehaviour
     [Header("Object Assignments")]
     [SerializeField] private bool _onlyInteractableOnce = false;
     [SerializeField] private string _nodeName;
-    
+
     [Header("Conditional Interaction")]
     [SerializeField] private List<string> _requiredVariables = new List<string>();  // Checks these booleans in yarnspinner variable storage; only interactable if all are true
 
@@ -32,6 +32,7 @@ public class YarnClickForDialogue : MonoBehaviour
     private Coroutine _pulseCoroutine;
     private Vector3 _initialScale;
     private Color _originalColor;
+    private bool _isHovered = false;
 
     private float _pulseScaleAmount = 0.01f;
     private float _pulseSpeed = 0.25f; // cycles per second
@@ -52,7 +53,7 @@ public class YarnClickForDialogue : MonoBehaviour
             gameObject.SetActive(false);
             return;
         }
-        
+
         // Begin pulsing if not yet interacted and variables are met
         if (_enablePulse && _timesRan == 0)
         {
@@ -77,6 +78,14 @@ public class YarnClickForDialogue : MonoBehaviour
 
     private void OnMouseEnter()
     {
+        _isHovered = true;
+
+        // Don't tint on hover if dialogue is running
+        if (_dialogueRunner.IsDialogueRunning)
+        {
+            return;
+        }
+
         // Tint on hover if not yet interacted
         if (_spriteRenderer != null && _timesRan == 0)
         {
@@ -86,6 +95,14 @@ public class YarnClickForDialogue : MonoBehaviour
 
     private void OnMouseExit()
     {
+        _isHovered = false;
+
+        // Don't change color if dialogue is running
+        if (_dialogueRunner.IsDialogueRunning)
+        {
+            return;
+        }
+
         // Restore original color and cursor
         if (_spriteRenderer != null && _timesRan == 0)
         {
@@ -101,7 +118,7 @@ public class YarnClickForDialogue : MonoBehaviour
         {
             return;
         }
-        
+
         HandleClick();
     }
 
@@ -132,6 +149,34 @@ public class YarnClickForDialogue : MonoBehaviour
         }
 
         await _dialogueRunner.StartDialogue(_nodeName);
+
+        // After dialogue ends, check if mouse is hovering and apply correct visual state
+        UpdateHoverVisual();
+    }
+
+    private void UpdateHoverVisual()
+    {
+        if (_spriteRenderer == null)
+        {
+            return;
+        }
+
+        // Determine the base color based on interaction state
+        Color baseColor = _originalColor;
+        if (_timesRan > 0)
+        {
+            baseColor = new Color(_originalColor.r, _originalColor.g, _originalColor.b, _interactedAlpha);
+        }
+
+        // Apply hover color if currently hovered, otherwise use base color
+        if (_isHovered && _timesRan == 0)
+        {
+            _spriteRenderer.color = _hoverColor;
+        }
+        else
+        {
+            _spriteRenderer.color = baseColor;
+        }
     }
 
     private IEnumerator PulseRoutine()
@@ -160,7 +205,7 @@ public class YarnClickForDialogue : MonoBehaviour
         {
             if (string.IsNullOrEmpty(variableName))
                 continue;
-                
+
             if (_dialogueRunner.VariableStorage.TryGetValue<bool>($"${variableName}", out bool variableValue))
             {
                 if (!variableValue)

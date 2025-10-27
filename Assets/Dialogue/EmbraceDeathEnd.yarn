@@ -12,6 +12,6 @@ Narrator: You decide not to call for help.
 <<endif>>
 Narrator: You embrace death. Nobody ever hears from you again. Not that they really cared, anyways.
 Narrator: Somebody eventually ends up replacing your station, and life goes on as usual.
-Narrator: <b>ENDING 3/5: Loveless fate</b>
 <<detour End>>
+<<the_end "ENDING 3/5: Loveless fate">>
 ===

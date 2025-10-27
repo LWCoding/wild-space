@@ -15,11 +15,11 @@ position: -185,-367
 <<show MonitorOnNoSilhouette>>
 Narrator: You turn on the monitor to see today's tasks.
 Narrator: Out of the corner of your eye, you see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
-Narrator: Do you wish to report your alien encounter?
-    -> (report the encounter)
+Narrator: Do you wish to report the aliens to Earth, or let them be?
+    -> (report the aliens)
         Narrator: You hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
         Narrator: You're not entirely sure what will happen to the aliens, but you may never see them again.
-        -> (report the encounter)
+        -> (report the aliens)
             Narrator: You get to writing your report.
             <<hide_all_objects>>
             <<show_ui TypeToInteract>>

@@ -21,11 +21,11 @@ Narrator: It reads, "Remember your duty to report accurately and without bias. Y
 <<if $catSecured == false && $dogSecured == false && $opossumSecured == false && $birdSecured == false>>
     <<jump ForeverAlone>>
 <<endif>>
-Narrator: You ponder the details of your next report. Do you report the encounter with the aliens? Or keep it under wraps?
-    -> (report the encounter)
+Narrator: You ponder your next report. Do you report the encounter with the aliens, knowing that Earth may react harshly? Or keep it under wraps?
+    -> (report the aliens)
         Narrator: You hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
         Narrator: You're not entirely sure what will happen to the aliens, but you may never see them again.
-        -> (report the encounter)
+        -> (report the aliens)
             Narrator: You get to writing your report.
             <<hide_all_objects>>
             <<show_ui TypeToInteract>>
@@ -46,7 +46,8 @@ title: KeptUnderWrapsDay2
 position: 167,29
 ---
 <<hide_all_ui_objects>>
-Narrator: You hesitate before sending the message. You disobeyed the rules of your job, but you feel it was the right choice.
+<<set $negSelfPerception += 1>>
+Narrator: You hesitate, and send off the message. The whole point of your job was to report alien life. But something about this situation feels different.
 <<if $posSelfPerception > $negSelfPerception>>
     Narrator: You feel a sense of pride in your decision. You trust your instincts and believe that not everything needs to be reported.
 <<else>>
@@ -59,11 +60,6 @@ Narrator: It's a fresh day. The aliens said that you can ping them if you wanted
     -> (reestablish contact with the aliens)
         <<hide_all_objects>>
         <<show ChooseYourCharacterDay2>>
-    -> (ignore the aliens)
-        Narrator: This option isn't implemented yet. So instead, you re-establish contact with the aliens.
-        <<hide_all_objects>>
-        <<show ChooseYourCharacterDay2>>
-        // TODO: Actually make this branch work!
 ===
 
 title: LearnAboutConditionalChoices
