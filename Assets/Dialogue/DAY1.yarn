@@ -267,9 +267,7 @@ Narrator: Suddenly, the figure comes into view.
 <<show_character Cat Neutral right>>
 {$catName}: Well, I'm glad to hear that you're fine.
     -> What... are you?
-        <<set $catLikesYou += 1>>
         <<show_character Cat Happy right>>
-        {$catName}: Aww, that's too bad. I'm glad I could be your first contact then!
         {$catName}: As I mentioned, I'm from the planet Linnaeus, though I don't expect you've heard of it.
         <<show_character Cat Happy2 right>>
         {$catName}: We're a peaceful species, mostly just trying to explore the galaxy and make friends.
@@ -283,7 +281,7 @@ Narrator: Suddenly, the figure comes into view.
             {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
     -> Why are you talking to me?
         <<show_character Cat Flirt right>>
-        {$catName}: Well, you know what they say. Curiosity killed the felis catus linnaeus!
+        {$catName}: Well, you know what they say. Curiosity killed the catus linnaeus!
         <<show_character Cat Happy right>>
         {$catName}: I was on patrol for my planet, and I picked up your ship's signal. I thought I'd check in and see if you were alright.
         {$catName}: I don't suppose you've heard of Linnaeus, but we're a peaceful species, mostly just trying to explore the galaxy and make friends.
@@ -715,6 +713,7 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
 <<if $opossumSecured == false>>
     <<deactivate_icon Opossum>>
 <<endif>>
+<<stop_voice_blip Opossum>>
 <<hide_all_characters>>
 <<play_music MainTheme>>
 Narrator: The transmission cuts off abruptly. {$opossumName} takes their leave.
