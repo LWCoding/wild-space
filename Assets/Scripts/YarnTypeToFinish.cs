@@ -39,36 +39,42 @@ public class YarnTypeToFinish : MonoBehaviour
             if (Input.anyKeyDown && !(Input.GetMouseButtonDown(0)
             || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)))
             {
-                // Only play typing sound if there are still characters to reveal
-                if (_charactersShown < _messageToShow.Length && _audioManager != null)
-                {
-                    _audioManager.PlayTypingSound();
-                }
+                // Only respond to input if this object is currently typing or if no other object is typing
+                bool canRespond = _isCurrentlyTyping || (DialogueHistoryManager.Instance != null && !DialogueHistoryManager.Instance.IsTypingInProgress());
                 
-                // Track typing state changes
-                bool wasTyping = _isCurrentlyTyping;
-                _charactersShown = Mathf.Min(_charactersShown + 3, _messageToShow.Length);
-                
-                // Skip spaces.
-                while (_charactersShown < _messageToShow.Length && _messageToShow[_charactersShown] == ' ')
+                if (canRespond && _charactersShown < _messageToShow.Length)
                 {
-                    _charactersShown++;
-                }
+                    // Only play typing sound if there are still characters to reveal
+                    if (_audioManager != null)
+                    {
+                        _audioManager.PlayTypingSound();
+                    }
+                    
+                    // Track typing state changes
+                    bool wasTyping = _isCurrentlyTyping;
+                    _charactersShown = Mathf.Min(_charactersShown + 3, _messageToShow.Length);
+                    
+                    // Skip spaces.
+                    while (_charactersShown < _messageToShow.Length && _messageToShow[_charactersShown] == ' ')
+                    {
+                        _charactersShown++;
+                    }
 
-                _textToChange.text = _messageToShow[.._charactersShown];
-                
-                // Update typing state based on progress
-                bool isNowTyping = _charactersShown < _messageToShow.Length;
-                if (wasTyping != isNowTyping)
-                {
-                    _isCurrentlyTyping = isNowTyping;
-                    DialogueHistoryManager.Instance?.SetTypingInProgress(isNowTyping);
-                }
-                
-                if (!_loadedNode && _charactersShown == _messageToShow.Length)
-                {
-                    _loadedNode = true;
-                    StartCoroutine(StartYarnScriptAfterDelayCoroutine(1));
+                    _textToChange.text = _messageToShow[.._charactersShown];
+                    
+                    // Update typing state based on progress
+                    bool isNowTyping = _charactersShown < _messageToShow.Length;
+                    if (wasTyping != isNowTyping)
+                    {
+                        _isCurrentlyTyping = isNowTyping;
+                        DialogueHistoryManager.Instance?.SetTypingInProgress(isNowTyping);
+                    }
+                    
+                    if (!_loadedNode && _charactersShown == _messageToShow.Length)
+                    {
+                        _loadedNode = true;
+                        StartCoroutine(StartYarnScriptAfterDelayCoroutine(1));
+                    }
                 }
             }
         }

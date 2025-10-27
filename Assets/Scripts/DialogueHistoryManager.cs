@@ -665,6 +665,14 @@ public class DialogueHistoryManager : MonoBehaviour
     }
     
     /// <summary>
+    /// Check if any typing is currently in progress
+    /// </summary>
+    public bool IsTypingInProgress()
+    {
+        return _isTypingInProgress;
+    }
+    
+    /// <summary>
     /// Called when YarnSpinner typewriter finishes
     /// </summary>
     private void OnYarnTypewriterFinished()

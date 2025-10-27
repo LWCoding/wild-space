@@ -424,13 +424,15 @@ public class AudioManager : MonoBehaviour
 
 		// Apply random pitch variation
 		float pitchVariationAmount = Random.Range(-pitchVariation, pitchVariation);
-		sfxAudioSource.pitch = 1f + pitchVariationAmount;
+		float newPitch = 1f + pitchVariationAmount;
+		sfxAudioSource.pitch = newPitch;
 		
 		// Play the typing sound
 		sfxAudioSource.PlayOneShot(typingSoundClip, typingSoundVolume);
 		
-		// Always restore pitch to 1.0 after a short delay
-		StartCoroutine(RestoreSFXPitchAfterDelay(1.0f, 0.1f));
+		// Restore pitch to 1.0 after the sound finishes playing (typingSoundClip.length)
+		// This ensures each typing sound gets its own pitch variation without interference
+		StartCoroutine(RestoreSFXPitchAfterDelay(1.0f, typingSoundClip.length));
 	}
 
 	/// <summary>
