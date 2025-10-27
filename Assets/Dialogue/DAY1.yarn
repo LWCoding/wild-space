@@ -575,6 +575,7 @@ position: 638,-61
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show MonitorOn>>
 Narrator: You pull up the communication panel and respond to the figure with the frazzled hair.
 <<show_character Opossum Obscure right>>
 Narrator: You turn the dials to let the signal through.
@@ -733,6 +734,7 @@ position: 633,86
 <<declare $birdExplainedIntention = false>>
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show MonitorOn>>
 Narrator: You pull up the communication panel and respond to the figure with the pointy muzzle.
 <<show_character Bird Obscure right>>
 Narrator: You turn the dials to let the signal through.
