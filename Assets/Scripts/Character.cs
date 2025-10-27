@@ -96,7 +96,7 @@ public class Character : MonoBehaviour
         }
 
         // Show the character via CharacterManager (this will also show/hide UI icons)
-        characterManager.ShowCharacter(gameObject.name);
+        characterManager.ShowCharacter(gameObject.name, expression);
     }
 
     /// <summary>

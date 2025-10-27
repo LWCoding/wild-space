@@ -75,7 +75,8 @@ public class CharacterManager : MonoBehaviour
     /// Called from Character.cs ShowCharacter method
     /// </summary>
     /// <param name="characterName">Name of the character to show</param>
-    public void ShowCharacter(string characterName)
+    /// <param name="expression">Expression name to check for "Obscure"</param>
+    public void ShowCharacter(string characterName, string expression)
     {
         CharacterInfo charInfo = GetCharacterInfo(characterName);
         if (charInfo == null) return;
@@ -90,8 +91,8 @@ public class CharacterManager : MonoBehaviour
             }
         }
 
-        // Show and update the UI icon
-        if (charInfo.icon != null)
+        // Show and update the UI icon ONLY if the expression doesn't contain "Obscure"
+        if (charInfo.icon != null && !expression.Contains("Obscure"))
         {
             // Get like and dislike counts from yarn variables
             int likes = GetYarnVariable(charInfo.likeVariableName);
