@@ -23,7 +23,7 @@ public class YarnClickForDialogue : MonoBehaviour
 
     [Header("Post-interaction Visuals")]
     [Range(0f, 1f)]
-    [SerializeField] private float _interactedAlpha = 0.75f;
+    [SerializeField] private float _interactedGrayness = 0.6f;
 
     private DialogueRunner _dialogueRunner;
     private int _timesRan = 0;
@@ -143,8 +143,7 @@ public class YarnClickForDialogue : MonoBehaviour
             transform.localScale = _initialScale;
             if (_spriteRenderer != null)
             {
-                var c = _originalColor;
-                _spriteRenderer.color = new Color(c.r, c.g, c.b, _interactedAlpha);
+                _spriteRenderer.color = new Color(_interactedGrayness, _interactedGrayness, _interactedGrayness, 1f);
             }
         }
 
@@ -165,7 +164,7 @@ public class YarnClickForDialogue : MonoBehaviour
         Color baseColor = _originalColor;
         if (_timesRan > 0)
         {
-            baseColor = new Color(_originalColor.r, _originalColor.g, _originalColor.b, _interactedAlpha);
+            baseColor = new Color(_interactedGrayness, _interactedGrayness, _interactedGrayness, 1f);
         }
 
         // Apply hover color if currently hovered, otherwise use base color

@@ -8,7 +8,7 @@ Narrator: It is silent. You are floating in the vast emptiness of space.
 Narrator: You are utterly alone. It feels... relaxing.
 Narrator: Back on Earth, you always felt invisible.
 Narrator: Nobody loved you. Nobody cared about you. 
-Narrator: You have no friends, your family doesn't acknowledge you, and you find yourself with no purpose.
+// Narrator: You have no friends, your family doesn't acknowledge you, and you find yourself with no purpose.
 Narrator: You drift aimlessly. Might as well choose a name for yourself.
 <<prompt_name NamePrompter>>
 ===

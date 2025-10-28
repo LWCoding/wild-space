@@ -4,7 +4,10 @@ title: Globals
 <<declare $dogThinksPlayerNameIs = "Human">>
 <<declare $opossumThinksPlayerNameIs = "Human">>
 <<declare $birdThinksPlayerNameIs = "Human">>
+<<declare $catKnowsPlayerName = false>>
 <<declare $dogKnowsPlayerName = false>>
+<<declare $opossumKnowsPlayerName = false>>
+<<declare $birdKnowsPlayerName = false>>
 <<declare $catLikesYou = 4>>
 <<declare $catDislikesYou = 4>>
 <<declare $dogLikesYou = 4>>
@@ -16,6 +19,10 @@ title: Globals
 
 <<declare $posSelfPerception = 0>>
 <<declare $negSelfPerception = 2>>
+
+<<declare $calendarExplored = false>>
+<<declare $routerExplored = false>>
+<<declare $monitorExplored = false>>
 
 <<declare $catSecured = false>>  // Whether the cat stayed around after Day 1
 <<declare $dogSecured = false>>  // Whether the dog stayed around after Day 1

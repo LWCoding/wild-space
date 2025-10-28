@@ -1,19 +1,20 @@
 ﻿title: AfterName
 position: -31,-584
 ---
-<<once>>
-<<hide_all_objects>>
-<<show ScreenBlocker>>
-Narrator: {$playerName}... Right, your name is {$playerName}.
-<<hide ScreenBlocker>>
+<<hide Drifting>>
 <<speed 1>>
-Narrator: You open your eyes, and realize that you are no longer suspended in mid-air.
-Narrator: You're lying down. On a hard surface. Your head feels heavy, and your body aches all over.
-Narrator: You slowly sit up, and take in your surroundings.
-<<endonce>>
+Narrator: You snap out of it, and realize that you are no longer suspended in mid-air.
+<<show Bedroom>>
+<<wait 10>>
+Narrator: You're standing on a hard surface. Your head feels heavy, and your body aches all over.
 Narrator: You're at home. In your metal spaceship.
+<<show ScreenBlocker>>
+<<wait 2>>
+<<show PCRoom>>
+<<hide ScreenBlocker>>
+Narrator: It's a quiet day, as always.
     -> Hello?
-        Narrator: A voice responds to your call. You recognize it a few seconds later as your own. Every sound you make echoes off the walls.
+        Narrator: Nothing. Every sound you make echoes off the walls. You are alone.
         -> (take a look around)
             <<jump LookAround>>
     -> (take a look around)
@@ -24,13 +25,10 @@ title: LookAround
 position: -30,-398
 ---
 <<once>>
-<<declare $bedrollExplored = false>>
-<<declare $cannedFoodExplored = false>>
-<<declare $monitorExplored = false>>
 <<show MonitorOffDay1>>
-<<show Bedroll>>
-<<show Soup>>
-Narrator: Might as well re-familiarize yourself with your surroundings.
+<<show Calendar>>
+<<show Router>>
+Narrator: You re-familiarize yourself with your surroundings.
 <<show_ui ClickToInteract>>
 <<endonce>>
 ===
@@ -40,15 +38,16 @@ position: 315,-648
 ---
 <<hide_all_objects>>
 <<hide_ui ClickToInteract>>
+<<show Stars>>
 <<show Sitting>>
 Narrator: This is the life that you've committed yourself to, ever since taking the job to pilot this small exploration vessel.
 Narrator: You are tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
 Narrator: But deep inside, you knew this was just to get a chance away from Earth.
-Narrator: Nothing of interest seems to be happening. You take a seat and ponder the cold, empty room around you.
+Narrator: Nothing of interest seems to be happening. You sit and ponder the emptiness around you.
     -> (do some push-ups)
         Narrator: You were never huge on fitness, but you were required to keep in shape for space travel.
         <<set $posSelfPerception += 1>>
-        Narrator: You drop down and do a few push-ups to keep your strength up.
+        Narrator: You reluctantly do a few push-ups to keep your strength up. You feel a little better afterwards.
     -> (contemplate the meaning of life)
         Narrator: You ponder the vastness of existence and your place within it.
         Narrator: The silence of space seems to amplify your thoughts, making you feel both insignificant and connected to the universe.
@@ -63,7 +62,8 @@ Narrator: Nothing of interest seems to be happening. You take a seat and ponder 
         Narrator: You recall a fond memory that brings a smile to your face. It's a small comfort in the loneliness of space.
         Narrator: The memory gives you a brief respite from your current situation.
 Narrator: You decide to get back to doing something. Anything is better than sitting around.
-<<hide Sitting>>
+<<hide_all_objects>>
+<<show PCRoom>>
 <<jump DoJobFirstTime>>
 ===
 
@@ -72,7 +72,7 @@ position: 308,-448
 ---
 Narrator: You stand up and turn on the computer. 
 Narrator: As part of your job, you need to complete a daily report on your findings.
-Narrator: You're not sure anyone actually reads these, but it gives you a sense of routine.
+Narrator: Given they're all the same, you're not sure HQ pays much attention to them. But at least, it gives you a sense of routine.
 <<show MonitorReportDay1>>
 <<show_ui TypeToInteract>>
 ===
@@ -98,7 +98,7 @@ Narrator: Just as you turn the monitor off, it flickers and springs back to life
 Narrator: A dark figure appears on the screen, accompanied with a static-filled voice.
 <<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
-    -> Who are you?
+    -> Hello?
     -> ...
     Narrator: The voice from the monitor continues to speak.
     ???: Please... <i>*kshh*</i> if... there... yourself... known...
@@ -183,7 +183,7 @@ Narrator: Suddenly, the figure comes into view.
         <<set $catDislikesYou += 1>>
         ???: ...don't be rude.
         ???: It's not everyday that you meet another lifeform just floating around in space.
-    -> Who... are you?
+    -> Who... what... are you?
     -> It's none of your business.
         <<set $catDislikesYou += 1>>
         ???: I suppose it isn't, but can you blame someone for having a little bit of empathy?
@@ -195,18 +195,18 @@ Narrator: Suddenly, the figure comes into view.
 {$catName}: Anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
 <<show_character Cat Neutral right>>
 <<endif>>
-{$catName}: I'm a lifeform from the planet Linnaeus. It's nice to meet you.
-    -> So, an alien?
+{$catName}: I'm from the planet Linnaeus. It's nice to meet you.
+    -> An alien?
         <<show_character Cat Thinking right>>
         <<set $catDislikesYou += 1>>
         {$catName}: Hm? I guess so...
         <<show_character Cat Neutral right>>
         {$catName}: I'm not from your planet of origin. I come from a place far away.
         <<show_character Cat Angry right>>
-        {$catName}: But please, don't go labeling me as an "alien". It's a bit demeaning, don't you think?
-    -> 猫喵猫猫喵? What does that mean?
+        {$catName}: "Alien" is a bit demeaning, though, don't you think?
+    -> 猫喵猫猫喵? What kind of name is that?
         <<show_character Cat Thinking right>>
-        {$catName}: It's... hard to explain. It's probably not something I can explain to you.
+        {$catName}: It's... hard to explain.
         <<show_character Cat Happy2 right>>
         {$catName}: Just call me {$catName}, it's easier that way.
     -> Meowdy.
@@ -215,19 +215,27 @@ Narrator: Suddenly, the figure comes into view.
         <<show_character Cat Flirt right>>
         {$catName}: I guess, meowdy to you too.
 <<show_character Cat Happy right>>
-{$catName}: But anyways, I'm out here on a mission to learn more about other lifeforms. What should I call you?
+{$catName}: But anyways, I'm glad you're safe... um... 
+<<show_character Cat Thinking right>>
+{$catName}: What should I call you?
     -> My name's {$playerName}.
+        <<show_character Cat Happy right>>
+        <<set $catLikesYou += 1>>
+        <<positive_indicator Cat>>
+        <<set $catKnowsPlayerName = true>>
         <<if $playerName == "Dipper">>
             {$catName}: {$playerName}? That sounds like it'd be a cool name for a group of stars. It's nice to meet you.
         <<else>>
-            {$catName}: {$playerName}? That's a cool name! It's nice to meet you.
+            {$catName}: Ah, {$playerName}! It's nice to meet you.
         <<endif>>
-        <<set $catLikesYou += 1>>
-        <<positive_indicator Cat>>
         <<set $catThinksPlayerNameIs = $playerName>>
-    -> I'm a human.
+    -> I don't know you...
+        <<show_character Cat Sad right>>
+        <<set $catDislikesYou += 1>>
+        {$catName}: Aw, that's fine. I guess I was a little forward.
         <<show_character Cat Thinking right>>
-        {$catName}: A human? I've only heard stories about your kind.
+        {$catName}: I guess... you're a human, right?
+        {$catName}: I've only heard stories about your kind.
         {$catName}: Is it true that you walk on two legs and have opposable thumbs?
         -> Yeah, it's pretty cool.
             <<show_character Cat Happy2 right>>
@@ -264,36 +272,36 @@ Narrator: Suddenly, the figure comes into view.
     -> I'm... not sure.
         <<show_character Cat Thinking right>>
         {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
-<<show_character Cat Neutral right>>
-{$catName}: Well, I'm glad to hear that you're fine.
-    -> What... are you?
-        <<show_character Cat Happy right>>
-        {$catName}: As I mentioned, I'm from the planet Linnaeus, though I don't expect you've heard of it.
-        <<show_character Cat Happy2 right>>
-        {$catName}: We're a peaceful species, mostly just trying to explore the galaxy and make friends.
-        -> I find that hard to believe.
-            <<show_character Cat Sad right>>
-            <<set $catDislikesYou += 1>>
-            {$catName}: Why would you say that? I thought you seemed nice.
-        -> It's.. nice to meet you.
-            <<show_character Cat Happy right>>
-            <<set $catLikesYou += 1>>
-            {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
-    -> Why are you talking to me?
-        <<show_character Cat Flirt right>>
-        {$catName}: Well, you know what they say. Curiosity killed the catus linnaeus!
-        <<show_character Cat Happy right>>
-        {$catName}: I was on patrol for my planet, and I picked up your ship's signal. I thought I'd check in and see if you were alright.
-        {$catName}: I don't suppose you've heard of Linnaeus, but we're a peaceful species, mostly just trying to explore the galaxy and make friends.
-        -> Peaceful? I find that hard to believe.
-            <<show_character Cat Sad right>>
-            <<set $catDislikesYou += 2>>
-            <<set $negSelfPerception += 1>>
-            {$catName}: There are plenty of nice folks out here. We're not all bad!
-        -> It's.. nice to meet you.
-            <<show_character Cat Happy right>>
-            <<set $catLikesYou += 1>>
-            {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
+// <<show_character Cat Neutral right>>
+// {$catName}: Well, I'm glad to hear that you're fine.
+//     -> What... are you?
+//         <<show_character Cat Happy right>>
+//         {$catName}: As I mentioned, I'm from the planet Linnaeus, though I don't expect you've heard of it.
+//         <<show_character Cat Happy2 right>>
+//         {$catName}: We're a peaceful species, mostly just trying to explore the galaxy and make friends.
+//         -> I find that hard to believe.
+//             <<show_character Cat Sad right>>
+//             <<set $catDislikesYou += 1>>
+//             {$catName}: Why would you say that? I thought you seemed nice.
+//         -> It's.. nice to meet you.
+//             <<show_character Cat Happy right>>
+//             <<set $catLikesYou += 1>>
+//             {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
+//     -> Why are you talking to me?
+//         <<show_character Cat Flirt right>>
+//         {$catName}: Well, you know what they say. Curiosity killed the catus linnaeus!
+//         <<show_character Cat Happy right>>
+//         {$catName}: I was on patrol for my planet, and I picked up your ship's signal. I thought I'd check in and see if you were alright.
+//         {$catName}: I don't suppose you've heard of Linnaeus, but we're a peaceful species, mostly just trying to explore the galaxy and make friends.
+//         -> Peaceful? I find that hard to believe.
+//             <<show_character Cat Sad right>>
+//             <<set $catDislikesYou += 2>>
+//             <<set $negSelfPerception += 1>>
+//             {$catName}: There are plenty of nice folks out here. We're not all bad!
+//         -> It's.. nice to meet you.
+//             <<show_character Cat Happy right>>
+//             <<set $catLikesYou += 1>>
+//             {$catName}: Heh, likewise. It's been nice to meet you too, {$catThinksPlayerNameIs}!
 <<show_character Cat Surprised right>>
 {$catName}: Ah! Right, I have a meeting to get to. It's not my plan to keep you here for over an orbit.
 <<if $catLikesYou >= $catDislikesYou>>
@@ -496,6 +504,7 @@ Narrator: You turn the dials to let the signal through.
             <<positive_indicator Dog>>
             <<set $dogLikesYou += 1>>
             <<set $dogThinksPlayerNameIs = $playerName>>
+            <<set $dogKnowsPlayerName = true>>
             {$dogName}: Woof! {$dogThinksPlayerNameIs}, that's a nice name.
             <<if $playerName == "Dipper">>
                 {$dogName}: It rhymes with Bipper. Woof.
@@ -610,6 +619,7 @@ Narrator: You turn the dials to let the signal through.
         -> I'm {$playerName}.
             <<set $opossumThinksPlayerNameIs = $playerName>>
             <<show_character Opossum Happy right>>
+            <<set $opossumKnowsPlayerName = true>>
             <<positive_indicator Opossum>>
             <<set $opossumLikesYou += 1>>
             {$opossumName}: That's a pretty sweet name. I dig it.
@@ -839,6 +849,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy2 right>>
         <<set $birdThinksPlayerNameIs = $playerName>>
+        <<set $birdKnowsPlayerName = true>>
         {$birdName}: {$birdThinksPlayerNameIs}? Lovely name.
     -> I don't have a name.
         <<show_character Bird Thinking right>>
