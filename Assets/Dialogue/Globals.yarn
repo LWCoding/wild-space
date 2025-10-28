@@ -15,7 +15,7 @@ title: Globals
 <<declare $birdDislikesYou = 4>>
 
 <<declare $posSelfPerception = 0>>
-<<declare $negSelfPerception = 0>>
+<<declare $negSelfPerception = 2>>
 
 <<declare $catSecured = false>>  // Whether the cat stayed around after Day 1
 <<declare $dogSecured = false>>  // Whether the dog stayed around after Day 1

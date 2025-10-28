@@ -74,8 +74,12 @@ public class SelfPerceptionTracker : MonoBehaviour
             return;
         }
         
-        // Initialize with current values
-        UpdateVignetteIntensity();
+        // Load initial perception values from Yarn
+        lastPosSelfPerception = GetYarnVariable(POS_SELF_PERCEPTION_VAR);
+        lastNegSelfPerception = GetYarnVariable(NEG_SELF_PERCEPTION_VAR);
+        
+        // Initialize with current values (immediate, no transition)
+        UpdateVignetteIntensity(immediate: true);
         
         // Subscribe to dialogue completion events instead of polling
         DialogueHistoryManager.OnDialogueAdded += OnDialogueLineCompleted;
@@ -144,7 +148,8 @@ public class SelfPerceptionTracker : MonoBehaviour
     /// <summary>
     /// Updates the vignette intensity based on current self-perception values
     /// </summary>
-    private void UpdateVignetteIntensity()
+    /// <param name="immediate">If true, sets intensity immediately without transition</param>
+    private void UpdateVignetteIntensity(bool immediate = false)
     {
         if (vignette == null)
             return;
@@ -154,6 +159,13 @@ public class SelfPerceptionTracker : MonoBehaviour
         
         // Add minimum intensity and clamp between minimum and 1
         targetIntensity = Mathf.Clamp(intensity + minimumIntensity, minimumIntensity, 1f);
+        
+        // If immediate, set the intensity directly without transition
+        if (immediate)
+        {
+            vignette.intensity.Override(targetIntensity);
+            return;
+        }
         
         // Start smooth transition to target intensity
         if (currentTransition != null)
