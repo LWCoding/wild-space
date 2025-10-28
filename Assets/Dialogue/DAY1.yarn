@@ -8,10 +8,10 @@ Narrator: You snap out of it, and realize that you are no longer suspended in mi
 <<wait 10>>
 Narrator: You're standing on a hard surface. Your head feels heavy, and your body aches all over.
 Narrator: You're at home. In your metal spaceship.
-<<show ScreenBlocker>>
-<<wait 2>>
+<<fade_transition 2>>
+<<wait 1>>
 <<show PCRoom>>
-<<hide ScreenBlocker>>
+<<wait 1>>
 Narrator: It's a quiet day, as always.
     -> Hello?
         Narrator: Nothing. Every sound you make echoes off the walls. You are alone.
@@ -1084,8 +1084,7 @@ position: 925,83
 <<hide_all_objects>>
 Narrator: After talking to so many new figures, a sense of fatigue overcomes you.
 Narrator: You decide to call it a day, and take a short nap. Perhaps afterwards, you can decide what you want to do next.
-<<show_ui UIScreenBlocker>>
-<<wait 2>>
-<<hide_ui UIScreenBlocker>>
+<<fade_transition 3>>
+<<wait 3>>
 <<jump StartDay2>>
 ===

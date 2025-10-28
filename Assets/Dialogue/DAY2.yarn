@@ -1038,8 +1038,7 @@ Narrator: Again, after the long conversation, you decide to go to bed.
     Narrator: After talking with these new figures, you've felt a bit more uncertain about your place in this situation. You hope that you'll be able to figure things out soon.
 <<endif>>
 <<hide_all_objects>>
-<<show_ui UIScreenBlocker>>
-<<wait 2>>
-<<hide_ui UIScreenBlocker>>
+<<fade_transition 3>>
+<<wait 3>>
 <<jump StartDay3>>
 ===

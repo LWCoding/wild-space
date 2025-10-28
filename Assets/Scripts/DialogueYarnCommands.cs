@@ -284,6 +284,34 @@ public static class DialogueYarnCommands
             Debug.LogError("EndingSubtext GameObject not found in the scene. Cannot display ending message.");
         }
     }
+
+    /// <summary>
+    /// Yarn: <<fade_transition>> or <<fade_transition 2.0>>
+    /// Creates a fade transition effect using UIScreenBlocker.
+    /// Fades to black (0.5s), waits, then fades back to transparent (0.5s).
+    /// Optional parameter: total duration in seconds (default 1.0s).
+    /// </summary>
+    [YarnCommand("fade_transition")]
+    public static void TriggerFadeTransition(string duration = "")
+    {
+        float totalDuration = 1.0f; // Default to 1.0s (0.5s fade in + 0.5s fade out)
+        
+        if (!string.IsNullOrEmpty(duration))
+        {
+            if (float.TryParse(duration, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float durationValue))
+            {
+                totalDuration = Mathf.Max(1.0f, durationValue); // Ensure minimum duration is 1.0s
+            }
+            else
+            {
+                Debug.LogWarning($"Invalid duration value '{duration}'. Using default duration of 1.0s.");
+                totalDuration = 1.0f;
+            }
+        }
+
+        FadeTransitionManager.TriggerFadeTransition(totalDuration);
+        Debug.Log($"Started fade transition with total duration: {totalDuration}s");
+    }
 }
 
 
