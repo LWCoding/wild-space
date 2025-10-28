@@ -21,6 +21,7 @@ public class YarnTypeToFinish : MonoBehaviour
     private bool _loadedNode = false;
     private AudioManager _audioManager;
     private bool _isCurrentlyTyping = false;
+    private bool _wasSpriteEnabledLastFrame = false;
 
     private void Awake()
     {
@@ -28,14 +29,32 @@ public class YarnTypeToFinish : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _audioManager = AudioManager.Instance;
         _textToChange.text = "";  // Hide text initially
+        _wasSpriteEnabledLastFrame = _spriteRenderer.enabled;  // Initialize to current state
     }
     
 
     private void Update()
     {
+        // Check if sprite renderer just became enabled
+        if (_spriteRenderer.enabled && !_wasSpriteEnabledLastFrame)
+        {
+            // Object just became visible, start blocking history
+            _isCurrentlyTyping = true;
+            DialogueHistoryManager.Instance?.SetTypingInProgress(true);
+        }
+        else if (!_spriteRenderer.enabled && _wasSpriteEnabledLastFrame)
+        {
+            // Object just became invisible, stop blocking history
+            _isCurrentlyTyping = false;
+            DialogueHistoryManager.Instance?.SetTypingInProgress(false);
+        }
+        
+        // Update the flag for next frame
+        _wasSpriteEnabledLastFrame = _spriteRenderer.enabled;
+        
         if (_spriteRenderer.enabled)
         {
-            // We want to check for keyboard clicks, but not mouse clicks
+            // We want to check for keyboard input, but not mouse clicks
             if (Input.anyKeyDown && !(Input.GetMouseButtonDown(0)
             || Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)))
             {
@@ -53,8 +72,7 @@ public class YarnTypeToFinish : MonoBehaviour
                         _audioManager.PlayTypingSound();
                     }
                     
-                    // Track typing state changes
-                    bool wasTyping = _isCurrentlyTyping;
+                    // Process the input
                     _charactersShown = Mathf.Min(_charactersShown + 3, _messageToShow.Length);
                     
                     // Skip spaces.
@@ -67,7 +85,7 @@ public class YarnTypeToFinish : MonoBehaviour
                     
                     // Update typing state based on progress
                     bool isNowTyping = _charactersShown < _messageToShow.Length;
-                    if (wasTyping != isNowTyping)
+                    if (_isCurrentlyTyping != isNowTyping)
                     {
                         _isCurrentlyTyping = isNowTyping;
                         DialogueHistoryManager.Instance?.SetTypingInProgress(isNowTyping);
@@ -79,15 +97,6 @@ public class YarnTypeToFinish : MonoBehaviour
                         StartCoroutine(StartYarnScriptAfterDelayCoroutine(1));
                     }
                 }
-            }
-        }
-        else
-        {
-            // If sprite renderer is disabled, we're not typing
-            if (_isCurrentlyTyping)
-            {
-                _isCurrentlyTyping = false;
-                DialogueHistoryManager.Instance?.SetTypingInProgress(false);
             }
         }
     }
