@@ -10,24 +10,6 @@ Narrator: Since day one, you haven't reported anything out of the ordinary. You'
 <<endif>>
 ===
 
-// title: BedrollClick
-// ---
-// Narrator: The bedroll is a simple sleeping mat. It's not like what you had back on Earth, but it'll be easier to sleep with the peace.
-// <<set $bedrollExplored = true>>
-// <<if $bedrollExplored and $cannedFoodExplored and $monitorExplored>>
-//     <<jump AfterInteractedWithItems>>
-// <<endif>>
-// ===
-
-// title: SoupClick
-// ---
-// Narrator: The soup is a strange, unidentifiable color. It smells... odd. But at least it's food.
-// <<set $cannedFoodExplored = true>>
-// <<if $bedrollExplored and $cannedFoodExplored and $monitorExplored>>
-//     <<jump AfterInteractedWithItems>>
-// <<endif>>
-// ===
-
 title: CalendarClick
 ---
 Narrator: The calendar is set to Universal Space Time. According to it, it's been 620 days since you left Earth.
@@ -40,7 +22,8 @@ Narrator: Every day has been just as quiet as the last.
 
 title: RouterClick
 ---
-Narrator: The router buzzes quietly. It connects you to Earth HQ, but they only respond to your messages occasionally.
+Narrator: The router buzzes quietly. It connects you to Earth HQ, but they only respond to your messages with the same message.
+Narrator: You wonder if they even read your reports, or if the system is just automated.
 <<set $routerExplored = true>>
 <<if $calendarExplored and $routerExplored and $monitorExplored>>
     <<jump AfterInteractedWithItems>>

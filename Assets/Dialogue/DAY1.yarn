@@ -10,6 +10,7 @@ Narrator: You're standing on a hard surface. Your head feels heavy, and your bod
 Narrator: You're at home. In your metal spaceship.
 <<fade_transition 2>>
 <<wait 1>>
+<<hide_all_objects>>
 <<show PCRoom>>
 <<wait 1>>
 Narrator: It's a quiet day, as always.
@@ -26,8 +27,8 @@ position: -30,-398
 ---
 <<once>>
 <<show MonitorOffDay1>>
-<<show Calendar>>
-<<show Router>>
+<<show CalendarDay1>>
+<<show RouterDay1>>
 Narrator: You re-familiarize yourself with your surroundings.
 <<show_ui ClickToInteract>>
 <<endonce>>
@@ -140,7 +141,6 @@ Narrator: Suddenly, the same character from before reappears on the screen.
     -> (unplug the monitor)
         <<hide_all_characters>>
         <<hide MonitorOn>>
-        <<show MonitorOff>>
         Narrator: You decide to unplug the monitor, cutting off the signal entirely.
         Narrator: After a few moments, the screen flickers back to static. You are alone, again.
         <<jump ForeverAloneNoContact>>
@@ -150,7 +150,7 @@ title: CatIntro
 position: 305,91
 ---
 Narrator: Suddenly, the figure comes into view.
-<<show_character Cat Neutral right>>
+<<show_character Cat Sad right>>
 <<start_voice_blip Cat>>
 <<play_music CatTheme 0.5>>
 ???: Hey, I caught your signal from our ship! Are you alright?
@@ -158,9 +158,9 @@ Narrator: Suddenly, the figure comes into view.
     -> Aww, you're so cute!
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
-        <<show_character Cat Happy2 right>>
-        ???: Aw, you're too kind. 
         <<show_character Cat Neutral right>>
+        ???: Oh, um... Thank... you?
+        <<show_character Cat Sad right>>
         ???: But seriously, are you okay out there? You look like you're all alone.
             -> Yeah, I'm fine.
                 <<show_character Cat Thinking right>>
@@ -168,27 +168,37 @@ Narrator: Suddenly, the figure comes into view.
             -> Not really.
                 <<show_character Cat Neutral right>>
                 ???: Oh... I'm sorry to hear that. Space can be a lonely place.
+            -> (scream in confusion)
+                <<stop_voice_blip Cat>>
+                <<set $catDislikesYou += 1>>
+                <<show_character Cat Surprised right>>
+                Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
+                <<start_voice_blip Cat>>
+                ???: AH! That... surely is a strange introduction.
+                <<show_character Cat Sad right>>
+                ???: Please try to spare my ears next time... these are quite sensitive.
     -> (scream. what is happening.)
         <<stop_voice_blip Cat>>
-        Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
         <<set $catDislikesYou += 1>>
         <<show_character Cat Surprised right>>
+        Narrator: You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
         <<start_voice_blip Cat>>
         ???: AH! That... surely is a strange introduction.
         <<show_character Cat Sad right>>
         ???: Please try to spare my ears next time... these are quite sensitive.
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
-???: Well, you don't seem to act like you're in danger. What're you doing in space?
+???: You don't seem to act like you're in danger. What're you doing in space?
     -> What the fuck? What <i>are</i> you?
         <<show_character Cat Neutral right>>
         <<set $catDislikesYou += 1>>
         ???: ...don't be rude.
         ???: It's not everyday that you meet another lifeform just floating around in space.
     -> Who... what... are you?
-    -> It's none of your business.
+    -> Why do you want to know?
         <<set $catDislikesYou += 1>>
-        ???: I suppose it isn't, but can you blame someone for having a little bit of empathy?
+        <<show_character Cat Thinking right>>
+        ???: I guess it's not entirely my business... but I was just curious.
 <<if $catLikesYou >= $catDislikesYou>>
 <<show_character Cat Happy right>>
 {$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName}.
@@ -198,15 +208,15 @@ Narrator: Suddenly, the figure comes into view.
 <<show_character Cat Neutral right>>
 <<endif>>
 {$catName}: I'm from the planet Linnaeus. It's nice to meet you.
-    -> An alien?
+    -> You're an alien?
         <<show_character Cat Thinking right>>
         <<set $catDislikesYou += 1>>
-        {$catName}: Hm? I guess so...
+        {$catName}: Hm? I guess so?
         <<show_character Cat Neutral right>>
         {$catName}: I'm not from your planet of origin. I come from a place far away.
         <<show_character Cat Angry right>>
         {$catName}: "Alien" is a bit demeaning, though, don't you think?
-    -> 猫喵猫猫喵? What kind of name is that?
+    -> 猫喵猫猫喵? What name is that?
         <<show_character Cat Thinking right>>
         {$catName}: It's... hard to explain.
         <<show_character Cat Happy2 right>>
@@ -226,7 +236,7 @@ Narrator: Suddenly, the figure comes into view.
         <<positive_indicator Cat>>
         <<set $catKnowsPlayerName = true>>
         <<if $playerName == "Dipper">>
-            {$catName}: {$playerName}? That sounds like it'd be a cool name for a group of stars. It's nice to meet you.
+            {$catName}: {$playerName}? Like the star system? It's nice to meet you.
         <<else>>
             {$catName}: Ah, {$playerName}! It's nice to meet you.
         <<endif>>
@@ -255,25 +265,31 @@ Narrator: Suddenly, the figure comes into view.
         -> I don't have a name.
             <<show_character Cat Thinking right>>
             {$catName}: Oh, huh. That's okay. How would people refer to you then, though?
-            <<show_character Cat Happy right>>
+            <<show_character Cat Flirt right>>
             {$catName}: I guess I'll just call you "Human". I'm a master at nicknames.
     -> ...
-        {$catName}: Oh, you don't have a name? That's okay, I guess.
+        {$catName}: A bit shy? That's okay, I guess. 
+        <<show_character Cat Flirt right>>
+        {$catName}: I guess I'll just call you "Human", then. I'm a master at nicknames.
 <<show_character Cat Neutral right>>
 {$catName}: You should be careful here, though. Space is dangerous!
 <<show_character Cat Thinking right>>
 {$catName}: What brings you out here? Wouldn't you rather be on your home planet?
-    -> Exploring the cosmos.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Happy right>>
-        {$catName}: That's commendable! Not many have the courage to venture into the unknown.
     -> Escaping it all, I guess.
         <<show_character Cat Neutral right>>
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
         {$catName}: I understand that feeling. Sometimes, it's nice to get away from everything.
+    -> (lie) Exploring the cosmos.
+        <<set $catDislikesYou += 1>>
+        <<show_character Cat Sad right>>
+        {$catName}: Oh, wow... you'd risk your life for something like that?
+        <<show_character Cat Neutral right>>
+        {$catName}: That's... quite brave. Maybe a little suicidal, too.
     -> I'm... not sure.
         <<show_character Cat Thinking right>>
         {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
+        {$catName}: It might be in your best interest to find somewhere safer, though. It's pretty unpredictable out here.
 // <<show_character Cat Neutral right>>
 // {$catName}: Well, I'm glad to hear that you're fine.
 //     -> What... are you?
@@ -307,14 +323,15 @@ Narrator: Suddenly, the figure comes into view.
 <<show_character Cat Surprised right>>
 {$catName}: Ah! Right, I have a meeting to get to. It's not my plan to keep you here for over an orbit.
 <<if $catLikesYou >= $catDislikesYou>>
+    <<show_character Cat Happy right>>
+    {$catName}: Let's talk again soon, though. I'm interested in getting to know more about you, {$catThinksPlayerNameIs}.
     <<show_character Cat Flirt right>>
-    {$catName}: It's been nice talking to you, though! We can chat again soon, {$catThinksPlayerNameIs}.
-    {$catName}: If you want to chat again, just give me a ping. See ya!~
+    {$catName}: If you want to chat again, just give me a ping. See ya!
     <<set $posSelfPerception += 1>>
     <<set $catSecured = true>>
 <<else>>
     <<show_character Cat Neutral right>>
-    {$catName}: Well, ${$catThinksPlayerNameIs}. I'll be on my way then. Take care of yourself out there.
+    {$catName}: Well, I'll get going, {$catThinksPlayerNameIs}. Take care of yourself out here.
 <<endif>>
 <<stop_voice_blip Cat>>
 <<hide_all_characters>>
@@ -341,17 +358,17 @@ title: ThinkingAfterCatLeaves
 <<show Stars>>
 <<show Sitting>>
 Narrator: You sit back down, trying to process the encounter you just had.
-Narrator: Who was that creature? An alien? How is that even possible?
+Narrator: Who was that creature? How is that even possible?
 <<if $catLikesYou > $catDislikesYou>>
     <<set $posSelfPerception += 1>>
-    Narrator: Strangely enough, you found the encounter with them rather pleasant. They seemed friendly, in their own way.
-    Narrator: You think about what it would be like to have a friend like that. Someone who understands you, even if they are from another world.
+    Narrator: Strangely enough, you enjoyed the encounter with them. They seemed... friendly.
+    Narrator: What would it be like to have a friend like that?
     Narrator: You wonder if you'll ever see them again.
 <<else>>
     <<set $negSelfPerception += 1>>
     Narrator: To you, the whole encounter felt off. Aliens? Of all times, why now?
     Narrator: You think about what others on Earth would say if they found out about this encounter. Although it is your job to report such things, would they really believe you met friendly animal aliens?
-    Narrator: But you shake this idea off, for now. You'll think about it after a night's rest.
+    Narrator: Maybe, you'll think about it after a night's rest.
 <<endif>>
 <<hide_all_objects>>
 <<show PCRoom>>
@@ -359,7 +376,7 @@ Narrator: Who was that creature? An alien? How is that even possible?
 <<show_character Dog Obscure left>>
 <<show_character Opossum Obscure center>>
 <<show_character Bird Obscure right>>
-Narrator: As you sit there, lost in thought, the monitor flickers back to life once more.
+Narrator: Yet, as you sit there, lost in thought, the monitor flickers back to life once more.
 Narrator: You see a total of three figures, all different from the last one.
 Narrator: They all seem like they'll stick around for a bit. Who do you talk to first?
     -> (respond to the one with the floppy ears)

@@ -1040,7 +1040,6 @@ Narrator: You cut the connection and take a step back from your monitor.
     -> (turn off the monitor)
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOff>>
 Narrator: Again, after the long conversation, you decide to go to bed.
 <<if $posSelfPerception > $negSelfPerception>>
     Narrator: After talking with these new figures, you've felt a sense of growth. You feel more confident in your ability to handle whatever comes your way.
