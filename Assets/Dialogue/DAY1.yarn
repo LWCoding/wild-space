@@ -384,6 +384,8 @@ Narrator: Who was that creature? How is that even possible?
     Narrator: Maybe, you'll think about it after a night's rest.
 <<endif>>
 <<hide_all_objects>>
+<<fade_transition 2>>
+<<wait 1>>
 <<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Dog Obscure left>>
@@ -662,6 +664,7 @@ Narrator: You turn the dials to let the signal through.
             -> Wait, don't go...
                 <<show_character Opossum Neutral right>>
                 ???: ...
+                {$opossumName}: The name's {$opossumName}.
             -> ...
                 <<stop_voice_blip Opossum>>
                 <<hide_all_characters>>
@@ -680,50 +683,52 @@ Narrator: You turn the dials to let the signal through.
         ???: Nothing I'm comfortable with sharing with a stranger. I'm just from a little messed up planet in the middle of nowhere.
         <<show_character Opossum Neutral right>>
         {$opossumName}: The name's {$opossumName}, by the way.
-    {$opossumName}: And you? What should I call you?
-        -> I'm {$playerName}.
-            <<set $opossumThinksPlayerNameIs = $playerName>>
-            <<show_character Opossum Happy right>>
-            <<set $opossumKnowsPlayerName = true>>
-            <<positive_indicator Opossum>>
-            <<set $opossumLikesYou += 1>>
-            {$opossumName}: That's a pretty sweet name. I dig it.
-        -> A human.
-            <<show_character Opossum Thinking right>>
-            {$opossumName}: A human, huh? Never met one of you before.
-            {$opossumName}: "Human" it is.
-        -> What the fuck?
-            <<show_character Opossum Confused right>>
-            {$opossumName}: Whoa, no need to be rude. I can just go, if you want to.
-                -> Yes, please.
-                    <<stop_voice_blip Opossum>>
-                    <<hide_all_characters>>
-                    <<play_music MainTheme>>
-                    <<deactivate_icon Opossum>>
-                    Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
-                    <<if $talkedToDog == false || $talkedToBird == false>>
-                        <<jump TalkToOthers>>
-                    <<else>>
-                        <<jump EndDay1>>
-                    <<endif>>
-                -> ...
-                    <<show_character Opossum Confused right>>
-                    {$opossumName}: Okay, I can sense when I'm not wanted.
-                    <<stop_voice_blip Opossum>>
-                    <<hide_all_characters>>
-                    <<play_music MainTheme>>
-                    <<deactivate_icon Opossum>>
-                    Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
-                    <<if $talkedToDog == false || $talkedToBird == false>>
-                        <<jump TalkToOthers>>
-                    <<else>>
-                        <<jump EndDay1>>
-                    <<endif>>
-                -> No, stay.
-                    <<show_character Opossum Flirt right>>
-                    <<positive_indicator Opossum>>
-                    <<set $opossumLikesYou += 1>>
-                    {$opossumName}: ...alright, if you say so.
+{$opossumName}: And you? What should I call you?
+    -> I'm {$playerName}.
+        <<set $opossumThinksPlayerNameIs = $playerName>>
+        <<show_character Opossum Happy right>>
+        <<set $opossumKnowsPlayerName = true>>
+        <<positive_indicator Opossum>>
+        <<set $opossumLikesYou += 1>>
+        {$opossumName}: That's a pretty sweet name. I dig it.
+    -> A human.
+        <<show_character Opossum Thinking right>>
+        <<positive_indicator Opossum>>
+        <<set $opossumLikesYou += 1>>
+        {$opossumName}: A human, huh? That's pretty metal. Never met one of you before.
+        {$opossumName}: "Human" it is.
+    -> What the fuck?
+        <<show_character Opossum Confused right>>
+        {$opossumName}: Whoa, no need to be rude. I can just go, if you want to.
+            -> Yes, please.
+                <<stop_voice_blip Opossum>>
+                <<hide_all_characters>>
+                <<play_music MainTheme>>
+                <<deactivate_icon Opossum>>
+                Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
+                <<if $talkedToDog == false || $talkedToBird == false>>
+                    <<jump TalkToOthers>>
+                <<else>>
+                    <<jump EndDay1>>
+                <<endif>>
+            -> ...
+                <<show_character Opossum Confused right>>
+                {$opossumName}: Okay, I can sense when I'm not wanted.
+                <<stop_voice_blip Opossum>>
+                <<hide_all_characters>>
+                <<play_music MainTheme>>
+                <<deactivate_icon Opossum>>
+                Narrator: The transmission cuts off abruptly. You have a feeling they won't come back.
+                <<if $talkedToDog == false || $talkedToBird == false>>
+                    <<jump TalkToOthers>>
+                <<else>>
+                    <<jump EndDay1>>
+                <<endif>>
+            -> No, stay.
+                <<show_character Opossum Flirt right>>
+                <<positive_indicator Opossum>>
+                <<set $opossumLikesYou += 1>>
+                {$opossumName}: ...alright, if you say so.
 <<show_character Opossum Thinking right>>
 <<stop_voice_blip Opossum>>
 Narrator: You notice that {$opossumName} seems a bit distant, not making eye contact with you.
@@ -731,26 +736,22 @@ Narrator: You notice that {$opossumName} seems a bit distant, not making eye con
         <<set $opossumDislikesYou += 1>>
         Narrator: {$opossumName} sighs heavily. They seem annoyed by your question.
     -> What's wrong?
-        <<show_character Opossum Neutral right>>
-        <<start_voice_blip Opossum>>
     -> ...
-    <<start_voice_blip Opossum>>
-    <<show_character Opossum Thinking right>>
-    {$opossumName}: I don't know. Space just has a lot of weirdos.
-    {$opossumName}: I feel like I just don't really have anywhere else to go.
-    <<show_character Opossum Angry right>>
-    {$opossumName}: God... I <i>hate</i> space. It's so... <i>empty</i>. 
-        -> What are you doing out here, then?
-            <<show_character Opossum Confused right>>
-            <<set $opossumDislikesYou += 1>>
-        -> I find it relaxing.
-            <<show_character Opossum Confused right>>
-            <<set $opossumDislikesYou += 1>>
-        -> ...
-    <<show_character Opossum Sad right>>
-    {$opossumName}: Ah! Sorry, I didn't mean to unload all that on you.
+<<start_voice_blip Opossum>>
 <<show_character Opossum Thinking right>>
-{$opossumName}: <i>Why am I like this...</i>
+{$opossumName}: I don't know. Space just has a lot of weirdos.
+{$opossumName}: I feel like I just don't really have anywhere else to go.
+<<show_character Opossum Angry right>>
+{$opossumName}: God... I <i>hate</i> space. It's so... <i>empty</i>. 
+    -> What are you doing out here, then?
+        <<show_character Opossum Confused right>>
+        <<set $opossumDislikesYou += 1>>
+    -> I find it relaxing.
+        <<show_character Opossum Confused right>>
+        <<set $opossumDislikesYou += 1>>
+    -> ...
+<<show_character Opossum Sad right>>
+{$opossumName}: Ah! Sorry, I didn't mean to unload all that on you.
 <<show_character Opossum Flirt right>>
 {$opossumName}: Look, I reached out because I'm looking for some people to talk to.
 <<show_character Opossum Neutral right>>
@@ -767,6 +768,7 @@ Narrator: You notice that {$opossumName} seems a bit distant, not making eye con
         {$opossumName}: Thanks for dealing with me being around for a while, anyways.
     -> Go away!
         <<show_character Opossum Angry right>>
+        <<set $opossumDislikesYou += 2>>
         {$opossumName}: ...
         {$opossumName}: I don't even know why I try...
         <<stop_voice_blip Opossum>>
