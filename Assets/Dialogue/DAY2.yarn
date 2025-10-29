@@ -14,7 +14,7 @@ title: OnClickedMonitorDay2
 position: 55,-311
 ---
 <<hide_all_ui_objects>>
-<<show MonitorOnNoSilhouette>>
+<<show MonitorOn>>
 Narrator: You turn on the monitor to see today's tasks.
 Narrator: Before you start your report, you notice a new message from HQ.
 Narrator: It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
@@ -62,21 +62,40 @@ Narrator: You turn the monitor off and take a seat.
 <<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
-Narrator: It's a fresh day. The aliens said that you can ping them if you wanted to chat. Maybe you should give it a try.
+Narrator: Lost in another one of your spirals, you think about your family back on Earth.
+Narrator: Your family was only ever close with you before you dropped out of college. 
+Narrator: You were surprised that they disagreed with your decision to leave Earth, even though you never quite felt like they loved you anymore.
+Narrator: Recalling your parents' disapproval makes you feel...
+    -> (sad, because they're gone now)
+        <<set $negSelfPerception += 1>>
+        Narrator: You feel a wave of sadness wash over you. You wonder if they would have ever accepted your choices, but now you'll never know.
+    -> (angry, because they never supported you)
+        <<set $negSelfPerception += 1>>
+        Narrator: You feel a surge of anger. They never supported your decisions, and now that they're gone, you feel a sense of bitterness.
+    -> (conflicted, because they didn't want you gone)
+        Narrator: You feel conflicted. They didn't want you to leave, but they never made an effort to understand your reasons.
+        <<set $posSelfPerception += 1>>
+                Narrator: You wish they could see you now, living your life on your own terms.
+Narrator: And what about your friends? You always felt like such an impostor around them. You felt like every interaction was a performance.
+Narrator: You forced yourself to do so many things with them. And you only ever felt like you were "fun" when you were a couple of drinks in. You wonder if they ever really liked you for who you were.
+Narrator: Thinking about these people in your life make you feel...
+    -> (lonely, because you pushed them away)
+        <<set $negSelfPerception += 1>>
+        Narrator: You realize that you pushed people away, and now you're left with nothing but your own thoughts.
+    -> (regretful, because you never opened up to them)
+        <<set $negSelfPerception += 1>>
+        Narrator: You wish you had opened up to people more, but now it's too late.
+    -> (indifferent, because they weren't true friends)
+        Narrator: Maybe those people weren't true friends after all. You wonder if you'll be able to make genuine connections in the future.
+        <<set $posSelfPerception += 1>>
+        Narrator: The idea of making real connections makes you feel a little hopeful.
+
+Narrator: You then remember what happened yesterday, with the aliens.
+Narrator: Supposedly, you can ping them again to have a chat. Maybe you should give it a try.
     -> (reestablish contact with the aliens)
         <<hide_all_objects>>
         <<show PCRoom>>
         <<show ChooseYourCharacterDay2>>
-===
-
-title: LearnAboutConditionalChoices
----
-<<if $knowsAboutConditionalChoices == false>>
-    <<set $knowsAboutConditionalChoices = true>>
-    Narrator: <i>Note: From now on, some options may ONLY be available depending on past choices. Special options have parenthesized text before the option.</i>
-        -> <b>(POSITIVE SELF-IMAGE)</b> Wow, that's cool! <<if $posSelfPerception >= $negSelfPerception>>
-        -> <b>(NEGATIVE SELF-IMAGE)</b> Okay, whatever. <<if $posSelfPerception < $negSelfPerception>>
-<<endif>>
 ===
 
 title: CallCatDay2
@@ -122,11 +141,6 @@ Narrator: You call {$catName}. The line remains static for a little while, but y
 title: CatRecurringTreeDay2
 ---
 <<start_voice_blip Cat>>
-<<once>>
-<<stop_voice_blip Cat>>
-<<detour LearnAboutConditionalChoices>>
-<<start_voice_blip Cat>>
-<<endonce>>
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
 <<else>>
@@ -208,7 +222,7 @@ title: CatRecurringTreeDay2
             <<stop_voice_blip Cat>>
             <<show_character Cat Sad right>>
             Narrator: You notice that {$catName} seems a bit down while talking about their family.
-                -> <b>(POSITIVE RELATIONSHIP)</b> You seemed a little sad just now. Is everything okay?
+                -> You seemed a little sad just now. Is everything okay?
                     <<start_voice_blip Cat>>
                     {$catName}: I'm fine, just thinking about them. I...
                     <<positive_indicator Cat>>
@@ -235,13 +249,13 @@ title: CatRecurringTreeDay2
             <<show_character Cat Neutral right>>
         <<endif>>
         {$catName}: The usual type of space game. Puzzle games, strategy games, that sort of thing. Nothing too exciting. I could even install one on your device, I think!
-    -> <b>(POSITIVE RELATIONSHIP)</b> You're cute. <<if $day2AskedCatQ4 == false && $catLikesYou >= $catDislikesYou>>
+    -> You're cute. <<if $day2AskedCatQ4 == false && $catLikesYou >= $catDislikesYou>>
         <<set $day2AskedCatQ4 = true>>
         <<show_character Cat Flirt right>>
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         {$catName}: Aw, you're too kind. You're pretty cute yourself, {$catThinksPlayerNameIs}.
-    -> <b>(POSITIVE RELATIONSHIP)</b> Do you want to play a game? <<if $day2AskedCatQ3 == false && $knowCatPasttime == true && $catLikesYou >= $catDislikesYou>>
+    -> Do you want to play a game? <<if $day2AskedCatQ3 == false && $knowCatPasttime == true && $catLikesYou >= $catDislikesYou>>
         <<set $day2AskedCatQ3 = true>>
         <<show_character Cat Happy2 right>>
         {$catName}: A game? Sure, why not!
@@ -332,11 +346,6 @@ Narrator: You call {$dogName}. The line remains static for a little while, but y
 title: DogRecurringTreeDay2
 ---
 <<start_voice_blip Dog>>
-<<once>>
-<<stop_voice_blip Dog>>
-<<detour LearnAboutConditionalChoices>>
-<<start_voice_blip Dog>>
-<<endonce>>
 <<if $dogLikesYou > $dogDislikesYou>>
     <<show_character Dog Happy right>>
 <<else>>
@@ -363,7 +372,7 @@ title: DogRecurringTreeDay2
         <<show_character Dog Surprised right>>
         <<if $knowDogSecret == false>>
             {$dogName}: Actually, can you keep a secret? Woof.
-                -> <b>(POSITIVE SELF-IMAGE)</b> Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
+                -> Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
                     <<set $knowDogSecret = true>>
                     <<positive_indicator Dog>>
                     <<set $dogLikesYou += 1>>
@@ -395,7 +404,7 @@ title: DogRecurringTreeDay2
                             <<show_character Dog Sad right>>
                             {$dogName}: Woof...
                         {$dogName}: But I don't regret it. Woof. I do wish I could see my parents again, though. Woof.
-                -> <b>(NEGATIVE SELF-IMAGE)</b> I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
+                -> I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
                     <<show_character Dog Neutral right>>
                     {$dogName}: Oh, that's okay. Nevermind, then. Woof.
                 -> ...
@@ -455,7 +464,7 @@ title: DogRecurringTreeDay2
                 {$dogName}: I'll never understand why they think that way. Woof.
         <<if $knowDogSecret == false>>
             {$dogName}: Actually, can you keep a secret? Woof.
-                -> <b>(POSITIVE SELF-IMAGE)</b> Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
+                -> Go ahead. <<if $posSelfPerception >= $negSelfPerception>>
                     <<positive_indicator Dog>>
                     <<set $dogLikesYou += 1>>
                     <<show_character Dog Neutral right>>
@@ -486,14 +495,14 @@ title: DogRecurringTreeDay2
                             <<show_character Dog Sad right>>
                             {$dogName}: Woof...
                         {$dogName}: But I don't regret it. Woof. I do wish I could see my parents again, though. Woof.
-                -> <b>(NEGATIVE SELF-IMAGE)</b> I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
+                -> I'm no good at keeping secrets. <<if $posSelfPerception < $negSelfPerception>>
                     <<show_character Dog Neutral right>>
                     {$dogName}: Oh, that's okay. Nevermind, then. Woof.
                 -> ...
                     <<show_character Dog Neutral right>>
                     {$dogName}: ...Nevermind, then. Woof.
         <<endif>>
-    -> <b>(POSITIVE RELATIONSHIP)</b> You're cute. <<if $day2AskedDogQ5 == false && $dogLikesYou >= $dogDislikesYou>>
+    -> You're cute. <<if $day2AskedDogQ5 == false && $dogLikesYou >= $dogDislikesYou>>
         <<set $day2AskedDogQ5 = true>>
         <<show_character Dog Happy right>>
         <<positive_indicator Dog>>
@@ -565,18 +574,13 @@ Narrator: You call {$opossumName}. The line remains static for a little while, b
 title: OpossumRecurringTreeDay2
 ---
 <<start_voice_blip Opossum>>
-<<once>>
-<<stop_voice_blip Opossum>>
-<<detour LearnAboutConditionalChoices>>
-<<start_voice_blip Opossum>>
-<<endonce>>
 <<show_character Opossum Neutral right>>
 {$opossumName}: What did you want to talk about?
     -> What is it like out here? <<if $day2AskedOpossumQ1 == false>>
         <<set $day2AskedOpossumQ1 = true>>
         <<show_character Opossum Confused right>>
         {$opossumName}: Honestly, pretty miserable. I didn't choose to leave home.
-        {$opossumName}: But here I am, stuck on some rock floating in space.
+        {$opossumName}: But here I am, stuck on some fucking rock in space.
             -> Why did you leave home?
                 <<show_character Opossum Sad right>>
                 {$opossumName}: Yeah... I made some bad choices.
@@ -594,7 +598,7 @@ title: OpossumRecurringTreeDay2
                     {$opossumName}: Thanks. It still hurts a lot.
                     <<show_character Opossum Happy right>>
                     {$opossumName}: But I'm trying to turn my life around. Being out here is a fresh start.
-                -> <b>(POSITIVE RELATIONSHIP)</b> What did you do? <<if $opossumLikesYou > $opossumDislikesYou && $knowOpossumBackstory == false>>
+                -> What did you do? <<if $opossumLikesYou > $opossumDislikesYou && $knowOpossumBackstory == false>>
                     <<show_character Opossum Angry right>>
                     {$opossumName}: I... I was pressured to kill a child.
                     <<show_character Opossum Sad right>>
@@ -618,7 +622,7 @@ title: OpossumRecurringTreeDay2
                         <<positive_indicator Opossum>>
                         <<set $opossumLikesYou += 1>>
                         {$opossumName}: ...Thanks, I guess.
-                    -> <b>(NEGATIVE SELF-IMAGE)</b> No, I get it. I'm the same way. <<if $posSelfPerception < $negSelfPerception>>
+                    -> No, I get it. I'm the same way. <<if $posSelfPerception < $negSelfPerception>>
                         <<set $opossumDislikesYou += 2>>
                         <<show_character Opossum Happy right>>
                         {$opossumName}: Heh, yeah. I guess we all have our issues.
@@ -639,7 +643,7 @@ title: OpossumRecurringTreeDay2
                 <<set $opossumLikesYou += 1>>
                 <<show_character Opossum Proud right>>
                 {$opossumName}: Pfft, yeah. You're right to clock me on that one.
-            -> <b>(POSITIVE RELATIONSHIP)</b> Maybe we can find your mission, together. <<if $opossumLikesYou > $opossumDislikesYou>>
+            -> Maybe we can find your mission, together. <<if $opossumLikesYou > $opossumDislikesYou>>
                 <<positive_indicator Opossum>>
                 <<set $opossumLikesYou += 3>>
                 <<show_character Opossum Flirt right>>
@@ -718,7 +722,7 @@ title: OpossumRecurringTreeDay2
                 <<show_character Opossum Flirt right>>
                 {$opossumName}: ...
                 {$opossumName}: Cheesy. But thanks, I guess.
-    -> <b>(POSITIVE RELATIONSHIP)</b> You're cute. <<if $day2AskedOpossumQ6 == false && $opossumLikesYou >= $opossumDislikesYou>>
+    -> You're cute. <<if $day2AskedOpossumQ6 == false && $opossumLikesYou >= $opossumDislikesYou>>
         <<set $day2AskedOpossumQ6 = true>>
         <<show_character Opossum Confused right>>
         {$opossumName}: ...Thanks? I don't really think I'm going for "cute", though.
@@ -769,7 +773,7 @@ Narrator: {$birdName} appears on the screen.
         <<set $birdLikesYou += 1>>
         <<show_character Bird Nervous right>>
         {$birdName}: Hmm, I don't know. I have a lot of things to do. I guess... there's no deadline... but, y'know? Work is work.
-        -> <b>(POSITIVE RELATIONSHIP)</b> Just a quick chat? <<if $birdLikesYou > $birdDislikesYou>>
+        -> Just a quick chat? <<if $birdLikesYou > $birdDislikesYou>>
             <<show_character Bird Flirt right>>
             {$birdName}: Okay, okay. I can take a break for a bit.
         -> Okay, fine. I'll let you work.
@@ -793,11 +797,6 @@ Narrator: {$birdName} appears on the screen.
 title: BirdRecurringTreeDay2
 ---
 <<start_voice_blip Bird>>
-<<once>>
-<<stop_voice_blip Bird>>
-<<detour LearnAboutConditionalChoices>>
-<<start_voice_blip Bird>>
-<<endonce>>
 <<show_character Bird Neutral right>>
 {$birdName}: What did you want to talk about?
     -> What is it like on your planet? <<if $day2AskedBirdQ1 == false>>
@@ -859,7 +858,7 @@ title: BirdRecurringTreeDay2
                 <<start_voice_blip Bird>>
                 {$birdName}: You know, I think it's been hard to focus since... since my partner... disappeared.
                 {$birdName}: They were always so driven and passionate about their work. I felt like I had to keep up.
-                    -> <b>(POSITIVE RELATIONSHIP)</b> I'm sure they'd be proud of you. <<if $birdLikesYou > $birdDislikesYou>>
+                    -> I'm sure they'd be proud of you. <<if $birdLikesYou > $birdDislikesYou>>
                         <<positive_indicator Bird>>
                         <<set $birdLikesYou += 3>>
                         <<show_character Bird Flustered right>>
@@ -910,7 +909,7 @@ title: BirdRecurringTreeDay2
                 {$birdName}: You know, now that I think about it.
                 {$birdName}: I think it's been hard to focus since... since my partner... disappeared.
                 {$birdName}: They were always so driven and passionate about their work. I felt like I had to keep up.
-                    -> <b>(POSITIVE RELATIONSHIP)</b> I'm sure they'd be proud of you. <<if $birdLikesYou > $birdDislikesYou>>
+                    -> I'm sure they'd be proud of you. <<if $birdLikesYou > $birdDislikesYou>>
                         <<positive_indicator Bird>>
                         <<set $birdLikesYou += 3>>
                         <<show_character Bird Flustered right>>
@@ -954,7 +953,7 @@ title: BirdRecurringTreeDay2
             -> Are you close?
         {$birdName}: I don't see them all the time, but I fly over to visit when I can.
         {$birdName}: Maybe I should call them more often, now that I think about it... I've just been so busy with work.
-    -> <b>(POSITIVE RELATIONSHIP)</b> You're cute. <<if $day2AskedBirdQ6 == false && $birdLikesYou >= $birdDislikesYou>>
+    -> You're cute. <<if $day2AskedBirdQ6 == false && $birdLikesYou >= $birdDislikesYou>>
         <<set $day2AskedBirdQ6 = true>>
         <<show_character Bird Flustered right>>
         <<positive_indicator Bird>>
@@ -965,7 +964,7 @@ title: BirdRecurringTreeDay2
         {$birdName}: And, um.
         <<show_character Bird Flirt right>>
         {$birdName}: For what it's worth, I think you're pretty cute too.
-    -> <b>(POSITIVE RELATIONSHIP)</b> Do you want to play a game? <<if $recommendedBirdSelfCare == true && $day2AskedBirdQ7 == false && $birdLikesYou >= $birdDislikesYou>>
+    -> Do you want to play a game? <<if $recommendedBirdSelfCare == true && $day2AskedBirdQ7 == false && $birdLikesYou >= $birdDislikesYou>>
         <<show_character Bird Sweat right>>
         {$birdName}: A game? I-I don't know. Will it take a while?
             -> Just loosen up a bit!

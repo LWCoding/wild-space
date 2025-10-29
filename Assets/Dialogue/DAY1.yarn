@@ -48,24 +48,31 @@ position: 315,-648
 Narrator: This is the life that you've committed yourself to, ever since taking the job to pilot this small exploration vessel.
 Narrator: You are tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
 Narrator: But deep inside, you knew this was just to get a chance away from Earth.
-Narrator: Nothing of interest seems to be happening. You sit and ponder the emptiness around you.
-    -> (do some push-ups)
-        Narrator: You were never huge on fitness, but you were required to keep in shape for space travel.
-        <<set $posSelfPerception += 1>>
-        Narrator: You reluctantly do a few push-ups to keep your strength up. You feel a little better afterwards.
-    -> (contemplate the meaning of life)
+Narrator: Nothing of interest seems to be happening. You start to spiral, sitting and pondering the emptiness around you.
+    -> (contemplate your life on Earth)
         Narrator: You ponder the vastness of existence and your place within it.
         Narrator: The silence of space seems to amplify your thoughts, making you feel both insignificant and connected to the universe.
         -> (hone in on the positive)
+            Narrator: You think back to a time you felt connected with someone on Earth, recalling a time when your mother taught you how to bake cookies.
+            Narrator: Although she's gone now, the thought brings a smile to your face. 
             <<set $posSelfPerception += 1>>
-            Narrator: You focus on the small joys in your life, finding solace in the little things that bring you happiness.
+            Narrator: It's a small comfort in the loneliness of space. You feel slightly happier.
         -> (dwell on the negative)
+            Narrator: You think back about a time you felt insignificant on Earth.
+            Narrator: Ever since you dropped out of college, you've felt like a disappointment to your family.
             <<set $negSelfPerception += 1>>
-            Narrator: You find yourself sinking deeper into feelings of loneliness and despair, overwhelmed by the vast emptiness around you.
+            Narrator: You scoff at the concept of unconditional love. In doing so, you feel sadder, overwhelmed by the vast emptiness around you.
     -> (think of something happy)
+        Narrator: You think back to your time on Earth, recalling a time when your mother taught you how to bake cookies.
+        Narrator: Although she's gone now, the thought brings a smile to your face. 
         <<set $posSelfPerception += 1>>
-        Narrator: You recall a fond memory that brings a smile to your face. It's a small comfort in the loneliness of space.
-        Narrator: The memory gives you a brief respite from your current situation.
+        Narrator: It's a small comfort in the loneliness of space. You feel slightly happier.
+    -> (do some push-ups)
+        Narrator: You were never huge on fitness, but you were required to keep in shape for space travel.
+        Narrator: Neither of your parents supported your decision to leave Earth. And now, they're gone. 
+        Narrator: You figure that staying in shape is the least you can do to prove them wrong.
+        <<set $posSelfPerception += 1>>
+        Narrator: You do a few push-ups to keep your strength up. Strangely enough, you feel a little happier afterwards.
 Narrator: You decide to get back to doing something. Anything is better than sitting around.
 <<hide_all_objects>>
 <<show PCRoom>>
@@ -233,6 +240,18 @@ Narrator: Suddenly, the figure comes into view.
 <<show_character Cat Happy right>>
 {$catName}: But anyways, I'm glad you're safe... um... 
 <<show_character Cat Thinking right>>
+{$catName}: I guess... you're a human, right?
+{$catName}: I've heard stories about your kind.
+{$catName}: Is it true that you walk on two legs and have opposable thumbs?
+-> Yeah, it's pretty cool.
+    <<show_character Cat Happy2 right>>
+    <<set $catLikesYou += 1>>
+    <<positive_indicator Cat>>
+    {$catName}: That's incredible! You must be very dexterous.
+-> No. What?
+    <<show_character Cat Sad right>>
+    {$catName}: Aw, that's disappointing. I was hoping to see some cool tricks.
+<<show_character Cat Thinking right>>
 {$catName}: What should I call you?
     -> My name's {$playerName}.
         <<show_character Cat Happy right>>
@@ -240,7 +259,7 @@ Narrator: Suddenly, the figure comes into view.
         <<positive_indicator Cat>>
         <<set $catKnowsPlayerName = true>>
         <<if $playerName == "Dipper">>
-            {$catName}: {$playerName}? Like the star system? It's nice to meet you.
+            {$catName}: {$playerName}? Like the star system? That's pretty cute.
         <<else>>
             {$catName}: Ah, {$playerName}! It's nice to meet you.
         <<endif>>
@@ -249,20 +268,8 @@ Narrator: Suddenly, the figure comes into view.
         <<show_character Cat Sad right>>
         <<set $catDislikesYou += 1>>
         {$catName}: Aw, that's fine. I guess I was a little forward.
-        <<show_character Cat Thinking right>>
-        {$catName}: I guess... you're a human, right?
-        {$catName}: I've only heard stories about your kind.
-        {$catName}: Is it true that you walk on two legs and have opposable thumbs?
-        -> Yeah, it's pretty cool.
-            <<show_character Cat Happy2 right>>
-            <<set $catLikesYou += 1>>
-            <<positive_indicator Cat>>
-            {$catName}: That's incredible! You must be very dexterous.
-        -> No. What?
-            <<show_character Cat Sad right>>
-            {$catName}: Aw, that's disappointing. I was hoping to see some cool tricks.
-        <<show_character Cat Happy right>>
-        {$catName}: And what should I call you?
+        <<show_character Cat Neutral right>>
+        {$catName}: But, just to make things easier, is there something you'd like me to call you?
         -> It's {$playerName}.
             {$catName}: {$playerName}? That's a nice name.
             <<set $catThinksPlayerNameIs = $playerName>>
@@ -358,6 +365,8 @@ Narrator: The transmission cuts off as {$catName} takes their leave.
 
 title: ThinkingAfterCatLeaves
 ---
+<<fade_transition 2>>
+<<wait 1>>
 <<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
