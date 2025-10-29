@@ -39,9 +39,9 @@ Narrator: You re-familiarize yourself with your surroundings.
 title: AfterInteractedWithItems
 position: 315,-648
 ---
-<<hide_all_objects>>
 <<fade_transition 2>>
 <<wait 1>>
+<<hide_all_objects>>
 <<hide_ui ClickToInteract>>
 <<show Stars>>
 <<show Sitting>>
@@ -125,7 +125,7 @@ Narrator: With your expertise, you think you can adjust the frequency and let th
         Narrator: You decide to ignore the signal. It's probably just static interference.
         <<hide_all_characters>>
         <<hide MonitorOn>>
-        <<show MonitorOnNoSilhouette>>
+        <<show MonitorOn>>
         <<set $negSelfPerception += 1>>
         Narrator: After a few moments, the screen flickers back to static. You are alone, again.
         Narrator: How should you pass the time?
@@ -340,7 +340,7 @@ Narrator: Suddenly, the figure comes into view.
 <<stop_voice_blip Cat>>
 <<hide_all_characters>>
 <<hide MonitorOn>>
-<<show MonitorOnNoSilhouette>>
+<<show MonitorOn>>
 <<play_music MainTheme>>
 <<if $catSecured == false>>
     <<deactivate_icon Cat>>
@@ -522,6 +522,8 @@ Narrator: You turn the dials to let the signal through.
             {$dogName}: You seem okay, though. Woof. Not many friendly folks out here.
         <<endif>>
 {$dogName}: But it's nice to meet someone as nice as you. Woof. 
+<<show_character Dog Sad right>>
+{$dogName}: Back where I come from, there are a lot of unfriendly folks. Woof. They... hit each other a lot. Woof.
 <<show_character Dog Neutral right>>
 <<if $dogKnowsPlayerName == false>>
     <<set $dogKnowsPlayerName = true>>
@@ -535,10 +537,28 @@ Narrator: You turn the dials to let the signal through.
             <<if $playerName == "Dipper">>
                 {$dogName}: It rhymes with Bipper. Woof.
             <<endif>>
+        -> You hit each other?!
+            <<show_character Dog Sad right>>
+            {$dogName}: Woof... it's terrible. I really fear for the people I love who are still back there. Woof.
+            <<show_character Dog Neutral right>>
+            {$dogName}: But... still, woof. What should I call you?
+                -> {$playerName}.
+                    <<positive_indicator Dog>>
+                    <<set $dogLikesYou += 1>>
+                    <<set $dogThinksPlayerNameIs = $playerName>>
+                    <<set $dogKnowsPlayerName = true>>
+                    {$dogName}: Woof! {$dogThinksPlayerNameIs}, that's a nice name.
+                    <<if $playerName == "Dipper">>
+                        {$dogName}: It rhymes with Bipper. Woof.
+                    <<endif>>
+                -> ...
+                    <<set $dogDislikesYou += 1>>
+                    {$dogName}: Not a talker? Woof. I guess I'll just call you "Human". You're a human, right? Woof.
         -> ...
-            {$dogName}: Hm, that's okay. Woof. I guess I'll just call you "Human". You're a human, right? Woof.
+            <<set $dogDislikesYou += 1>>
+            {$dogName}: Not a talker? Woof. I guess I'll just call you "Human". You're a human, right? Woof.
 <<endif>>
-{$dogName}: Anyways, I've mostly wandered on my own, recently. Woof. Picked up on your signal. Woof.
+{$dogName}: Anyways, I've been wandering around, recently. Woof. Picked up on your signal. Woof.
     -> That sounds pretty exciting. 
         <<show_character Dog Happy right>>
         <<set $posSelfPerception += 1>>
@@ -565,14 +585,19 @@ Narrator: You turn the dials to let the signal through.
         {$dogName}: I don't see the point in all that. Woof. Why?
             -> My planet, Earth, is searching for them.
                 <<show_character Dog Sad right>>
+                <<set $dogDislikesYou += 1>>
                 {$dogName}: That sounds a little scary... 
                 {$dogName}: I hope that doesn't mean your planet is out to get me. Woof.
-                <<set $dogDislikesYou += 1>>
             -> I'm here to meet new beings.
                 <<positive_indicator Dog>>
                 <<set $dogLikesYou += 1>>
                 <<show_character Dog Happy right>>
                 {$dogName}: Woof. You should join me sometime. I see a lot of interesting beings everyday.
+            -> Earth wants to destroy alien life.
+                <<set $dogDislikesYou += 2>>
+                <<show_character Dog Sad right>>
+                {$dogName}: That sounds a little scary... 
+                {$dogName}: I hope that doesn't mean your planet is out to get me. Woof.
     -> (lie) I'm exploring, just like you.
         <<positive_indicator Dog>>
         <<set $dogLikesYou += 1>>
@@ -625,16 +650,20 @@ Narrator: You turn the dials to let the signal through.
         ???: What the fuck is a rat...
         <<set $opossumDislikesYou += 1>>
         ???: Forget I asked. Peace.
-        <<stop_voice_blip Opossum>>
-        <<hide_all_characters>>
-        <<play_music MainTheme>>
-        <<deactivate_icon Opossum>>
-        Narrator: The transmission cuts off abruptly. It seems they didn't want to talk to you anymore.
-        <<if $talkedToDog == false || $talkedToBird == false>>
-            <<jump TalkToOthers>>
-        <<else>>
-            <<jump EndDay1>>
-        <<endif>>
+            -> Wait, don't go...
+                <<show_character Opossum Neutral right>>
+                ???: ...
+            -> ...
+                <<stop_voice_blip Opossum>>
+                <<hide_all_characters>>
+                <<play_music MainTheme>>
+                <<deactivate_icon Opossum>>
+                Narrator: The transmission cuts off abruptly. It seems they didn't want to talk to you anymore.
+                <<if $talkedToDog == false || $talkedToBird == false>>
+                    <<jump TalkToOthers>>
+                <<else>>
+                    <<jump EndDay1>>
+                <<endif>>
     -> What are you?
         {$opossumName}: The name's {$opossumName}. I'm... from nowhere, really.
     -> What's your story?
@@ -688,16 +717,13 @@ Narrator: You turn the dials to let the signal through.
                     {$opossumName}: ...alright, if you say so.
 <<show_character Opossum Thinking right>>
 <<stop_voice_blip Opossum>>
-Narrator: You notice that {$opossumName} seems a bit distant, not really making eye contact with you.
-    -> Why are so many aliens showing up today?
+Narrator: You notice that {$opossumName} seems a bit distant, not making eye contact with you.
+    -> So, what are you doing here?
         <<set $opossumDislikesYou += 1>>
         Narrator: {$opossumName} sighs heavily. They seem annoyed by your question.
     -> What's wrong?
         <<show_character Opossum Neutral right>>
-        <<positive_indicator Opossum>>
-        <<set $opossumLikesYou += 1>>
         <<start_voice_blip Opossum>>
-        {$opossumName}: ...
     -> ...
     <<start_voice_blip Opossum>>
     <<show_character Opossum Thinking right>>
@@ -706,7 +732,11 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
     <<show_character Opossum Angry right>>
     {$opossumName}: God... I <i>hate</i> space. It's so... <i>empty</i>. 
         -> What are you doing out here, then?
+            <<show_character Opossum Confused right>>
+            <<set $opossumDislikesYou += 1>>
         -> I find it relaxing.
+            <<show_character Opossum Confused right>>
+            <<set $opossumDislikesYou += 1>>
         -> ...
     <<show_character Opossum Sad right>>
     {$opossumName}: Ah! Sorry, I didn't mean to unload all that on you.
@@ -743,7 +773,7 @@ Narrator: You notice that {$opossumName} seems a bit distant, not really making 
 <<if $opossumLikesYou >= $opossumDislikesYou>>
     <<show_character Opossum Happy right>>
     <<set $opossumSecured = true>>
-    {$opossumName}: Thanks for listening, though. I enjoyed the short talk. Let's talk for real, later.
+    {$opossumName}: Thanks for listening. Though... let's talk for real, later.
 <<else>>
     <<show_character Opossum Thinking right>>
     {$opossumName}: Sorry for that. You probably don't want to hear about my problems. I'll leave you alone.
@@ -779,7 +809,7 @@ Narrator: You turn the dials to let the signal through.
 <<show_character Bird Happy2 right>>
 <<start_voice_blip Bird>>
 <<play_music BirdTheme 0.25>>
-???: Ah, hello alternate lifeform! It's so nice to meet you.
+???: Ah, hello, alien! It's so nice to meet you.
 <<show_character Bird Nervous right>>
 {$birdName}: I'm {$birdName}, a scientist of the planet Aviaris and... um, seeker of knowledge.
     -> What... are you?
@@ -917,45 +947,6 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 {$birdName}: Thank you! I appreciate it.
 <<show_character Bird Happy right>>
 {$birdName}: Okay, first question. What's your reason for being out here in space?
-    -> Exploring the cosmos.
-        <<show_character Bird Confused right>>
-        {$birdName}: Oh, wow... that's... noble. You actually <i>enjoy</i> being in space?
-        <<show_character Bird Neutral right>>
-        {$birdName}: That's surprising. Can you tell me more?
-            -> I like the quiet.
-                <<positive_indicator Bird>>
-                <<set $birdLikesYou += 1>>
-                <<show_character Bird Happy right>>
-                {$birdName}: Ah, I see. Space is indeed quite peaceful.
-                {$birdName}: I'd be interested to learn more about that, perhaps later.
-            -> I like the adventure.
-                <<positive_indicator Bird>>
-                <<set $birdLikesYou += 1>>
-                <<show_character Bird Happy2 right>>
-                {$birdName}: Ah, a thrill-seeker. I don't get out too much myself, but I admire it.
-                {$birdName}: I'd like to know more about that, perhaps later.
-            -> I like reporting your kind.
-                <<show_character Bird Disgusted right>>
-                {$birdName}: Is that... a threat?
-                <<set $birdDislikesYou += 2>>
-                <<if $birdLikesYou <= $birdDislikesYou>>
-                    <<show_character Bird Sad right>>
-                    {$birdName}: I... see. Well, um. I should take my leave, then. Farewell.
-                    <<stop_voice_blip Bird>>
-                    <<hide_all_characters>>
-                    <<play_music MainTheme>>
-                    <<deactivate_icon Bird>>
-                    Narrator: The transmission cuts off abruptly. That was strange.
-                    <<if $talkedToDog == false || $talkedToOpossum == false>>
-                        <<jump TalkToOthers>>
-                    <<else>>
-                        <<jump EndDay1>>
-                    <<endif>>
-                <<else>>
-                    <<show_character Bird Nervous right>>
-                    {$birdName}: I suppose... maybe I can understand that, from a scientific perspective.
-                    {$birdName}: I'd like to know more about that, perhaps later.
-                <<endif>>
     -> Escaping humanity.
         <<show_character Bird Thinking right>>
         {$birdName}: Hm... Space can be a refuge for some.
@@ -978,6 +969,45 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
                 {$birdName}: Ah, perhaps I overstepped.
                 <<show_character Bird Thinking right>>
                 {$birdName}: Let's just... move onto the last question.
+    -> (lie) Exploring the cosmos.
+        <<show_character Bird Confused right>>
+        {$birdName}: Oh, wow... that's... noble. You actually <i>enjoy</i> being in space?
+        <<show_character Bird Neutral right>>
+        {$birdName}: That's surprising. Can you tell me more?
+            -> I like the quiet.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy right>>
+                {$birdName}: Ah, I see. Space is indeed quite peaceful.
+                {$birdName}: I'd be interested to learn more about that, perhaps later.
+            -> I like the adventure.
+                <<positive_indicator Bird>>
+                <<set $birdLikesYou += 1>>
+                <<show_character Bird Happy2 right>>
+                {$birdName}: Ah, a thrill-seeker. I don't get out too much myself, but I admire it.
+                {$birdName}: I'd like to know more about that, perhaps later.
+            -> I'm here to report aliens to Earth.
+                <<show_character Bird Disgusted right>>
+                {$birdName}: Is that... a threat?
+                <<set $birdDislikesYou += 1>>
+                <<if $birdLikesYou < $birdDislikesYou>>
+                    <<show_character Bird Sad right>>
+                    {$birdName}: I... see. Well, um. I should take my leave, then. Farewell.
+                    <<stop_voice_blip Bird>>
+                    <<hide_all_characters>>
+                    <<play_music MainTheme>>
+                    <<deactivate_icon Bird>>
+                    Narrator: The transmission cuts off abruptly. That was strange.
+                    <<if $talkedToDog == false || $talkedToOpossum == false>>
+                        <<jump TalkToOthers>>
+                    <<else>>
+                        <<jump EndDay1>>
+                    <<endif>>
+                <<else>>
+                    <<show_character Bird Nervous right>>
+                    {$birdName}: I suppose... maybe I can understand that, from a scientific perspective.
+                    {$birdName}: I'd like to know more about that, perhaps later.
+                <<endif>>
     -> I'm not sure.
         <<show_character Bird Thinking right>>
         <<set $birdDislikesYou += 1>>
@@ -1013,20 +1043,21 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         {$birdName}: Ah, a planet with varying seasons. Noted!
 <<show_character Bird Happy right>>
 {$birdName}: And then, may I ask, how are relationships typically formed on your planet?
-    -> Through mutual interest.
+    -> Through, um, I guess, mutual interest?
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy2 right>>
         {$birdName}: A very sensible approach. Very nice.
         <<show_character Bird Nervous right>>
         {$birdName}: Very... akin to how we do it back in Aviarian society.
-    -> I wouldn't really know.
+    -> I... wouldn't really know.
         <<set $birdDislikesYou += 1>>
+        <<set $negSelfPerception += 1>>
         <<show_character Bird Sad right>>
         {$birdName}: Aw, I'm sorry to hear that.
         <<show_character Bird Confused right>>
         {$birdName}: Surely love is still a construct that exists?
-    -> It's kind of random.
+    -> Random chance?
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
         <<show_character Bird Happy right>>
@@ -1034,7 +1065,7 @@ Narrator: You notice that the figure seems a little nervous. They fidget slightl
         <<show_character Bird Nervous right>>
         {$birdName}: Very... akin to how we do it back in Aviarian society. You never really know when love will strike.
 <<show_character Bird Happy right>>
-{$birdName}: That concludes our little questionnaire. Thank you for your cooperation.
+{$birdName}: That concludes our little questionnaire. Thanks for your help!
     -> No problem.
         <<positive_indicator Bird>>
         <<set $birdLikesYou += 1>>
@@ -1112,7 +1143,7 @@ position: 925,83
 <<hide_all_objects>>
 <<show PCRoom>>
 Narrator: After talking to so many new figures, a sense of fatigue overcomes you.
-Narrator: You decide to call it a day, and take a short nap. Perhaps afterwards, you can decide what you want to do next.
+Narrator: You decide to call it a day. Perhaps after you wake up, you can decide what you want to do next.
 <<fade_transition 3>>
 <<wait 3>>
 <<jump StartDay2>>
