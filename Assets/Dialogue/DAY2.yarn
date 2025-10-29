@@ -1035,6 +1035,7 @@ position: 762,12
         -> (call another alien)
             <<hide_all_objects>>
             <<show ChooseYourCharacterDay2>>
+            <<stop>>
         -> (end the day)
 <<endif>>
 Narrator: You cut the connection and take a step back from your monitor.

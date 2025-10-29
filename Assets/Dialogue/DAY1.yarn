@@ -3,7 +3,7 @@ position: -31,-584
 ---
 <<hide Drifting>>
 <<speed 1>>
-Narrator: You snap out of it, and realize that you are no longer suspended in mid-air.
+Narrator: You snap out of it, realizing you are not suspended in mid-air.
 <<show Bedroom>>
 <<wait 9.5>>
 Narrator: You're standing on a hard surface. Your head feels heavy, and your body aches all over.
