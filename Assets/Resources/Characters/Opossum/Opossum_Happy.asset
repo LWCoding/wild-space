@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ExpressionName: Happy
   ExpressionSprite: {fileID: 21300000, guid: f63718b7ade58fb41a582067aaedd1b0, type: 3}
-  VoiceBlip: {fileID: 8300000, guid: 56bb848944a0e7646a82e45ab476e297, type: 3}
-  BlipInterval: 0.1
-  BlipVolume: 0.6
+  VoiceBlip: {fileID: 8300000, guid: 209454bce26a4c449b0ddc452aa86f92, type: 3}
+  BlipInterval: 0.09
+  BlipVolume: 0.5

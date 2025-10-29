@@ -574,7 +574,7 @@ Narrator: You call {$opossumName}. The line remains static for a little while, b
 title: OpossumRecurringTreeDay2
 ---
 <<start_voice_blip Opossum>>
-<<show_character Opossum Neutral right>>
+<<show_character Opossum Happy right>>
 {$opossumName}: What did you want to talk about?
     -> What is it like out here? <<if $day2AskedOpossumQ1 == false>>
         <<set $day2AskedOpossumQ1 = true>>
@@ -602,7 +602,7 @@ title: OpossumRecurringTreeDay2
                     <<show_character Opossum Angry right>>
                     {$opossumName}: I... I was pressured to kill a child.
                     <<show_character Opossum Sad right>>
-                    {$opossumName}: It was awful. I regret it every day. I can't forgive myself.
+                    {$opossumName}: It's something I regret every day. The amount of times I've apologized in my head aren't enough to make up for it.
                     {$opossumName}: It could've been me, you know? I could've been one of the unlucky ones. But somehow, I figured out how to survive on my own.
                     -> You're... terrible.
                         <<set $opossumDislikesYou += 3>>
