@@ -5,7 +5,7 @@ position: -31,-584
 <<speed 1>>
 Narrator: You snap out of it, and realize that you are no longer suspended in mid-air.
 <<show Bedroom>>
-<<wait 10>>
+<<wait 9.5>>
 Narrator: You're standing on a hard surface. Your head feels heavy, and your body aches all over.
 Narrator: You're at home. In your metal spaceship.
 <<fade_transition 2>>
@@ -26,6 +26,8 @@ title: LookAround
 position: -30,-398
 ---
 <<once>>
+<<fade_transition 2>>
+<<wait 1>>
 <<show MonitorOffDay1>>
 <<show CalendarDay1>>
 <<show RouterDay1>>
@@ -38,6 +40,8 @@ title: AfterInteractedWithItems
 position: 315,-648
 ---
 <<hide_all_objects>>
+<<fade_transition 2>>
+<<wait 1>>
 <<hide_ui ClickToInteract>>
 <<show Stars>>
 <<show Sitting>>

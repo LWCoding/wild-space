@@ -130,6 +130,12 @@ public class DialogueHistoryManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.H))
         {
+            // Do not handle H if the player is typing in a TMP_InputField
+            if (IsTMPInputFieldFocused())
+            {
+                return;
+            }
+
             ToggleHistory();
         }
     }
@@ -144,6 +150,26 @@ public class DialogueHistoryManager : MonoBehaviour
         LinePresenter.OnDialogueLineCompleted += OnDialogueLineCompleted;
         
         Debug.Log("DialogueHistoryManager initialized and subscribed to dialogue events");
+    }
+
+    /// <summary>
+    /// Returns true if a TMP_InputField currently has focus (user typing in an input field).
+    /// </summary>
+    private bool IsTMPInputFieldFocused()
+    {
+        if (EventSystem.current == null)
+        {
+            return false;
+        }
+
+        var selected = EventSystem.current.currentSelectedGameObject;
+        if (selected == null)
+        {
+            return false;
+        }
+
+        var tmpInput = selected.GetComponent<TMP_InputField>();
+        return tmpInput != null && tmpInput.isFocused;
     }
 
     /// <summary>
