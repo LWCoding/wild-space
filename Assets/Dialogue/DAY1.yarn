@@ -534,7 +534,7 @@ Narrator: You turn the dials to let the signal through.
         <<endif>>
 {$dogName}: But it's nice to meet someone as nice as you. Woof. 
 <<show_character Dog Sad right>>
-{$dogName}: Back where I come from, there are a lot of unfriendly folks. Woof. They... hit each other a lot. Woof.
+{$dogName}: Back where I come from, there are a lot of unfriendly folks. Woof. They... hurt each other a lot. Woof.
 <<show_character Dog Neutral right>>
 <<if $dogKnowsPlayerName == false>>
     <<set $dogKnowsPlayerName = true>>
@@ -548,11 +548,12 @@ Narrator: You turn the dials to let the signal through.
             <<if $playerName == "Dipper">>
                 {$dogName}: It rhymes with Bipper. Woof.
             <<endif>>
-        -> You hit each other?!
+        -> Hurt... each other?
             <<show_character Dog Sad right>>
-            {$dogName}: Woof... it's terrible. I really fear for the people I love who are still back there. Woof.
+            {$dogName}: Woof... it's terrible. People I love are still back there. Woof.
+            {$dogName}: But... I don't really want to think about that now. Woof. 
             <<show_character Dog Neutral right>>
-            {$dogName}: But... still, woof. What should I call you?
+            {$dogName}: What should I call you? Woof.
                 -> {$playerName}.
                     <<positive_indicator Dog>>
                     <<set $dogLikesYou += 1>>
@@ -590,6 +591,12 @@ Narrator: You turn the dials to let the signal through.
     {$dogName}: My home planet is kind of a dump. I decided to leave and explore the galaxy. Woof.
 <<show_character Dog Neutral right>>
 {$dogName}: What about you? What are you doing out here? Woof.
+    -> I'm escaping my home planet.
+        <<set $dogLikesYou += 1>>
+        <<positive_indicator Dog>>
+        <<show_character Dog Happy right>>
+        {$dogName}: Oh? Woof. That's very brave of you.
+        {$dogName}: I did the same thing. Woof. Sometimes, it's nice to get away from everything. Woof.
     -> My job is to report alien life.
         <<show_character Dog Thinking right>>
         {$dogName}: Alien life? What for? Woof.
@@ -609,10 +616,10 @@ Narrator: You turn the dials to let the signal through.
                 <<show_character Dog Sad right>>
                 {$dogName}: That sounds a little scary... 
                 {$dogName}: I hope that doesn't mean your planet is out to get me. Woof.
-    -> (lie) I'm exploring, just like you.
+    -> (lie) I'm adventuring, like you.
         <<positive_indicator Dog>>
         <<set $dogLikesYou += 1>>
-        {$dogName}: Exploring? Woof. We should go together sometime!
+        {$dogName}: Adventuring? Woof. We should go together sometime!
 <<show_character Dog Neutral right>>
 {$dogName}: Anyways, I should get going. Woof.
 {$dogName}: Space is a big place, and I have a lot of wandering to do. Woof.
