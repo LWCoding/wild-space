@@ -92,6 +92,7 @@ title: MonitorOn
 position: 15,-63
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 Narrator: Just as you turn the monitor off, it flickers and springs back to life.
 <<show_character Cat Obscure right>>
@@ -130,6 +131,7 @@ Narrator: With your expertise, you think you can adjust the frequency and let th
             -> (try to find the signal again)
                 Narrator: You fiddle with the dials and knobs, trying to find the signal again.
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Cat Obscure right>>
 Narrator: Suddenly, the same character from before reappears on the screen.
@@ -336,6 +338,7 @@ Narrator: The transmission cuts off as {$catName} takes their leave.
 title: ThinkingAfterCatLeaves
 ---
 <<hide_all_objects>>
+<<show Stars>>
 <<show Sitting>>
 Narrator: You sit back down, trying to process the encounter you just had.
 Narrator: Who was that creature? An alien? How is that even possible?
@@ -351,6 +354,7 @@ Narrator: Who was that creature? An alien? How is that even possible?
     Narrator: But you shake this idea off, for now. You'll think about it after a night's rest.
 <<endif>>
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Dog Obscure left>>
 <<show_character Opossum Obscure center>>
@@ -400,6 +404,7 @@ position: 635,249
 <<declare $knowsAboutBarklonian = false>>
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 Narrator: You pull up the communication panel and respond to the figure with the floppy ears.
 <<show_character Dog Obscure right>>
@@ -584,6 +589,7 @@ position: 638,-61
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 Narrator: You pull up the communication panel and respond to the figure with the frazzled hair.
 <<show_character Opossum Obscure right>>
@@ -744,6 +750,7 @@ position: 633,86
 <<declare $birdExplainedIntention = false>>
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 Narrator: You pull up the communication panel and respond to the figure with the pointy muzzle.
 <<show_character Bird Obscure right>>
@@ -1082,6 +1089,7 @@ position: 925,83
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
+<<show PCRoom>>
 Narrator: After talking to so many new figures, a sense of fatigue overcomes you.
 Narrator: You decide to call it a day, and take a short nap. Perhaps afterwards, you can decide what you want to do next.
 <<fade_transition 3>>

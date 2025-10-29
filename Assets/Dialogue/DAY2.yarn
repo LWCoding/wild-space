@@ -28,15 +28,18 @@ Narrator: You ponder your next report. Do you report the encounter with the alie
         -> (report the aliens)
             Narrator: You get to writing your report.
             <<hide_all_objects>>
+            <<show PCRoom>>
             <<show_ui TypeToInteract>>
             <<show MonitorReportDay2>>
         -> (report that you saw nothing)
             <<hide_all_objects>>
+            <<show PCRoom>>
             Narrator: You get to writing your report.
             <<show_ui TypeToInteract>>
             <<show MonitorDontReportDay2>>
     -> (report that you saw nothing)
         <<hide_all_objects>>
+        <<show PCRoom>>
         Narrator: You get to writing your report.
         <<show_ui TypeToInteract>>
         <<show MonitorDontReportDay2>>
@@ -55,10 +58,12 @@ Narrator: You hesitate, and send off the message. The whole point of your job wa
 <<endif>>
 Narrator: You turn the monitor off and take a seat.
 <<hide_all_objects>>
+<<show Stars>>
 <<show Sitting>>
 Narrator: It's a fresh day. The aliens said that you can ping them if you wanted to chat. Maybe you should give it a try.
     -> (reestablish contact with the aliens)
         <<hide_all_objects>>
+        <<show PCRoom>>
         <<show ChooseYourCharacterDay2>>
 ===
 
@@ -76,6 +81,7 @@ title: CallCatDay2
 position: 422,282
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Cat Obscure right>>
 <<stop_voice_blip Cat>>
@@ -285,6 +291,7 @@ title: CallDogDay2
 position: 408,123
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Dog Obscure right>>
 <<stop_voice_blip Dog>>
@@ -518,6 +525,7 @@ title: CallOpossumDay2
 position: 409,-43
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Opossum Obscure right>>
 <<stop_voice_blip Opossum>>
@@ -744,6 +752,7 @@ title: CallBirdDay2
 position: 411,-211
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Bird Obscure right>>
 <<stop_voice_blip Bird>>
@@ -1030,6 +1039,7 @@ position: 762,12
 Narrator: You cut the connection and take a step back from your monitor.
     -> (turn off the monitor)
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOff>>
 Narrator: Again, after the long conversation, you decide to go to bed.
 <<if $posSelfPerception > $negSelfPerception>>
@@ -1038,6 +1048,7 @@ Narrator: Again, after the long conversation, you decide to go to bed.
     Narrator: After talking with these new figures, you've felt a bit more uncertain about your place in this situation. You hope that you'll be able to figure things out soon.
 <<endif>>
 <<hide_all_objects>>
+<<show PCRoom>>
 <<fade_transition 3>>
 <<wait 3>>
 <<jump StartDay3>>

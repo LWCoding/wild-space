@@ -22,15 +22,18 @@ Narrator: Do you wish to report the aliens to Earth, or let them be?
         -> (report the aliens)
             Narrator: You get to writing your report.
             <<hide_all_objects>>
+            <<show PCRoom>>
             <<show_ui TypeToInteract>>
             <<show MonitorReportDay3>>
         -> (report that you saw nothing)
             <<hide_all_objects>>
+            <<show PCRoom>>
             Narrator: You get to writing your report.
             <<show_ui TypeToInteract>>
             <<show MonitorDontReportDay3>>
     -> (report that you saw nothing)
         <<hide_all_objects>>
+        <<show PCRoom>>
         Narrator: You get to writing your report.
         <<show_ui TypeToInteract>>
         <<show MonitorDontReportDay3>>
@@ -42,6 +45,7 @@ position: -179,-172
 <<hide_all_ui_objects>>
 Narrator: You finish your report, choosing not to mention the aliens.
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOnNoSilhouette>>
 Narrator: You get back to looking around your room.
 Narrator: All of a sudden, you realize that your oxygen supply is running low.
@@ -59,6 +63,7 @@ position: 87,-45
 ---
 Narrator: It's time to make contact with one of the aliens.
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show ChooseYourCharacterDay3>>
 ===
 
@@ -66,6 +71,7 @@ title: CallCatDay3
 position: 422,282
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Cat Obscure right>>
 Narrator: You call {$catName}. You see movement, and start tweaking the dials to get the figure to appear clear.
@@ -103,6 +109,7 @@ Narrator: You call {$catName}. You see movement, and start tweaking the dials to
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
                         <<hide_all_objects>>
+                        <<show PCRoom>>
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
@@ -138,6 +145,7 @@ title: CallDogDay3
 position: 408,123
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Dog Obscure right>>
 Narrator: You call {$dogName}. You see movement, and start tweaking the dials to get the figure to appear clear.
@@ -179,6 +187,7 @@ Narrator: You call {$dogName}. You see movement, and start tweaking the dials to
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
                         <<hide_all_objects>>
+                        <<show PCRoom>>
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
@@ -204,6 +213,7 @@ title: CallOpossumDay3
 position: 409,-43
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Opossum Obscure right>>
 Narrator: You call {$opossumName}. You see movement, and start tweaking the dials to get the figure to appear clear.
@@ -245,6 +255,7 @@ Narrator: You call {$opossumName}. You see movement, and start tweaking the dial
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
                         <<hide_all_objects>>
+                        <<show PCRoom>>
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
@@ -271,6 +282,7 @@ title: CallBirdDay3
 position: 411,-211
 ---
 <<hide_all_objects>>
+<<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Bird Obscure right>>
 Narrator: You call {$birdName}. You see movement, and start tweaking the dials to get the figure to appear clear.
@@ -313,6 +325,7 @@ Narrator: You call {$birdName}. You see movement, and start tweaking the dials t
                         <<play_music MainTheme>>
                         <<hide_all_characters>>
                         <<hide_all_objects>>
+                        <<show PCRoom>>
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> <b>(ASKED EARTH)</b> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
@@ -348,6 +361,7 @@ Narrator: You have a feeling that you can get them to send their emergency rescu
             Narrator: You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
             <<set $desperate = true>>
             <<hide_all_objects>>
+            <<show PCRoom>>
             <<show_ui TypeToInteract>>
             <<show MonitorReportDay3>>
         -> (reconsider)
@@ -360,6 +374,7 @@ Narrator: You have a feeling that you can get them to send their emergency rescu
                 Narrator: You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
                 <<set $desperate = true>>
                 <<hide_all_objects>>
+                <<show PCRoom>>
                 <<show_ui TypeToInteract>>
                 <<show MonitorReportDay3>>
     -> (nevermind, you can manage on your own)
