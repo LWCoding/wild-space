@@ -4,7 +4,7 @@ title: AcceptCatHelp
 <<start_voice_blip Cat>>
 <<show_character Cat Helmet right>>
 {$catName}: I've arranged for a rescue mission to come get you. Just hang tight, okay?
-{$catName}: And again, thank you for the company, {$playerName}. I loved the past few days.
+{$catName}: And again, thank you for the company, {$playerName}. I'll see you soon.
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<stop_voice_blip Cat>>

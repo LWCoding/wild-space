@@ -215,7 +215,7 @@ Suddenly, the figure comes into view.
 {$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName}.
 <<show_character Cat Happy2 right>>
 <<else>>
-{$catName}: Anyways, my name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
+{$catName}: My name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
 <<show_character Cat Neutral right>>
 <<endif>>
 {$catName}: I'm from the planet Linnaeus. It's nice to meet you.
@@ -236,6 +236,8 @@ Suddenly, the figure comes into view.
         <<show_character Cat Thinking right>>
         {$catName}: ...Meowdy? That's an interesting way to greet someone.
         <<show_character Cat Flirt right>>
+        <<set $catLikesYou += 1>>
+        <<positive_indicator Cat>>
         {$catName}: I guess, meowdy to you too.
 <<show_character Cat Happy right>>
 {$catName}: But anyways, I'm glad you're safe... um... 
@@ -248,7 +250,7 @@ Suddenly, the figure comes into view.
     <<set $catLikesYou += 1>>
     <<positive_indicator Cat>>
     {$catName}: That's incredible! You must be very dexterous.
--> No. What?
+-> (lie) No. What?
     <<show_character Cat Sad right>>
     {$catName}: Aw, that's disappointing. I was hoping to see some cool tricks.
 <<show_character Cat Thinking right>>
@@ -273,7 +275,7 @@ Suddenly, the figure comes into view.
         -> It's {$playerName}.
             {$catName}: {$playerName}? That's a nice name.
             <<set $catThinksPlayerNameIs = $playerName>>
-        -> I don't have a name.
+        -> (lie) I don't have a name.
             <<show_character Cat Thinking right>>
             {$catName}: Oh, huh. That's okay. How would people refer to you then, though?
             <<show_character Cat Flirt right>>
@@ -548,7 +550,7 @@ You turn the dials to let the signal through.
             <<if $playerName == "Dipper">>
                 {$dogName}: It rhymes with Bipper. Woof.
             <<endif>>
-        -> Hurt... each other?
+        -> People on your planet hurt... each other?
             <<show_character Dog Sad right>>
             {$dogName}: Woof... it's terrible. People I love are still back there. Woof.
             {$dogName}: But... I don't really want to think about that now. Woof. 
@@ -584,9 +586,6 @@ You turn the dials to let the signal through.
         {$dogName}: Haven't seen my family in a while. Woof.
         <<show_character Dog Neutral right>>
         {$dogName}: But, at least I get to meet new beings all the time. Woof.
-    -> Do you do this often?
-        <<show_character Dog Sad right>>
-        {$dogName}: Mmm... not really. Woof.
     <<show_character Dog Angry right>>
     {$dogName}: My home planet is kind of a dump. I decided to leave and explore the galaxy. Woof.
 <<show_character Dog Neutral right>>
@@ -739,7 +738,7 @@ You turn the dials to let the signal through.
 <<show_character Opossum Thinking right>>
 <<stop_voice_blip Opossum>>
 You notice that {$opossumName} seems a bit distant, not making eye contact with you.
-    -> So, what are you doing here?
+    -> So, how's life?
         <<set $opossumDislikesYou += 1>>
         {$opossumName} sighs heavily. They seem annoyed by your question.
     -> What's wrong?
@@ -751,8 +750,6 @@ You notice that {$opossumName} seems a bit distant, not making eye contact with 
 <<show_character Opossum Angry right>>
 {$opossumName}: God... I <i>hate</i> space. It's so... <i>empty</i>. 
     -> What are you doing out here, then?
-        <<show_character Opossum Confused right>>
-        <<set $opossumDislikesYou += 1>>
     -> I find it relaxing.
         <<show_character Opossum Confused right>>
         <<set $opossumDislikesYou += 1>>

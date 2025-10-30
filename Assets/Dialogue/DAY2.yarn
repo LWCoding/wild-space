@@ -973,7 +973,7 @@ title: BirdRecurringTreeDay2
     -> Do you want to play a game? <<if $recommendedBirdSelfCare == true && $day2AskedBirdQ7 == false && $birdLikesYou >= $birdDislikesYou>>
         <<show_character Bird Sweat right>>
         {$birdName}: A game? I-I don't know. Will it take a while?
-            -> Just loosen up a bit!
+            -> It'll be quick.
             -> Okay, you're right. Maybe another time.
                 <<show_character Bird Nervous right>>
                 {$birdName}: Y-yeah. Sorry about that. I haven't played games in a long time anyways.
