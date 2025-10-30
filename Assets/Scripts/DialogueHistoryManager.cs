@@ -19,7 +19,6 @@ public class DialogueHistoryManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject historyPanel;      // The parent panel to show/hide
     [SerializeField] private Button historyButton;        // UI Button for toggling history
-    [SerializeField] private Button historyButton2;       // Second UI Button for toggling history
     [SerializeField] private Button previousPageButton;    // UI Button for previous page
     [SerializeField] private Button nextPageButton;       // UI Button for next page
     [SerializeField] private TMP_Text historyText;         // Text box under ScrollView > Content
@@ -336,7 +335,7 @@ public class DialogueHistoryManager : MonoBehaviour
         historyPanel.SetActive(!isHistoryOpen);
 
         // Update the button text if buttons are assigned (use the new state after toggling)
-        UpdateButtonTexts(!isHistoryOpen);
+        UpdateButtonTexts(isHistoryOpen);
 
         // If we just opened the panel, refresh to show the latest content
         if (!isHistoryOpen)
@@ -379,18 +378,8 @@ public class DialogueHistoryManager : MonoBehaviour
     {
         if (historyButton != null)
         {
-            // Remove any existing listeners to avoid duplicates
             historyButton.onClick.RemoveAllListeners();
-            // Add our toggle method as a listener
             historyButton.onClick.AddListener(OnHistoryButtonClicked);
-        }
-        
-        if (historyButton2 != null)
-        {
-            // Remove any existing listeners to avoid duplicates
-            historyButton2.onClick.RemoveAllListeners();
-            // Add our toggle method as a listener
-            historyButton2.onClick.AddListener(OnHistoryButtonClicked);
         }
     }
 
@@ -404,16 +393,6 @@ public class DialogueHistoryManager : MonoBehaviour
         SetupHistoryButtons();
     }
     
-    /// <summary>
-    /// Public method to manually set up the second history button
-    /// Call this if you want to wire up the button programmatically
-    /// </summary>
-    public void SetHistoryButton2(Button button)
-    {
-        historyButton2 = button;
-        SetupHistoryButtons();
-    }
-
     /// <summary>
     /// Automatically sets up the page navigation buttons
     /// </summary>
@@ -465,22 +444,12 @@ public class DialogueHistoryManager : MonoBehaviour
     private void UpdateButtonTexts(bool isHistoryOpen)
     {
         string buttonText = isHistoryOpen ? closeHistoryText : openHistoryText;
-        
         if (historyButton != null)
         {
             TMP_Text buttonLabel = historyButton.GetComponentInChildren<TMP_Text>();
             if (buttonLabel != null)
             {
                 buttonLabel.text = buttonText;
-            }
-        }
-        
-        if (historyButton2 != null)
-        {
-            TMP_Text buttonLabel2 = historyButton2.GetComponentInChildren<TMP_Text>();
-            if (buttonLabel2 != null)
-            {
-                buttonLabel2.text = buttonText;
             }
         }
     }

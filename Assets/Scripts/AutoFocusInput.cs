@@ -80,7 +80,6 @@ public class AutoFocusInput : MonoBehaviour
 			SetTextPreserveCaret(string.Empty, 0);
 			return;
 		}
-		// Do not trim or alter trailing spaces automatically anymore
 	}
 
 	private void OnEndEdit(string submittedValue)
@@ -89,8 +88,6 @@ public class AutoFocusInput : MonoBehaviour
 		{
 			return;
 		}
-
-		// Do not trim the input on end edit
 	}
 
 	private void SetTextPreserveCaret(string newText, int newCaretPosition)

@@ -13,6 +13,9 @@ public class UIYarnShowHideable : MonoBehaviour
     [Header("Should Start Visible?")]
     [SerializeField] private bool _startVisible = true;
 
+    [Header("Should this UI be permanently shown (never hide once shown)?")]
+    [SerializeField] private bool _permanentlyShown = false;
+
     private void Awake()
     {
         if (_startVisible)
@@ -58,6 +61,9 @@ public class UIYarnShowHideable : MonoBehaviour
     [YarnCommand("hide_ui")]
     public void HideObject()
     {
+        if (_permanentlyShown) {
+            return;
+        }
         TryGetComponent<Image>(out var img);
         if (img != null)
         {
