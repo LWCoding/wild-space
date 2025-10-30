@@ -95,6 +95,7 @@ Narrator: Supposedly, you can ping them again to have a chat. Maybe you should g
     -> (reestablish contact with the aliens)
         <<hide_all_objects>>
         <<show PCRoom>>
+        <<show_ui ClickToInteract>>
         <<show ChooseYourCharacterDay2>>
 ===
 
@@ -102,6 +103,7 @@ title: CallCatDay2
 position: 422,282
 ---
 <<hide_all_objects>>
+<<hide_all_ui_objects>>
 <<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Cat Obscure right>>
@@ -307,6 +309,7 @@ title: CallDogDay2
 position: 408,123
 ---
 <<hide_all_objects>>
+<<hide_all_ui_objects>>
 <<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Dog Obscure right>>
@@ -536,6 +539,7 @@ title: CallOpossumDay2
 position: 409,-43
 ---
 <<hide_all_objects>>
+<<hide_all_ui_objects>>
 <<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Opossum Obscure right>>
@@ -758,6 +762,7 @@ title: CallBirdDay2
 position: 411,-211
 ---
 <<hide_all_objects>>
+<<hide_all_ui_objects>>
 <<show PCRoom>>
 <<show MonitorOn>>
 <<show_character Bird Obscure right>>
@@ -779,6 +784,7 @@ Narrator: {$birdName} appears on the screen.
         -> Okay, fine. I'll let you work.
             <<show_character Bird Neutral right>>
             {$birdName}: Thanks. Maybe next time, then.
+            <<show_ui ClickToInteract>>
             <<show ChooseYourCharacterDay2>>
             <<stop>>
 <<jump BirdRecurringTreeDay2>>

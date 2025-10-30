@@ -73,6 +73,7 @@ position: 87,-45
 Narrator: It's time to make contact with one of the aliens.
 <<hide_all_objects>>
 <<show PCRoom>>
+<<show_ui ClickToInteract>>
 <<show ChooseYourCharacterDay3>>
 ===
 
