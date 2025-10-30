@@ -610,6 +610,15 @@ namespace Yarn.Unity
         }
 
         /// <summary>
+        /// Public method: Call this from a UI button that should progress the dialogue --
+        /// hurries up if still typing, otherwise advances to next line.
+        /// </summary>
+        public void SmartAdvanceOrSkip()
+        {
+            RequestSmartAdvance();
+        }
+
+        /// <summary>
         /// Called by Unity every frame to check to see if, depending on <see
         /// cref="UsedInputMode"/>, the <see cref="LineAdvancer"/> should take
         /// action.
