@@ -80,18 +80,7 @@ public class AutoFocusInput : MonoBehaviour
 			SetTextPreserveCaret(string.Empty, 0);
 			return;
 		}
-
-		// Trim only trailing spaces while typing if caret is at the end
-		// (allows internal spaces when editing in the middle)
-		int caretAt = tmpInputField.caretPosition;
-		if (caretAt == currentValue.Length)
-		{
-			string trimmedEnd = currentValue.TrimEnd();
-			if (!ReferenceEquals(trimmedEnd, currentValue) && trimmedEnd != currentValue)
-			{
-				SetTextPreserveCaret(trimmedEnd, trimmedEnd.Length);
-			}
-		}
+		// Do not trim or alter trailing spaces automatically anymore
 	}
 
 	private void OnEndEdit(string submittedValue)
@@ -101,11 +90,7 @@ public class AutoFocusInput : MonoBehaviour
 			return;
 		}
 
-		string fullyTrimmed = submittedValue?.Trim() ?? string.Empty;
-		if (fullyTrimmed != submittedValue)
-		{
-			SetTextPreserveCaret(fullyTrimmed, fullyTrimmed.Length);
-		}
+		// Do not trim the input on end edit
 	}
 
 	private void SetTextPreserveCaret(string newText, int newCaretPosition)
