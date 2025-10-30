@@ -3,39 +3,39 @@ title: ReportedAliens
 <<hide_all_ui_objects>>
 <<hide_all_objects>>
 <<show ScreenBlocker>>
-Narrator: You finish sending the report to HQ. You followed your orders and reported everything as you saw it.
+You finish sending the report to HQ. You followed your orders and reported everything as you saw it.
 <<if $posSelfPerception > $negSelfPerception>>
-    Narrator: You did your duty and upheld the integrity of your role. But you can't help but feel a bit conflicted about the report.
+    You did your duty and upheld the integrity of your role. But you can't help but feel a bit conflicted about the report.
 <<else>>
-    Narrator: You feel a bit uneasy, but you rationalize that honesty is the best policy.
+    You feel a bit uneasy, but you rationalize that honesty is the best policy.
 <<endif>>
-Narrator: Not soon after, you receive a reply from HQ.
+Not soon after, you receive a reply from HQ.
 <<show MonitorReportedMessage>>
 ===
 
 title: MonitorReportedMessageComplete
 ---
 <<wait 2>>
-Narrator: You can't help but feel a bit guilty, but you did your best to report the facts.
-Narrator: And here it is, laid bare in front of you: the response from HQ.
+You can't help but feel a bit guilty, but you did your best to report the facts.
+And here it is, laid bare in front of you: the response from HQ.
 <<hide_all_objects>>
 <<show ScreenBlocker>>
 <<if $daysPassed == 3>>
-Narrator: HQ sent a team to investigate the aliens you reported. They also fixed an issue with your spaceship's oxygen that you hadn't noticed before.
+HQ sent a team to investigate the aliens you reported. They also fixed an issue with your spaceship's oxygen that you hadn't noticed before.
 <<endif>>
 <<if $desperate == false>>
-    Narrator: Days pass. And afterwards, you never hear from the aliens again.
-    Narrator: You presume that Earth dealt with them. You hope that, if they were found, they were treated well, but you can't shake the feeling that this isn't exactly the case.
-    Narrator: You live your life out on your ship, never quite feeling at peace with what happened. You never talk to anyone again.
-    Narrator: You're not even sure if the aliens were real to begin with.
-    Narrator: <b>ENDING 1/5: Did it ever happen?</b>
+    Days pass. And afterwards, you never hear from the aliens again.
+    You presume that Earth dealt with them. You hope that, if they were found, they were treated well, but you can't shake the feeling that this isn't exactly the case.
+    You live your life out on your ship, never quite feeling at peace with what happened. You never talk to anyone again.
+    You're not even sure if the aliens were real to begin with.
+    <b>ENDING 1/5: Did it ever happen?</b>
     <<detour End>>
     <<the_end "ENDING 1/5: Did it ever happen?">>
 <<else>>
-    Narrator: In the span of a few hours, a rapidly-moving rescue vehicle arrives at your location.
-    Narrator: They commandeer your ship to study the incoming signals. Meanwhile, you're shipped back to Earth, and eventually, are tasked with piloting a different space vessel.
-    Narrator: You never hear from the aliens again.
-    Narrator: <b>ENDING 2/5: Desperation rescue</b>
+    In the span of a few hours, a rapidly-moving rescue vehicle arrives at your location.
+    They commandeer your ship to study the incoming signals. Meanwhile, you're shipped back to Earth, and eventually, are tasked with piloting a different space vessel.
+    You never hear from the aliens again.
+    <b>ENDING 2/5: Desperation rescue</b>
     <<detour End>>
     <<the_end "ENDING 2/5: Desperation rescue">>
 <<endif>>

@@ -2,8 +2,8 @@
 
 title: MonitorOffClick
 ---
-Narrator: The monitor is currently off. You use it every day to send in your daily reports.
-Narrator: Since day one, you haven't reported anything out of the ordinary. You've been out here for almost two years now.
+The monitor is currently off. You use it every day to send in your daily reports.
+Since day one, you haven't reported anything out of the ordinary. You've been out here for almost two years now.
 <<set $monitorExplored = true>>
 <<if $calendarExplored and $routerExplored and $monitorExplored>>
     <<jump AfterInteractedWithItems>>
@@ -12,8 +12,8 @@ Narrator: Since day one, you haven't reported anything out of the ordinary. You'
 
 title: CalendarClick
 ---
-Narrator: The calendar is set to Universal Space Time. According to it, it's been 620 days since you left Earth.
-Narrator: Every day has been just as quiet as the last.
+The calendar is set to Universal Space Time. According to it, it's been 620 days since you left Earth.
+Every day has been just as quiet as the last.
 <<set $calendarExplored = true>>
 <<if $calendarExplored and $routerExplored and $monitorExplored>>
     <<jump AfterInteractedWithItems>>
@@ -22,8 +22,8 @@ Narrator: Every day has been just as quiet as the last.
 
 title: RouterClick
 ---
-Narrator: The router buzzes quietly. It connects you to Earth HQ, but they only respond to your messages with the same message.
-Narrator: You wonder if they even read your reports, or if the system is just automated.
+The router buzzes quietly. It connects you to Earth HQ, but they only respond to your messages with the same message.
+You wonder if they even read your reports, or if the system is just automated.
 <<set $routerExplored = true>>
 <<if $calendarExplored and $routerExplored and $monitorExplored>>
     <<jump AfterInteractedWithItems>>
