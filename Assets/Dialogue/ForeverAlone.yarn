@@ -24,4 +24,5 @@ Narrator: Feeling isolated, you later get a report from HQ about strange transmi
 Narrator: Disappointed, they relocate you to routine patrols in a less-important remote sector of space. You never talk to anyone again. And nobody ever comes to check on you.
 Narrator: <b>ENDING 5/5: Forever Alone</b>
 <<detour End>>
+<<the_end "ENDING 5/5: Forever Alone">>
 ===
