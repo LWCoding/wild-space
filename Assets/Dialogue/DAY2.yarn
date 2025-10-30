@@ -50,7 +50,7 @@ position: 167,29
 ---
 <<hide_all_ui_objects>>
 <<set $negSelfPerception += 1>>
-You hesitate, and send off the message. The whole point of your job was to report alien life. But something about this situation feels different.
+You hesitate, and send off the message. You feel <color=\#FF8888>a little guilty</color>. Your job was to report alien life... but something about this situation feels different.
 <<if $posSelfPerception > $negSelfPerception>>
     You feel a sense of pride in your decision. You trust your instincts and believe that not everything needs to be reported.
 <<else>>
@@ -68,27 +68,27 @@ You were surprised that they disagreed with your decision to leave Earth, even t
 Recalling your parents' disapproval makes you feel...
     -> (sad, because they're gone now)
         <<set $negSelfPerception += 1>>
-        You feel a wave of sadness wash over you. You wonder if they would have ever accepted your choices, but now you'll never know.
+        You feel <color=\#FF8888>a wave of sadness wash over you</color>. You wonder if they would have ever accepted your choices, but now you'll never know.
     -> (angry, because they never supported you)
         <<set $negSelfPerception += 1>>
-        You feel a surge of anger. They never supported your decisions, and now that they're gone, you feel a sense of bitterness.
+        You feel a surge of anger. They never supported your decisions, and now that they're gone, you feel <color=\#FF8888>a sense of bitterness</color>.
     -> (conflicted, because they didn't want you gone)
         You feel conflicted. They didn't want you to leave, but they never made an effort to understand your reasons.
         <<set $posSelfPerception += 1>>
-                You wish they could see you now, living your life on your own terms.
+        You wish they could see you now, living your life on your own terms. You feel <color=\#88FF88>independent</color>.
 And what about your friends? You always felt like such an impostor around them. You felt like every interaction was a performance.
 You forced yourself to do so many things with them. And you only ever felt like you were "fun" when you were a couple of drinks in. You wonder if they ever really liked you for who you were.
 Thinking about these people in your life make you feel...
     -> (lonely, because you pushed them away)
         <<set $negSelfPerception += 1>>
-        You realize that you pushed people away, and now you're left with nothing but your own thoughts.
+        You realize that you pushed people away, and now you're <color=\#FF8888>left with nothing but your own thoughts</color>.
     -> (regretful, because you never opened up to them)
         <<set $negSelfPerception += 1>>
-        You wish you had opened up to people more, but now it's too late.
+        You <color=\#FF8888>wish you had opened up to people more</color>, but now it's too late.
     -> (indifferent, because they weren't true friends)
         Maybe those people weren't true friends after all. You wonder if you'll be able to make genuine connections in the future.
         <<set $posSelfPerception += 1>>
-        The idea of making real connections makes you feel a little hopeful.
+        The idea of making real connections makes you <color=\#88FF88>feel a little hopeful</color>.
 
 You then remember what happened yesterday, with the aliens.
 Supposedly, you can ping them again to have a chat. Maybe you should give it a try.
