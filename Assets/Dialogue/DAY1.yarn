@@ -1036,7 +1036,6 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
         {$birdName}: Very... akin to how we do it back in Aviarian society.
     -> I... wouldn't really know.
         <<set $birdDislikesYou += 1>>
-        <<set $negSelfPerception += 1>>
         <<show_character Bird Sad right>>
         {$birdName}: Aw, I'm sorry to hear that.
         <<show_character Bird Confused right>>
