@@ -85,7 +85,8 @@ position: 422,282
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
 You call {$catName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Cat>>
@@ -159,7 +160,8 @@ position: 408,123
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Dog Obscure right>>
 You call {$dogName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Dog>>
@@ -227,7 +229,8 @@ position: 409,-43
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Opossum Obscure right>>
 You call {$opossumName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Opossum>>
@@ -296,7 +299,8 @@ position: 411,-211
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Bird Obscure right>>
 You call {$birdName}. You see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Bird>>

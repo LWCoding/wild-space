@@ -105,7 +105,7 @@ position: 15,-63
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<show MonitorSilhouette>>
 Just as you turn the monitor off, it flickers and springs back to life.
 <<show_character Cat Obscure right>>
 A dark figure appears on the screen, accompanied with a static-filled voice.
@@ -131,8 +131,9 @@ With your expertise, you think you can adjust the frequency and let the signal t
     -> (ignore the signal. it's probably nothing.)
         You decide to ignore the signal. It's probably just static interference.
         <<hide_all_characters>>
-        <<hide MonitorOn>>
-        <<show MonitorOn>>
+        <<hide MonitorSilhouette>>
+        <<wait 1>>
+        <<show MonitorSilhouette>>
         <<set $negSelfPerception += 1>>
         After a few moments, the screen flickers back to static. You are alone, again. You feel <color=\#FF8888>more isolated</color>.
         How should you pass the time?
@@ -143,15 +144,13 @@ With your expertise, you think you can adjust the frequency and let the signal t
             -> (try to find the signal again)
                 You fiddle with the dials and knobs, trying to find the signal again.
 <<hide_all_objects>>
-<<show PCRoom>>
-<<show MonitorOn>>
 <<show_character Cat Obscure right>>
 Suddenly, the same character from before reappears on the screen.
     -> (get it over with. let the signal through.)
         <<jump CatIntro>>
     -> (unplug the monitor)
         <<hide_all_characters>>
-        <<hide MonitorOn>>
+        <<hide MonitorSilhouette>>
         You decide to unplug the monitor, cutting off the signal entirely.
         After a few moments, the screen flickers back to static. You are alone, again.
         <<jump ForeverAloneNoContact>>
@@ -317,7 +316,7 @@ Suddenly, the figure comes into view.
 <<endif>>
 <<stop_voice_blip Cat>>
 <<hide_all_characters>>
-<<hide MonitorOn>>
+<<hide MonitorSilhouette>>
 <<show MonitorOn>>
 <<play_music MainTheme>>
 <<if $catSecured == false>>
@@ -359,7 +358,7 @@ Who was that creature? How is that even possible?
 <<fade_transition 2>>
 <<wait 1>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Dog Obscure left>>
 <<show_character Opossum Obscure center>>
 <<show_character Bird Obscure right>>
@@ -380,7 +379,7 @@ They all seem like they'll stick around for a bit. Who do you talk to first?
 title: TalkToOthers
 ---
 <<hide_all_characters>>
-<<show MonitorOn>>
+<<show MonitorSilhouette>>
 <<if $talkedToDog == false>>
     <<show_character Dog Obscure left>>
 <<endif>>
@@ -409,7 +408,7 @@ position: 635,249
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<show MonitorSilhouette>>
 You pull up the communication panel and respond to the figure with the floppy ears.
 <<show_character Dog Obscure right>>
 You turn the dials to let the signal through.
@@ -621,7 +620,7 @@ position: 638,-61
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<show MonitorSilhouette>>
 You pull up the communication panel and respond to the figure with the frazzled hair.
 <<show_character Opossum Obscure right>>
 You turn the dials to let the signal through.
@@ -786,7 +785,7 @@ position: 633,86
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<show MonitorSilhouette>>
 You pull up the communication panel and respond to the figure with the pointy muzzle.
 <<show_character Bird Obscure right>>
 You turn the dials to let the signal through.

@@ -105,7 +105,8 @@ position: 422,282
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
 <<stop_voice_blip Cat>>
 You call {$catName}. The line remains static for a little while, but you suddenly see movement on the other end.
@@ -311,7 +312,8 @@ position: 408,123
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Dog Obscure right>>
 <<stop_voice_blip Dog>>
 You call {$dogName}. The line remains static for a little while, but you suddenly see movement on the other end.
@@ -541,7 +543,8 @@ position: 409,-43
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Opossum Obscure right>>
 <<stop_voice_blip Opossum>>
 You call {$opossumName}. The line remains static for a little while, but you suddenly see movement on the other end.
@@ -764,7 +767,8 @@ position: 411,-211
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
+<<hide MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Bird Obscure right>>
 <<stop_voice_blip Bird>>
 You call {$birdName}. The line remains static for a little while, but you suddenly see movement on the other end.
@@ -1039,6 +1043,8 @@ title: EndDay2
 position: 762,12
 ---
 <<hide_all_characters>>
+<<hide MonitorSilhouette>>
+<<show MonitorOn>>
 <<play_music MainTheme>>
 <<if $talkedToPersonDay2 == false && $charactersSecured > 1>>
     <<set $talkedToPersonDay2 = true>>
