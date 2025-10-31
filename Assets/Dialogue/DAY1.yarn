@@ -441,8 +441,6 @@ You turn the dials to let the signal through.
 {$dogName}: I'm {$dogName}. Woof. I come in peace. Woof.
 {$dogName}: I saw your signal, and thought I'd come check it out. Woof.
     -> What... are you?
-        <<positive_indicator Dog>>
-        <<set $dogLikesYou += 1>>
         <<if $knowsAboutBarklonian == false>>
             <<set $knowsAboutBarklonian = true>>
             {$dogName}: I don't know what you'd call it. I'm a Barklonian. Woof.

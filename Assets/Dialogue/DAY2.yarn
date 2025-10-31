@@ -444,8 +444,6 @@ title: DogRecurringTreeDay2
             -> Oh, I see.
     -> What do you do for work? <<if $knowDogJob == false>>
         <<set $knowDogJob = true>>
-        <<positive_indicator Dog>>
-        <<set $dogLikesYou += 1>>
         <<show_character Dog Happy right>>
         {$dogName}: I worked with my family in the fabric store. Woof. We made a lot of stuff. Woof.
         {$dogName}: Neck rags, paw covers, those sorts of things. Woof.
