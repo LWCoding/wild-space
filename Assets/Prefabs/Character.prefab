@@ -195,3 +195,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positiveIndicatorPrefab: {fileID: 4295918738805940650, guid: c9760e3622e0f9447bf69583b5141cd1, type: 3}
+  negativeIndicatorPrefab: {fileID: 8333038803278867402, guid: 9c76a68ee42ca2747987b6f0f3aa1146, type: 3}

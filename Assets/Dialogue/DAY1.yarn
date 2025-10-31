@@ -180,6 +180,7 @@ Suddenly, the figure comes into view.
                 ???: Oh... I'm sorry to hear that. Space can be a lonely place.
             -> (scream in confusion)
                 <<stop_voice_blip Cat>>
+                <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Surprised right>>
                 You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
@@ -189,6 +190,7 @@ Suddenly, the figure comes into view.
                 ???: Please try to spare my ears next time... these are quite sensitive.
     -> (scream. what is happening.)
         <<stop_voice_blip Cat>>
+        <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Surprised right>>
         You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
@@ -201,11 +203,13 @@ Suddenly, the figure comes into view.
 ???: You don't seem to act like you're in danger. What're you doing in space?
     -> What the fuck? What <i>are</i> you?
         <<show_character Cat Neutral right>>
+        <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         ???: ...don't be rude.
         ???: It's not everyday that you meet another lifeform just floating around in space.
     -> Who... what... are you?
     -> Why do you want to know?
+        <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Thinking right>>
         ???: I guess it's not entirely my business... but I was just curious.
@@ -220,6 +224,7 @@ Suddenly, the figure comes into view.
 {$catName}: I'm from the planet Linnaeus. It's nice to meet you.
     -> You're an alien?
         <<show_character Cat Thinking right>>
+        <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         {$catName}: Hm? I guess so?
         <<show_character Cat Neutral right>>
@@ -267,6 +272,7 @@ Suddenly, the figure comes into view.
         <<set $catThinksPlayerNameIs = $playerName>>
     -> I don't know you...
         <<show_character Cat Sad right>>
+        <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         {$catName}: Aw, that's fine. I guess I was a little forward.
         <<show_character Cat Neutral right>>
@@ -293,6 +299,7 @@ Suddenly, the figure comes into view.
         <<set $catLikesYou += 1>>
         {$catName}: I understand that feeling. Sometimes, it's nice to get away from everything.
     -> (lie) Exploring the cosmos.
+        <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Sad right>>
         {$catName}: Oh, wow... you'd risk your life for something like that?
@@ -419,6 +426,7 @@ You turn the dials to let the signal through.
 ???: What're you doing out here? Woof.
     -> Who are you?
     -> What in the world? A purple dog?
+        <<negative_indicator Dog>>
         <<set $dogDislikesYou += 1>>
         <<stop_voice_blip Dog>>
         <<show_character Dog Thinking right>>
@@ -462,6 +470,7 @@ You turn the dials to let the signal through.
     -> Why do you keep saying woof?
         {$dogName}: I don't know what you mean. Woof.
         -> It's... weird.
+            <<negative_indicator Dog>>
             <<set $dogDislikesYou += 1>>
             <<show_character Dog Sad right>>
             {$dogName}: Hm. Woof. I'm sorry if it bothers you. Woof.
@@ -486,6 +495,7 @@ You turn the dials to let the signal through.
 <<show_character Dog Neutral right>>
 {$dogName}: I hope you don't mind me dropping by unannounced. Woof.
     -> Why... are you here?
+        <<negative_indicator Dog>>
         <<set $dogDislikesYou += 1>>
         <<show_character Dog Sad right>>
         {$dogName}: Woof. Do you want me to go? Woof.
@@ -534,9 +544,11 @@ You turn the dials to let the signal through.
                         {$dogName}: It rhymes with Bipper. Woof.
                     <<endif>>
                 -> ...
+                    <<negative_indicator Dog>>
                     <<set $dogDislikesYou += 1>>
                     {$dogName}: Not a talker? Woof. I guess I'll just call you "Human". You're a human, right? Woof.
         -> ...
+            <<negative_indicator Dog>>
             <<set $dogDislikesYou += 1>>
             {$dogName}: Not a talker? Woof. I guess I'll just call you "Human". You're a human, right? Woof.
 <<endif>>
@@ -568,6 +580,7 @@ You turn the dials to let the signal through.
         {$dogName}: I don't see the point in all that. Woof. Why?
             -> My planet, Earth, is searching for them.
                 <<show_character Dog Sad right>>
+                <<negative_indicator Dog>>
                 <<set $dogDislikesYou += 1>>
                 {$dogName}: That sounds a little scary... 
                 {$dogName}: I hope that doesn't mean your planet is out to get me. Woof.
@@ -577,6 +590,7 @@ You turn the dials to let the signal through.
                 <<show_character Dog Happy right>>
                 {$dogName}: Woof. You should join me sometime. I see a lot of interesting beings everyday.
             -> Earth wants to destroy alien life.
+                <<negative_indicator Dog>>
                 <<set $dogDislikesYou += 2>>
                 <<show_character Dog Sad right>>
                 {$dogName}: That sounds a little scary... 
@@ -632,6 +646,7 @@ You turn the dials to let the signal through.
     -> Holy shit. Are you a rat?
         <<show_character Opossum Angry right>>
         ???: What the fuck is a rat...
+        <<negative_indicator Opossum>>
         <<set $opossumDislikesYou += 1>>
         ???: Forget I asked. Peace.
             -> Wait, don't go...
@@ -706,6 +721,7 @@ You turn the dials to let the signal through.
 <<stop_voice_blip Opossum>>
 You notice that {$opossumName} seems a bit distant, not making eye contact with you.
     -> So, how's life?
+        <<negative_indicator Opossum>>
         <<set $opossumDislikesYou += 1>>
         {$opossumName} sighs heavily. They seem annoyed by your question.
     -> What's wrong?
@@ -719,6 +735,7 @@ You notice that {$opossumName} seems a bit distant, not making eye contact with 
     -> What are you doing out here, then?
     -> I find it relaxing.
         <<show_character Opossum Confused right>>
+        <<negative_indicator Opossum>>
         <<set $opossumDislikesYou += 1>>
     -> ...
 <<show_character Opossum Sad right>>
@@ -739,6 +756,7 @@ You notice that {$opossumName} seems a bit distant, not making eye contact with 
         {$opossumName}: Thanks for dealing with me being around for a while, anyways.
     -> Go away!
         <<show_character Opossum Angry right>>
+        <<negative_indicator Opossum>>
         <<set $opossumDislikesYou += 2>>
         {$opossumName}: ...
         {$opossumName}: I don't even know why I try...
@@ -818,6 +836,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
         <<show_character Bird Happy right>>
         {$birdName}: Wonderful! I appreciate your cooperation.
     -> I'd rather not.
+        <<negative_indicator Bird>>
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Nervous right>>
         {$birdName}: Hm. I see. Are you sure? It wouldn't take up too much of your time.
@@ -847,6 +866,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
             {$birdName}: I'm just curious about other lifeforms. Understanding others helps me understand myself better, I think.
             <<set $birdExplainedIntention = true>>
     -> I have so many questions...
+        <<negative_indicator Bird>>
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Sad right>>
         {$birdName}: Oh... I apologize if I was too forward!
@@ -900,6 +920,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
             <<set $birdLikesYou += 1>>
             {$birdName}: Excellent. Human it is.
         -> No. I'm not a human.
+            <<negative_indicator Bird>>
             <<set $birdDislikesYou += 1>>
             <<show_character Bird Confused right>>
             {$birdName}: Hm. That's... troubling. I'll just list down your galaxy and coordinates.
@@ -907,6 +928,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
             {$birdName}: It's... a pleasure to meet you, MW-012!
             <<set $birdThinksPlayerNameIs = "MW-012">>
     -> I don't want to take your quiz.
+        <<negative_indicator Bird>>
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Nervous right>>
         {$birdName}: Aw, are you sure? It'd be quick.
@@ -947,6 +969,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
                 <<show_character Bird Sad right>>
                 {$birdName}: I... can get that. Space can be a good place to clear one's mind.
             -> ...
+                <<negative_indicator Bird>>
                 <<set $birdDislikesYou += 1>>
                 <<show_character Bird Nervous right>>
                 {$birdName}: Ah, perhaps I overstepped.
@@ -972,6 +995,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
             -> I'm here to report aliens to Earth.
                 <<show_character Bird Disgusted right>>
                 {$birdName}: Is that... a threat?
+                <<negative_indicator Bird>>
                 <<set $birdDislikesYou += 1>>
                 <<if $birdLikesYou < $birdDislikesYou>>
                     <<show_character Bird Sad right>>
@@ -993,6 +1017,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
                 <<endif>>
     -> I'm not sure.
         <<show_character Bird Thinking right>>
+        <<negative_indicator Bird>>
         <<set $birdDislikesYou += 1>>
         {$birdName}: Hm, that's understandable. I'll put that down as...
         <<show_character Bird Sweat right>>
@@ -1013,6 +1038,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
             <<show_character Bird Happy right>>
             {$birdName}: Ah, a planet with varying seasons. Noted!
         -> Like springtime.
+            <<negative_indicator Bird>>
             <<set $birdDislikesYou += 1>>
             <<show_character Bird Disgusted right>>
             {$birdName}: ...
@@ -1034,6 +1060,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
         <<show_character Bird Nervous right>>
         {$birdName}: Very... akin to how we do it back in Aviarian society.
     -> I... wouldn't really know.
+        <<negative_indicator Bird>>
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Sad right>>
         {$birdName}: Aw, I'm sorry to hear that.
@@ -1054,6 +1081,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
         <<show_character Bird Happy2 right>>
         {$birdName}: Wonderful! I appreciate your willingness to help further scientific knowledge.
     -> ...that's it?
+        <<negative_indicator Bird>>
         <<set $birdDislikesYou += 1>>
         <<show_character Bird Neutral right>>
         {$birdName}: Um, yes. Thank you for your time.
@@ -1071,6 +1099,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
             {$birdName}: I hope to learn about you more in the future.
         <<else>>
             <<show_character Bird Neutral right>>
+            <<negative_indicator Bird>>
             <<set $birdDislikesYou += 1>>
             {$birdName}: But I understand if you're not interested in sharing more.
         <<endif>>

@@ -329,12 +329,13 @@ public class DialogueHistoryManager : MonoBehaviour
         }
 
         // Check if history is currently open
-        bool isHistoryOpen = historyPanel.activeSelf;
+        bool wasHistoryOpen = historyPanel.activeSelf;
 
         // Toggle the history panel
-        historyPanel.SetActive(!isHistoryOpen);
+        historyPanel.SetActive(!wasHistoryOpen);
 
-        // Update the button text if buttons are assigned (use the new state after toggling)
+        // Update the button text using the new state after toggling
+        bool isHistoryOpen = historyPanel.activeSelf;
         UpdateButtonTexts(isHistoryOpen);
 
         // If we just opened the panel, refresh to show the latest content

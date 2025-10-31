@@ -2,16 +2,26 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Script for animating positive indicator sprites (like hearts) to move upward and fade out.
-/// Attach this script to the PositiveIndicatorPrefab GameObject.
+/// Generic indicator animation that moves and fades a sprite, then destroys it.
+/// Can be configured to move up or down.
+/// Attach this script to your indicator prefab (positive or negative).
 /// </summary>
 public class PositiveIndicatorAnimation : MonoBehaviour
 {
     [Header("Animation Settings")]
-    [SerializeField] private float moveDistance = 2f; // How far up the sprite moves
+    [SerializeField] private float moveDistance = 2f; // How far the sprite moves
     [SerializeField] private float animationDuration = 1f; // How long the animation takes
     [SerializeField] private AnimationCurve moveCurve = AnimationCurve.EaseInOut(0, 0, 1, 1); // Movement curve
     [SerializeField] private AnimationCurve fadeCurve = AnimationCurve.EaseInOut(0, 1, 1, 0); // Fade curve
+
+    public enum MoveDirection
+    {
+        Up,
+        Down
+    }
+
+    [Header("Direction")]
+    [SerializeField] private MoveDirection direction = MoveDirection.Up;
     
     private Vector3 startPosition;
     private SpriteRenderer spriteRenderer;
@@ -36,7 +46,7 @@ public class PositiveIndicatorAnimation : MonoBehaviour
     }
     
     /// <summary>
-    /// Coroutine that handles the upward movement and fade-out animation
+    /// Coroutine that handles movement and fade-out animation
     /// </summary>
     private IEnumerator AnimateIndicator()
     {
@@ -49,7 +59,8 @@ public class PositiveIndicatorAnimation : MonoBehaviour
             
             // Apply movement curve and calculate new position
             float moveProgress = moveCurve.Evaluate(progress);
-            Vector3 newPosition = startPosition + Vector3.up * (moveDistance * moveProgress);
+            Vector3 moveDir = GetMoveVector();
+            Vector3 newPosition = startPosition + moveDir * (moveDistance * moveProgress);
             transform.position = newPosition;
             
             // Apply fade curve and update alpha
@@ -64,7 +75,7 @@ public class PositiveIndicatorAnimation : MonoBehaviour
         }
         
         // Ensure final values are set
-        transform.position = startPosition + Vector3.up * moveDistance;
+        transform.position = startPosition + GetMoveVector() * moveDistance;
         Color finalColor = originalColor;
         finalColor.a = 0f;
         spriteRenderer.color = finalColor;
@@ -76,11 +87,24 @@ public class PositiveIndicatorAnimation : MonoBehaviour
     /// <summary>
     /// Public method to customize animation parameters at runtime
     /// </summary>
-    /// <param name="distance">How far up to move</param>
+    /// <param name="distance">How far to move</param>
     /// <param name="duration">How long the animation should take</param>
     public void SetAnimationParameters(float distance, float duration)
     {
         moveDistance = distance;
         animationDuration = duration;
+    }
+
+    private Vector3 GetMoveVector()
+    {
+        switch (direction)
+        {
+            case MoveDirection.Up:
+                return Vector3.up;
+            case MoveDirection.Down:
+                return Vector3.down;
+            default:
+                return Vector3.up;
+        }
     }
 }

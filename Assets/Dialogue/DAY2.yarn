@@ -164,6 +164,7 @@ title: CatRecurringTreeDay2
                 {$catName}: Yeah, it hasn't been the safest it could be too. Kits die all the time, unfortunately.
             -> Oh, those aren't bad. We have those too.
                 <<show_character Cat Sad right>>
+                <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 {$catName}: Oh? I guess that's possible. But I can say with a pretty good amount of confidence that they're not as bad as ours.
                 {$catName}: We have a lot of casualties from them every year. It's pretty unfortunate.
@@ -174,6 +175,7 @@ title: CatRecurringTreeDay2
                 {$catName}: Quite a few. We have small colonies all over this sector of space.
                 {$catName}: Linnaeus is one of the major ones, though.
             -> Springs? Like... boi-oi-oing?
+                <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Angry right>>
                 {$catName}: ...
@@ -186,6 +188,7 @@ title: CatRecurringTreeDay2
                 {$catName}: You make it seem like we're some kind of invaders or something.
                 <<show_character Cat Neutral right>>
                 {$catName}: I'm telling you, we're just trying to get by out here. We're not looking to conquer anyone.
+                <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
             -> I guess, what do you work as? <<if $knowCatJob == false>>
                 <<set $knowCatJob = true>>
@@ -217,6 +220,7 @@ title: CatRecurringTreeDay2
                 <<show_character Cat Sad right>>
                 {$catName}: Yeah, it is. But I try to stay strong for them.
             -> Why don't you bring them here?
+                <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Angry right>>
                 {$catName}: It's not that simple! There are so many complications with intergalactic travel.
@@ -370,6 +374,7 @@ title: DogRecurringTreeDay2
                 <<show_character Dog Sad right>>
                 {$dogName}: Woof. It's very... strict. Woof. Barklon watches everything all the time. Woof.
             -> But you must love your planet. You're from it!
+                <<negative_indicator Dog>>
                 <<set $dogDislikesYou += 1>>
                 <<show_character Dog Angry right>>
                 {$dogName}: Woof. I don't know about that. Woof. I just want to be where I feel safe. Woof.
@@ -405,6 +410,7 @@ title: DogRecurringTreeDay2
                                 {$dogName}: I can tell you're one of the good ones, {$dogThinksPlayerNameIs}. Woof.
                             <<endif>>
                         -> That sounds impulsive.
+                            <<negative_indicator Dog>>
                             <<set $dogDislikesYou += 1>>
                             <<show_character Dog Sad right>>
                             {$dogName}: Woof...
@@ -422,6 +428,7 @@ title: DogRecurringTreeDay2
             -> But what is your <i>mission</i>? You know, as an alien?
                 <<show_character Dog Sad right>>
                 {$dogName}: Woof? I don't understand.
+                <<negative_indicator Dog>>
                 <<set $dogDislikesYou += 1>>
                 <<show_character Dog Neutral right>>
                 {$dogName}: I just want to adventure. Woof. I've never felt as free as I do out here. Woof.
@@ -461,6 +468,7 @@ title: DogRecurringTreeDay2
                 <<show_character Dog Angry right>>
                 {$dogName}: Maybe someday, I'll be able to help them out. Woof. Get rid of the bigger people. Woof.
             -> Why don't you bring them here?
+                <<negative_indicator Dog>>
                 <<set $dogDislikesYou += 1>>
                 <<show_character Dog Sad right>>
                 {$dogName}: I asked. Woof. They said no. Woof.
@@ -496,6 +504,7 @@ title: DogRecurringTreeDay2
                                 {$dogName}: I can tell you're one of the good ones, {$dogThinksPlayerNameIs}. Woof.
                             <<endif>>
                         -> That sounds impulsive.
+                            <<negative_indicator Dog>>
                             <<set $dogDislikesYou += 1>>
                             <<show_character Dog Sad right>>
                             {$dogName}: Woof...
@@ -612,6 +621,7 @@ title: OpossumRecurringTreeDay2
                     {$opossumName}: It's something I regret every day. The amount of times I've apologized in my head aren't enough to make up for it.
                     {$opossumName}: It could've been me, you know? I could've been one of the unlucky ones. But somehow, I figured out how to survive on my own.
                     -> You're... terrible.
+                        <<negative_indicator Opossum>>
                         <<set $opossumDislikesYou += 3>>
                         <<show_character Opossum Sad right>>
                         {$opossumName}: Yeah... I know. 
@@ -630,10 +640,12 @@ title: OpossumRecurringTreeDay2
                         <<set $opossumLikesYou += 1>>
                         {$opossumName}: ...Thanks, I guess.
                     -> No, I get it. I'm the same way. <<if $posSelfPerception < $negSelfPerception>>
+                        <<negative_indicator Opossum>>
                         <<set $opossumDislikesYou += 2>>
                         <<show_character Opossum Happy right>>
                         {$opossumName}: Heh, yeah. I guess we all have our issues.
                     -> ...
+                        <<negative_indicator Opossum>>
                         <<set $opossumDislikesYou += 1>>
     -> What is your mission? <<if $day2AskedOpossumQ2 == false>>
         <<set $day2AskedOpossumQ2 = true>>
@@ -643,6 +655,7 @@ title: OpossumRecurringTreeDay2
         <<show_character Opossum Happy right>>
         {$opossumName}: Is it cheesy to say my mission is to find a mission?
             -> No! That's so brave.
+                <<negative_indicator Opossum>>
                 <<set $opossumDislikesYou += 1>>
                 <<show_character Opossum Neutral right>>
                 {$opossumName}: Hah, I don't know about brave... that's a little much.
@@ -678,6 +691,7 @@ title: OpossumRecurringTreeDay2
             -> What do you usually draw?
             -> Can you draw me?
                 <<show_character Opossum Confused right>>
+                <<negative_indicator Opossum>>
                 <<set $opossumDislikesYou += 1>>
                 {$opossumName}: Uh, I don't really draw others. Sorry.
             -> What? You? Art? No way.
@@ -700,6 +714,7 @@ title: OpossumRecurringTreeDay2
                 {$opossumName}: Thanks! I really appreciate that.
             -> It's... okay, I guess.
                 <<start_voice_blip Opossum>>
+                <<negative_indicator Opossum>>
                 <<set $opossumDislikesYou += 1>>
                 <<show_character Opossum Angry right>>
                 {$opossumName}: Hey, screw you. I'd like to see you do better.
@@ -722,6 +737,7 @@ title: OpossumRecurringTreeDay2
                 {$opossumName}: This may be a little selfish but, I'm glad to be with someone that understands that.
             -> That sucks.
                 <<show_character Opossum Confused right>>
+                <<negative_indicator Opossum>>
                 <<set $opossumDislikesYou += 1>>
                 {$opossumName}: Yeah, yeah. I know it does, I don't need your pity.
                 {$opossumName}: I've been moving past it. I want to be my own being now.
@@ -832,6 +848,7 @@ title: BirdRecurringTreeDay2
                 <<show_character Bird Sad right>>
                 {$birdName} pauses for a moment, looking down.
                     -> Then? What happened?
+                        <<negative_indicator Bird>>
                         <<set $birdDislikesYou += 1>>
                     -> (give them some space)
                 <<start_voice_blip Bird>>
@@ -843,6 +860,7 @@ title: BirdRecurringTreeDay2
                         <<show_character Bird Neutral right>>
                         {$birdName}: Thank you, {$birdThinksPlayerNameIs}. It's been hard. But talking about it helps me more than you can imagine.
                     -> That's rough.
+                        <<negative_indicator Bird>>
                         <<set $birdDislikesYou += 2>>
                         <<show_character Bird Sad right>>
                         {$birdName}: Yeah... it really is.
@@ -865,6 +883,7 @@ title: BirdRecurringTreeDay2
             {$birdName}: I feel like I'm just grasping at straws. But I know that I need to be doing this work.
                 -> You need to be doing this? How come?
                 -> Don't waste your time.
+                    <<negative_indicator Bird>>
                     <<set $birdDislikesYou += 2>>
                 {$birdName}: I... I just feel like I have to do this...
                 <<stop_voice_blip Bird>>
@@ -883,6 +902,7 @@ title: BirdRecurringTreeDay2
                         <<show_character Bird Happy right>>
                         {$birdName}: I just need to keep pushing forward.
                     -> Maybe it's time to take a break.
+                        <<negative_indicator Bird>>
                         <<set $birdDislikesYou += 1>>
                         <<show_character Bird Sad right>>
                         {$birdName}: M-maybe... but I don't know what else to do.
@@ -913,6 +933,7 @@ title: BirdRecurringTreeDay2
             {$birdName}: I feel like I'm just grasping at straws. But I know that I need to be doing this work.
                 -> You need to be doing this? How come?
                 -> Don't waste your time.
+                    <<negative_indicator Bird>>
                     <<set $birdDislikesYou += 2>>
                 {$birdName}: I... I just feel like I have to do this...
                 <<stop_voice_blip Bird>>
@@ -934,6 +955,7 @@ title: BirdRecurringTreeDay2
                         <<show_character Bird Happy right>>
                         {$birdName}: I just need to keep pushing forward.
                     -> Maybe it's time to take a break.
+                        <<negative_indicator Bird>>
                         <<set $birdDislikesYou += 1>>
                         <<show_character Bird Sad right>>
                         {$birdName}: M-maybe... but I don't know what else to do.
@@ -955,6 +977,7 @@ title: BirdRecurringTreeDay2
                 {$birdName}: Y-yeah, maybe you're right. I should try to relax more often.
                 <<set $recommendedBirdSelfCare = true>>
             -> Work is more important.
+                <<negative_indicator Bird>>
                 <<set $birdDislikesYou += 1>>
                 <<show_character Bird Sad right>>
                 {$birdName}: I... I guess so. But it's hard to think about anything else right now.
@@ -1008,6 +1031,7 @@ title: BirdRecurringTreeDay2
             -> (give up. you can't win this...)
                 You decide to forfeit the game, admitting that you're outmatched.
                 <<show_character Bird Happy right>>
+                <<negative_indicator Bird>>
                 <<set $birdDislikesYou += 1>>
                 <<start_voice_blip Bird>>
                 {$birdName}: Heh, sorry. I didn't mean to crush you like that, {$birdThinksPlayerNameIs}.

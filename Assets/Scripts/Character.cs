@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
 {
     [Header("Character Assignments")]
     [SerializeField] private GameObject positiveIndicatorPrefab;
+    [SerializeField] private GameObject negativeIndicatorPrefab;
 
     private Coroutine currentVoiceBlipCoroutine;
     private bool isSpeaking = false;
@@ -166,6 +167,12 @@ public class Character : MonoBehaviour
     public void PositiveIndicator()
     {
         Instantiate(positiveIndicatorPrefab, transform.position + Vector3.up * 1, Quaternion.identity);
+    }
+
+    [YarnCommand("negative_indicator")]
+    public void NegativeIndicator()
+    {
+        Instantiate(negativeIndicatorPrefab, transform.position + Vector3.up * 1, Quaternion.identity);
     }
 
     /// <summary>
