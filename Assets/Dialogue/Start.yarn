@@ -12,6 +12,7 @@ title: ConfirmStart
 <<wait 1>>
 <<hide_ui IntroScreen>>
 <<show_ui HistoryButton>>
+<<show_ui SkipToggle>>
 It is silent. You are floating in the vast emptiness of space.
 You are utterly alone. It feels... relaxing.
 Back on Earth, you always felt invisible.
