@@ -325,6 +325,7 @@ Suddenly, the figure comes into view.
 <<endif>>
 The transmission cuts off as {$catName} takes their leave.
 <<if $catSecured == true>>
+    <<set $charactersSecured += 1>>
     {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
     <<set $posSelfPerception += 1>>
     Receiving the message, you feel a <color=\#88FF88>small sense of comfort</color> knowing that you're not entirely alone out here.
@@ -606,6 +607,7 @@ You turn the dials to let the signal through.
 <<endif>>
 The transmission cuts off as {$dogName} leaves to continue their wandering.
 <<if $dogSecured == true>>
+    <<set $charactersSecured += 1>>
     You notice a transmission from {$dogName} saved onto your monitor. You can likely use this to ping them again in the future.
 <<endif>>
 <<if $talkedToOpossum == false || $talkedToBird == false>>
@@ -769,6 +771,7 @@ You notice that {$opossumName} seems a bit distant, not making eye contact with 
 <<play_music MainTheme>>
 The transmission cuts off abruptly. {$opossumName} takes their leave.
 <<if $opossumSecured == true>>
+    <<set $charactersSecured += 1>>
     You notice a transmission from {$opossumName} recorded on your monitor. They're letting you ping them again in the future.
 <<endif>>
 <<if $talkedToDog == false || $talkedToBird == false>>
@@ -1110,6 +1113,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
 <<endif>>
 The transmission cuts off as {$birdName} takes their leave.
 <<if $birdSecured == true>>
+    <<set $charactersSecured += 1>>
     You notice a transmission from {$birdName} saved onto your monitor. You can reach out at any time later.
 <<endif>>
 <<if $talkedToDog == false || $talkedToOpossum == false>>

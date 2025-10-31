@@ -785,8 +785,13 @@ You call {$birdName}. The line remains static for a little while, but you sudden
             <<show_character Bird Neutral right>>
             {$birdName}: Thanks. Maybe next time, then.
             <<show_ui ClickToInteract>>
-            <<show ChooseYourCharacterDay2>>
-            <<stop>>
+            <<hide_character Bird>>
+            <<if $charactersSecured > 1>>
+                <<show ChooseYourCharacterDay2>>
+                <<stop>>
+            <<else>>
+                <<jump EndDay2>>
+            <<endif>>
 <<jump BirdRecurringTreeDay2>>
 <<declare $day2AskedBirdQ1 = false>>
 <<declare $day2AskedBirdQ2 = false>>
@@ -1035,7 +1040,7 @@ position: 762,12
 ---
 <<hide_all_characters>>
 <<play_music MainTheme>>
-<<if $talkedToPersonDay2 == false>>
+<<if $talkedToPersonDay2 == false && $charactersSecured > 1>>
     <<set $talkedToPersonDay2 = true>>
     After finishing your conversation, you notice the day is still young. You could try reaching out to one other alien before ending the day.
         -> (call another alien)

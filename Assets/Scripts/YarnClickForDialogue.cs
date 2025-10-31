@@ -124,14 +124,6 @@ public class YarnClickForDialogue : MonoBehaviour
 
     private async void HandleClick()
     {
-        // Stop if we've already interacted and we only want one interaction
-        if (_timesRan > 0 && _onlyInteractableOnce)
-        {
-            return;
-        }
-        _timesRan++;
-        _dialogueRunner.VariableStorage.SetValue("$clickedTimes", _timesRan);  // Register how many times clicked
-
         // Stop pulsing and gray out after first interaction
         if (_timesRan == 1)
         {
@@ -146,6 +138,13 @@ public class YarnClickForDialogue : MonoBehaviour
                 _spriteRenderer.color = new Color(_interactedGrayness, _interactedGrayness, _interactedGrayness, 1f);
             }
         }
+
+                // Stop if we've already interacted and we only want one interaction
+        if (_timesRan > 0 && _onlyInteractableOnce)
+        {
+            return;
+        }
+        _timesRan++;
 
         await _dialogueRunner.StartDialogue(_nodeName);
 
