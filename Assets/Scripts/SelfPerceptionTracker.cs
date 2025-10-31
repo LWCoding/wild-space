@@ -157,8 +157,8 @@ public class SelfPerceptionTracker : MonoBehaviour
         // Calculate target intensity: negative perception increases, positive decreases
         float intensity = (lastNegSelfPerception - lastPosSelfPerception) * intensityPerPoint;
         
-        // Add minimum intensity and clamp between minimum and 1
-        targetIntensity = Mathf.Clamp(intensity + minimumIntensity, minimumIntensity, 1f);
+        // Add minimum intensity and clamp
+        targetIntensity = Mathf.Clamp(intensity + minimumIntensity, minimumIntensity, 0.75f);
         
         // If immediate, set the intensity directly without transition
         if (immediate)

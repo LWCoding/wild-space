@@ -6368,8 +6368,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalVolume: {fileID: 1806722012}
-  intensityPerPoint: 0.1
-  minimumIntensity: 0.35
+  intensityPerPoint: 0.125
+  minimumIntensity: 0.3
   transitionDuration: 0.4
 --- !u!1 &826410418
 GameObject:
