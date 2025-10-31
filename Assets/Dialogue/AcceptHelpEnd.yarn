@@ -61,8 +61,8 @@ title: AcceptOpossumHelp
 <<start_voice_blip Opossum>>
 <<show_character Opossum Neutral right>>
 {$opossumName}: Okay, hold tight. I'll make some calls.
-<<show_character Opossum Happy right>>
-{$opossumName}: And... thanks, {$playerName}. For sticking by me through all of this.
+<<show_character Opossum Flirt right>>
+{$opossumName}: And... thanks, I guess. For sticking with me through all of this.
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<stop_voice_blip Opossum>>

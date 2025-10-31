@@ -206,7 +206,6 @@ You call {$dogName}. You see movement, and start tweaking the dials to get the f
                         <<show MonitorOff>>
                         <<jump CallEarth>>
             -> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-            
                 {$dogName}: Woof... I see. That seems pretty urgent. Let me see what I can do.
             -> I'd rather have your help instead. <<if $dogLikesYou >= $dogDislikesYou>>
                 <<show_character Dog Flirt right>>
@@ -263,7 +262,7 @@ You call {$opossumName}. You see movement, and start tweaking the dials to get t
                             <<jump EmbraceDeath>>
                         <<else>>
                             <<show_character Opossum Neutral right>>
-                            {$opossumName}: Mmm, I really don't want to do this. But, I guess I can try to get you back to my planet.
+                            {$opossumName}: Ugh... hm, I guess... I might be able to make something work.
                         <<endif>>
                     -> I'll try calling Earth first. (call earth) <<if $askedEarthForHelp == false>>
                         <<stop_voice_blip Opossum>>
@@ -279,16 +278,10 @@ You call {$opossumName}. You see movement, and start tweaking the dials to get t
                 {$opossumName}: Ugh, that is pretty inconvenient.
             -> I'd rather have your help instead. <<if $opossumLikesYou >= $opossumDislikesYou>>
                 <<show_character Opossum Flirt right>>
-                {$opossumName}: ...Pretty bold.
-                {$opossumName}: I guess, the best I can do is get you to my planet. I... won't like it, but maybe I can stay with you there for a while.
-<<show_character Opossum Neutral right>>
-{$opossumName}: If I can get the pod sent, just note you'll probably never be able to return to your home planet again.
-    -> Isn't there another way?
-        <<show_character Opossum Sad right>>
-        {$opossumName}: I wish I could help you some other way, but... this is all I have.
-            -> Let's do it.
-                <<jump AcceptOpossumHelp>>
-            -> I think I'll just accept my fate instead.
+                {$opossumName}: ...That's bold of you.
+                {$opossumName}: I guess, I can try to hitch a ride and help you fix your oxygen problem. I've worked with that sorta stuff before.
+<<show_character Opossum Happy right>>
+{$opossumName}: If I can get over there, maybe we could chill for a while, too.
     -> Let's do it.
         <<jump AcceptOpossumHelp>>
     -> I think I'll just accept my fate instead. <<if $posSelfPerception <= $negSelfPerception>>
