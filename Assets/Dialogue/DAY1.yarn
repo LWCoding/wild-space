@@ -1,5 +1,5 @@
 ﻿title: AfterName
-position: -31,-584
+position: 22,-593
 ---
 <<hide Drifting>>
 <<speed 1>>
@@ -23,7 +23,7 @@ It's a quiet day, as always.
 ===
 
 title: LookAround
-position: -30,-398
+position: 23,-416
 ---
 <<once>>
 <<fade_transition 2>>
@@ -126,7 +126,7 @@ A dark figure appears on the screen, accompanied with a static-filled voice.
 ===
 
 title: EnterMessage
-position: 312,-227
+position: 316,-234
 ---
 <<start_voice_blip Cat>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
@@ -163,7 +163,7 @@ Suddenly, the same character from before reappears on the screen.
 ===
 
 title: CatIntro
-position: 305,91
+position: 318,-2
 ---
 Suddenly, the figure comes into view.
 <<show_character Cat Sad right>>
@@ -348,6 +348,7 @@ The transmission cuts off as {$catName} takes their leave.
 ===
 
 title: ThinkingAfterCatLeaves
+position: 310,187
 ---
 <<fade_transition 2>>
 <<wait 1>>
@@ -390,6 +391,7 @@ They all seem like they'll stick around for a bit. Who do you talk to first?
 ===
 
 title: TalkToOthers
+position: 999,186
 ---
 <<hide_all_characters>>
 <<show MonitorSilhouette>>
@@ -415,7 +417,7 @@ You notice that others are still live on the feed. Who do you talk to next?
 ===
 
 title: DogIntro
-position: 635,249
+position: 642,264
 ---
 <<declare $knowsAboutBarklonian = false>>
 <<hide_all_characters>>
@@ -635,7 +637,7 @@ The transmission cuts off as {$dogName} leaves to continue their wandering.
 ===
 
 title: OpossumIntro
-position: 638,-61
+position: 645,81
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>
@@ -803,7 +805,7 @@ The transmission cuts off abruptly. {$opossumName} takes their leave.
 ===
 
 title: BirdIntro
-position: 633,86
+position: 656,-88
 ---
 <<declare $birdExplainedIntention = false>>
 <<hide_all_characters>>
@@ -1155,7 +1157,7 @@ The transmission cuts off as {$birdName} takes their leave.
 ===
 
 title: EndDay1
-position: 925,83
+position: 1063,-84
 ---
 <<hide_all_characters>>
 <<hide_all_objects>>

@@ -1,5 +1,5 @@
 title: StartDay3
-position: -178,-561
+position: -125,-487
 ---
 <<set $daysPassed = 3>>
 <<play_sound AlarmClock>>
@@ -9,7 +9,7 @@ You wake up again to the sound of your alarm clock. It's time to get to your job
 ===
 
 title: OnClickedMonitorDay3
-position: -185,-367
+position: -128,-338
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
@@ -40,7 +40,7 @@ Do you wish to report the aliens to Earth, or let them be?
 ===
 
 title: KeptUnderWrapsDay3
-position: -179,-172
+position: -134,-190
 ---
 <<hide_all_ui_objects>>
 You finish your report, choosing not to mention the aliens.
@@ -71,7 +71,7 @@ You need to get help. You won't make it past this day alive.
 ===
 
 title: CallAliensDay3
-position: 87,-45
+position: 172,-49
 ---
 It's time to make contact with one of the aliens.
 <<hide_all_objects>>
@@ -81,7 +81,7 @@ It's time to make contact with one of the aliens.
 ===
 
 title: CallCatDay3
-position: 422,282
+position: 1018,-481
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
@@ -156,7 +156,7 @@ You call {$catName}. You see movement, and start tweaking the dials to get the f
 ===
 
 title: CallDogDay3
-position: 408,123
+position: 718,-466
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
@@ -224,7 +224,7 @@ You call {$dogName}. You see movement, and start tweaking the dials to get the f
 ===
 
 title: CallOpossumDay3
-position: 409,-43
+position: 111,-468
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
@@ -288,7 +288,7 @@ You call {$opossumName}. You see movement, and start tweaking the dials to get t
 ===
 
 title: CallBirdDay3
-position: 411,-211
+position: 411,-467
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
@@ -359,7 +359,7 @@ You call {$birdName}. You see movement, and start tweaking the dials to get the 
 ===
 
 title: CallEarth
-position: 67,225
+position: 400,-239
 ---
 <<set $askedEarthForHelp = true>>
 You call Earth about your situation.

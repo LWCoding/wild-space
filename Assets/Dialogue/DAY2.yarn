@@ -1,5 +1,5 @@
 title: StartDay2
-position: 51,-456
+position: 90,-43
 ---
 <<set $daysPassed = 2>>
 <<play_sound AlarmClock>>
@@ -11,7 +11,7 @@ Time for another day of work.
 ===
 
 title: OnClickedMonitorDay2
-position: 55,-311
+position: 85,114
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
@@ -46,7 +46,7 @@ You ponder your next report. Do you report the encounter with the aliens, knowin
 ===
 
 title: KeptUnderWrapsDay2
-position: 167,29
+position: 83,279
 ---
 <<hide_all_ui_objects>>
 <<set $negSelfPerception += 1>>
@@ -142,6 +142,7 @@ You call {$catName}. The line remains static for a little while, but you suddenl
 ===
 
 title: CatRecurringTreeDay2
+position: 647,285
 ---
 <<start_voice_blip Cat>>
 <<if $catLikesYou > $catDislikesYou>>
@@ -353,6 +354,7 @@ You call {$dogName}. The line remains static for a little while, but you suddenl
 ===
 
 title: DogRecurringTreeDay2
+position: 640,115
 ---
 <<start_voice_blip Dog>>
 <<if $dogLikesYou > $dogDislikesYou>>
@@ -586,6 +588,7 @@ You call {$opossumName}. The line remains static for a little while, but you sud
 ===
 
 title: OpossumRecurringTreeDay2
+position: 643,-38
 ---
 <<start_voice_blip Opossum>>
 <<show_character Opossum Happy right>>
@@ -824,6 +827,7 @@ You call {$birdName}. The line remains static for a little while, but you sudden
 ===
 
 title: BirdRecurringTreeDay2
+position: 646,-220
 ---
 <<start_voice_blip Bird>>
 <<show_character Bird Neutral right>>
@@ -1062,7 +1066,7 @@ title: BirdRecurringTreeDay2
 ===
 
 title: EndDay2
-position: 762,12
+position: 918,14
 ---
 <<hide_all_characters>>
 <<hide MonitorSilhouette>>
