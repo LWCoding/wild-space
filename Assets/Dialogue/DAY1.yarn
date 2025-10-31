@@ -105,13 +105,19 @@ position: 15,-63
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
+<<hide MonitorOn>>
+Just as you turn the monitor off, your hip bumps the communication panel.
+<<play_sound Glitch 0.25>>
+<<show MonitorOn>>
+The tuner skitters across the dial with a burst of static.
 <<show MonitorSilhouette>>
-Just as you turn the monitor off, it flickers and springs back to life.
+The noise thins, then resolves, locked onto a different frequency. The monitor jolts back to life.
 <<show_character Cat Obscure right>>
 A dark figure appears on the screen, accompanied with a static-filled voice.
 <<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
     -> Hello?
+    -> What the...
     -> ...
     The voice from the monitor continues to speak.
     ???: Please... <i>*kshh*</i> if... there... yourself... known...
@@ -369,8 +375,8 @@ Who was that creature? How is that even possible?
 <<show_character Dog Obscure left>>
 <<show_character Opossum Obscure center>>
 <<show_character Bird Obscure right>>
-Yet, as you sit there, lost in thought, the monitor flickers back to life once more.
-You see a total of three figures, all different from the last one.
+The monitor flickers back to life as the signal stabilizes.
+Multiple transmissions bleed in at once. You see three distinct figures, all different from the last one.
 They all seem like they'll stick around for a bit. Who do you talk to first?
     -> (respond to the one with the floppy ears)
         <<set $talkedToDog = true>>
@@ -513,6 +519,7 @@ You turn the dials to let the signal through.
 {$dogName}: But it's nice to meet someone as nice as you. Woof. 
 <<show_character Dog Sad right>>
 {$dogName}: Back where I come from, there are a lot of unfriendly folks. Woof. They... hurt each other a lot. Woof.
+{$dogName}: So I left and just kept moving. Woof.
 <<show_character Dog Neutral right>>
 <<if $dogKnowsPlayerName == false>>
     <<set $dogKnowsPlayerName = true>>
@@ -548,13 +555,13 @@ You turn the dials to let the signal through.
         -> ...
             <<negative_indicator Dog>>
             <<set $dogDislikesYou += 1>>
-            {$dogName}: Not a talker? Woof. I guess I'll just call you "Human". You're a human, right? Woof.
+            {$dogName}: Woof. Human, then.
 <<endif>>
 {$dogName}: Anyways, I've been wandering around, recently. Woof. Picked up on your signal. Woof.
     -> That sounds pretty exciting. 
         <<show_character Dog Happy right>>
         {$dogName}: Yeah! I like to wander around and see new places. Woof. 
-        {$dogName}:  I've traveled hundreds of barksecs from home, at this point. Woof.
+        {$dogName}: I've traveled hundreds of barksecs from home, at this point. Woof.
     -> That sounds pretty lonely.
         <<show_character Dog Thinking right>>
         <<show_character Dog Sad right>>
@@ -563,7 +570,8 @@ You turn the dials to let the signal through.
         <<show_character Dog Neutral right>>
         {$dogName}: But, at least I get to meet new beings all the time. Woof.
     <<show_character Dog Angry right>>
-    {$dogName}: My home planet is kind of a dump. I decided to leave and explore the galaxy. Woof.
+{$dogName}: My home planet is kind of a dump. I decided to leave and explore the galaxy. Woof.
+{$dogName}: I carry a small pack and sleep wherever. Woof.
 <<show_character Dog Neutral right>>
 {$dogName}: What about you? What are you doing out here? Woof.
     -> I'm escaping my home planet.
@@ -870,7 +878,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
         {$birdName}: Oh... I apologize if I was too forward!
         <<show_character Bird Nervous right>>
         {$birdName}: If you want, I suppose I can answer a question of yours first.
-        -> What are you studying?
+        -> What are you studying? <<if $birdExplainedIntention == false>>
             <<show_character Bird Happy right>>
             {$birdName}: Ah, well, I'm primarily interested in exploring the unknown.
             <<show_character Bird Thinking right>>
