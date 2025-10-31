@@ -77,10 +77,19 @@ namespace Yarn.Unity
 
         public static partial async YarnTask WaitUntilCanceled(System.Threading.CancellationToken token)
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // WebGL doesn't support Task.Yield reliably due to threading limitations
+            // Use a coroutine-based approach instead
+            var tcs = new TaskCompletionSource<int>();
+            var mb = GetOrCreateMonoBehaviour();
+            mb.StartCoroutine(WaitUntilCanceledCoroutine(token, tcs));
+            await tcs.Task;
+#else
             while (!token.IsCancellationRequested)
             {
                 await Task.Yield();
             }
+#endif
         }
 
         public static YarnTask CompletedTask => Task.CompletedTask;
@@ -95,15 +104,99 @@ namespace Yarn.Unity
         /// <returns>A new <see cref="YarnTask"/>.</returns>
         public static partial YarnTask Delay(TimeSpan timeSpan, CancellationToken token)
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // WebGL doesn't support Task.Delay due to threading limitations
+            // Use a coroutine-based approach instead
+            return DelayCoroutineAsync(timeSpan, token);
+#else
             return Task.Delay(timeSpan, token);
+#endif
         }
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        private static System.Collections.IEnumerator WaitUntilCanceledCoroutine(CancellationToken token, TaskCompletionSource<int> tcs)
+        {
+            while (!token.IsCancellationRequested)
+            {
+                yield return null;
+            }
+            tcs.TrySetResult(0);
+        }
+
+        private static YarnTask DelayCoroutineAsync(TimeSpan timeSpan, CancellationToken token)
+        {
+            var tcs = new TaskCompletionSource<int>();
+            var mb = GetOrCreateMonoBehaviour();
+            mb.StartCoroutine(DelayCoroutine(timeSpan.TotalSeconds, token, tcs));
+            return new YarnTask { Task = tcs.Task };
+        }
+
+        private static System.Collections.IEnumerator DelayCoroutine(double delaySeconds, CancellationToken token, TaskCompletionSource<int> tcs)
+        {
+            float elapsed = 0f;
+            float targetTime = (float)delaySeconds;
+            
+            while (elapsed < targetTime && !token.IsCancellationRequested)
+            {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            if (token.IsCancellationRequested)
+            {
+                tcs.TrySetCanceled();
+            }
+            else
+            {
+                tcs.TrySetResult(0);
+            }
+        }
+
+        private static System.Collections.IEnumerator WaitUntilCoroutine(System.Func<bool> predicate, CancellationToken token, TaskCompletionSource<int> tcs)
+        {
+            while (!token.IsCancellationRequested && predicate() == false)
+            {
+                yield return null;
+            }
+            tcs.TrySetResult(0);
+        }
+
+        private static System.Collections.IEnumerator YieldCoroutine(TaskCompletionSource<int> tcs)
+        {
+            yield return null;
+            tcs.TrySetResult(0);
+        }
+
+        private static MonoBehaviourHelper s_mbHelper;
+        private static MonoBehaviourHelper GetOrCreateMonoBehaviour()
+        {
+            if (s_mbHelper == null)
+            {
+                var go = new GameObject("YarnTaskCoroutineHelper");
+                UnityEngine.Object.DontDestroyOnLoad(go);
+                s_mbHelper = go.AddComponent<MonoBehaviourHelper>();
+            }
+            return s_mbHelper;
+        }
+
+        private class MonoBehaviourHelper : MonoBehaviour { }
+#endif
 
         public static partial async YarnTask WaitUntil(System.Func<bool> predicate, System.Threading.CancellationToken token)
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // WebGL doesn't support Task.Yield reliably due to threading limitations
+            // Use a coroutine-based approach instead
+            var tcs = new TaskCompletionSource<int>();
+            var mb = GetOrCreateMonoBehaviour();
+            mb.StartCoroutine(WaitUntilCoroutine(predicate, token, tcs));
+            await tcs.Task;
+#else
             while (!token.IsCancellationRequested && predicate() == false)
             {
                 await Task.Yield();
             }
+#endif
         }
 
         public static partial IEnumerator ToCoroutine(Func<YarnTask> factory)
@@ -123,7 +216,16 @@ namespace Yarn.Unity
         }
         public static partial async YarnTask Yield()
         {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            // WebGL doesn't support Task.Yield reliably due to threading limitations
+            // Use a coroutine-based approach instead
+            var tcs = new TaskCompletionSource<int>();
+            var mb = GetOrCreateMonoBehaviour();
+            mb.StartCoroutine(YieldCoroutine(tcs));
+            await tcs.Task;
+#else
             await Task.Yield();
+#endif
         }
 
         public static partial YarnTask WhenAll(params YarnTask[] tasks)
