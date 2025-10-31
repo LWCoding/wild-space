@@ -783,7 +783,7 @@ MonoBehaviour:
   - opossumSecured
   _enablePulse: 1
   _hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  _interactedGrayness: 0.6
+  _interactedGrayness: 0.4
 --- !u!61 &67378332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5705,7 +5705,7 @@ MonoBehaviour:
   - dogSecured
   _enablePulse: 1
   _hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  _interactedGrayness: 0.6
+  _interactedGrayness: 0.4
 --- !u!61 &777994333
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5909,7 +5909,7 @@ MonoBehaviour:
   - catSecured
   _enablePulse: 1
   _hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  _interactedGrayness: 0.6
+  _interactedGrayness: 0.4
 --- !u!61 &778643036
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -6369,7 +6369,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalVolume: {fileID: 1806722012}
   intensityPerPoint: 0.1
-  minimumIntensity: 0.25
+  minimumIntensity: 0.35
   transitionDuration: 0.4
 --- !u!1 &826410418
 GameObject:
@@ -10011,7 +10011,7 @@ MonoBehaviour:
   - birdSecured
   _enablePulse: 1
   _hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
-  _interactedGrayness: 0.6
+  _interactedGrayness: 0.4
 --- !u!61 &1232850443
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -133,9 +133,22 @@ public class YarnClickForDialogue : MonoBehaviour
                 _pulseCoroutine = null;
             }
             transform.localScale = _initialScale;
-            if (_spriteRenderer != null)
+        }
+
+        if (_spriteRenderer != null)
+        {
+            Color interactedColor = new Color(_interactedGrayness, _interactedGrayness, _interactedGrayness, 1f);
+            _spriteRenderer.color = interactedColor;
+
+            // Also apply to all child SpriteRenderers
+            SpriteRenderer[] childSpriteRenderers = GetComponentsInChildren<SpriteRenderer>(true);
+            foreach (SpriteRenderer childRenderer in childSpriteRenderers)
             {
-                _spriteRenderer.color = new Color(_interactedGrayness, _interactedGrayness, _interactedGrayness, 1f);
+                if (childRenderer == _spriteRenderer)
+                {
+                    continue;
+                }
+                childRenderer.color = interactedColor;
             }
         }
 

@@ -327,8 +327,6 @@ The transmission cuts off as {$catName} takes their leave.
 <<if $catSecured == true>>
     <<set $charactersSecured += 1>>
     {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
-    <<set $posSelfPerception += 1>>
-    Receiving the message, you feel a <color=\#88FF88>small sense of comfort</color> knowing that you're not entirely alone out here.
     Suddenly, the screen flickers back to static. {$catName} is gone, for now.
         -> {$catName}? Can you hear me?
             You tap the monitor and move around the dials, but nobody responds. You are alone, again.

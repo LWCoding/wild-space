@@ -24,6 +24,7 @@ title: Globals
 <<declare $routerExplored = false>>
 <<declare $monitorExplored = false>>
 
+<<declare $charactersSecured = 0>>  // Number of characters that have stayed on the ship after Day 1
 <<declare $catSecured = false>>  // Whether the cat stayed around after Day 1
 <<declare $dogSecured = false>>  // Whether the dog stayed around after Day 1
 <<declare $opossumSecured = false>>  // Whether the opossum stayed around after Day 1
