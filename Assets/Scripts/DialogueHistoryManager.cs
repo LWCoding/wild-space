@@ -334,18 +334,25 @@ public class DialogueHistoryManager : MonoBehaviour
         // Toggle the history panel
         historyPanel.SetActive(!wasHistoryOpen);
 
-        // Update the button text using the new state after toggling
+        // Determine new state after toggling
         bool isHistoryOpen = historyPanel.activeSelf;
+
+        // Update the button text using the new state
         UpdateButtonTexts(isHistoryOpen);
 
         // If we just opened the panel, refresh to show the latest content
-        if (!isHistoryOpen)
+        if (isHistoryOpen)
         {
             int totalPages = GetTotalPages();
             if (totalPages > 0)
             {
                 currentPageIndex = totalPages - 1;
                 RefreshPage(scrollToBottom: true);
+            }
+            else
+            {
+                // Ensure scroll state is still sane even with no pages
+                RefreshPage(scrollToBottom: false);
             }
         }
     }
