@@ -1,4 +1,4 @@
-﻿title: Start
+title: Start
 position: -319,-6
 ---
 <<show Stars>>
@@ -13,11 +13,11 @@ title: ConfirmStart
 <<hide_ui IntroScreen>>
 <<show_ui HistoryButton>>
 <<show_ui SkipToggle>>
-It is silent. You are floating in the vast emptiness of space.
-You are utterly alone. It feels... relaxing.
-Back on Earth, you always felt invisible.
-Nobody loved you. Nobody cared about you. 
+It is silent. I'm floating in the vast emptiness of space.
+I am utterly alone. It feels... relaxing.
+Back on Earth, I always felt invisible.
+Nobody loved me. Nobody cared about me. 
 // You have no friends, your family doesn't acknowledge you, and you find yourself with no purpose.
-You drift aimlessly. Might as well choose a name for yourself.
+I drift aimlessly. I might as well choose a name for myself.
 <<prompt_name NamePrompter>>
 ===

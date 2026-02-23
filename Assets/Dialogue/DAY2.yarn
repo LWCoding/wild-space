@@ -3,8 +3,8 @@ position: 90,-43
 ---
 <<set $daysPassed = 2>>
 <<play_sound AlarmClock>>
-You wake up to a loud chime on the monitor, your head pounding yet again. 
-You don't know what time it is, but you feel rested. Your sleep cycle has been all over the place since you started this job.
+I wake up to a loud chime on the monitor, my head pounding yet again. 
+I don't know what time it is, but I feel rested enough. My sleep cycle has been all over the place since I started this job.
 Time for another day of work.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay2>>
@@ -15,18 +15,18 @@ position: 85,114
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-You turn on the monitor to see today's tasks.
-Before you start your report, you notice a new message from HQ.
+I turn on the monitor to see today's tasks.
+Before I start my report, I notice a new message from HQ.
 It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
 <<if $catSecured == false && $dogSecured == false && $opossumSecured == false && $birdSecured == false>>
     <<jump ForeverAlone>>
 <<endif>>
-You ponder your next report. Do you report the encounter with the aliens, knowing that Earth may react harshly? Or keep it under wraps?
+I ponder my next report. Do I report the encounter with the aliens, knowing that Earth may react harshly? Or keep it under wraps?
     -> (report the aliens)
-        You hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
-        You're not entirely sure what will happen to the aliens, but you may never see them again.
+        I hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
+        I'm not entirely sure what will happen to the aliens, but I may never see them again.
         -> (report the aliens)
-            You get to writing your report.
+            I get to writing my report.
             <<hide_all_objects>>
             <<show PCRoom>>
             <<show_ui TypeToInteract>>
@@ -34,13 +34,13 @@ You ponder your next report. Do you report the encounter with the aliens, knowin
         -> (report that you saw nothing)
             <<hide_all_objects>>
             <<show PCRoom>>
-            You get to writing your report.
+            I get to writing my report.
             <<show_ui TypeToInteract>>
             <<show MonitorDontReportDay2>>
     -> (report that you saw nothing)
         <<hide_all_objects>>
         <<show PCRoom>>
-        You get to writing your report.
+        I get to writing my report.
         <<show_ui TypeToInteract>>
         <<show MonitorDontReportDay2>>
 ===
@@ -50,48 +50,48 @@ position: 83,279
 ---
 <<hide_all_ui_objects>>
 <<set $negSelfPerception += 1>>
-You hesitate, and send off the message. You feel <color=\#FF8888>a little guilty</color>. Your job was to report alien life... but something about this situation feels different.
+I hesitate, then send off the message. I feel <color=\#FF8888>a little guilty</color>. My job was to report alien life... but something about this situation feels different.
 <<if $posSelfPerception > $negSelfPerception>>
-    You feel a sense of pride in your decision. You trust your instincts and believe that not everything needs to be reported.
+    I feel a sense of pride in my decision. I trust my instincts and believe that not everything needs to be reported.
 <<else>>
-    You feel a pang of guilt. However, you rationalize that some things are better left unsaid.
+    I feel a pang of guilt. However, I rationalize that some things are better left unsaid.
 <<endif>>
-You turn the monitor off and take a seat.
+I turn the monitor off and take a seat.
 <<fade_transition 2>>
 <<wait 1>>
 <<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
-Lost in another one of your spirals, you think about your family back on Earth.
-Your family was only ever close with you before you dropped out of college. 
-You were surprised that they disagreed with your decision to leave Earth, even though you never quite felt like they loved you anymore.
-Recalling your parents' disapproval makes you feel...
+Lost in another one of my spirals, I think about my family back on Earth.
+My family was only ever close with me before I dropped out of college. 
+I was surprised that they disagreed with my decision to leave Earth, even though I never quite felt like they loved me anymore.
+Recalling my parents' disapproval makes me feel...
     -> (sad, because they're gone now)
         <<set $negSelfPerception += 1>>
-        You feel <color=\#FF8888>a wave of sadness wash over you</color>. You wonder if they would have ever accepted your choices, but now you'll never know.
+        I feel <color=\#FF8888>a wave of sadness wash over me</color>. I wonder if they would have ever accepted my choices, but now I'll never know.
     -> (angry, because they never supported you)
         <<set $negSelfPerception += 1>>
-        You feel a surge of anger. They never supported your decisions, and now that they're gone, you feel <color=\#FF8888>a sense of bitterness</color>.
+        I feel a surge of anger. They never supported my decisions, and now that they're gone, I feel <color=\#FF8888>a sense of bitterness</color>.
     -> (conflicted, because they didn't want you gone)
-        You feel conflicted. They didn't want you to leave, but they never made an effort to understand your reasons.
+        I feel conflicted. They didn't want me to leave, but they never made an effort to understand my reasons.
         <<set $posSelfPerception += 1>>
-        You wish they could see you now, living your life on your own terms. You feel <color=\#88FF88>independent</color>.
-And what about your friends? You always felt like such an impostor around them. You felt like every interaction was a performance.
-You forced yourself to do so many things with them. And you only ever felt like you were "fun" when you were a couple of drinks in. You wonder if they ever really liked you for who you were.
-Thinking about these people in your life make you feel...
+        I wish they could see me now, living life on my own terms. I feel <color=\#88FF88>independent</color>.
+And what about my friends? I always felt like such an impostor around them. Every interaction felt like a performance.
+I forced myself to do so many things with them. I only ever felt like I was "fun" when I was a couple of drinks in. I wonder if they ever really liked me for who I was.
+Thinking about these people in my life makes me feel...
     -> (lonely, because you pushed them away)
         <<set $negSelfPerception += 1>>
-        You realize that you pushed people away, and now you're <color=\#FF8888>left with nothing but your own thoughts</color>.
+        I realize that I pushed people away, and now I'm <color=\#FF8888>left with nothing but my own thoughts</color>.
     -> (regretful, because you never opened up to them)
         <<set $negSelfPerception += 1>>
-        You <color=\#FF8888>wish you had opened up to people more</color>, but now it's too late.
+        I <color=\#FF8888>wish I had opened up to people more</color>, but now it feels too late.
     -> (indifferent, because they weren't true friends)
-        Maybe those people weren't true friends after all. You wonder if you'll be able to make genuine connections in the future.
+        Maybe those people weren't true friends after all. I wonder if I'll be able to make genuine connections in the future.
         <<set $posSelfPerception += 1>>
-        The idea of making real connections makes you <color=\#88FF88>feel a little hopeful</color>.
+        The idea of making real connections makes me <color=\#88FF88>feel a little hopeful</color>.
 
-You then remember what happened yesterday, with the aliens.
-Supposedly, you can ping them again to have a chat. Maybe you should give it a try.
+I then remember what happened yesterday, with the aliens.
+Supposedly, I can ping them again to have a chat. Maybe I should give it a try.
     -> (reestablish contact with the aliens)
         <<hide_all_objects>>
         <<show PCRoom>>
@@ -109,7 +109,7 @@ position: 422,282
 <<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
 <<stop_voice_blip Cat>>
-You call {$catName}. The line remains static for a little while, but you suddenly see movement on the other end.
+I call {$catName}. The line remains static for a little while, but I suddenly see movement on the other end.
 <<play_music CatTheme 0.5>>
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
@@ -270,9 +270,9 @@ position: 647,285
         // TODO: Make this an actual game
         <<stop_voice_blip Cat>>
         <<show_character Cat Happy right>>
-        You decide to play a game with {$catName} on the monitor to pass the time.
-        {$catName} beams the game to your device, and you both start playing.
-        The game is a simple one where you have to match shapes and colors. It's not very exciting, but it helps to break the ice.
+        I decide to play a game with {$catName} on the monitor to pass the time.
+        {$catName} beams the game to my device, and we both start playing.
+        The game is a simple one where I have to match shapes and colors. It's not very exciting, but it helps to break the ice.
         <<show_character Cat Sad right>>
         It seems that {$catName}, however, is struggling quite a bit.
             -> (win at the game)
@@ -292,9 +292,9 @@ position: 647,285
     -> (don't ask any more questions)
         <<stop_voice_blip Cat>>
         <<if $posSelfPerception > $negSelfPerception>>
-            You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
+            I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
         <<else>>
-            You feel your social battery start to drain, so you decide to end the conversation for now.
+            I feel my social battery start to drain, so I decide to end the conversation for now.
         <<endif>>
         <<start_voice_blip Cat>>
         <<if $catLikesYou > $catDislikesYou>>
@@ -321,7 +321,7 @@ position: 408,123
 <<show MonitorSilhouette>>
 <<show_character Dog Obscure right>>
 <<stop_voice_blip Dog>>
-You call {$dogName}. The line remains static for a little while, but you suddenly see movement on the other end.
+I call {$dogName}. The line remains static for a little while, but I suddenly see movement on the other end.
 <<play_music DogTheme 0.5>>
 <<if $dogLikesYou > $dogDislikesYou>>
     <<show_character Dog Happy right>>
@@ -527,9 +527,9 @@ position: 640,115
     -> (don't ask any more questions)
         <<stop_voice_blip Dog>>
         <<if $posSelfPerception > $negSelfPerception>>
-            You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
+            I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
         <<else>>
-            You feel your social battery start to drain, so you decide to end the conversation for now.
+            I feel my social battery start to drain, so I decide to end the conversation for now.
         <<endif>>
         <<start_voice_blip Dog>>
         <<if $dogLikesYou > $dogDislikesYou>>
@@ -556,7 +556,7 @@ position: 409,-43
 <<show MonitorSilhouette>>
 <<show_character Opossum Obscure right>>
 <<stop_voice_blip Opossum>>
-You call {$opossumName}. The line remains static for a little while, but you suddenly see movement on the other end.
+I call {$opossumName}. The line remains static for a little while, but I suddenly see movement on the other end.
 <<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
 <<if $opossumLikesYou > $opossumDislikesYou>>
     <<show_character Opossum Happy right>>
@@ -706,7 +706,7 @@ position: 643,-38
         <<show_character Opossum Proud right>>
         {$opossumName}: Here! Take a look at this.
         <<stop_voice_blip Opossum>>
-        {$opossumName} sends you a picture of their art. It shows a beautiful depiction of a small space plant growing out of a rock, with stars twinkling in the background.
+        {$opossumName} sends me a picture of their art. It shows a beautiful depiction of a small space plant growing out of a rock, with stars twinkling in the background.
             -> Wow, that's really good!
                 <<positive_indicator Opossum>>
                 <<set $opossumLikesYou += 1>>
@@ -759,9 +759,9 @@ position: 643,-38
     -> (don't ask any more questions)
         <<stop_voice_blip Opossum>>
         <<if $posSelfPerception > $negSelfPerception>>
-            You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
+            I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
         <<else>>
-            You feel your social battery start to drain, so you decide to end the conversation for now.
+            I feel my social battery start to drain, so I decide to end the conversation for now.
         <<endif>>
         <<start_voice_blip Opossum>>
         <<if $opossumLikesYou > $opossumDislikesYou>>
@@ -788,7 +788,7 @@ position: 411,-211
 <<show MonitorSilhouette>>
 <<show_character Bird Obscure right>>
 <<stop_voice_blip Bird>>
-You call {$birdName}. The line remains static for a little while, but you suddenly see movement on the other end.
+I call {$birdName}. The line remains static for a little while, but I suddenly see movement on the other end.
 <<show_character Bird Happy right>>
 <<play_music BirdTheme 0.25>>
 {$birdName} appears on the screen.
@@ -1018,20 +1018,20 @@ position: 646,-220
         {$birdName}: O-okay. I'll try. No promises I'll do good at it, though.
         <<stop_voice_blip Bird>>
         <<show_character Bird Neutral right>>
-        You decide to play a game with {$birdName} on the monitor to pass the time.
-        {$birdName} beams an old game they used to play to your device, and you both start playing.
-        The game is a pretty complicated game, involving mixing chemical compounds to create new elements.
-        You struggle immensely.
+        I decide to play a game with {$birdName} on the monitor to pass the time.
+        {$birdName} beams an old game they used to play to my device, and we both start playing.
+        The game is a pretty complicated one, involving mixing chemical compounds to create new elements.
+        I struggle immensely.
         <<show_character Bird Happy2 right>>
         It seems that {$birdName}, however, is doing very well.
             -> (try your best to win. you can do it!)
-                You push yourself to focus, but ultimately, you just can't keep up with {$birdName}'s skill. You lose the game.
+                I push myself to focus, but ultimately, I just can't keep up with {$birdName}'s skill. I lose the game.
                 <<positive_indicator Bird>>
                 <<set $birdLikesYou += 3>>
                 <<start_voice_blip Bird>>
                 {$birdName}: Heh, good game! You tried your best, {$birdThinksPlayerNameIs}.
             -> (give up. you can't win this...)
-                You decide to forfeit the game, admitting that you're outmatched.
+                I decide to forfeit the game, admitting that I'm outmatched.
                 <<show_character Bird Happy right>>
                 <<negative_indicator Bird>>
                 <<set $birdDislikesYou += 1>>
@@ -1045,9 +1045,9 @@ position: 646,-220
     -> (don't ask any more questions)
         <<stop_voice_blip Bird>>
         <<if $posSelfPerception > $negSelfPerception>>
-            You decide to end the conversation for now. It's been a while since you've talked with somebody new, but you feel more confident in yourself.
+            I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
         <<else>>
-            You feel your social battery start to drain, so you decide to end the conversation for now.
+            I feel my social battery start to drain, so I decide to end the conversation for now.
         <<endif>>
         <<start_voice_blip Bird>>
         <<if $birdLikesYou >= $birdDislikesYou>>
@@ -1074,22 +1074,22 @@ position: 918,14
 <<play_music MainTheme>>
 <<if $talkedToPersonDay2 == false && $charactersSecured > 1>>
     <<set $talkedToPersonDay2 = true>>
-    After finishing your conversation, you notice the day is still young. You could try reaching out to one other alien before ending the day.
+    After finishing my conversation, I notice the day is still young. I could try reaching out to one other alien before ending the day.
         -> (call another alien)
             <<hide_all_objects>>
             <<show ChooseYourCharacterDay2>>
             <<stop>>
         -> (end the day)
 <<endif>>
-You cut the connection and take a step back from your monitor.
+I cut the connection and take a step back from my monitor.
     -> (turn off the monitor)
 <<hide_all_objects>>
 <<show PCRoom>>
-Again, after the long conversation, you decide to go to bed.
+Again, after the long conversation, I decide to go to bed.
 <<if $posSelfPerception > $negSelfPerception>>
-    After talking with these new figures, you've felt a sense of growth. You feel more confident in your ability to handle whatever comes your way.
+    After talking with these new figures, I've felt a sense of growth. I feel more confident in my ability to handle whatever comes my way.
 <<else>>
-    After talking with these new figures, you've felt a bit more uncertain about your place in this situation. You hope that you'll be able to figure things out soon.
+    After talking with these new figures, I've felt a bit more uncertain about my place in this situation. I hope that I'll be able to figure things out soon.
 <<endif>>
 <<hide_all_objects>>
 <<show PCRoom>>

@@ -3,7 +3,7 @@ position: -125,-487
 ---
 <<set $daysPassed = 3>>
 <<play_sound AlarmClock>>
-You wake up again to the sound of your alarm clock. It's time to get to your job.
+I wake up again to the sound of my alarm clock. It's time to get to my job.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay3>>
 ===
@@ -13,14 +13,14 @@ position: -128,-338
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-You turn on the monitor to see today's tasks.
-Out of the corner of your eye, you see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
-Do you wish to report the aliens to Earth, or let them be?
+I turn on the monitor to see today's tasks.
+Out of the corner of my eye, I see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
+Do I report the aliens to Earth, or let them be?
     -> (report the aliens)
-        You hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
-        You're not entirely sure what will happen to the aliens, but you may never see them again.
+        I hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
+        I'm not entirely sure what will happen to the aliens, but I may never see them again.
         -> (report the aliens)
-            You get to writing your report.
+            I get to writing my report.
             <<hide_all_objects>>
             <<show PCRoom>>
             <<show_ui TypeToInteract>>
@@ -34,7 +34,7 @@ Do you wish to report the aliens to Earth, or let them be?
     -> (report that you saw nothing)
         <<hide_all_objects>>
         <<show PCRoom>>
-        You get to writing your report.
+        I get to writing my report.
         <<show_ui TypeToInteract>>
         <<show MonitorDontReportDay3>>
 ===
@@ -43,30 +43,30 @@ title: KeptUnderWrapsDay3
 position: -134,-190
 ---
 <<hide_all_ui_objects>>
-You finish your report, choosing not to mention the aliens.
+I finish my report, choosing not to mention the aliens.
 <<hide_all_objects>>
 <<show PCRoom>>
-You get back to looking around your room. Out of boredom, you spend a few minutes glancing at every object around the room.
-All of a sudden, you realize that your oxygen supply has been critically depleted.
+I get back to looking around my room. Out of boredom, I spend a few minutes glancing at every object around the room.
+After a while, a soft warning flashes on the corner of the monitor: my long-term oxygen reserves have dipped lower than they should.
     -> What?
         <<set $negSelfPerception += 2>>
-        You're <color=\#FF8888>panicking</color>. You need to find a way to survive.
+        I'm <color=\#FF8888>panicking</color>. If I ignore this, the ship will eventually run out of breathable air.
     -> This can't be happening.
         <<set $negSelfPerception += 2>>
-        You're <color=\#FF8888>panicking</color>. You need to find a way to survive.
+        I'm <color=\#FF8888>panicking</color>. I thought the life support systems would just quietly take care of this forever.
     -> Am I going to die?
         <<set $negSelfPerception += 2>>
-        You're <color=\#FF8888>panicking</color>. You need to find a way to survive.
+        I'm <color=\#FF8888>panicking</color>. Alone this far from Earth, a slow systems failure suddenly feels very real.
     -> (breathe...)
         <<set $posSelfPerception += 1>>
-        You take a few deep breaths, trying to <color=\#88FF88>stay calm</color>.
-        But, now knowing that your oxygen is limited, you imagine the air becoming thinner and thinner. You know you need help, and fast.
-You need to get help. You won't make it past this day alive.
+        I take a few deep breaths, trying to <color=\#88FF88>stay calm</color>.
+        The readout says I still have time, but every minute I wait is another minute closer to a problem I can't fix alone.
+I need to decide how to handle this before it becomes an emergency.
     -> (call the aliens for help)
         <<jump CallAliensDay3>>
     -> (ask Earth HQ for help)
         <<jump CallEarth>>
-    -> (embrace death)
+    -> (accept whatever happens out here)
         <<jump EmbraceDeath>>
 ===
 
@@ -88,7 +88,7 @@ position: 1018,-481
 <<hide MonitorOn>>
 <<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
-You call {$catName}. You see movement, and start tweaking the dials to get the figure to appear clear.
+I call {$catName}. I see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Cat>>
 <<play_music CatTheme 0.5>>
 <<if $catLikesYou > $catDislikesYou>>
@@ -102,7 +102,7 @@ You call {$catName}. You see movement, and start tweaking the dials to get the f
 {$catName}: What's going on? You look... worried.
     -> (explain your situation)
         <<stop_voice_blip Cat>>
-        You explain that your oxygen supply is running low, and you need help fast.
+        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
         <<start_voice_blip Cat>>
         <<show_character Cat Thinking right>>
         {$catName}: Oh... have you tried asking the people from Earth for help?
@@ -163,7 +163,7 @@ position: 718,-466
 <<hide MonitorOn>>
 <<show MonitorSilhouette>>
 <<show_character Dog Obscure right>>
-You call {$dogName}. You see movement, and start tweaking the dials to get the figure to appear clear.
+I call {$dogName}. I see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Dog>>
 <<play_music DogTheme 0.5>>
 <<if $dogLikesYou > $dogDislikesYou>>
@@ -177,7 +177,7 @@ You call {$dogName}. You see movement, and start tweaking the dials to get the f
 {$dogName}: Are things okay? Woof. You look... worried.
     -> (explain your situation)
         <<stop_voice_blip Dog>>
-        You explain that your oxygen supply is running low, and you need help fast.
+        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
         <<start_voice_blip Dog>>
         <<show_character Dog Thinking right>>
         {$dogName}: Woof... have you tried asking the people from your planet for help?
@@ -231,7 +231,7 @@ position: 111,-468
 <<hide MonitorOn>>
 <<show MonitorSilhouette>>
 <<show_character Opossum Obscure right>>
-You call {$opossumName}. You see movement, and start tweaking the dials to get the figure to appear clear.
+I call {$opossumName}. I see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Opossum>>
 <<play_music OpossumTheme 0.5>>
 <<if $opossumLikesYou > $opossumDislikesYou>>
@@ -245,7 +245,7 @@ You call {$opossumName}. You see movement, and start tweaking the dials to get t
 {$opossumName}: Are things okay? You look... worried.
     -> (explain your situation)
         <<stop_voice_blip Opossum>>
-        You explain that your oxygen supply is running low, and you need help fast.
+        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
         <<start_voice_blip Opossum>>
         <<show_character Opossum Thinking right>>
         {$opossumName}: Huh, that is a pickle. Your home planet's not trying to save you?
@@ -295,7 +295,7 @@ position: 411,-467
 <<hide MonitorOn>>
 <<show MonitorSilhouette>>
 <<show_character Bird Obscure right>>
-You call {$birdName}. You see movement, and start tweaking the dials to get the figure to appear clear.
+I call {$birdName}. I see movement, and start tweaking the dials to get the figure to appear clear.
 <<start_voice_blip Bird>>
 <<play_music BirdTheme 0.5>>
 <<if $birdLikesYou >= $birdDislikesYou>>
@@ -309,7 +309,7 @@ You call {$birdName}. You see movement, and start tweaking the dials to get the 
 {$birdName}: Are things okay? You look... worried.
     -> (explain your situation)
         <<stop_voice_blip Bird>>
-        You explain that your oxygen supply is running low, and you need help fast.
+        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
         <<start_voice_blip Bird>>
         <<show_character Bird Afraid right>>
         {$birdName}: Th-that's terrible! 
@@ -362,20 +362,20 @@ title: CallEarth
 position: 400,-239
 ---
 <<set $askedEarthForHelp = true>>
-You call Earth about your situation.
-They claim that they could send help, but it wouldn't make it to you on time.
-You have a feeling that you can get them to send their emergency rescue team if you convince them that your life is in danger.
+I call Earth about my situation.
+They claim that they could send help, but it wouldn't make it to me on time unless I give them a stronger reason to prioritize my ship.
+I have a feeling that I can get them to send their emergency rescue team if I convince them that my life is in danger.
     -> (tell them about the aliens you saw)
-        You think about the idea of telling them about the aliens. This could convince them to send help faster, but would put the aliens at risk of being discovered.
+        I think about the idea of telling them about the aliens. This could convince them to send help faster, but would put the aliens at risk of being discovered.
         -> (go through with it)
-            You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
+            I explain the situation to Earth HQ, emphasizing the urgency of my predicament.
             <<set $desperate = true>>
             <<hide_all_objects>>
             <<show PCRoom>>
             <<show_ui TypeToInteract>>
             <<show MonitorReportDay3>>
         -> (reconsider)
-            You reconsider your options. Maybe there's another way to get help without putting the aliens at risk.
+            I reconsider my options. Maybe there's another way to get help without putting the aliens at risk.
             -> (call the aliens for help)
                 <<jump CallAliensDay3>>
             -> (embrace death)
@@ -388,11 +388,11 @@ You have a feeling that you can get them to send their emergency rescue team if 
                 <<show_ui TypeToInteract>>
                 <<show MonitorReportDay3>>
     -> (nevermind, you can manage on your own)
-        You pace back and forth, considering your options.
+        I pace back and forth, considering my options.
             -> (call the aliens for help)
                 <<jump CallAliensDay3>>
             -> (embrace death)
-                You hesitate for a moment. Do you really want to give up?
+                I hesitate for a moment. Do I really want to give up?
                 -> (yes)
                     <<jump EmbraceDeath>>
                 -> (no)

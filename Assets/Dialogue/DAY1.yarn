@@ -1,13 +1,13 @@
-﻿title: AfterName
+title: AfterName
 position: 22,-593
 ---
 <<hide Drifting>>
 <<speed 1>>
-You snap out of it, realizing you are not suspended in mid-air.
+I snap out of it, realizing I am not suspended in mid-air.
 <<show Bedroom>>
 <<wait 9.5>>
-You're standing on a hard surface. Your head feels heavy, and your body aches all over.
-You're at home. In your metal spaceship.
+I'm standing on a hard surface. My head feels heavy, and my body aches all over.
+I'm at home. In my metal spaceship.
 <<fade_transition 2>>
 <<wait 1>>
 <<hide_all_objects>>
@@ -15,7 +15,7 @@ You're at home. In your metal spaceship.
 <<wait 1>>
 It's a quiet day, as always.
     -> Hello?
-        Nothing. Every sound you make echoes off the walls. You are alone.
+        Nothing. Every sound I make echoes off the walls. I'm alone.
         -> (take a look around)
             <<jump LookAround>>
     -> (take a look around)
@@ -31,7 +31,7 @@ position: 23,-416
 <<show MonitorOffDay1>>
 <<show CalendarDay1>>
 <<show RouterDay1>>
-You re-familiarize yourself with your surroundings.
+I re-familiarize myself with my surroundings.
 <<show_ui ClickToInteract>>
 <<endonce>>
 ===
@@ -45,35 +45,36 @@ position: 315,-648
 <<hide_ui ClickToInteract>>
 <<show Stars>>
 <<show Sitting>>
-This is the life that you've committed yourself to, ever since taking the job to pilot this small exploration vessel.
-You are tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
-But deep inside, you knew this was just to get a chance away from Earth.
-Nothing of interest seems to be happening. You start to spiral, sitting and pondering the emptiness around you.
-    -> (contemplate your life on Earth)
-        You ponder the vastness of existence and your place within it.
-        The silence of space seems to amplify your thoughts, making you feel both insignificant and connected to the universe.
+This is the life that I've committed myself to, ever since taking the job to pilot this small exploration vessel.
+I am tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
+But deep inside, I knew this was just to get a chance away from Earth.
+Nothing of interest seems to be happening. I start to spiral, sitting and pondering the emptiness around me.
+    -> (contemplate my life on Earth)
+        I ponder the vastness of existence and my place within it.
+        The silence of space seems to amplify my thoughts, making me feel both insignificant and connected to the universe.
         -> (hone in on the positive)
-            You think back to a time you felt connected with someone on Earth, recalling a time when your mother taught you how to bake cookies.
-            Although she's gone now, the thought brings a smile to your face. 
+            I think back to a time I felt connected with someone on Earth, recalling a time when my mother taught me how to bake cookies.
+            Although she's gone now, the thought brings a smile to my face. 
             <<set $posSelfPerception += 1>>
-            It's a small comfort in the loneliness of space. You feel <color=\#88FF88>slightly happier</color>.
+            It's a small comfort in the loneliness of space. I feel <color=\#88FF88>slightly happier</color>.
         -> (dwell on the negative)
-            You think back about a time you felt insignificant on Earth.
-            Ever since you dropped out of college, you've felt like a disappointment to your family.
+            I think back about a time I felt insignificant on Earth.
+            Ever since I dropped out of college, I've felt like a disappointment to my family.
+            I took the first contract that would launch me off-planet, telling myself distance would make it easier to breathe.
             <<set $negSelfPerception += 1>>
-            You scoff at the concept of unconditional love. In doing so, you <color=\#FF8888>feel sadder</color>, overwhelmed by the vast emptiness around you.
+            I scoff at the concept of unconditional love. In doing so, I <color=\#FF8888>feel sadder</color>, overwhelmed by the vast emptiness around me.
     -> (think of something happy)
-        You think back to your time on Earth, recalling a time when your mother taught you how to bake cookies.
-        Although she's gone now, the thought brings a smile to your face. 
+        I think back to my time on Earth, recalling a time when my mother taught me how to bake cookies.
+        Although she's gone now, the thought brings a smile to my face. 
         <<set $posSelfPerception += 1>>
-        It's a small comfort in the loneliness of space. You feel <color=\#88FF88>slightly happier</color>.
+        It's a small comfort in the loneliness of space. I feel <color=\#88FF88>slightly happier</color>.
     -> (do some push-ups)
-        You were never huge on fitness, but you were required to keep in shape for space travel.
-        Neither of your parents supported your decision to leave Earth. And now, they're gone. 
-        You figure that staying in shape is the least you can do to prove them wrong.
+        I was never huge on fitness, but I was required to keep in shape for space travel.
+        Neither of my parents supported my decision to leave Earth. And now, they're gone. 
+        Part of me still wants to prove that leaving wasn't just another failure.
         <<set $posSelfPerception += 1>>
-        You do a few push-ups to keep your strength up. Strangely enough, you feel <color=\#88FF88>a little happier</color> afterwards.
-You decide to get back to doing something. Anything is better than sitting around.
+        I do a few push-ups to keep my strength up. Strangely enough, I feel <color=\#88FF88>a little happier</color> afterwards.
+I decide to get back to doing something. Anything is better than sitting around.
 <<hide_all_objects>>
 <<show PCRoom>>
 <<jump DoJobFirstTime>>
@@ -82,9 +83,9 @@ You decide to get back to doing something. Anything is better than sitting aroun
 title: DoJobFirstTime
 position: 308,-448
 ---
-You stand up and turn on the computer. 
-As part of your job, you need to complete a daily report on your findings.
-Given they're all the same, you're not sure HQ pays much attention to them. But at least, it gives you a sense of routine.
+I stand up and turn on the computer. 
+As part of my job, I need to complete a daily report on my findings.
+Given they're all the same, I'm not sure HQ pays much attention to them. But at least, it gives me a sense of routine.
 <<show MonitorReportDay1>>
 <<show_ui TypeToInteract>>
 ===
@@ -93,7 +94,7 @@ title: AfterTypedFirstTime
 position: 15,-241
 ---
 <<hide_ui TypeToInteract>>
-You sigh, after having written the same report for the 620th time. 
+I sigh, after having written the same report for the 620th time. 
 The report is done for the day.
     -> (turn off the monitor)
 <<hide MonitorReportDay1>>
@@ -106,7 +107,7 @@ position: 15,-63
 <<hide_all_objects>>
 <<show PCRoom>>
 <<hide MonitorOn>>
-Just as you turn the monitor off, your hip bumps the communication panel.
+Just as I turn the monitor off, my hip bumps the communication panel.
 <<play_sound Glitch 0.25>>
 <<show MonitorOn>>
 The tuner skitters across the dial with a burst of static.
@@ -131,24 +132,24 @@ position: 316,-234
 <<start_voice_blip Cat>>
 ???: Click... <i>*bzzt*</i> comm... cation... panel...
 <<stop_voice_blip Cat>>
-With your expertise, you think you can adjust the frequency and let the signal through.
+With my expertise, I think I can adjust the frequency and let the signal through.
     -> (let the signal through)
         <<jump CatIntro>>
     -> (ignore the signal. it's probably nothing.)
-        You decide to ignore the signal. It's probably just static interference.
+        I decide to ignore the signal. It's probably just static interference.
         <<hide_all_characters>>
         <<hide MonitorSilhouette>>
         <<wait 1>>
         <<show MonitorSilhouette>>
         <<set $negSelfPerception += 1>>
-        After a few moments, the screen flickers back to static. You are alone, again. You feel <color=\#FF8888>more isolated</color>.
-        How should you pass the time?
+        After a few moments, the screen flickers back to static. I'm alone, again. I feel <color=\#FF8888>more isolated</color>.
+        How should I pass the time?
             -> (block them out of your head)
-                You decide to play a game on the monitor to pass the time.
+                I decide to play a game on the monitor to pass the time.
                 <<set $negSelfPerception += 1>>
-                The game is simple, but its monotony makes you feel <color=\#FF8888>even more lonely</color>.
+                The game is simple, but its monotony makes me feel <color=\#FF8888>even more lonely</color>.
             -> (try to find the signal again)
-                You fiddle with the dials and knobs, trying to find the signal again.
+                I fiddle with the dials and knobs, trying to find the signal again.
 <<hide_all_objects>>
 <<show_character Cat Obscure right>>
 Suddenly, the same character from before reappears on the screen.
@@ -157,8 +158,8 @@ Suddenly, the same character from before reappears on the screen.
     -> (unplug the monitor)
         <<hide_all_characters>>
         <<hide MonitorSilhouette>>
-        You decide to unplug the monitor, cutting off the signal entirely.
-        After a few moments, the screen flickers back to static. You are alone, again.
+        I decide to unplug the monitor, cutting off the signal entirely.
+        After a few moments, the screen flickers back to static. I'm alone, again.
         <<jump ForeverAloneNoContact>>
 ===
 
@@ -189,7 +190,7 @@ Suddenly, the figure comes into view.
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Surprised right>>
-                You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
+                I scream deafeningly loudly. The creature on the monitor jumps back in surprise.
                 <<start_voice_blip Cat>>
                 ???: AH! That... surely is a strange introduction.
                 <<show_character Cat Sad right>>
@@ -199,7 +200,7 @@ Suddenly, the figure comes into view.
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Surprised right>>
-        You scream deafeningly loudly. The creature on the monitor jumps back in surprise.
+        I scream deafeningly loudly. The creature on the monitor jumps back in surprise.
         <<start_voice_blip Cat>>
         ???: AH! That... surely is a strange introduction.
         <<show_character Cat Sad right>>
@@ -341,7 +342,7 @@ The transmission cuts off as {$catName} takes their leave.
     {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
     Suddenly, the screen flickers back to static. {$catName} is gone, for now.
         -> {$catName}? Can you hear me?
-            You tap the monitor and move around the dials, but nobody responds. You are alone, again.
+            I tap the monitor and move around the dials, but nobody responds. I'm alone, again.
         -> (sit down)
 <<endif>>
 <<jump ThinkingAfterCatLeaves>>
@@ -355,39 +356,33 @@ position: 310,187
 <<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
-You sit back down, trying to process the encounter you just had.
+I sit back down, trying to process the encounter I just had.
 Who was that creature? How is that even possible?
 <<if $catLikesYou > $catDislikesYou>>
     <<set $posSelfPerception += 1>>
-    Strangely enough, you <color=\#88FF88>enjoyed the encounter</color> with them. They seemed... friendly.
-    What would it be like to have a friend like that?
-    You wonder if you'll ever see them again.
+    Strangely enough, I <color=\#88FF88>enjoyed the encounter</color> with them. They seemed... friendly.
+    What would it be like for me to have a friend like that?
+    I wonder if I'll ever see them again.
 <<else>>
     <<set $negSelfPerception += 1>>
-    To you, the <color=\#FF8888>whole encounter felt off</color>. Aliens? Of all times, why now?
-    You think about what others on Earth would say if they found out about this encounter. Although it is your job to report such things, would they really believe you met friendly animal aliens?
-    Maybe, you'll think about it after a night's rest.
+    To me, the <color=\#FF8888>whole encounter felt off</color>. Aliens? Of all times, why now?
+    I think about what others on Earth would say if they found out about this encounter. Although it is my job to report such things, would they really believe I met friendly animal aliens?
+    Maybe, I'll think about it after a night's rest.
 <<endif>>
 <<hide_all_objects>>
 <<fade_transition 2>>
 <<wait 1>>
 <<show PCRoom>>
-<<show MonitorSilhouette>>
-<<show_character Dog Obscure left>>
-<<show_character Opossum Obscure center>>
-<<show_character Bird Obscure right>>
-The monitor flickers back to life as the signal stabilizes.
-Multiple transmissions bleed in at once. You see three distinct figures, all different from the last one.
-They all seem like they'll stick around for a bit. Who do you talk to first?
-    -> (respond to the one with the floppy ears)
-        <<set $talkedToDog = true>>
-        <<jump DogIntro>>
-    -> (respond to the one with the frazzled hair)
-        <<set $talkedToOpossum = true>>
-        <<jump OpossumIntro>>
-    -> (respond to the one with the pointy muzzle)
-        <<set $talkedToBird = true>>
-        <<jump BirdIntro>>
+The cabin falls silent again as the static fades back into the background hum.
+I slip back into the same routine: filling out reports, heating up rations, staring at the same metal walls.
+<<wait 1.5>>
+Days blur together in a dull loop. Sometimes I have to check the logs just to remember how long I've been out here.
+<<show Stars>>
+<<show Sitting>>
+Out here, time stretches until it feels like I've been alone on this ship for months.
+I think about Earth—about the classes I walked out of, the friends I stopped returning messages from, and the way I grabbed this posting like a life raft.
+Part of me wonders if there's anything left to go back to. Part of me isn't sure I want there to be.
+<<jump EndDay1>>
 ===
 
 title: TalkToOthers
@@ -404,7 +399,7 @@ position: 999,186
 <<if $talkedToBird == false>>
     <<show_character Bird Obscure right>>
 <<endif>>
-You notice that others are still live on the feed. Who do you talk to next?
+I notice that others are still live on the feed. Who do I talk to next?
     -> (respond to the one with the floppy ears) <<if $talkedToDog == false>>
         <<set $talkedToDog = true>>
         <<jump DogIntro>>
@@ -424,9 +419,9 @@ position: 642,264
 <<hide_all_objects>>
 <<show PCRoom>>
 <<show MonitorSilhouette>>
-You pull up the communication panel and respond to the figure with the floppy ears.
+I pull up the communication panel and respond to the figure with the floppy ears.
 <<show_character Dog Obscure right>>
-You turn the dials to let the signal through.
+I turn the dials to let the signal through.
 <<show_character Dog Neutral right>>
 <<start_voice_blip Dog>>
 <<play_music DogTheme 0.5>>
@@ -627,7 +622,7 @@ You turn the dials to let the signal through.
 The transmission cuts off as {$dogName} leaves to continue their wandering.
 <<if $dogSecured == true>>
     <<set $charactersSecured += 1>>
-    You notice a transmission from {$dogName} saved onto your monitor. You can likely use this to ping them again in the future.
+    I notice a transmission from {$dogName} saved onto my monitor. I can likely use this to ping them again in the future.
 <<endif>>
 <<if $talkedToOpossum == false || $talkedToBird == false>>
     <<jump TalkToOthers>>
@@ -643,9 +638,9 @@ position: 645,81
 <<hide_all_objects>>
 <<show PCRoom>>
 <<show MonitorSilhouette>>
-You pull up the communication panel and respond to the figure with the frazzled hair.
+I pull up the communication panel and respond to the figure with the frazzled hair.
 <<show_character Opossum Obscure right>>
-You turn the dials to let the signal through.
+I turn the dials to let the signal through.
 <<show_character Opossum Neutral right>>
 <<start_voice_blip Opossum>>
 <<play_music_start_loop OpossumThemeStart OpossumThemeLoop 0.4 0.5>>
@@ -666,7 +661,7 @@ You turn the dials to let the signal through.
                 <<hide_all_characters>>
                 <<play_music MainTheme>>
                 <<deactivate_icon Opossum>>
-                The transmission cuts off abruptly. It seems they didn't want to talk to you anymore.
+                The transmission cuts off abruptly. It seems they didn't want to talk to me anymore.
                 <<if $talkedToDog == false || $talkedToBird == false>>
                     <<jump TalkToOthers>>
                 <<else>>
@@ -701,7 +696,7 @@ You turn the dials to let the signal through.
                 <<hide_all_characters>>
                 <<play_music MainTheme>>
                 <<deactivate_icon Opossum>>
-                The transmission cuts off abruptly. You have a feeling they won't come back.
+                The transmission cuts off abruptly. I have a feeling they won't come back.
                 <<if $talkedToDog == false || $talkedToBird == false>>
                     <<jump TalkToOthers>>
                 <<else>>
@@ -714,7 +709,7 @@ You turn the dials to let the signal through.
                 <<hide_all_characters>>
                 <<play_music MainTheme>>
                 <<deactivate_icon Opossum>>
-                The transmission cuts off abruptly. You have a feeling they won't come back.
+                The transmission cuts off abruptly. I have a feeling they won't come back.
                 <<if $talkedToDog == false || $talkedToBird == false>>
                     <<jump TalkToOthers>>
                 <<else>>
@@ -727,7 +722,7 @@ You turn the dials to let the signal through.
                 {$opossumName}: ...alright, if you say so.
 <<show_character Opossum Thinking right>>
 <<stop_voice_blip Opossum>>
-You notice that {$opossumName} seems a bit distant, not making eye contact with you.
+I notice that {$opossumName} seems a bit distant, not making eye contact with me.
     -> So, how's life?
         <<negative_indicator Opossum>>
         <<set $opossumDislikesYou += 1>>
@@ -772,7 +767,7 @@ You notice that {$opossumName} seems a bit distant, not making eye contact with 
         <<hide_all_characters>>
         <<play_music MainTheme>>
         <<deactivate_icon Opossum>>
-        The transmission cuts off abruptly. You have a feeling they won't come back.
+        The transmission cuts off abruptly. I have a feeling they won't come back.
         <<if $talkedToDog == false || $talkedToBird == false>>
             <<jump TalkToOthers>>
         <<else>>
@@ -795,7 +790,7 @@ You notice that {$opossumName} seems a bit distant, not making eye contact with 
 The transmission cuts off abruptly. {$opossumName} takes their leave.
 <<if $opossumSecured == true>>
     <<set $charactersSecured += 1>>
-    You notice a transmission from {$opossumName} recorded on your monitor. They're letting you ping them again in the future.
+    I notice a transmission from {$opossumName} recorded on my monitor. They're letting me ping them again in the future.
 <<endif>>
 <<if $talkedToDog == false || $talkedToBird == false>>
     <<jump TalkToOthers>>
@@ -812,9 +807,9 @@ position: 656,-88
 <<hide_all_objects>>
 <<show PCRoom>>
 <<show MonitorSilhouette>>
-You pull up the communication panel and respond to the figure with the pointy muzzle.
+I pull up the communication panel and respond to the figure with the pointy muzzle.
 <<show_character Bird Obscure right>>
-You turn the dials to let the signal through.
+I turn the dials to let the signal through.
 <<show_character Bird Happy2 right>>
 <<start_voice_blip Bird>>
 <<play_music BirdTheme 0.25>>
@@ -835,7 +830,7 @@ You turn the dials to let the signal through.
     -> ...
 <<stop_voice_blip Bird>>
 <<show_character Bird Nervous right>>
-You notice that the figure seems a little nervous. They fidget slightly as they speak.
+I notice that the figure seems a little nervous. They fidget slightly as they speak.
 <<start_voice_blip Bird>>
 {$birdName}: If you don't mind, I have a few questions about your species. It's nothing intrusive, I promise.
     -> Sure..?
@@ -1147,7 +1142,7 @@ You notice that the figure seems a little nervous. They fidget slightly as they 
 The transmission cuts off as {$birdName} takes their leave.
 <<if $birdSecured == true>>
     <<set $charactersSecured += 1>>
-    You notice a transmission from {$birdName} saved onto your monitor. You can reach out at any time later.
+    I notice a transmission from {$birdName} saved onto my monitor. I can reach out at any time later.
 <<endif>>
 <<if $talkedToDog == false || $talkedToOpossum == false>>
     <<jump TalkToOthers>>
@@ -1162,8 +1157,8 @@ position: 1063,-84
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show PCRoom>>
-After talking to so many new figures, a sense of fatigue overcomes you.
-You decide to call it a day. Perhaps after you wake up, you can decide what you want to do next.
+The weight of the silence, and the memory of that strange call, finally catches up with me.
+I decide to call it a day; maybe after I wake up, I'll have a clearer idea of what I'm doing out here, and who I'm trying to become.
 <<fade_transition 3>>
 <<wait 3>>
 <<jump StartDay2>>

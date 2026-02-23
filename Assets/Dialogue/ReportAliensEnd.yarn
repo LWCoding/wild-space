@@ -3,38 +3,38 @@ title: ReportedAliens
 <<hide_all_ui_objects>>
 <<hide_all_objects>>
 <<show ScreenBlocker>>
-You finish sending the report to HQ. You followed your orders and reported everything as you saw it.
+I finish sending the report to HQ. I followed my orders and reported everything as I saw it.
 <<if $posSelfPerception > $negSelfPerception>>
-    You did your duty and upheld the integrity of your role. But you can't help but feel a bit conflicted about the report.
+    I did my duty and upheld the integrity of my role. But I can't help but feel a bit conflicted about the report.
 <<else>>
-    You feel a bit uneasy, but you rationalize that honesty is the best policy.
+    I feel a bit uneasy, but I rationalize that honesty is the best policy.
 <<endif>>
-Not soon after, you receive a reply from HQ.
+Not long after, I receive a reply from HQ.
 <<show MonitorReportedMessage>>
 ===
 
 title: MonitorReportedMessageComplete
 ---
 <<wait 2>>
-You can't help but feel a bit guilty, but you did your best to report the facts.
-And here it is, laid bare in front of you: the response from HQ.
+I can't help but feel a bit guilty, but I did my best to report the facts.
+And here it is, laid bare in front of me: the response from HQ.
 <<hide_all_objects>>
 <<show ScreenBlocker>>
 <<if $daysPassed == 3>>
-HQ sent a team to investigate the aliens you reported. They also fixed an issue with your spaceship's oxygen that you hadn't noticed before.
+HQ sent a team to investigate the aliens I reported. During the visit, they quietly patched a long-term life support irregularity I hadn't noticed before.
 <<endif>>
 <<if $desperate == false>>
-    Days pass. And afterwards, you never hear from the aliens again.
-    You presume that Earth dealt with them. You hope that, if they were found, they were treated well, but you can't shake the feeling that this isn't exactly the case.
-    You live your life out on your ship, never quite feeling at peace with what happened. You never talk to anyone again.
-    You're not even sure if the aliens were real to begin with.
+    Days pass. Afterwards, I never hear from the aliens again.
+    I presume that Earth dealt with them. I hope that, if they were found, they were treated well, but I can't shake the feeling that this isn't exactly the case.
+    I live my life out on my ship, never quite feeling at peace with what happened. I never talk to anyone again.
+    I'm not even sure if the aliens were real to begin with.
     <b>ENDING 1/5: Did it ever happen?</b>
     <<detour End>>
     <<the_end "ENDING 1/5: Did it ever happen?">>
 <<else>>
-    In the span of a few hours, a rapidly-moving rescue vehicle arrives at your location.
-    They commandeer your ship to study the incoming signals. Meanwhile, you're shipped back to Earth, and eventually, are tasked with piloting a different space vessel.
-    You never hear from the aliens again.
+    In the span of a few hours, a rapidly-moving rescue vehicle arrives at my location.
+    They commandeer my ship to study the incoming signals. Meanwhile, I'm shipped back to Earth, and eventually, am tasked with piloting a different space vessel.
+    I never hear from the aliens again.
     <b>ENDING 2/5: Desperation rescue</b>
     <<detour End>>
     <<the_end "ENDING 2/5: Desperation rescue">>

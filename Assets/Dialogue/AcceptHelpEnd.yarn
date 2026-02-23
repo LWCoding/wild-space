@@ -9,10 +9,10 @@ title: AcceptCatHelp
 <<hide_all_objects>>
 <<stop_voice_blip Cat>>
 <<show ScreenBlocker>>
-The transmission cuts off as {$catName} supposedly leaves to arrange for your rescue.
-You wait. And wait. And wait.
-Hours pass. And, just as you start to lose hope, a ship in the shape of a yarnball appears on the horizon.
-You made it. {$catName} came through for you.
+The transmission cuts off as {$catName} supposedly leaves to arrange for my rescue.
+I wait. And wait. And wait.
+Hours pass in a slow blur of creaking metal and recycled air. Just as I start to lose hope, a ship in the shape of a yarnball appears on the horizon.
+I made it. {$catName} came through for me.
 <<if $catLikesYou > $catDislikesYou * 1.5>>
     <b>ENDING 4/5: Saved by a lover</b>
 <<else>>
@@ -38,10 +38,10 @@ title: AcceptDogHelp
 <<hide_all_objects>>
 <<stop_voice_blip Dog>>
 <<show ScreenBlocker>>
-The transmission cuts off as {$dogName} supposedly leaves to arrange for your rescue.
-You wait. And wait. And wait.
-Hours pass. And, just as you start to lose hope, a spherical ball-like ship appears on the horizon.
-You made it. {$dogName} came through for you.
+The transmission cuts off as {$dogName} supposedly leaves to arrange for my rescue.
+I wait. And wait. And wait.
+Hours pass in a slow blur of creaking metal and recycled air. Just as I start to lose hope, a spherical ball-like ship appears on the horizon.
+I made it. {$dogName} came through for me.
 <<if $dogLikesYou > $dogDislikesYou * 1.5>>
     <b>ENDING 4/5: Saved by a lover</b>
 <<else>>
@@ -67,10 +67,10 @@ title: AcceptOpossumHelp
 <<hide_all_objects>>
 <<stop_voice_blip Opossum>>
 <<show ScreenBlocker>>
-The transmission cuts off as {$opossumName} supposedly leaves to arrange for your rescue.
-You wait. And wait. And wait.
-Hours pass. And, just as you start to lose hope, a dart-shaped ship appears on the horizon.
-You made it. {$opossumName} came through for you.
+The transmission cuts off as {$opossumName} supposedly leaves to arrange for my rescue.
+I wait. And wait. And wait.
+Hours pass in a slow blur of creaking metal and recycled air. Just as I start to lose hope, a dart-shaped ship appears on the horizon.
+I made it. {$opossumName} came through for me.
 <<if $opossumLikesYou > $opossumDislikesYou * 1.5>>
     <b>ENDING 4/5: Saved by a lover</b>
 <<else>>
@@ -96,10 +96,10 @@ title: AcceptBirdHelp
 <<hide_all_objects>>
 <<stop_voice_blip Bird>>
 <<show ScreenBlocker>>
-The transmission cuts off as {$birdName} supposedly leaves to arrange for your rescue.
-You wait. And wait. And wait.
-Hours pass. And, just as you start to lose hope, an egg-shaped ship appears on the horizon.
-You made it. {$birdName} came through for you.
+The transmission cuts off as {$birdName} supposedly leaves to arrange for my rescue.
+I wait. And wait. And wait.
+Hours pass in a slow blur of creaking metal and recycled air. Just as I start to lose hope, an egg-shaped ship appears on the horizon.
+I made it. {$birdName} came through for me.
 <<if $birdLikesYou > $birdDislikesYou * 1.5>>
     <b>ENDING 4/5: Saved by a lover</b>
 <<else>>

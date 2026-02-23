@@ -4,14 +4,14 @@ title: EmbraceDeath
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show ScreenBlocker>>
-You decide not to call for help.
+I decide not to call for help.
 <<if $posSelfPerception > $negSelfPerception>>
-    You feel a strange sense of peace with your decision. After all, you've lived a full life, and you're ready to face whatever comes next.
+    I feel a strange sense of peace with my decision. After all, I've lived a full life in my own strange way, and I'm ready to face whatever comes next.
 <<else>>
-    You feel a wave of sadness wash over you. You wonder if you made the right choice, but deep down, you know that this is the path you must take.
+    I feel a wave of sadness wash over me. I wonder if I made the right choice, but deep down, I know that this is the path I chose.
 <<endif>>
-You embrace death. Nobody ever hears from you again. Not that they really cared, anyways.
-Somebody eventually ends up replacing your station, and life goes on as usual.
+I close my eyes and embrace whatever comes. Nobody ever hears from me again. Or if they do, they never say anything.
+Somebody eventually ends up replacing my station, and life goes on as usual.
 <<detour End>>
 <<the_end "ENDING 3/5: Loveless fate">>
 ===
