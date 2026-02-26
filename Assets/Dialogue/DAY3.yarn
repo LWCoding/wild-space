@@ -15,11 +15,11 @@ position: -128,-338
 <<show MonitorOn>>
 I turn on the monitor to see today's tasks.
 Out of the corner of my eye, I see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
-Do I report the aliens to Earth, or let them be?
-    -> (report the aliens)
+Do I report the alien to Earth, or let them be?
+    -> (report the alien)
         I hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
-        I'm not entirely sure what will happen to the aliens, but I may never see them again.
-        -> (report the aliens)
+        I'm not entirely sure what will happen to the alien, but I may never see them again.
+        -> (report the alien)
             I get to writing my report.
             <<hide_all_objects>>
             <<show PCRoom>>
@@ -43,7 +43,7 @@ title: KeptUnderWrapsDay3
 position: -134,-190
 ---
 <<hide_all_ui_objects>>
-I finish my report, choosing not to mention the aliens.
+I finish my report, choosing not to mention the alien.
 <<hide_all_objects>>
 <<show PCRoom>>
 I get back to looking around my room. Out of boredom, I spend a few minutes glancing at every object around the room.
@@ -62,7 +62,7 @@ After a while, a soft warning flashes on the corner of the monitor: my long-term
         I take a few deep breaths, trying to <color=\#88FF88>stay calm</color>.
         The readout says I still have time, but every minute I wait is another minute closer to a problem I can't fix alone.
 I need to decide how to handle this before it becomes an emergency.
-    -> (call the aliens for help)
+    -> (call the alien for help)
         <<jump CallAliensDay3>>
     -> (ask Earth HQ for help)
         <<jump CallEarth>>
@@ -73,11 +73,8 @@ I need to decide how to handle this before it becomes an emergency.
 title: CallAliensDay3
 position: 172,-49
 ---
-It's time to make contact with one of the aliens.
-<<hide_all_objects>>
-<<show PCRoom>>
-<<show_ui ClickToInteract>>
-<<show ChooseYourCharacterDay3>>
+It's time to make contact with the alien.
+<<jump CallCatDay3>>
 ===
 
 title: CallCatDay3
@@ -155,209 +152,6 @@ I call {$catName}. I see movement, and start tweaking the dials to get the figur
 <<jump EmbraceDeath>>
 ===
 
-title: CallDogDay3
-position: 718,-466
----
-<<hide_all_objects>>
-<<show PCRoom>>
-<<hide MonitorOn>>
-<<show MonitorSilhouette>>
-<<show_character Dog Obscure right>>
-I call {$dogName}. I see movement, and start tweaking the dials to get the figure to appear clear.
-<<start_voice_blip Dog>>
-<<play_music DogTheme 0.5>>
-<<if $dogLikesYou > $dogDislikesYou>>
-    <<show_character Dog Happy right>>
-    {$dogName}: Oh! Woof. It's you again. Hi, {$dogThinksPlayerNameIs}. Woof.
-<<else>>
-    <<show_character Dog Neutral right>>
-    {$dogName}: Oh? Woof. It's you again. What do you want?
-<<endif>>
-<<show_character Dog Sad right>>
-{$dogName}: Are things okay? Woof. You look... worried.
-    -> (explain your situation)
-        <<stop_voice_blip Dog>>
-        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
-        <<start_voice_blip Dog>>
-        <<show_character Dog Thinking right>>
-        {$dogName}: Woof... have you tried asking the people from your planet for help?
-            -> I haven't tried yet.
-                <<show_character Dog Angry right>>
-                {$dogName}: Woof. I understand. Planet leaders can be frustrating.
-                    -> Is there anything you can do?
-                        <<if $dogLikesYou < $dogDislikesYou>>
-                            <<show_character Dog Sad right>>
-                            {$dogName}: Woof... I don't know. I can't think of anything, {$dogThinksPlayerNameIs}. I'm sorry.
-                            {$dogName}: I hope you can figure it out.
-                            <<stop_voice_blip Dog>>
-                            Stricken by sadness, you end the call.
-                            <<jump EmbraceDeath>>
-                        <<else>>
-                            <<show_character Dog Neutral right>>
-                            {$dogName}: Alright, I'll help you. You're a good human, {$dogThinksPlayerNameIs}. Woof.
-                        <<endif>>
-                    -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
-                        <<stop_voice_blip Dog>>
-                        You decide to disconnect the call with {$dogName} for now.
-                        <<play_music MainTheme>>
-                        <<hide_all_characters>>
-                        <<hide_all_objects>>
-                        <<show PCRoom>>
-                        <<show MonitorOff>>
-                        <<jump CallEarth>>
-            -> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-                {$dogName}: Woof... I see. That seems pretty urgent. Let me see what I can do.
-            -> I'd rather have your help instead. <<if $dogLikesYou >= $dogDislikesYou>>
-                <<show_character Dog Flirt right>>
-                {$dogName}: Heh, oh you... Alright, I'll help you out. Woof.
-<<show_character Dog Neutral right>>
-{$dogName}: Be prepared for a rescue mission soon. I know a friend that can take you on their home planet. Woof. We can spend some time together there. Woof.
-{$dogName}: Also, woof. You may never be able to return to your home planet again. Woof. Can't cause problems with them.
-    -> Isn't there another way?
-        {$dogName}: Woof... do you have any plans? Because I sure don't.
-            -> Let's do it.
-                <<jump AcceptDogHelp>>
-            -> I think I'll just accept my fate instead.
-    -> Let's do it.
-        <<jump AcceptDogHelp>>
-    -> I think I'll just accept my fate instead. <<if $posSelfPerception <= $negSelfPerception>>
-===
-
-title: CallOpossumDay3
-position: 111,-468
----
-<<hide_all_objects>>
-<<show PCRoom>>
-<<hide MonitorOn>>
-<<show MonitorSilhouette>>
-<<show_character Opossum Obscure right>>
-I call {$opossumName}. I see movement, and start tweaking the dials to get the figure to appear clear.
-<<start_voice_blip Opossum>>
-<<play_music OpossumTheme 0.5>>
-<<if $opossumLikesYou > $opossumDislikesYou>>
-    <<show_character Opossum Happy right>>
-    {$opossumName}: Oh! It's you again. Hi, {$opossumThinksPlayerNameIs}.
-<<else>>
-    <<show_character Opossum Neutral right>>
-    {$opossumName}: Oh? It's you again. What do you want?
-<<endif>>
-<<show_character Opossum Confused right>>
-{$opossumName}: Are things okay? You look... worried.
-    -> (explain your situation)
-        <<stop_voice_blip Opossum>>
-        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
-        <<start_voice_blip Opossum>>
-        <<show_character Opossum Thinking right>>
-        {$opossumName}: Huh, that is a pickle. Your home planet's not trying to save you?
-            -> I haven't tried yet.
-                <<show_character Opossum Thinking right>>
-                {$opossumName}: Heh, well as much as I appreciate you thinking of me first, I'm not entirely sure what I can do. My home planet's a bit... different.
-                    -> Is there anything you can do?
-                        <<if $opossumLikesYou < $opossumDislikesYou>>
-                            <<show_character Opossum Sad right>>
-                            {$opossumName}: I don't know. I can't think of anything, {$opossumThinksPlayerNameIs}. I'm sorry.
-                            {$opossumName}: I hope you can figure it out.
-                            <<stop_voice_blip Opossum>>
-                            Stricken by sadness, you end the call.
-                            <<jump EmbraceDeath>>
-                        <<else>>
-                            <<show_character Opossum Neutral right>>
-                            {$opossumName}: Ugh... hm, I guess... I might be able to make something work.
-                        <<endif>>
-                    -> I'll try calling Earth first. (call earth) <<if $askedEarthForHelp == false>>
-                        <<stop_voice_blip Opossum>>
-                        You decide to disconnect the call with {$opossumName} for now.
-                        <<play_music MainTheme>>
-                        <<hide_all_characters>>
-                        <<hide_all_objects>>
-                        <<show PCRoom>>
-                        <<show MonitorOff>>
-                        <<jump CallEarth>>
-            -> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-                <<show_character Opossum Neutral right>>
-                {$opossumName}: Ugh, that is pretty inconvenient.
-            -> I'd rather have your help instead. <<if $opossumLikesYou >= $opossumDislikesYou>>
-                <<show_character Opossum Flirt right>>
-                {$opossumName}: ...That's bold of you.
-                {$opossumName}: I guess, I can try to hitch a ride and help you fix your oxygen problem. I've worked with that sorta stuff before.
-<<show_character Opossum Happy right>>
-{$opossumName}: If I can get over there, maybe we could chill for a while, too.
-    -> Let's do it.
-        <<jump AcceptOpossumHelp>>
-    -> I think I'll just accept my fate instead. <<if $posSelfPerception <= $negSelfPerception>>
-===
-
-title: CallBirdDay3
-position: 411,-467
----
-<<hide_all_objects>>
-<<show PCRoom>>
-<<hide MonitorOn>>
-<<show MonitorSilhouette>>
-<<show_character Bird Obscure right>>
-I call {$birdName}. I see movement, and start tweaking the dials to get the figure to appear clear.
-<<start_voice_blip Bird>>
-<<play_music BirdTheme 0.5>>
-<<if $birdLikesYou >= $birdDislikesYou>>
-    <<show_character Bird Happy right>>
-    {$birdName}: Oh! Hey, {$birdThinksPlayerNameIs}. A nice surprise as always!
-<<else>>
-    <<show_character Bird Neutral right>>
-    {$birdName}: Oh? Hi again. What do you want?
-<<endif>>
-<<show_character Bird Confused right>>
-{$birdName}: Are things okay? You look... worried.
-    -> (explain your situation)
-        <<stop_voice_blip Bird>>
-        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
-        <<start_voice_blip Bird>>
-        <<show_character Bird Afraid right>>
-        {$birdName}: Th-that's terrible! 
-        <<show_character Bird Thinking right>>
-        {$birdName}: And what about your home planet? What are they doing to help you?
-            -> I haven't tried yet.
-                <<show_character Bird Nervous right>>
-                {$birdName}: Oh? Is there a reason you're calling me instead?
-                    -> Is there anything you can do?
-                        <<if $birdLikesYou < $birdDislikesYou>>
-                            <<show_character Bird Sad right>>
-                            {$birdName}: I don't know. I can't think of anything, {$birdThinksPlayerNameIs}. I'm sorry.
-                            {$birdName}: I hope you can figure it out.
-                            <<stop_voice_blip Bird>>
-                            Stricken by sadness, you end the call.
-                            <<jump EmbraceDeath>>
-                        <<else>>
-                            <<show_character Bird Neutral right>>
-                            {$birdName}: ...I think I may know of something. I can try to get you to my planet.
-                        <<endif>>
-                    -> Let me call them. (call earth) <<if $askedEarthForHelp == false>>
-                        You decide to disconnect the call with {$birdName} for now.
-                        <<play_music MainTheme>>
-                        <<hide_all_characters>>
-                        <<hide_all_objects>>
-                        <<show PCRoom>>
-                        <<show MonitorOff>>
-                        <<jump CallEarth>>
-            -> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-                <<show_character Bird Sad right>>
-                {$birdName}: Oh... oh, no.
-                {$birdName}: I-I... it's not ideal, but I think I may be able to help you after all. I can try to get you to my planet.
-            -> I'd rather have your help instead. <<if $birdLikesYou >= $birdDislikesYou>>
-                <<show_character Bird Flirt right>>
-                {$birdName}: Heh, oh you... Alright, I'll help you out. Maybe... we can spend some time together. I can try to get a ship arranged to get you here.
-<<show_character Bird Neutral right>>
-{$birdName}: But, note that if I get you here, you may never be able to return to your home planet again. I can't risk getting into trouble with their leaders.
-    -> Isn't there another way?
-        <<show_character Bird Sad right>>
-        {$birdName}: Sadly, this is the only thing I can think of.
-            -> Let's do it.
-                <<jump AcceptBirdHelp>>
-            -> I think I'll just accept my fate instead.
-    -> Let's do it.
-        <<jump AcceptBirdHelp>>
-    -> I think I'll just accept my fate instead. <<if $posSelfPerception <= $negSelfPerception>>
-===
-
 title: CallEarth
 position: 400,-239
 ---
@@ -365,8 +159,8 @@ position: 400,-239
 I call Earth about my situation.
 They claim that they could send help, but it wouldn't make it to me on time unless I give them a stronger reason to prioritize my ship.
 I have a feeling that I can get them to send their emergency rescue team if I convince them that my life is in danger.
-    -> (tell them about the aliens you saw)
-        I think about the idea of telling them about the aliens. This could convince them to send help faster, but would put the aliens at risk of being discovered.
+    -> (tell them about the alien you saw)
+        I think about the idea of telling them about the alien. This could convince them to send help faster, but would put the alien at risk of being discovered.
         -> (go through with it)
             I explain the situation to Earth HQ, emphasizing the urgency of my predicament.
             <<set $desperate = true>>
@@ -375,12 +169,12 @@ I have a feeling that I can get them to send their emergency rescue team if I co
             <<show_ui TypeToInteract>>
             <<show MonitorReportDay3>>
         -> (reconsider)
-            I reconsider my options. Maybe there's another way to get help without putting the aliens at risk.
-            -> (call the aliens for help)
+            I reconsider my options. Maybe there's another way to get help without putting the alien at risk.
+            -> (call the alien for help)
                 <<jump CallAliensDay3>>
             -> (embrace death)
                 <<jump EmbraceDeath>>
-            -> (nevermind, tell earth about the aliens you saw)
+            -> (nevermind, tell earth about the alien you saw)
                 You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
                 <<set $desperate = true>>
                 <<hide_all_objects>>
@@ -389,7 +183,7 @@ I have a feeling that I can get them to send their emergency rescue team if I co
                 <<show MonitorReportDay3>>
     -> (nevermind, you can manage on your own)
         I pace back and forth, considering my options.
-            -> (call the aliens for help)
+            -> (call the alien for help)
                 <<jump CallAliensDay3>>
             -> (embrace death)
                 I hesitate for a moment. Do I really want to give up?

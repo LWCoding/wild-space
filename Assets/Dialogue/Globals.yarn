@@ -1,21 +1,9 @@
 title: Globals
 ---
 <<declare $catThinksPlayerNameIs = "Human">>
-<<declare $dogThinksPlayerNameIs = "Human">>
-<<declare $opossumThinksPlayerNameIs = "Human">>
-<<declare $birdThinksPlayerNameIs = "Human">>
 <<declare $catKnowsPlayerName = false>>
-<<declare $dogKnowsPlayerName = false>>
-<<declare $opossumKnowsPlayerName = false>>
-<<declare $birdKnowsPlayerName = false>>
 <<declare $catLikesYou = 4>>
 <<declare $catDislikesYou = 4>>
-<<declare $dogLikesYou = 4>>
-<<declare $dogDislikesYou = 4>>
-<<declare $opossumLikesYou = 4>>
-<<declare $opossumDislikesYou = 4>>
-<<declare $birdLikesYou = 4>>
-<<declare $birdDislikesYou = 4>>
 
 <<declare $posSelfPerception = 0>>
 <<declare $negSelfPerception = 2>>
@@ -26,26 +14,14 @@ title: Globals
 
 <<declare $charactersSecured = 0>>  // Number of characters that have stayed on the ship after Day 1
 <<declare $catSecured = false>>  // Whether the cat stayed around after Day 1
-<<declare $dogSecured = false>>  // Whether the dog stayed around after Day 1
-<<declare $opossumSecured = false>>  // Whether the opossum stayed around after Day 1
-<<declare $birdSecured = false>>  // Whether the bird stayed around after Day 1
 
 <<declare $knowsAboutConditionalChoices = false>> // Whether the player knows about the conditional choices
 
 <<declare $playerName = "Player">>
 <<declare $catName = "Gnarp">>
-<<declare $dogName = "Purble">>
-<<declare $opossumName = "Joey">>
-<<declare $birdName = "Alfie">>
-
-<<declare $talkedToDog = false>>
-<<declare $talkedToOpossum = false>>
-<<declare $talkedToBird = false>>
 
 <<declare $askedEarthForHelp = false>>  // whether the player asked Earth HQ for help (varies ending)
 <<declare $desperate = false>>  // whether the player is asking for help with oxygen (varies ending)
 
 <<declare $daysPassed = 1>>
-
-<<declare $talkedToPersonDay2 = false>>  // Whether the player talked to a character on Day 2
 ===
