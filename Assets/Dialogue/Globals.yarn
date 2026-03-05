@@ -13,7 +13,6 @@ title: Globals
 <<declare $monitorExplored = false>>
 
 <<declare $charactersSecured = 0>>  // Number of characters that have stayed on the ship after Day 1
-<<declare $catSecured = false>>  // Whether the cat stayed around after Day 1
 
 <<declare $knowsAboutConditionalChoices = false>> // Whether the player knows about the conditional choices
 

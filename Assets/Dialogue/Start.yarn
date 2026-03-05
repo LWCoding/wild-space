@@ -13,11 +13,8 @@ title: ConfirmStart
 <<hide_ui IntroScreen>>
 <<show_ui HistoryButton>>
 <<show_ui SkipToggle>>
-It is silent. I'm floating in the vast emptiness of space.
-I am utterly alone. It feels... relaxing.
-Back on Earth, I always felt invisible.
-Nobody loved me. Nobody cared about me. 
-// You have no friends, your family doesn't acknowledge you, and you find yourself with no purpose.
-I drift aimlessly. I might as well choose a name for myself.
+I'm floating in the vast emptiness of space.
+I am utterly alone. It feels... oddly relaxing?
+I drift aimlessly. Everything feels like a blur. What... is my name again?
 <<prompt_name NamePrompter>>
 ===

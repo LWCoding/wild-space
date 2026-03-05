@@ -1,12 +1,13 @@
-title: AfterName
+﻿title: AfterName
 position: 22,-593
 ---
 <<hide Drifting>>
 <<speed 1>>
+You: Okay... {$playerName}, clear your mind.
 I snap out of it, realizing I am not suspended in mid-air.
 <<show Bedroom>>
 <<wait 9.5>>
-I'm standing on a hard surface. My head feels heavy, and my body aches all over.
+I'm standing on a hard, metal surface.
 I'm at home. In my metal spaceship.
 <<fade_transition 2>>
 <<wait 1>>
@@ -14,10 +15,6 @@ I'm at home. In my metal spaceship.
 <<show PCRoom>>
 <<wait 1>>
 It's a quiet day, as always.
-    -> Hello?
-        Nothing. Every sound I make echoes off the walls. I'm alone.
-        -> (take a look around)
-            <<jump LookAround>>
     -> (take a look around)
         <<jump LookAround>>
 ===
@@ -31,7 +28,6 @@ position: 23,-416
 <<show MonitorOffDay1>>
 <<show CalendarDay1>>
 <<show RouterDay1>>
-I re-familiarize myself with my surroundings.
 <<show_ui ClickToInteract>>
 <<endonce>>
 ===
@@ -46,9 +42,10 @@ position: 315,-648
 <<show Stars>>
 <<show Sitting>>
 This is the life that I've committed myself to, ever since taking the job to pilot this small exploration vessel.
-I am tasked with reporting astronomical oddities back to Earth, as the first line of defense against the unknown.
+I'm on the seventh expedition to the strange dark spot in front of the sun.
+My dad was the pilot of the last expedition, who never returned.
 But deep inside, I knew this was just to get a chance away from Earth.
-Nothing of interest seems to be happening. I start to spiral, sitting and pondering the emptiness around me.
+You: I guess I have some time... what should I do?
     -> (contemplate my life on Earth)
         I ponder the vastness of existence and my place within it.
         The silence of space seems to amplify my thoughts, making me feel both insignificant and connected to the universe.
@@ -74,7 +71,9 @@ Nothing of interest seems to be happening. I start to spiral, sitting and ponder
         Part of me still wants to prove that leaving wasn't just another failure.
         <<set $posSelfPerception += 1>>
         I do a few push-ups to keep my strength up. Strangely enough, I feel <color=\#88FF88>a little happier</color> afterwards.
-I decide to get back to doing something. Anything is better than sitting around.
+<<play_sound AlarmClock>>
+A timer goes off in the background.
+You: Sounds like it's time to do my report.
 <<hide_all_objects>>
 <<show PCRoom>>
 <<jump DoJobFirstTime>>
@@ -85,7 +84,7 @@ position: 308,-448
 ---
 I stand up and turn on the computer. 
 As part of my job, I need to complete a daily report on my findings.
-Given they're all the same, I'm not sure HQ pays much attention to them. But at least, it gives me a sense of routine.
+Given they're all the same, I'm not sure HQ pays much attention to them. At least it gives me a sense of routine.
 <<show MonitorReportDay1>>
 <<show_ui TypeToInteract>>
 ===
@@ -94,8 +93,7 @@ title: AfterTypedFirstTime
 position: 15,-241
 ---
 <<hide_ui TypeToInteract>>
-I sigh, after having written the same report for the 620th time. 
-The report is done for the day.
+Done. The same report for the 620th time. 
     -> (turn off the monitor)
 <<hide MonitorReportDay1>>
 <<jump MonitorOn>>
@@ -117,43 +115,37 @@ The noise thins, then resolves, locked onto a different frequency. The monitor j
 A dark figure appears on the screen, accompanied with a static-filled voice.
 <<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
-    -> Hello?
-    -> What the...
-    -> ...
-    The voice from the monitor continues to speak.
-    ???: Please... <i>*kshh*</i> if... there... yourself... known...
-    <<stop_voice_blip Cat>>
-    <<jump EnterMessage>>
+<<stop_voice_blip Cat>>
+You: ...............
+<<start_voice_blip Cat>>
+???: Please... <i>*kshh*</i> if... there... yourself... known...
+???: Click... <i>*bzzt*</i> comm... cation... panel...
+<<stop_voice_blip Cat>>
+<<jump EnterMessage>>
 ===
 
 title: EnterMessage
 position: 316,-234
 ---
-<<start_voice_blip Cat>>
-???: Click... <i>*bzzt*</i> comm... cation... panel...
-<<stop_voice_blip Cat>>
-With my expertise, I think I can adjust the frequency and let the signal through.
+I'm frozen in place. Is this really happening?
+My mouth doesn't open. I can't speak a word. My voice... is gone.
+Out of the hundreds of days I've spent in space, I've never seen something like this.
+What should... I... do?
     -> (let the signal through)
         <<jump CatIntro>>
-    -> (ignore the signal. it's probably nothing.)
-        I decide to ignore the signal. It's probably just static interference.
+    -> (ignore the signal)
+        You: ..........
+        Against my better judgment, I decide to ignore the signal. 
+        You: Darn static interference...
         <<hide_all_characters>>
         <<hide MonitorSilhouette>>
         <<wait 1>>
         <<show MonitorSilhouette>>
         <<set $negSelfPerception += 1>>
-        After a few moments, the screen flickers back to static. I'm alone, again. I feel <color=\#FF8888>more isolated</color>.
-        How should I pass the time?
-            -> (block them out of your head)
-                I decide to play a game on the monitor to pass the time.
-                <<set $negSelfPerception += 1>>
-                The game is simple, but its monotony makes me feel <color=\#FF8888>even more lonely</color>.
-            -> (try to find the signal again)
-                I fiddle with the dials and knobs, trying to find the signal again.
 <<hide_all_objects>>
 <<show_character Cat Obscure right>>
-Suddenly, the same character from before reappears on the screen.
-    -> (get it over with. let the signal through.)
+Suddenly, the same signal reappears on the screen. Whatever it is won't take ignorance for an answer.
+    -> (let the signal through)
         <<jump CatIntro>>
     -> (unplug the monitor)
         <<hide_all_characters>>
@@ -166,185 +158,176 @@ Suddenly, the same character from before reappears on the screen.
 title: CatIntro
 position: 318,-2
 ---
-Suddenly, the figure comes into view.
+My heart is hammering. I can't tell if I'm breathing. There's... something that isn't human. Something that's <i>talking to me</i>.
+You: Here goes nothing...
 <<show_character Cat Sad right>>
 <<start_voice_blip Cat>>
 <<play_music CatTheme 0.5>>
-???: Hey, I caught your signal from our ship! Are you alright?
+???: Hello! See your signal! You okay? You... not hurt?
+I stare. My brain refuses to process the words. That voice. It's real. This is really happening.
+???: I hear you. So... you are... <i>human</i>? Real human? From Earth?
     -> ...What?
-    -> Aww, you're so cute!
+    -> A cat?
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<show_character Cat Neutral right>>
-        ???: Oh, um... Thank... you?
+        ???: Oh! Cat! Those cute things. You say... nice thing? Thank? Thank you!
         <<show_character Cat Sad right>>
-        ???: But seriously, are you okay out there? You look like you're all alone.
+        ???: But you okay, yes? You look... alone. Many alone.
             -> Yeah, I'm fine.
                 <<show_character Cat Thinking right>>
-                ???: Hm, alright. That's at least somewhat reassuring.
+                ???: Okay, good. I am... relief? Relieved. Yes.
             -> Not really.
                 <<show_character Cat Neutral right>>
-                ???: Oh... I'm sorry to hear that. Space can be a lonely place.
+                ???: Oh. Space is... lonely place. I know this.
             -> (scream in confusion)
                 <<stop_voice_blip Cat>>
+                I can't help it... I take a deep breath, and...
+                You: AAAAAAHHHHHHHH!!!
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Surprised right>>
-                I scream deafeningly loudly. The creature on the monitor jumps back in surprise.
+                The creature on the monitor flinches back, ears flattening.
                 <<start_voice_blip Cat>>
-                ???: AH! That... surely is a strange introduction.
+                ???: AH! So loud! My ears... they very sensitive!
                 <<show_character Cat Sad right>>
-                ???: Please try to spare my ears next time... these are quite sensitive.
-    -> (scream. what is happening.)
-        <<stop_voice_blip Cat>>
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
-        <<show_character Cat Surprised right>>
-        I scream deafeningly loudly. The creature on the monitor jumps back in surprise.
-        <<start_voice_blip Cat>>
-        ???: AH! That... surely is a strange introduction.
-        <<show_character Cat Sad right>>
-        ???: Please try to spare my ears next time... these are quite sensitive.
+                ???: Please... next time more quiet? I not mean scare you...
+I'm still reeling. An alien, asking if I'm okay. My hands are shaking.
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
-???: You don't seem to act like you're in danger. What're you doing in space?
-    -> What the fuck? What <i>are</i> you?
+???: You not look in danger. So... what you do in space? Why you here?
+    -> What <i>are</i> you?
         <<show_character Cat Neutral right>>
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
-        ???: ...don't be rude.
-        ???: It's not everyday that you meet another lifeform just floating around in space.
+        ???: That... not kind. Rude.
+        ???: We both life. We both in space. I just... curious.
     -> Who... what... are you?
     -> Why do you want to know?
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Thinking right>>
-        ???: I guess it's not entirely my business... but I was just curious.
-<<if $catLikesYou >= $catDislikesYou>>
+        ???: Sorry. I just... want know. I only small— two orbit old? So many thing I not understand yet.
 <<show_character Cat Happy right>>
-{$catName}: Oh! I'm so sorry, I should introduce myself. My name is 猫喵猫猫喵, but you can just call me {$catName}.
-<<show_character Cat Happy2 right>>
-<<else>>
-{$catName}: My name is 猫喵猫猫喵. But to keep things simple, you can just call me {$catName}.
-<<show_character Cat Neutral right>>
-<<endif>>
-{$catName}: I'm from the planet Linnaeus. It's nice to meet you.
-    -> You're an alien?
-        <<show_character Cat Thinking right>>
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
-        {$catName}: Hm? I guess so?
-        <<show_character Cat Neutral right>>
-        {$catName}: I'm not from your planet of origin. I come from a place far away.
-        <<show_character Cat Angry right>>
-        {$catName}: "Alien" is a bit demeaning, though, don't you think?
-    -> 猫喵猫猫喵? What name is that?
-        <<show_character Cat Thinking right>>
-        {$catName}: It's... hard to explain.
-        <<show_character Cat Happy2 right>>
-        {$catName}: Just call me {$catName}, it's easier that way.
-    -> Meowdy.
-        <<show_character Cat Thinking right>>
-        {$catName}: ...Meowdy? That's an interesting way to greet someone.
-        <<show_character Cat Flirt right>>
-        <<set $catLikesYou += 1>>
-        <<positive_indicator Cat>>
-        {$catName}: I guess, meowdy to you too.
-<<show_character Cat Happy right>>
-{$catName}: But anyways, I'm glad you're safe... um... 
-<<show_character Cat Thinking right>>
-{$catName}: I guess... you're a human, right?
-{$catName}: I've heard stories about your kind.
-{$catName}: Is it true that you walk on two legs and have opposable thumbs?
--> Yeah, it's pretty cool.
-    <<show_character Cat Happy2 right>>
-    <<set $catLikesYou += 1>>
-    <<positive_indicator Cat>>
-    {$catName}: That's incredible! You must be very dexterous.
--> (lie) No. What?
-    <<show_character Cat Sad right>>
-    {$catName}: Aw, that's disappointing. I was hoping to see some cool tricks.
-<<show_character Cat Thinking right>>
-{$catName}: What should I call you?
+???: Before more question... you have name? What I call you? Human have this, one word for each? So interesting to me!
+My mouth is dry. It's asking for my name. It wants to know what to call me. I'm having a conversation with an alien. I'm having a conversation with an <i>alien</i>.
+???: I want remember you. Please?
     -> My name's {$playerName}.
         <<show_character Cat Happy right>>
         <<set $catLikesYou += 1>>
         <<positive_indicator Cat>>
         <<set $catKnowsPlayerName = true>>
-        <<if $playerName == "Dipper">>
-            {$catName}: {$playerName}? Like the star system? That's pretty cute.
-        <<else>>
-            {$catName}: Ah, {$playerName}! It's nice to meet you.
-        <<endif>>
         <<set $catThinksPlayerNameIs = $playerName>>
+        <<if $playerName == "Dipper">>
+            ???: {$playerName}? Like the star? So cute! I like.
+        <<else>>
+            ???: {$playerName}! I like this sound. Nice to meet, {$playerName}!
+        <<endif>>
     -> I don't know you...
         <<show_character Cat Sad right>>
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
-        {$catName}: Aw, that's fine. I guess I was a little forward.
+        ???: Oh. Okay. I... too fast? Sorry.
         <<show_character Cat Neutral right>>
-        {$catName}: But, just to make things easier, is there something you'd like me to call you?
+        ???: But for talk... something to call you? Anything okay.
         -> It's {$playerName}.
-            {$catName}: {$playerName}? That's a nice name.
+            ???: {$playerName}. Nice. I remember.
             <<set $catThinksPlayerNameIs = $playerName>>
         -> (lie) I don't have a name.
             <<show_character Cat Thinking right>>
-            {$catName}: Oh, huh. That's okay. How would people refer to you then, though?
+            ???: No name? How other human call you then?
             <<show_character Cat Flirt right>>
-            {$catName}: I guess I'll just call you "Human". I'm a master at nicknames.
+            ???: I call you "Human" maybe. I good at... nickname? Yes.
     -> ...
-        {$catName}: A bit shy? That's okay, I guess. 
+        ???: Shy? Okay, okay. No problem.
         <<show_character Cat Flirt right>>
-        {$catName}: I guess I'll just call you "Human", then. I'm a master at nicknames.
-<<show_character Cat Neutral right>>
-{$catName}: You should be careful here, though. Space is dangerous!
+        ???: I call you "Human" then. I good at nickname!
 <<show_character Cat Thinking right>>
-{$catName}: What brings you out here? Wouldn't you rather be on your home planet?
+???: So... you really human, yes? From Earth? I hear story... so many story! I never see one before!
+I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> to meet a human. Like I'm some kind of... celebrity. Or a rare animal.
+???: Human have two leg? And thumb? The... the grabby finger? So many thing I want ask!
+-> Yeah, it's pretty cool.
+    <<show_character Cat Happy2 right>>
+    <<set $catLikesYou += 1>>
+    <<positive_indicator Cat>>
+    ???: Yes! So cool! You must do many thing with hand. I want see someday!
+-> (lie) No. What?
+    <<show_character Cat Sad right>>
+    ???: Oh. I sad. I want see trick with thumb...
+<<show_character Cat Happy right>>
+???: I from place... planet? Far from here. Very far. Nice to meet you, {$catThinksPlayerNameIs}!
+    -> You're an alien?
+        <<show_character Cat Thinking right>>
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        ???: Alien? I... not from your planet. So maybe yes?
+        <<show_character Cat Neutral right>>
+        ???: I from other place. Far away.
+        <<show_character Cat Angry right>>
+        ???: But "alien" sound... mean? Like I am strange bad thing. I not mean hurt you.
+        <<show_character Cat Thinking right>>
+        ???: Oh, you want call me something? We not have name. I make one for you! I am Gnarp!
+        <<set $catName = "Gnarp">>
+        <<show_character Cat Happy right>>
+        {$catName}: There. Now you can say.
+    -> What should I call you? Do you have a name?
+        <<show_character Cat Thinking right>>
+        ???: Name? For me? We... we not have this. One word for one person? My people not do that. We know each other by... by smell, by sound. By who we are.
+        <<show_character Cat Happy right>>
+        ???: But you have name! So interesting! So I... I make one! For you to say! Yes!
+        ???: I am... I am Gnarp! Gnarp! You can call Gnarp!
+        <<set $catName = "Gnarp">>
+        <<show_character Cat Happy2 right>>
+        {$catName}: I like it! I am Gnarp now!
+    -> Meowdy.
+        <<show_character Cat Thinking right>>
+        ???: Meowdy? What is... oh! Greeting! Interesting!
+        <<show_character Cat Flirt right>>
+        <<set $catLikesYou += 1>>
+        <<positive_indicator Cat>>
+        ???: Meowdy to you also! I like this word.
+        ???: But, what I call? You ask my name? We not have. So I make one! I am Gnarp!
+        <<set $catName = "Gnarp">>
+        {$catName}: Yes. Gnarp. For you to say.
+<<show_character Cat Happy right>>
+{$catName}: So! You careful here. Space is... dangerous. Many danger.
+<<show_character Cat Thinking right>>
+{$catName}: Why you here? Why not stay on Earth? Your home?
     -> Escaping it all, I guess.
         <<show_character Cat Neutral right>>
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
-        {$catName}: I understand that feeling. Sometimes, it's nice to get away from everything.
+        {$catName}: I understand. Sometimes... need get away. I understand.
     -> (lie) Exploring the cosmos.
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Sad right>>
-        {$catName}: Oh, wow... you'd risk your life for something like that?
+        {$catName}: Oh. You risk life for... look at space? So brave. Maybe little... crazy? Too.
         <<show_character Cat Neutral right>>
-        {$catName}: That's... quite brave. Maybe a little suicidal, too.
     -> I'm... not sure.
         <<show_character Cat Thinking right>>
-        {$catName}: Hm, that's okay. Sometimes, we don't have all the answers right away.
-        {$catName}: It might be in your best interest to find somewhere safer, though. It's pretty unpredictable out here.
+        {$catName}: Okay. Not sure okay. Sometime we not know. But find safe place good idea. Here very... unpredictable.
 <<show_character Cat Surprised right>>
-{$catName}: Ah! Right, I have a meeting to get to. It's not my plan to keep you here for over an orbit.
+A sound from their end... scuffling, something heavy shifting. A low voice, muffled and indistinct, in the background. {$catName} glances off-screen, ears flattening.
+{$catName}: Oh. I— I sorry. I have to go. Now. Sorry!
 <<if $catLikesYou >= $catDislikesYou>>
-    <<show_character Cat Happy right>>
-    {$catName}: Let's talk again soon, though. I'm interested in getting to know more about you, {$catThinksPlayerNameIs}.
-    <<show_character Cat Flirt right>>
-    {$catName}: If you want to chat again, just give me a ping. See ya!
-    <<set $catSecured = true>>
+    <<show_character Cat Sad right>>
+    {$catName}: But... you ping me, yes? I want talk again, {$catThinksPlayerNameIs}. Sorry, sorry!
+    <<show_character Cat Surprised right>>
+    {$catName}: I go. Bye!
 <<else>>
     <<show_character Cat Neutral right>>
-    {$catName}: Well, I'll get going, {$catThinksPlayerNameIs}. Take care of yourself out here.
+    {$catName}: You take care, {$catThinksPlayerNameIs}. Sorry.
 <<endif>>
+More shuffling. The feed flickers. {$catName} opens their mouth as if to say something else... then the screen cuts to static.
 <<stop_voice_blip Cat>>
 <<hide_all_characters>>
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
 <<play_music MainTheme>>
-<<if $catSecured == false>>
-    <<deactivate_icon Cat>>
-<<endif>>
-The transmission cuts off as {$catName} takes their leave.
-<<if $catSecured == true>>
-    <<set $charactersSecured += 1>>
-    {$catName} uploads a sequence of radio waves in file format onto your device, letting you ping them again in the future.
-    Suddenly, the screen flickers back to static. {$catName} is gone, for now.
-        -> {$catName}? Can you hear me?
-            I tap the monitor and move around the dials, but nobody responds. I'm alone, again.
-        -> (sit down)
-<<endif>>
+The transmission cuts off. Whatever was happening on their end, they're gone.
+<<set $charactersSecured += 1>>
+Your device receives a strange series of pings afterwards, and the screen flickers back to static. {$catName} is gone.
 <<jump ThinkingAfterCatLeaves>>
 ===
 
@@ -356,7 +339,7 @@ position: 310,187
 <<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
-I sit back down, trying to process the encounter I just had.
+I sit back down... trying to process the encounter I just had.
 Who was that creature? How is that even possible?
 <<if $catLikesYou > $catDislikesYou>>
     <<set $posSelfPerception += 1>>
@@ -367,21 +350,24 @@ Who was that creature? How is that even possible?
     <<set $negSelfPerception += 1>>
     To me, the <color=\#FF8888>whole encounter felt off</color>. Aliens? Of all times, why now?
     I think about what others on Earth would say if they found out about this encounter. Although it is my job to report such things, would they really believe I met a friendly animal alien?
-    Maybe, I'll think about it after a night's rest.
 <<endif>>
 <<hide_all_objects>>
 <<fade_transition 2>>
 <<wait 1>>
 <<show PCRoom>>
 The cabin falls silent again as the static fades back into the background hum.
-I slip back into the same routine: filling out reports, heating up rations, staring at the same metal walls.
+First contact. That's the kind of thing you're supposed to flag immediately... protocol, duty, all of it.
+But my mind is too hazy to think about writing right now.
 <<wait 1.5>>
-Days blur together in a dull loop. Sometimes I have to check the logs just to remember how long I've been out here.
 <<show Stars>>
 <<show Sitting>>
-Out here, time stretches until it feels like I've been alone on this ship for months.
-I think about Earth—about the classes I walked out of, the friends I stopped returning messages from, and the way I grabbed this posting like a life raft.
-Part of me wonders if there's anything left to go back to. Part of me isn't sure I want there to be.
+I sit with that for a while. The stars don't answer.
+Then, I decide to sleep on it. Just for the meantime.
+<<hide_all_objects>>
+<<fade_transition 2>>
+<<wait 1>>
+<<show PCRoom>>
+I heat up rations. I stare at the same metal walls. The routine carries me through the rest of the evening, but my head is somewhere else. Somewhere between the static and the memory of a voice that wasn't human, asking for my name.
 <<jump EndDay1>>
 ===
 
@@ -391,8 +377,6 @@ position: 1063,-84
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show PCRoom>>
-The weight of the silence, and the memory of that strange call, finally catches up with me.
-I decide to call it a day; maybe after I wake up, I'll have a clearer idea of what I'm doing out here, and who I'm trying to become.
 <<fade_transition 3>>
 <<wait 3>>
 <<jump StartDay2>>

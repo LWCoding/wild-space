@@ -2877,8 +2877,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onlyInteractableOnce: 1
   _nodeName: CallCatDay3
-  _requiredVariables:
-  - catSecured
+  _requiredVariables: []
   _enablePulse: 1
   _hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _interactedGrayness: 0.6
@@ -5888,8 +5887,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _onlyInteractableOnce: 1
   _nodeName: CallCatDay2
-  _requiredVariables:
-  - catSecured
+  _requiredVariables: []
   _enablePulse: 1
   _hoverColor: {r: 0.8, g: 0.8, b: 0.8, a: 1}
   _interactedGrayness: 0.4

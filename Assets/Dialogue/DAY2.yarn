@@ -18,9 +18,6 @@ position: 85,114
 I turn on the monitor to see today's tasks.
 Before I start my report, I notice a new message from HQ.
 It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
-<<if $catSecured == false>>
-    <<jump ForeverAlone>>
-<<endif>>
 I ponder my next report. Do I report the encounter with the alien, knowing that Earth may react harshly? Or keep it under wraps?
     -> (report the alien)
         I hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
