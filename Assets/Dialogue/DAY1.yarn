@@ -365,12 +365,43 @@ But my mind is too hazy to think about writing right now.
 <<show Stars>>
 <<show Sitting>>
 I sit with that for a while. The stars don't answer.
+I heat up rations. I stare at the same metal walls. The routine carries me through the rest of the evening, but my head is somewhere else. Somewhere between the static and the memory of a voice that wasn't human, asking for my name.
 Then, I decide to sleep on it. Just for the meantime.
+<<jump VividDream>>
+===
+
+title: VividDream
+---
+<<hide_all_characters>>
 <<hide_all_objects>>
+<<show Stars>>
 <<fade_transition 2>>
 <<wait 1>>
-<<show PCRoom>>
-I heat up rations. I stare at the same metal walls. The routine carries me through the rest of the evening, but my head is somewhere else. Somewhere between the static and the memory of a voice that wasn't human, asking for my name.
+The stars drift. I'm not in the ship. I'm in the kitchen, the morning light coming through the window. My parents are still together. I'm small.
+My father is at the table. He's telling my mother he wants to go. An expedition led by NASA. They need pilots to find out why the sun has a hole in it. A black spot. He wants to be one of them.
+My mother's face is tight. She doesn't want him to go. She keeps shaking her head. He keeps talking.
+Then he turns to me. He tells me about a star. A beautiful one. You can see it from everywhere on Earth, he says. He's always loved it. When he goes up, he'll take a picture of it, up close in space, and one day he'll come back and show it to me in person. He promises.
+I believe him. In the dream I still believe him.
+    -> (remember my mother's hands on the table)
+        My mother's hands are on the table. She doesn't say yes. She doesn't say no. The light keeps coming through the window.
+    -> (remember the way he smiled)
+        He's smiling when he says it. Sure. Like it's already decided. The light keeps coming through the window.
+Then the kitchen is gone. I'm in elementary school. I proudly tell my friends my dad might go to space. He might fly to the sun. My dad is going to see the stars up close. How many kids can say that? 
+Then they go home and tell their parents. That's how the rumors start. My father needed an excuse to leave the family. I hear it in the hallways, at the lunch table. I don't know what to say.
+    -> (remember their faces)
+        Their faces are blurry now. The dream doesn't hold the details. Only the weight of it.
+    -> (remember the hallway)
+        The hallway stretches. Small chairs. Crayon art on the walls. Someone's laugh, somewhere. Then the dream shifts.
+Time slips, and I'm in middle school. All of my classmates are different now.
+One day he was there. The next, he wasn't. No launch. No goodbye at a rocket. No voice on the radio. The house was quieter. My mother stopped talking about him the way she used to. I told myself he was in space. That he was on the expedition. That he was keeping his promise.
+My classmates looked at me differently now. Pity. They'd touch my shoulder. You're okay, right? You're okay even though your father's gone. It's okay. He's gone, but you're okay. They thought he'd left us. 
+Everyone trying to comfort me... comfort me for something I didn't believe. He WAS in space. He was coming back. I didn't want their pity. I stopped trying to explain. I didn't make friends after that. Not really. I had people I sat with. Nobody I trusted.
+    -> (look at the stars)
+        The stars are still there. The same ones. The one he loved, visible from everywhere. I never got the picture.
+    -> (let the dream fade)
+        The dream doesn't fade. It holds. The stars hold. Somewhere, he never came back. Somewhere, I'm still that kid in the kitchen, believing him.
+<<fade_transition 2>>
+<<wait 1>>
 <<jump EndDay1>>
 ===
 
