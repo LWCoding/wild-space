@@ -42,16 +42,16 @@ position: 315,-648
 <<show Stars>>
 <<show Sitting>>
 This is the life that I've committed myself to, ever since taking the job to pilot this small exploration vessel.
-I'm on the seventh expedition to the strange dark spot in front of the sun.
-My dad was the pilot of the last expedition, who never returned.
-But deep inside, I knew this was just to get a chance away from Earth.
+Earth launched an initiative to find out why the sun suddenly had a hole in the center... a dark spot that appeared one day and never went away. It's a three-year journey just to get there. I'm on the seventh expedition they've sent.
+My dad was the pilot of the last one. He never returned.
+But deep inside, I knew signing up was just to get a chance away from Earth.
 You: I guess I have some time... what should I do?
     -> (contemplate my life on Earth)
         I ponder the vastness of existence and my place within it.
         The silence of space seems to amplify my thoughts, making me feel both insignificant and connected to the universe.
         -> (hone in on the positive)
-            I think back to a time I felt connected with someone on Earth, recalling a time when my mother taught me how to bake cookies.
-            Although she's gone now, the thought brings a smile to my face. 
+            I think back to a time I felt connected with someone on Earth, recalling when my mother taught me how to bake cookies.
+            She doesn't show much affection anymore. Not since Dad never came back from his expedition. Mostly distrust. But the memory still brings a smile to my face. 
             <<set $posSelfPerception += 1>>
             It's a small comfort in the loneliness of space. I feel <color=\#88FF88>slightly happier</color>.
         -> (dwell on the negative)
@@ -61,14 +61,14 @@ You: I guess I have some time... what should I do?
             <<set $negSelfPerception += 1>>
             I scoff at the concept of unconditional love. In doing so, I <color=\#FF8888>feel sadder</color>, overwhelmed by the vast emptiness around me.
     -> (think of something happy)
-        I think back to my time on Earth, recalling a time when my mother taught me how to bake cookies.
-        Although she's gone now, the thought brings a smile to my face. 
+        I think back to my time on Earth, recalling when my mother taught me how to bake cookies.
+        She doesn't show much affection anymore. Not since Dad never came back. Mostly distrust. But the memory still brings a smile to my face. 
         <<set $posSelfPerception += 1>>
         It's a small comfort in the loneliness of space. I feel <color=\#88FF88>slightly happier</color>.
     -> (do some push-ups)
         I was never huge on fitness, but I was required to keep in shape for space travel.
-        Neither of my parents supported my decision to leave Earth. And now, they're gone. 
-        Part of me still wants to prove that leaving wasn't just another failure.
+        My father never returned from the last expedition to the dark spot. Mom's still on Earth, but she never supported my leaving... only distrust, after losing him.
+        Part of me still wants to prove that coming out here wasn't just another failure.
         <<set $posSelfPerception += 1>>
         I do a few push-ups to keep my strength up. Strangely enough, I feel <color=\#88FF88>a little happier</color> afterwards.
 <<play_sound AlarmClock>>
@@ -134,15 +134,14 @@ What should... I... do?
     -> (let the signal through)
         <<jump CatIntro>>
     -> (ignore the signal)
-        You: ..........
-        Against my better judgment, I decide to ignore the signal. 
-        You: Darn static interference...
-        <<hide_all_characters>>
-        <<hide MonitorSilhouette>>
-        <<wait 1>>
-        <<show MonitorSilhouette>>
-        <<set $negSelfPerception += 1>>
-<<hide_all_objects>>
+You: ..........
+Against my better judgment, I decide to ignore the signal. 
+You: Darn static interference...
+<<set $negSelfPerception += 1>>
+<<hide_all_characters>>
+<<fade_transition 2>>
+<<wait 1.5>>
+<<play_sound Glitch 0.25>>
 <<show_character Cat Obscure right>>
 Suddenly, the same signal reappears on the screen. Whatever it is won't take ignorance for an answer.
     -> (let the signal through)
@@ -207,7 +206,7 @@ I'm still reeling. An alien, asking if I'm okay. My hands are shaking.
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Thinking right>>
-        ???: Sorry. I just... want know. I only small— two orbit old? So many thing I not understand yet.
+        ???: Sorry. I just... want know. I only small... two orbit old? So many thing I not understand yet.
 <<show_character Cat Happy right>>
 ???: Before more question... you have name? What I call you? Human have this, one word for each? So interesting to me!
 My mouth is dry. It's asking for my name. It wants to know what to call me. I'm having a conversation with an alien. I'm having a conversation with an <i>alien</i>.
@@ -233,7 +232,7 @@ My mouth is dry. It's asking for my name. It wants to know what to call me. I'm 
         -> It's {$playerName}.
             ???: {$playerName}. Nice. I remember.
             <<set $catThinksPlayerNameIs = $playerName>>
-        -> (lie) I don't have a name.
+        -> I don't have a name.
             <<show_character Cat Thinking right>>
             ???: No name? How other human call you then?
             <<show_character Cat Flirt right>>
@@ -251,7 +250,7 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
     <<set $catLikesYou += 1>>
     <<positive_indicator Cat>>
     ???: Yes! So cool! You must do many thing with hand. I want see someday!
--> (lie) No. What?
+-> No. What?
     <<show_character Cat Sad right>>
     ???: Oh. I sad. I want see trick with thumb...
 <<show_character Cat Happy right>>
@@ -290,6 +289,10 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
         <<set $catName = "Gnarp">>
         {$catName}: Yes. Gnarp. For you to say.
 <<show_character Cat Happy right>>
+{$catName}: Oh! One more thing. I... I watch you. Long time. Most of your journey to sun? I listen. Your ship, your... talking to yourself? Your reports? I learn little bit of your words. Your English.
+<<show_character Cat Thinking right>>
+{$catName}: Is not perfect, I know. Sorry. But I try. I want to say hello proper when I finally call.
+<<show_character Cat Happy right>>
 {$catName}: So! You careful here. Space is... dangerous. Many danger.
 <<show_character Cat Thinking right>>
 {$catName}: Why you here? Why not stay on Earth? Your home?
@@ -298,7 +301,7 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         {$catName}: I understand. Sometimes... need get away. I understand.
-    -> (lie) Exploring the cosmos.
+    -> Exploring the cosmos.
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Sad right>>
@@ -309,7 +312,7 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
         {$catName}: Okay. Not sure okay. Sometime we not know. But find safe place good idea. Here very... unpredictable.
 <<show_character Cat Surprised right>>
 A sound from their end... scuffling, something heavy shifting. A low voice, muffled and indistinct, in the background. {$catName} glances off-screen, ears flattening.
-{$catName}: Oh. I— I sorry. I have to go. Now. Sorry!
+{$catName}: Oh. I... I sorry. I have to go. Now. Sorry!
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Sad right>>
     {$catName}: But... you ping me, yes? I want talk again, {$catThinksPlayerNameIs}. Sorry, sorry!
@@ -352,13 +355,13 @@ Who was that creature? How is that even possible?
     I think about what others on Earth would say if they found out about this encounter. Although it is my job to report such things, would they really believe I met a friendly animal alien?
 <<endif>>
 <<hide_all_objects>>
-<<fade_transition 2>>
-<<wait 1>>
 <<show PCRoom>>
 The cabin falls silent again as the static fades back into the background hum.
 First contact. That's the kind of thing you're supposed to flag immediately... protocol, duty, all of it.
 But my mind is too hazy to think about writing right now.
-<<wait 1.5>>
+<<fade_transition 2>>
+<<wait 1>>
+<<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
 I sit with that for a while. The stars don't answer.
