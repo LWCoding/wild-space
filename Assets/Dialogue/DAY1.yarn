@@ -414,9 +414,10 @@ title: EndDay1
 position: 1063,-84
 ---
 <<fade_transition 3>>
-<<wait 3>>
+<<wait 2>>
 <<hide_all_characters>>
 <<hide_all_objects>>
 <<show PCRoom>>
+<<wait 1>>
 <<jump StartDay2>>
 ===
