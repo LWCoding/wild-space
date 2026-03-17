@@ -1,4 +1,4 @@
-﻿title: AfterName
+title: AfterName
 position: 22,-593
 ---
 <<hide Drifting>>
@@ -163,7 +163,9 @@ You: Here goes nothing...
 <<start_voice_blip Cat>>
 <<play_music CatTheme 0.5>>
 ???: Hello! See your signal! You okay? You... not hurt?
+<<stop_voice_blip Cat>>
 I stare. My brain refuses to process the words. That voice. It's real. This is really happening.
+<<start_voice_blip Cat>>
 ???: I hear you. So... you are... <i>human</i>? Real human? From Earth?
     -> ...What?
     -> A cat?
@@ -191,6 +193,7 @@ I stare. My brain refuses to process the words. That voice. It's real. This is r
                 ???: AH! So loud! My ears... they very sensitive!
                 <<show_character Cat Sad right>>
                 ???: Please... next time more quiet? I not mean scare you...
+<<stop_voice_blip Cat>>
 I'm still reeling. An alien, asking if I'm okay. My hands are shaking.
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
@@ -209,7 +212,9 @@ I'm still reeling. An alien, asking if I'm okay. My hands are shaking.
         ???: Sorry. I just... want know. I only small... two orbit old? So many thing I not understand yet.
 <<show_character Cat Happy right>>
 ???: Before more question... you have name? What I call you? Human have this, one word for each? So interesting to me!
+<<stop_voice_blip Cat>>
 My mouth is dry. It's asking for my name. It wants to know what to call me. I'm having a conversation with an alien. I'm having a conversation with an <i>alien</i>.
+<<start_voice_blip Cat>>
 ???: I want remember you. Please?
     -> My name's {$playerName}.
         <<show_character Cat Happy right>>
@@ -243,7 +248,9 @@ My mouth is dry. It's asking for my name. It wants to know what to call me. I'm 
         ???: I call you "Human" then. I good at nickname!
 <<show_character Cat Thinking right>>
 ???: So... you really human, yes? From Earth? I hear story... so many story! I never see one before!
+<<stop_voice_blip Cat>>
 I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> to meet a human. Like I'm some kind of... celebrity. Or a rare animal.
+<<start_voice_blip Cat>>
 ???: Human have two leg? And thumb? The... the grabby finger? So many thing I want ask!
 -> Yeah, it's pretty cool.
     <<show_character Cat Happy2 right>>
