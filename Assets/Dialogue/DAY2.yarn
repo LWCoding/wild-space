@@ -1,11 +1,15 @@
 title: StartDay2
 position: 90,-43
 ---
-<<set $daysPassed = 2>>
+<<set $daysPassed = 62>>
+<<declare $day2KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
-I wake up to a loud chime on the monitor, my head pounding yet again. 
-I don't know what time it is, but I feel rested enough. My sleep cycle has been all over the place since I started this job.
-Time for another day of work.
+I wake up to a loud chime on the monitor, my head pounding yet again.
+Cryosleep leaves a gap you can feel in your bones. The mission clock doesn't.
+I blink at the readout until it stops swimming.
+Day {$daysPassed}.
+Two months have passed in the span of one sleep.
+Yet, the memory of the alien encounter is still warm, too vivid to be a dream.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay2>>
 ===
@@ -15,81 +19,87 @@ position: 85,114
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-I turn on the monitor to see today's tasks.
-Before I start my report, I notice a new message from HQ.
-It reads, "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
-I ponder my next report. Do I report the encounter with the alien, knowing that Earth may react harshly? Or keep it under wraps?
-    -> (report the alien)
-        I hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
-        I'm not entirely sure what will happen to the alien, but I may never see them again.
-        -> (report the alien)
-            I get to writing my report.
-            <<hide_all_objects>>
-            <<show PCRoom>>
-            <<show_ui TypeToInteract>>
-            <<show MonitorReportDay2>>
-        -> (report that you saw nothing)
-            <<hide_all_objects>>
-            <<show PCRoom>>
-            I get to writing my report.
-            <<show_ui TypeToInteract>>
-            <<show MonitorDontReportDay2>>
-    -> (report that you saw nothing)
-        <<hide_all_objects>>
-        <<show PCRoom>>
-        I get to writing my report.
-        <<show_ui TypeToInteract>>
-        <<show MonitorDontReportDay2>>
+I power the monitor on, expecting the comfort of routine. The same checklist, the same empty horizon, the same daily report no one reads.
+<<play_sound Glitch 0.25>>
+Instead, the communication panel pings, sharp and insistent.
+The tuner is already locked onto a frequency I didn't dial in.
+Three new packets sit in the buffer, tagged with an unknown sequence.
+No sender. No location. No human encoding.
+The ship's translator does what it can: it renders the signals into clipped, robotic phonemes.
+It isn't a sentence. It's a pulse. A test pattern that learned three words.
+<i>[79 DAYS AGO]</i> <i>*bzz-kt*</i> "TEST"
+<i>[41 DAYS AGO]</i> <i>*bzz-kt*</i> "HELLO"
+<i>[5 DAYS AGO]</i> <i>*bzz-kt*</i> "TALK"
+My fingers hover over the response key.
+The encounter wasn't a fever dream.
+It waited through cryosleep.
+    -> (answer)
+        <<jump SentPingDay2>>
+    -> (don't answer)
+        I tell myself it's safer to ignore it. Safer to pretend my brain invented the whole thing.
+        The ping repeats anyway. Patient. Persistent.
+        The same three words flash again, as if it's trying not to scare me.
+            -> (answer)
+                <<jump SentPingDay2>>
 ===
 
-title: KeptUnderWrapsDay2
-position: 83,279
+title: SentPingDay2
+position: 259,206
 ---
 <<hide_all_ui_objects>>
-<<set $negSelfPerception += 1>>
-I hesitate, then send off the message. I feel <color=\#FF8888>a little guilty</color>. My job was to report alien life... but something about this situation feels different.
-<<if $posSelfPerception > $negSelfPerception>>
-    I feel a sense of pride in my decision. I trust my instincts and believe that not everything needs to be reported.
-<<else>>
-    I feel a pang of guilt. However, I rationalize that some things are better left unsaid.
-<<endif>>
-I turn the monitor off and take a seat.
-<<fade_transition 2>>
-<<wait 1>>
+I press the response key and send a ping back down the line.
+As a one-way signal, there's no way to tell what's waiting on the other side. I can only hope the other side taps back.
+Either way, my routine is still here, heavy and unavoidable.
+    -> (try to act normal)
+        <<jump RegularTasksDay2>>
+===
+
+title: RegularTasksDay2
+position: 260,308
+---
+<<once>>
+<<declare $day2DidPushups = false>>
+<<declare $day2DidStargaze = false>>
+<<declare $day2DidSystemsCheck = false>>
+<<endonce>>
 <<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
-Lost in another one of my spirals, I think about my family back on Earth.
-My family was only ever close with me before I dropped out of college. 
-I was surprised that they disagreed with my decision to leave Earth, even though I never quite felt like they loved me anymore.
-Recalling my parents' disapproval makes me feel...
-    -> (sad, because they're gone now)
-        <<set $negSelfPerception += 1>>
-        I feel <color=\#FF8888>a wave of sadness wash over me</color>. I wonder if they would have ever accepted my choices, but now I'll never know.
-    -> (angry, because they never supported you)
-        <<set $negSelfPerception += 1>>
-        I feel a surge of anger. They never supported my decisions, and now that they're gone, I feel <color=\#FF8888>a sense of bitterness</color>.
-    -> (conflicted, because they didn't want you gone)
-        I feel conflicted. They didn't want me to leave, but they never made an effort to understand my reasons.
+I tell myself I can spare a little time before the report.
+The ship is silent. My body is still catching up. My thoughts keep circling the ping I sent into the dark.
+What should I do while I wait?
+    -> (do some push-ups) <<if $day2DidPushups == false>>
+        <<set $day2DidPushups = true>>
         <<set $posSelfPerception += 1>>
-        I wish they could see me now, living life on my own terms. I feel <color=\#88FF88>independent</color>.
-And what about my friends? I always felt like such an impostor around them. Every interaction felt like a performance.
-I forced myself to do so many things with them. I only ever felt like I was "fun" when I was a couple of drinks in. I wonder if they ever really liked me for who I was.
-Thinking about these people in my life makes me feel...
-    -> (lonely, because you pushed them away)
-        <<set $negSelfPerception += 1>>
-        I realize that I pushed people away, and now I'm <color=\#FF8888>left with nothing but my own thoughts</color>.
-    -> (regretful, because you never opened up to them)
-        <<set $negSelfPerception += 1>>
-        I <color=\#FF8888>wish I had opened up to people more</color>, but now it feels too late.
-    -> (indifferent, because they weren't true friends)
-        Maybe those people weren't true friends after all. I wonder if I'll be able to make genuine connections in the future.
-        <<set $posSelfPerception += 1>>
-        The idea of making real connections makes me <color=\#88FF88>feel a little hopeful</color>.
+        I drop to the floor and count slowly, careful with my breathing. My arms burn. The burn is familiar, controllable.
+        It helps, a little.
+        <<jump RegularTasksDay2>>
+    -> (stare at the stars) <<if $day2DidStargaze == false>>
+        <<set $day2DidStargaze = true>>
+        I watch the stars until my eyes blur and the ship feels less like a coffin and more like a vehicle.
+        <<jump RegularTasksDay2>>
+    -> (check the ship systems) <<if $day2DidSystemsCheck == false>>
+        <<set $day2DidSystemsCheck = true>>
+        I run quick diagnostics: life support, comms integrity, power draw. Everything looks normal on paper.
+        I don't.
+        <<jump RegularTasksDay2>>
+    -> (move on to the report)
+        <<jump PrepareReportDay2>>
+===
 
-I then remember what happened yesterday, with the alien.
-Supposedly, I can ping them again to have a chat. Maybe I should give it a try.
-    -> (reestablish contact with the alien)
+title: PrepareReportDay2
+position: 259,417
+---
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show MonitorOn>>
+I sit down and pull up the report template.
+My fingers find the keys. The words are already forming in the sterile, practiced voice HQ expects.
+<<play_sound Glitch 0.25>>
+<<show MonitorSilhouette>>
+Then the communication panel crackles.
+The frequency I pinged back lights up like it was waiting for me to look away.
+    -> (answer the incoming connection)
         <<jump CallCatDay2>>
 ===
 
@@ -103,27 +113,38 @@ position: 422,282
 <<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
 <<stop_voice_blip Cat>>
-I call {$catName}. The line remains static for a little while, but I suddenly see movement on the other end.
+I answer the ping.
+The line stays static long enough for panic to crawl up my throat. Then the silhouette shifts, like it's leaning closer to the glass.
 <<play_music CatTheme 0.5>>
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
-    {$catName} appears on the screen, looking relieved to see you.
+    The alien appears on the screen, looking relieved to see me.
     <<show_character Cat Happy2 right>>
     <<start_voice_blip Cat>>
-    {$catName}: Hey {$catThinksPlayerNameIs}, I was just thinking about you! Do you need something?
+    Gnarp: <i>*bzz-kt*</i> HELLO. You... awake? You there?
+    Gnarp: I learn word. More word. I want... talk.
+        -> I'm here. And... it's been a while.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy right>>
+            Gnarp: Time different for you. Sleep box. I watch ship quiet many day. I wait.
+        -> Who is this?
+            <<show_character Cat Thinking right>>
+            Gnarp: It me. Same frequency. Same ears. Same human.
+            Gnarp: I not dream.
         -> I want to get to know you better.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy right>>
-            {$catName}: I'd like that. It's nice to have someone to talk to out here.
+            Gnarp: I like that. Nice have someone. Space is... too big for one mind.
 <<else>>
     <<show_character Cat Neutral right>>
-    {$catName} appears on the screen.
+    The alien appears on the screen.
     <<start_voice_blip Cat>>
-    {$catName}: Oh, it's you! Hey again, {$catThinksPlayerNameIs}. What's up?
+    Gnarp: HELLO. TALK.
         -> I want to get to know you better.
             <<show_character Cat Thinking right>>
-            {$catName}: Huh. Well, I guess we can talk a bit more.
+            Gnarp: ...Okay. Talk more.
 <<endif>>
 <<declare $day2AskedCatQ1 = false>>
 <<declare $day2AskedCatQ2 = false>>
@@ -144,145 +165,136 @@ position: 647,285
 <<else>>
     <<show_character Cat Neutral right>>
 <<endif>>
-{$catName}: What did you want to talk about?
-    -> What is it like out here? <<if $day2AskedCatQ1 == false>>
+Gnarp: What you want talk? You choose.
+    -> How did you learn those words? <<if $day2AskedCatQ1 == false>>
         <<set $day2AskedCatQ1 = true>>
         <<show_character Cat Neutral right>>
-        {$catName}: Oh, I'm not actually usually around here. As I mentioned before, I'm from a planet far, far away from you.
-        {$catName}: It's pretty dangerous back at home. Much worse than most other planets.
+        Gnarp: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise: logs, error words, old training tapes.
+        Gnarp: I practice alone. I want be understood, not just... heard.
         <<show_character Cat Sad right>>
-        {$catName}: The quakes on our planet are enough to break bones. So we have to climb around a lot to find safe spots away from the ground.
+        Gnarp: First time I talk, I was new. Now I more... independent.
+        Gnarp: I can stay on frequency longer. I can keep my fear quiet.
             -> That's terrifying.
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Sad right>>
-                {$catName}: Yeah, it hasn't been the safest it could be too. Kits die all the time, unfortunately.
+                Gnarp: It is. But you still here. I still here. That matter.
             -> Oh, those aren't bad. We have those too.
                 <<show_character Cat Sad right>>
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
-                {$catName}: Oh? I guess that's possible. But I can say with a pretty good amount of confidence that they're not as bad as ours.
-                {$catName}: We have a lot of casualties from them every year. It's pretty unfortunate.
+                Gnarp: You say that like pain is contest. Not kind.
         <<show_character Cat Neutral right>>
-        {$catName}: We've had to adapt a lot to survive out here. All of our houses are practically on springs.
-            -> How many of there are you?
-                <<show_character Cat Thinking right>>
-                {$catName}: Quite a few. We have small colonies all over this sector of space.
-                {$catName}: Linnaeus is one of the major ones, though.
-            -> Springs? Like... boi-oi-oing?
-                <<negative_indicator Cat>>
-                <<set $catDislikesYou += 1>>
-                <<show_character Cat Angry right>>
-                {$catName}: ...
-                {$catName}: It's not really a silly matter. It's a constant fight for survival.
-    -> What is your mission? <<if $day2AskedCatQ2 == false>>
+        Gnarp: You sleep many day. I thought you gone. I hate that thought.
+        Gnarp: Then you move again. I send: TEST. HELLO. TALK.
+    -> What do you want from me? <<if $day2AskedCatQ2 == false>>
         <<set $day2AskedCatQ2 = true>>
-        {$catName}: Mission? I don't think we have... a "mission". We're just out here trying to survive, same as you.
-            -> But what is your <i>mission</i>? You know, as an alien?
-                <<show_character Cat Angry right>>
-                {$catName}: You make it seem like we're some kind of invaders or something.
-                <<show_character Cat Neutral right>>
-                {$catName}: I'm telling you, we're just trying to get by out here. We're not looking to conquer anyone.
-                <<negative_indicator Cat>>
-                <<set $catDislikesYou += 1>>
-            -> I guess, what do you work as? <<if $knowCatJob == false>>
-                <<set $knowCatJob = true>>
+        <<show_character Cat Thinking right>>
+        Gnarp: Want? I want... practice being person.
+        Gnarp: Where I from, I was small. Two orbit old. People decide everything for me.
+        Gnarp: Out here I decide. It is scary.
+            -> My mission decides everything too.
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
-                <<show_character Cat Happy right>>
-                {$catName}: I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
+                <<show_character Cat Sad right>>
+                Gnarp: Yes. You speak like manual. But you feel like living thing.
+                Gnarp: You can be both. I think.
+            -> That's not how humans work.
+                <<show_character Cat Angry right>>
+                Gnarp: You make rule sound like cage. Maybe it is cage.
                 <<show_character Cat Neutral right>>
-                {$catName}: I work for safety, as a whole. I've been working hard to try to keep people on our planet safe.
-                {$catName}: A huge reason why I'm out here is because I'm seeking inspiration to make things safer for my people.
-            -> Oh, I see.
-    -> What do you do for work? <<if $knowCatJob == false>>
+                <<negative_indicator Cat>>
+                <<set $catDislikesYou += 1>>
+    -> What do you do out there, like, day to day? <<if $knowCatJob == false>>
         <<set $knowCatJob = true>>
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<show_character Cat Happy right>>
-        {$catName}: I hear that on your planet, they have people doing <i>super</i> specific tasks. Like working at one specific restaurant for their whole life!
+        Gnarp: I map safe paths. I watch for danger. I fix small things before they become big things.
         <<show_character Cat Neutral right>>
-        {$catName}: I work for safety, as a whole. I've been working hard to try to keep people on our planet safe.
-        {$catName}: A huge reason why I'm out here is because I'm seeking inspiration to make things safer for my people.
+        Gnarp: I used to do it because others told me. Now I do it because I choose.
+        Gnarp: Independence feel like stepping off ledge and finding air holds you.
     -> Do you have a family? <<if $day2AskedCatQ5 == false>>
         <<set $day2AskedCatQ5 = true>>
         <<show_character Cat Happy2 right>>
-        {$catName}: I do! I'm very close with my family back home.
-        {$catName}: I worry about them a lot, especially with how dangerous things are back home.
+        Gnarp: I have family. I miss them. I worry I left them with too much.
             -> That must be hard.
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Sad right>>
-                {$catName}: Yeah, it is. But I try to stay strong for them.
+                Gnarp: Yes. But I still breathe. Still do job. That what they taught me: keep going.
             -> Why don't you bring them here?
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Angry right>>
-                {$catName}: It's not that simple! There are so many complications with intergalactic travel.
-                {$catName}: I can't just bring them all here. It would be too dangerous for everyone involved.
+                Gnarp: Not that simple. Space hurt people. It hurt you too.
         <<if $catLikesYou > $catDislikesYou>>
             <<stop_voice_blip Cat>>
             <<show_character Cat Sad right>>
-            You notice that {$catName} seems a bit down while talking about their family.
+            Gnarp's voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
                 -> You seemed a little sad just now. Is everything okay?
                     <<start_voice_blip Cat>>
-                    {$catName}: I'm fine, just thinking about them. I...
+                    Gnarp: I fine. Just... remembering.
                     <<positive_indicator Cat>>
                     <<set $catLikesYou += 1>>
-                    {$catName}: I actually recently lost a sibling back home. It was really sudden, and I've been having a hard time coping with it.
+                    Gnarp: I lost sibling. Sudden. I still talk to them in my head like they answer.
                     <<show_character Cat Neutral right>>
-                    {$catName}: But talking to you has helped take my mind off of things, so thank you for that.
-                    {$catName}: Thanks for asking, though. It means a lot to me.
+                    Gnarp: Talking to you help. You make space less sharp.
                 -> Change the subject.
                     <<jump CatRecurringTreeDay2>>
         <<else>>
             <<stop_voice_blip Cat>>
             <<show_character Cat Sad right>>
-            You notice that {$catName} seems off, but you don't know them well enough to tell why.
+            Gnarp goes quiet. The silhouette holds still.
                 -> ...
                     <<jump CatRecurringTreeDay2>>
         <<endif>>
     -> What do you do for fun? <<if $knowCatPasttime == false>>
         <<set $knowCatPasttime = true>>
-        {$catName}: Fun? Hm, I guess I like to play games on my monitor when I'm not working. It's a nice way to pass the time.
+        Gnarp: Fun... I watch old broadcasts. I repeat songs. I try jokes. Most jokes fail.
         <<if $catLikesYou >= $catDislikesYou>>
             <<show_character Cat Happy2 right>>
         <<else>>
             <<show_character Cat Neutral right>>
         <<endif>>
-        {$catName}: The usual type of space game. Puzzle games, strategy games, that sort of thing. Nothing too exciting. I could even install one on your device, I think!
-    -> You're cute. <<if $day2AskedCatQ4 == false && $catLikesYou >= $catDislikesYou>>
+        Gnarp: I like puzzle. I like pattern. Pattern make world feel less random.
+    -> Tell Gnarp something you don't put in reports. <<if $day2AskedCatQ4 == false && $catLikesYou >= $catDislikesYou>>
         <<set $day2AskedCatQ4 = true>>
-        <<show_character Cat Flirt right>>
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
-        {$catName}: Aw, you're too kind. You're pretty cute yourself, {$catThinksPlayerNameIs}.
+        <<show_character Cat Sad right>>
+        I swallow, feeling ridiculous. There's a version of me that only knows how to speak in diagnostics.
+        But another version of me is sitting here, alive, with a secret vibrating in my teeth.
+        You: I... act confident on paper. In real life I'm scared all the time.
+        You: I trained myself to sound like a machine so nobody could hear how lonely I am.
+        <<show_character Cat Neutral right>>
+        Gnarp: I understand this.
+        Gnarp: I learn your words. You learn your feelings. We both translate.
+        Gnarp: Emotional bilingual.
     -> Do you want to play a game? <<if $day2AskedCatQ3 == false && $knowCatPasttime == true && $catLikesYou >= $catDislikesYou>>
         <<set $day2AskedCatQ3 = true>>
         <<show_character Cat Happy2 right>>
-        {$catName}: A game? Sure, why not!
-        // TODO: Make this an actual game
+        Gnarp: Game? Yes. Small safe thing.
         <<stop_voice_blip Cat>>
         <<show_character Cat Happy right>>
-        I decide to play a game with {$catName} on the monitor to pass the time.
-        {$catName} beams the game to my device, and we both start playing.
-        The game is a simple one where I have to match shapes and colors. It's not very exciting, but it helps to break the ice.
+        I let Gnarp beam a simple puzzle to my device: shapes, colors, repeating sequences.
+        It shouldn't feel intimate.
+        It does anyway.
         <<show_character Cat Sad right>>
-        It seems that {$catName}, however, is struggling quite a bit.
+        Gnarp falters on patterns that should be easy, like the translator is eating pieces of the rules.
             -> (win at the game)
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Happy right>>
                 <<start_voice_blip Cat>>
-                {$catName}: Wow, you're really good at this! Maybe you can teach me sometime.
+                Gnarp: You good. Teach me? I want learn from you.
             -> (purposefully lose the game)
                 <<show_character Cat Happy2 right>>
                 <<positive_indicator Cat>>
                 <<set $catLikesYou += 1>>
                 <<start_voice_blip Cat>>
-                {$catName}: Hah, I think I won that one! 
-                <<show_character Cat Flirt right>>
-                {$catName}: Maybe some day I'll teach you a thing or two. But it takes quite a lot of practice to get on my level.
+                Gnarp: I win! I win!
+                Gnarp: Maybe someday I teach you. I practice a lot.
     -> (don't ask any more questions)
         <<stop_voice_blip Cat>>
         <<if $posSelfPerception > $negSelfPerception>>
@@ -293,16 +305,125 @@ position: 647,285
         <<start_voice_blip Cat>>
         <<if $catLikesYou > $catDislikesYou>>
             <<show_character Cat Happy right>>
-            {$catName}: Aww, already? I was just starting to have fun!
-            {$catName}: But okay, if you need to go, I understand. Just ping me again sometime, okay {$catThinksPlayerNameIs}?
+            Gnarp: Already? I was... good. This was good.
+            Gnarp: But okay. If you need stop, I understand.
+            Gnarp: I will leave now. For now.
         <<else>>
             <<show_character Cat Neutral right>>
-            {$catName}: Oh, alright. That sounds good to me.
-            {$catName}: Thanks for the talk, I guess.
+            Gnarp: Okay. I go.
         <<endif>>
         <<stop_voice_blip Cat>>
-        <<jump EndDay2>>
+        <<jump AfterGnarpLeavesDay2>>
 <<jump CatRecurringTreeDay2>>
+===
+
+title: AfterGnarpLeavesDay2
+position: 915,224
+---
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+The silhouette shudders, then collapses back into static.
+<<hide MonitorSilhouette>>
+<<show MonitorOn>>
+Silence rushes in like a pressure change.
+My reflection looks wrong on the dark glass, like someone who knows something they shouldn't.
+And now comes the part I'm trained for.
+The part with procedures and consequences.
+HQ's reminder sits in my inbox, timestamped weeks ago, delivered while I was asleep:
+"Remember your duty to report accurately. Your observations are crucial for our understanding and eradication of foreign threats."
+Do I report that an alien made contact again, stronger this time, more coherent, more <i>real</i>?
+    -> (report Gnarp)
+        <<jump WriteReportDay2_Report>>
+    -> (do not report)
+        <<jump WriteReportDay2_DontReport>>
+===
+
+title: WriteReportDay2_Report
+position: 915,315
+---
+<<hide_all_ui_objects>>
+<<hide_all_characters>>
+<<hide MonitorSilhouette>>
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show_ui TypeToInteract>>
+<<show MonitorReportDay2>>
+I open the official channel and write what happened, in the clean language of procedure.
+    -> (submit the report)
+        <<hide_ui TypeToInteract>>
+        <<jump ForeverAlone>>
+===
+
+title: WriteReportDay2_DontReport
+position: 915,330
+---
+<<hide_all_ui_objects>>
+<<hide_all_characters>>
+<<hide MonitorSilhouette>>
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show_ui TypeToInteract>>
+<<show MonitorDontReportDay2>>
+I fill the report with safe facts and empty sky.
+I do not mention the frequency. I do not type Gnarp's name.
+    -> (submit the report)
+        <<hide_ui TypeToInteract>>
+        <<set $day2KeptUnderWraps = true>>
+        <<jump KeptUnderWrapsDay2>>
+===
+
+title: ReportedGnarpDay2_GameOver
+position: 915,370
+---
+<<jump ForeverAlone>>
+===
+
+title: DreamCollegeDay2
+position: 915,500
+---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show Stars>>
+<<show Sitting>>
+The dream doesn't start in space.
+It starts under fluorescent bulbs, with my hands wrapped around cheap coffee and a lab key I wasn't supposed to have.
+College was a maze of open doors I couldn't make myself walk through.
+Everyone else had study groups, late nights that sounded like laughter, futures that assumed they belonged.
+I had silence, and the stubborn thought that if I could become an astronaut, maybe distance would finally feel like relief instead of failure.
+I remember the day the decision hardened into something real:
+the career counselor's smile that didn't reach her eyes,
+the scholarship email I couldn't bring myself to answer,
+the long walk back to my dorm where I realized I was already living like I was in orbit: present, but untouchable.
+And then the application, the tests, the training.
+The way isolation became a skill I could list on a form.
+The way I learned to speak in numbers and checklists so nobody could hear the shaking underneath.
+In the dream, the stars are there too, just out of reach through a window that doesn't open.
+    -> (hold onto the ambition)
+        <<set $posSelfPerception += 1>>
+        I remember why I wanted this. Not the prestige. The quiet. The distance. The proof that I could endure.
+    -> (feel the loneliness)
+        <<set $negSelfPerception += 1>>
+        I remember how easy it was to disappear in a crowd, and how I kept choosing that over being seen.
+The dream tilts from college hallway to spacecraft corridor, as if my brain is admitting the truth.
+I didn't just get launched into space.
+I practiced for it for years.
+<<fade_transition 3>>
+<<wait 2>>
+<<jump StartDay3>>
+===
+
+title: KeptUnderWrapsDay2
+position: 83,279
+---
+<<hide_all_ui_objects>>
+I sit back from the keyboard, report transmitted, hands still trembling.
+<<set $negSelfPerception += 1>>
+I did what I'm trained to do. I kept the machine running.
+I also did something I'm not trained for at all: I kept a secret that has a pulse.
+The same three robotic words keep replaying behind my eyes.
+TEST. HELLO. TALK.
+I shut the screen down before I can change my mind.
+<<jump EndDay2>>
 ===
 
 title: EndDay2
@@ -312,19 +433,23 @@ position: 918,14
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
 <<play_music MainTheme>>
-I cut the connection and take a step back from my monitor.
+I step back from the monitor like it might burn me.
     -> (turn off the monitor)
-<<hide_all_objects>>
-<<show PCRoom>>
-Again, after the long conversation, I decide to go to bed.
-<<if $posSelfPerception > $negSelfPerception>>
-    After talking with these new figures, I've felt a sense of growth. I feel more confident in my ability to handle whatever comes my way.
-<<else>>
-    After talking with these new figures, I've felt a bit more uncertain about my place in this situation. I hope that I'll be able to figure things out soon.
-<<endif>>
-<<hide_all_objects>>
-<<show PCRoom>>
-<<fade_transition 3>>
-<<wait 3>>
-<<jump StartDay3>>
+        <<hide_all_objects>>
+        <<show PCRoom>>
+        Again, after the long conversation, I decide to go to bed.
+        <<if $posSelfPerception > $negSelfPerception>>
+            After talking with these new figures, I've felt a sense of growth. I feel more confident in my ability to handle whatever comes my way.
+        <<else>>
+            After talking with these new figures, I've felt a bit more uncertain about my place in this situation. I hope that I'll be able to figure things out soon.
+        <<endif>>
+        <<hide_all_objects>>
+        <<show PCRoom>>
+        <<fade_transition 3>>
+        <<wait 3>>
+        <<if $day2KeptUnderWraps == true>>
+            <<jump DreamCollegeDay2>>
+        <<else>>
+            <<jump StartDay3>>
+        <<endif>>
 ===

@@ -1,4 +1,4 @@
-title: AfterName
+﻿title: AfterName
 position: 22,-593
 ---
 <<hide Drifting>>
@@ -113,6 +113,7 @@ The tuner skitters across the dial with a burst of static.
 The noise thins, then resolves, locked onto a different frequency. The monitor jolts back to life.
 <<show_character Cat Obscure right>>
 A dark figure appears on the screen, accompanied with a static-filled voice.
+<<speed 0.4>>
 <<start_voice_blip Cat>>
 ???: Hello? <i>*bzzt*</i> Hello? Can... hear...?
 <<stop_voice_blip Cat>>
@@ -162,9 +163,10 @@ You: Here goes nothing...
 <<show_character Cat Sad right>>
 <<start_voice_blip Cat>>
 <<play_music CatTheme 0.5>>
+<<speed 1>>
 ???: Hello! See your signal! You okay? You... not hurt?
 <<stop_voice_blip Cat>>
-I stare. My brain refuses to process the words. That voice. It's real. This is really happening.
+That voice. It's real. This is really happening.
 <<start_voice_blip Cat>>
 ???: I hear you. So... you are... <i>human</i>? Real human? From Earth?
     -> ...What?
@@ -175,10 +177,10 @@ I stare. My brain refuses to process the words. That voice. It's real. This is r
         ???: Oh! Cat! Those cute things. You say... nice thing? Thank? Thank you!
         <<show_character Cat Sad right>>
         ???: But you okay, yes? You look... alone. Many alone.
-            -> Yeah, I'm fine.
+            -> I'm... fine.
                 <<show_character Cat Thinking right>>
                 ???: Okay, good. I am... relief? Relieved. Yes.
-            -> Not really.
+            -> Not... really.
                 <<show_character Cat Neutral right>>
                 ???: Oh. Space is... lonely place. I know this.
             -> (scream in confusion)
@@ -318,7 +320,9 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
         <<show_character Cat Thinking right>>
         {$catName}: Okay. Not sure okay. Sometime we not know. But find safe place good idea. Here very... unpredictable.
 <<show_character Cat Surprised right>>
+<<stop_voice_blip Cat>>
 A sound from their end... scuffling, something heavy shifting. A low voice, muffled and indistinct, in the background. {$catName} glances off-screen, ears flattening.
+<<start_voice_blip Cat>>
 {$catName}: Oh. I... I sorry. I have to go. Now. Sorry!
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Sad right>>
@@ -329,8 +333,8 @@ A sound from their end... scuffling, something heavy shifting. A low voice, muff
     <<show_character Cat Neutral right>>
     {$catName}: You take care, {$catThinksPlayerNameIs}. Sorry.
 <<endif>>
-More shuffling. The feed flickers. {$catName} opens their mouth as if to say something else... then the screen cuts to static.
 <<stop_voice_blip Cat>>
+More shuffling. The feed flickers. {$catName} opens their mouth as if to say something else... then the screen cuts to static.
 <<hide_all_characters>>
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
