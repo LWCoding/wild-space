@@ -43,47 +43,71 @@ position: 315,-648
 <<show Sitting>>
 This is the life that I've committed myself to, ever since taking the job to pilot this small exploration vessel.
 Earth launched an initiative to find out why the sun suddenly had a hole in the center... a dark spot that appeared one day and never went away. It's a three-year journey just to get there. I'm on the seventh expedition they've sent.
-My dad was the pilot of the last one. He never returned.
+My dad was the pilot of the last one.
+Dad... I hope I can find you out here.
 But deep inside, I knew signing up was just to get a chance away from Earth.
+<<jump RegularTasksDay1>>
+===
+
+title: RegularTasksDay1
+position: 315,-500
+---
+<<once>>
+<<declare $day1DidContemplation = false>>
+<<declare $day1DidHappyThought = false>>
+<<declare $day1DidPushups = false>>
+<<endonce>>
+<<hide_all_objects>>
+<<show Stars>>
+<<show Sitting>>
 You: I guess I have some time... what should I do?
-    -> (contemplate my life on Earth)
+    -> (contemplate my life on Earth) <<if $day1DidContemplation == false>>
+        <<set $day1DidContemplation = true>>
         I ponder the vastness of existence and my place within it.
         The silence of space seems to amplify my thoughts, making me feel both insignificant and connected to the universe.
         -> (hone in on the positive)
-            I think back to a time I felt connected with someone on Earth, recalling when my mother taught me how to bake cookies.
-            She doesn't show much affection anymore. Not since Dad never came back from his expedition. Mostly distrust. But the memory still brings a smile to my face. 
+            I think back to the nights Dad and I would sit on the porch, staring up at the sky.
+            He'd point out constellations and tell me about the astronauts who came before us. He made space sound like a promise.
+            That's part of why I'm out here. Not just for the mission. For him.
             <<set $posSelfPerception += 1>>
-            It's a small comfort in the loneliness of space. I feel <color=\#88FF88>slightly happier</color>.
+            The memory gives me <color=\#88FF88>a quiet sense of purpose</color>.
         -> (dwell on the negative)
             I think back about a time I felt insignificant on Earth.
             Ever since I dropped out of college, I've felt like a disappointment to my family.
             I took the first contract that would launch me off-planet, telling myself distance would make it easier to breathe.
             <<set $negSelfPerception += 1>>
             I scoff at the concept of unconditional love. In doing so, I <color=\#FF8888>feel sadder</color>, overwhelmed by the vast emptiness around me.
-    -> (think of something happy)
+        <<jump RegularTasksDay1>>
+    -> (think of something happy) <<if $day1DidHappyThought == false>>
+        <<set $day1DidHappyThought = true>>
         I think back to my time on Earth, recalling when my mother taught me how to bake cookies.
-        She doesn't show much affection anymore. Not since Dad never came back. Mostly distrust. But the memory still brings a smile to my face. 
+        She doesn't show much affection anymore. But the memory still brings a smile to my face.
+        She never said she was proud of me. But she let me lick the spoon every time, without asking.
         <<set $posSelfPerception += 1>>
         It's a small comfort in the loneliness of space. I feel <color=\#88FF88>slightly happier</color>.
-    -> (do some push-ups)
-        I was never huge on fitness, but I was required to keep in shape for space travel.
-        My father never returned from the last expedition to the dark spot. Mom's still on Earth, but she never supported my leaving... only distrust, after losing him.
-        Part of me still wants to prove that coming out here wasn't just another failure.
+        <<jump RegularTasksDay1>>
+    -> (do some push-ups) <<if $day1DidPushups == false>>
+        <<set $day1DidPushups = true>>
+        Gh... I was never huge on fitness, but out here, routine is the only thing that keeps the silence from swallowing you whole.
+        Each rep feels like a small victory against the emptiness. Fifteen. Sixteen. Seventeen.
+        My body still listens to me, even when nothing else does. That has to count for something.
         <<set $posSelfPerception += 1>>
-        I do a few push-ups to keep my strength up. Strangely enough, I feel <color=\#88FF88>a little happier</color> afterwards.
-<<play_sound AlarmClock>>
-A timer goes off in the background.
-You: Sounds like it's time to do my report.
-<<hide_all_objects>>
-<<show PCRoom>>
-<<jump DoJobFirstTime>>
+        I feel <color=\#88FF88>a little more grounded</color> afterwards. The burn in my arms is real. That's enough for now.
+        <<jump RegularTasksDay1>>
+    -> (do my report)
+        <<play_sound AlarmClock>>
+        A timer goes off in the background.
+        You: Sounds like it's time to do my report.
+        <<hide_all_objects>>
+        <<show PCRoom>>
+        <<jump DoJobFirstTime>>
 ===
 
 title: DoJobFirstTime
 position: 308,-448
 ---
 I stand up and turn on the computer. 
-As part of my job, I need to complete a daily report on my findings.
+As part of my job, I complete a status report every few months.
 Given they're all the same, I'm not sure HQ pays much attention to them. At least it gives me a sense of routine.
 <<show MonitorReportDay1>>
 <<show_ui TypeToInteract>>

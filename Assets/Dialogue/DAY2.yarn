@@ -19,19 +19,32 @@ position: 85,114
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-I power the monitor on, expecting the comfort of routine. The same checklist, the same empty horizon, the same daily report no one reads.
+I power the monitor on, expecting the comfort of routine. The same checklist, the same empty horizon, the same report no one reads.
 <<play_sound Glitch 0.25>>
 Instead, the communication panel pings, sharp and insistent.
 The tuner is already locked onto a frequency I didn't dial in.
 Three new packets sit in the buffer, tagged with an unknown sequence.
 No sender. No location. No human encoding.
-The ship's translator does what it can: it renders the signals into clipped, robotic phonemes.
+The ship's translator does what it can. It renders the signals into clipped, robotic phonemes.
 It isn't a sentence. It's a pulse. A test pattern that learned three words.
-<i>[79 DAYS AGO]</i> <i>*bzz-kt*</i> "TEST"
-<i>[41 DAYS AGO]</i> <i>*bzz-kt*</i> "HELLO"
-<i>[5 DAYS AGO]</i> <i>*bzz-kt*</i> "TALK"
+<<speed 0.4>>
+<<play_sound RobotTest 0.25>>
+"TEST" <i>[79 DAYS AGO]</i>
+<<play_sound RobotHello 0.25>>
+"HELLO" <i>[41 DAYS AGO]</i>
+<<play_sound RobotTalk 0.25>>
+"TALK" <i>[5 DAYS AGO]</i>
+<<speed 1>>
 My fingers hover over the response key.
-The encounter wasn't a fever dream.
+The encounter wasn't a fever dream...
+<<speed 0.4>>
+<<play_sound RobotTest 0.25>>
+"TEST" <i>[79 DAYS AGO]</i>
+<<play_sound RobotHello 0.25>>
+"HELLO" <i>[41 DAYS AGO]</i>
+<<play_sound RobotTalk 0.25>>
+"TALK" <i>[5 DAYS AGO]</i>
+<<speed 1>>
 It waited through cryosleep.
     -> (answer)
         <<jump SentPingDay2>>
@@ -67,7 +80,7 @@ position: 260,308
 <<show Sitting>>
 I tell myself I can spare a little time before the report.
 The ship is silent. My body is still catching up. My thoughts keep circling the ping I sent into the dark.
-What should I do while I wait?
+What to do, what to do...
     -> (do some push-ups) <<if $day2DidPushups == false>>
         <<set $day2DidPushups = true>>
         <<set $posSelfPerception += 1>>
@@ -80,7 +93,7 @@ What should I do while I wait?
         <<jump RegularTasksDay2>>
     -> (check the ship systems) <<if $day2DidSystemsCheck == false>>
         <<set $day2DidSystemsCheck = true>>
-        I run quick diagnostics: life support, comms integrity, power draw. Everything looks normal on paper.
+        I run quick diagnostics. Life support, comms integrity, power draw. Everything looks normal on paper.
         I don't.
         <<jump RegularTasksDay2>>
     -> (move on to the report)
@@ -98,7 +111,7 @@ My fingers find the keys. The words are already forming in the sterile, practice
 <<play_sound Glitch 0.25>>
 <<show MonitorSilhouette>>
 Then the communication panel crackles.
-The frequency I pinged back lights up like it was waiting for me to look away.
+The frequency I pinged back lights up, like it was waiting for me to look away.
     -> (answer the incoming connection)
         <<jump CallCatDay2>>
 ===
@@ -122,8 +135,8 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
     <<show_character Cat Happy2 right>>
     <<start_voice_blip Cat>>
     Gnarp: <i>*bzz-kt*</i> HELLO. You... awake? You there?
-    Gnarp: I learn word. More word. I want... talk.
-        -> I'm here. And... it's been a while.
+    Gnarp: I learn word. More word. I want... to talk.
+        -> I'm here.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy right>>
@@ -132,7 +145,7 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
             <<show_character Cat Thinking right>>
             Gnarp: It me. Same frequency. Same ears. Same human.
             Gnarp: I not dream.
-        -> I want to get to know you better.
+        -> I'm happy to see you again.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy right>>
@@ -141,7 +154,7 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
     <<show_character Cat Neutral right>>
     The alien appears on the screen.
     <<start_voice_blip Cat>>
-    Gnarp: HELLO. TALK.
+    Gnarp: HELLO. TALK. :3
         -> I want to get to know you better.
             <<show_character Cat Thinking right>>
             Gnarp: ...Okay. Talk more.
@@ -277,7 +290,7 @@ Gnarp: What you want talk? You choose.
         Gnarp: Game? Yes. Small safe thing.
         <<stop_voice_blip Cat>>
         <<show_character Cat Happy right>>
-        I let Gnarp beam a simple puzzle to my device: shapes, colors, repeating sequences.
+        I let Gnarp beam a simple puzzle to my device, with shapes, colors, and repeating sequences.
         It shouldn't feel intimate.
         It does anyway.
         <<show_character Cat Sad right>>
@@ -329,7 +342,7 @@ Silence rushes in like a pressure change.
 My reflection looks wrong on the dark glass, like someone who knows something they shouldn't.
 And now comes the part I'm trained for.
 The part with procedures and consequences.
-HQ's reminder sits in my inbox, timestamped weeks ago, delivered while I was asleep:
+HQ's reminder sits in my inbox, timestamped weeks ago, delivered while I was asleep.
 "Remember your duty to report accurately. Your observations are crucial for our understanding and eradication of foreign threats."
 Do I report that an alien made contact again, stronger this time, more coherent, more <i>real</i>?
     -> (report Gnarp)
@@ -390,7 +403,7 @@ It starts under fluorescent bulbs, with my hands wrapped around cheap coffee and
 College was a maze of open doors I couldn't make myself walk through.
 Everyone else had study groups, late nights that sounded like laughter, futures that assumed they belonged.
 I had silence, and the stubborn thought that if I could become an astronaut, maybe distance would finally feel like relief instead of failure.
-I remember the day the decision hardened into something real:
+I remember the day the decision hardened into something real.
 the career counselor's smile that didn't reach her eyes,
 the scholarship email I couldn't bring myself to answer,
 the long walk back to my dorm where I realized I was already living like I was in orbit: present, but untouchable.
@@ -419,9 +432,14 @@ position: 83,279
 I sit back from the keyboard, report transmitted, hands still trembling.
 <<set $negSelfPerception += 1>>
 I did what I'm trained to do. I kept the machine running.
-I also did something I'm not trained for at all: I kept a secret that has a pulse.
+I also did something I'm not trained for at all. I kept a secret that has a pulse.
 The same three robotic words keep replaying behind my eyes.
-TEST. HELLO. TALK.
+<<play_sound RobotTest 0.25>>
+"TEST" <i>[79 DAYS AGO]</i>
+<<play_sound RobotHello 0.25>>
+"HELLO" <i>[41 DAYS AGO]</i>
+<<play_sound RobotTalk 0.25>>
+"TALK" <i>[5 DAYS AGO]</i>
 I shut the screen down before I can change my mind.
 <<jump EndDay2>>
 ===
