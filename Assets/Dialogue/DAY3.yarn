@@ -52,13 +52,13 @@ My body is stiff from cryosleep. My mind is restless. I should do something with
         <<set $day3DidPushups = true>>
         I drop to the floor. The count is slower today, my arms heavier, but the rhythm is still mine.
         <<set $posSelfPerception += 1>>
-        By the end I'm breathing hard, but I feel <color=\#88FF88>more present in my own skin</color>.
+        By the end I'm breathing hard, but I feel more present in my own skin.
         <<jump RegularTasksDay3>>
     -> (stare at the stars) <<if $day3DidStargaze == false>>
         <<set $day3DidStargaze = true>>
         I press my face close to the viewport and let the stars fill my vision until there's no room for anything else.
         <<set $posSelfPerception += 1>>
-        For a few minutes, the loneliness fades into <color=\#88FF88>something closer to wonder</color>.
+        For a few minutes, the loneliness fades into something closer to wonder.
         <<jump RegularTasksDay3>>
     -> (check the ship systems) <<if $day3DidSystemsCheck == false>>
         <<set $day3DidSystemsCheck = true>>
@@ -138,12 +138,12 @@ position: 647,285
         {$catName}: Memories that come when you not looking. I have those too.
         {$catName}: Mine are mostly sounds. My family talking over dinner. The hum of home.
         <<set $posSelfPerception += 1>>
-        Sharing that feels <color=\#88FF88>unexpectedly easy</color>.
+        Sharing that feels unexpectedly easy.
     -> I'd rather not talk about it.
         <<show_character Cat Sad right>>
         {$catName}: Okay. I understand closed doors.
         <<set $negSelfPerception += 1>>
-        I shut down again. The habit is <color=\#FF8888>hard to break</color>.
+        I shut down again. The habit is hard to break.
 <<show_character Cat Neutral right>>
 {$catName}: I ask because... I been thinking about time. How it move different for us.
 {$catName}: For you, few sleep. For me, many day alone. Watching. Waiting.
@@ -156,14 +156,14 @@ position: 647,285
         <<show_character Cat Happy right>>
         {$catName}: That mean more than you know.
         <<set $posSelfPerception += 1>>
-        Saying it out loud makes it <color=\#88FF88>feel true</color>.
+        Saying it out loud makes it feel true.
     -> We barely know each other.
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Sad right>>
         {$catName}: ...Yes. You are right. But I hoped anyway.
         <<set $negSelfPerception += 1>>
-        The honesty was supposed to feel clean. Instead it <color=\#FF8888>tastes like rust</color>.
+        The honesty was supposed to feel clean. Instead it tastes like rust.
 <<stop_voice_blip Cat>>
 The signal holds. {$catName} is still there, waiting.
     -> (keep talking)
@@ -189,14 +189,14 @@ position: 647,400
         <<show_character Cat Happy right>>
         {$catName}: You surprise me. Most people not like hearing truth about themselves.
         <<set $posSelfPerception += 1>>
-        Accepting it hurts, but it also feels <color=\#88FF88>honest</color>.
+        Accepting it hurts, but it also feels honest.
     -> That's a pretty harsh generalization.
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Neutral right>>
         {$catName}: Maybe. But you sitting alone in metal box in space. You tell me I wrong?
         <<set $negSelfPerception += 1>>
-        I want to argue. I <color=\#FF8888>can't</color>.
+        I want to argue. I can't.
 <<show_character Cat Neutral right>>
 {$catName}: That why they not want me talk to you. They afraid you... infect me. With your loneliness.
 {$catName}: But I think loneliness not disease. I think it just... wound that need air.
@@ -235,13 +235,13 @@ position: 647,515
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<set $posSelfPerception += 1>>
-        The idea of sharing something so small and specific makes the distance feel <color=\#88FF88>a little shorter</color>.
+        The idea of sharing something so small and specific makes the distance feel a little shorter.
     -> Nothing.
         <<show_character Cat Sad right>>
         {$catName}: ...Nothing? Not one thing?
         {$catName}: That make me sad for you.
         <<set $negSelfPerception += 1>>
-        I said it to sound tough. It just sounds <color=\#FF8888>empty</color>.
+        I said it to sound tough. It just sounds empty.
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy2 right>>
     {$catName}: I want show you something. Hold on.
@@ -257,14 +257,14 @@ position: 647,515
             <<show_character Cat Happy2 right>>
             {$catName}: It is. And now you carry piece of it.
             <<set $posSelfPerception += 1>>
-            Something about that gesture makes me feel <color=\#88FF88>less far from everything</color>.
+            Something about that gesture makes me feel less far from everything.
         -> Be careful! You don't want to get in trouble.
             <<show_character Cat Sad right>>
             {$catName}: ...You right. I was careless.
             <<negative_indicator Cat>>
             <<set $catDislikesYou += 1>>
             <<set $negSelfPerception += 1>>
-            I said the practical thing. It <color=\#FF8888>doesn't feel like the right thing</color>.
+            I said the practical thing. It doesn't feel like the right thing.
 <<endif>>
 <<jump CatConvoDay3_End>>
 ===
@@ -362,23 +362,23 @@ I push back from the desk. The chair scrapes against the floor, too loud in the 
 The report can wait. Everything can wait.
 <<if $negSelfPerception >= $posSelfPerception + 3>>
     <<set $negSelfPerception += 2>>
-    It <color=\#FF8888>hits all at once</color>.
+    It hits all at once.
     My father was a thief. Not of things, but of people. He walked into a world that welcomed him, earned their trust, and ripped someone's mother away.
     {$catName} grew up without her because of him. Because of my family.
     And here I am, floating through the same void, talking to the child he orphaned, pretending I'm a good person.
-    I <color=\#FF8888>feel like I was built on a rotten foundation</color>.
+    I feel like I was built on a rotten foundation.
 <<elseif $negSelfPerception > $posSelfPerception>>
     <<set $negSelfPerception += 1>>
-    The thought spirals: <color=\#FF8888>how do I look {$catName} in the eye after this?</color>
+    The thought spirals: how do I look {$catName} in the eye after this?
     My father took their mother. Stole her from a world that trusted him. And I've been sitting here, building something with the person he hurt most, without knowing any of it.
     I think about every kind thing {$catName} said to me. Every moment of patience.
-    Did they know the whole time? Were they waiting for me to figure it out? The thought makes me feel <color=\#FF8888>sick</color>.
+    Did they know the whole time? Were they waiting for me to figure it out? The thought makes me feel sick.
 <<else>>
     <<set $negSelfPerception += 1>>
     I sit with it. The weight is enormous, but I try to breathe around it.
     My father did something terrible. He took {$catName}'s mother from her world, from her people, and never looked back.
     It doesn't make me him. I know that. But it rearranges everything. The man I thought I knew, the family I thought I understood.
-    I'm shaken. Deeply. But I'm also <color=\#88FF88>still here</color>. That has to count for something.
+    I'm shaken. Deeply. But I'm also still here. That has to count for something.
     I'll deal with this. Just... not tonight.
 <<endif>>
 <<jump EndDay3>>
@@ -420,11 +420,11 @@ I packed one box. Everything I owned fit inside it.
     -> (hold onto the memory)
         I let myself stay in the backyard a moment longer. The grass under my feet feels real. The air smells like cut lawn and possibility.
         <<set $posSelfPerception += 1>>
-        The memory fills me with <color=\#88FF88>a tender ache that feels like proof I'm still alive</color>.
+        The memory fills me with a tender ache that feels like proof I'm still alive.
     -> (let it fade)
         I turn away from the door. Some things are easier at a distance. I chose that distance for a reason.
         <<set $negSelfPerception += 1>>
-        The memory dissolves and leaves <color=\#FF8888>a familiar numbness</color> in its place.
+        The memory dissolves and leaves a familiar numbness in its place.
 The dream shifts. The backyard becomes a viewport. The grass becomes stars.
 My mother's voice becomes static. And in the silence that follows, I see my father's face, turned upward, looking at stars he'd walked among... carrying a secret he never shared.
 <<fade_transition 3>>

@@ -163,7 +163,7 @@ You: ..........
 Against my better judgment, I decide to ignore the signal. 
 You: Darn static interference...
 <<set $negSelfPerception += 1>>
-I push the signal away, but the <color=\#FF8888>guilt lingers</color>.
+I push the signal away, but the guilt lingers.
 <<hide_all_characters>>
 <<fade_transition 2>>
 <<wait 1.5>>
@@ -382,12 +382,12 @@ I sit back down... trying to process the encounter I just had.
 Who was that creature? How is that even possible?
 <<if $catLikesYou > $catDislikesYou>>
     <<set $posSelfPerception += 1>>
-    Strangely enough, I <color=\#88FF88>enjoyed the encounter</color> with them. They seemed... friendly.
+    Strangely enough, I enjoyed the encounter with them. They seemed... friendly.
     What would it be like for me to have a friend like that?
     I wonder if I'll ever see them again.
 <<else>>
     <<set $negSelfPerception += 1>>
-    To me, the <color=\#FF8888>whole encounter felt off</color>. Aliens? Of all times, why now?
+    To me, the whole encounter felt off. Aliens? Of all times, why now?
     I think about what others on Earth would say if they found out about this encounter. Although it is my job to report such things, would they really believe I met a friendly animal alien?
 <<endif>>
 <<hide_all_objects>>

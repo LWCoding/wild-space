@@ -4252,21 +4252,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfos:
   - characterObject: {fileID: 1722904809}
-    icon: {fileID: 1253435991}
-    likeVariableName: catLikesYou
-    dislikeVariableName: catDislikesYou
   - characterObject: {fileID: 109717617}
-    icon: {fileID: 2017112205}
-    likeVariableName: dogLikesYou
-    dislikeVariableName: dogDislikesYou
   - characterObject: {fileID: 167198769}
-    icon: {fileID: 1737293999}
-    likeVariableName: birdLikesYou
-    dislikeVariableName: birdDislikesYou
   - characterObject: {fileID: 1314969656}
-    icon: {fileID: 832661864}
-    likeVariableName: opossumLikesYou
-    dislikeVariableName: opossumDislikesYou
   leftAnchor: {fileID: 106696850}
   centerAnchor: {fileID: 1165409721}
   rightAnchor: {fileID: 1306706245}
@@ -4340,7 +4328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &649689614
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6349,9 +6337,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalVolume: {fileID: 1806722012}
-  intensityPerPoint: 0.125
-  minimumIntensity: 0.3
-  transitionDuration: 0.4
+  intensityPerPoint: 0.075
+  minimumIntensity: 0.35
+  transitionDuration: 0.6
 --- !u!1 &826410418
 GameObject:
   m_ObjectHideFlags: 0
@@ -6686,17 +6674,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9021691872092871917, guid: ae13930f551a05146914c549129284a4, type: 3}
   m_PrefabInstance: {fileID: 832661862}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &832661864 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5725690398561466531, guid: ae13930f551a05146914c549129284a4, type: 3}
-  m_PrefabInstance: {fileID: 832661862}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d558cda83b3eeee45b2fd7536cc83723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &837549925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10013,17 +9990,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9021691872092871917, guid: ae13930f551a05146914c549129284a4, type: 3}
   m_PrefabInstance: {fileID: 7760827150015523773}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1253435991 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5725690398561466531, guid: ae13930f551a05146914c549129284a4, type: 3}
-  m_PrefabInstance: {fileID: 7760827150015523773}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d558cda83b3eeee45b2fd7536cc83723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1264586455
 GameObject:
   m_ObjectHideFlags: 0
@@ -13814,17 +13780,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9021691872092871917, guid: ae13930f551a05146914c549129284a4, type: 3}
   m_PrefabInstance: {fileID: 1737293997}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1737293999 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5725690398561466531, guid: ae13930f551a05146914c549129284a4, type: 3}
-  m_PrefabInstance: {fileID: 1737293997}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d558cda83b3eeee45b2fd7536cc83723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1758616861
 GameObject:
   m_ObjectHideFlags: 0
@@ -16350,17 +16305,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9021691872092871917, guid: ae13930f551a05146914c549129284a4, type: 3}
   m_PrefabInstance: {fileID: 2017112203}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2017112205 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5725690398561466531, guid: ae13930f551a05146914c549129284a4, type: 3}
-  m_PrefabInstance: {fileID: 2017112203}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d558cda83b3eeee45b2fd7536cc83723, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2017923399
 GameObject:
   m_ObjectHideFlags: 0

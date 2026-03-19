@@ -6,7 +6,7 @@ position: 90,-43
 <<play_sound AlarmClock>>
 <<play_music MainTheme>>
 <<set $negSelfPerception += 1>>
-I wake up to a loud chime on the monitor, my head <color=\#FF8888>pounding yet again</color>.
+I wake up to a loud chime on the monitor, my head pounding yet again.
 Cryosleep leaves a gap you can feel in your bones. The mission clock doesn't.
 I blink at the readout until it stops swimming.
 Day {$daysPassed}.
@@ -36,7 +36,7 @@ It isn't a sentence. It's a pulse. A test pattern that learned three words.
 "TALK" <i>[5 DAYS AGO]</i>
 <<speed 1>>
 <<set $negSelfPerception += 1>>
-My fingers hover over the response key. The <color=\#FF8888>dread is already settling in</color>.
+My fingers hover over the response key. The dread is already settling in.
 The encounter wasn't a fever dream...
 <<speed 0.4>>
 <<play_sound RobotTest 0.25>>
@@ -94,13 +94,13 @@ What to do, what to do...
         <<set $day2DidPushups = true>>
         I drop to the floor and count slowly, careful with my breathing. My arms burn. The burn is familiar, controllable.
         <<set $posSelfPerception += 1>>
-        I feel <color=\#88FF88>a little steadier</color> afterwards. It helps, a little.
+        I feel a little steadier afterwards. It helps, a little.
         <<jump RegularTasksDay2>>
     -> (stare at the stars) <<if $day2DidStargaze == false>>
         <<set $day2DidStargaze = true>>
         I watch the stars until my eyes blur and the ship feels less like a coffin and more like a vehicle.
         <<set $posSelfPerception += 1>>
-        For a moment, the vastness doesn't feel threatening. It feels like <color=\#88FF88>something I chose</color>.
+        For a moment, the vastness doesn't feel threatening. It feels like something I chose.
         <<jump RegularTasksDay2>>
     -> (check the ship systems) <<if $day2DidSystemsCheck == false>>
         <<set $day2DidSystemsCheck = true>>
@@ -196,14 +196,14 @@ position: 647,285
         <<show_character Cat Sad right>>
         {$catName}: It is. But you still here. I still here. That matter.
         <<set $posSelfPerception += 1>>
-        Admitting fear out loud feels strange. But also <color=\#88FF88>a little lighter</color>.
+        Admitting fear out loud feels strange. But also a little lighter.
     -> Oh, those aren't bad. We have those too.
         <<show_character Cat Sad right>>
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         {$catName}: You say that like pain is contest. Not kind.
         <<set $negSelfPerception += 1>>
-        The words leave my mouth before I can stop them. I <color=\#FF8888>feel smaller</color> for saying it.
+        The words leave my mouth before I can stop them. I feel smaller for saying it.
 <<show_character Cat Neutral right>>
 {$catName}: You sleep many day. I thought you gone. I hate that thought.
 {$catName}: Then you move again. I send: TEST. HELLO. TALK.
@@ -243,7 +243,7 @@ position: 647,285
         {$catName}: Yes. You speak like manual. But you feel like living thing.
         {$catName}: You can be both. I think.
         <<set $posSelfPerception += 1>>
-        Something about that lands. I feel <color=\#88FF88>a little more seen</color>.
+        Something about that lands. I feel a little more seen.
     -> That's not how humans work.
         <<show_character Cat Angry right>>
         {$catName}: You make rule sound like cage. Maybe it is cage.
@@ -251,7 +251,7 @@ position: 647,285
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<set $negSelfPerception += 1>>
-        I shut the conversation down without meaning to. The silence afterwards <color=\#FF8888>stings</color>.
+        I shut the conversation down without meaning to. The silence afterwards stings.
 <<stop_voice_blip Cat>>
 The signal holds steady. {$catName} is still there, waiting patiently on the other side.
     -> (keep talking)
@@ -325,14 +325,14 @@ position: 647,515
         <<show_character Cat Sad right>>
         {$catName}: Yes. But I still breathe. Still do job. That what they taught me: keep going.
         <<set $posSelfPerception += 1>>
-        The words sit with me. I feel <color=\#88FF88>something loosen in my chest</color>.
+        The words sit with me. I feel something loosen in my chest.
     -> Why don't you bring them here?
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
         <<show_character Cat Angry right>>
         {$catName}: Not that simple. Space hurt people. It hurt you too.
         <<set $negSelfPerception += 1>>
-        I said the wrong thing. I can feel it. I <color=\#FF8888>feel a pang of guilt</color>.
+        I said the wrong thing. I can feel it. I feel a pang of guilt.
 <<if $catLikesYou > $catDislikesYou>>
     <<stop_voice_blip Cat>>
     <<show_character Cat Sad right>>
@@ -346,7 +346,7 @@ position: 647,515
             <<show_character Cat Neutral right>>
             {$catName}: Talking to you help. You make space less sharp.
             <<set $posSelfPerception += 1>>
-            I didn't know I could still do that — make someone feel less alone. It makes me feel <color=\#88FF88>a quiet warmth</color>.
+            I didn't know I could still do that — make someone feel less alone. It makes me feel a quiet warmth.
         -> Change the subject.
             <<start_voice_blip Cat>>
             <<show_character Cat Neutral right>>
@@ -375,7 +375,7 @@ position: 647,515
             {$catName}: I learn your words. You learn your feelings. We both translate.
             {$catName}: Emotional bilingual.
             <<set $posSelfPerception += 1>>
-            I didn't expect to feel <color=\#88FF88>understood</color> by an alien. But here I am.
+            I didn't expect to feel understood by an alien. But here I am.
         -> (keep it to yourself)
             I almost say something. The words are right there, hot and real, but I swallow them back down.
 <<endif>>
@@ -491,11 +491,11 @@ In the dream, the stars are there too, just out of reach through a window that d
     -> (hold onto the ambition)
         I remember why I wanted this. Not the prestige. The quiet. The distance. The proof that I could endure.
         <<set $posSelfPerception += 1>>
-        The memory fills me with <color=\#88FF88>a stubborn resolve</color>.
+        The memory fills me with a stubborn resolve.
     -> (feel the loneliness)
         I remember how easy it was to disappear in a crowd, and how I kept choosing that over being seen.
         <<set $negSelfPerception += 1>>
-        The weight of it <color=\#FF8888>presses down on me</color>.
+        The weight of it presses down on me.
 The dream tilts from college hallway to spacecraft corridor, as if my brain is admitting the truth.
 I didn't just get launched into space.
 I practiced for it for years.
@@ -510,7 +510,7 @@ position: 83,279
 <<hide_all_ui_objects>>
 I sit back from the keyboard, report transmitted, hands still trembling.
 <<set $negSelfPerception += 1>>
-I did what I'm trained to do. I kept the machine running. But I <color=\#FF8888>feel the weight of the lie</color>.
+I did what I'm trained to do. I kept the machine running. But I feel the weight of the lie.
 I also did something I'm not trained for at all. I kept a secret that has a pulse.
 The same three robotic words keep replaying behind my eyes.
 <<play_sound RobotTest 0.25>>
