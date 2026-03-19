@@ -23,44 +23,26 @@ position: 85,114
 <<show MonitorOn>>
 I power the monitor on, expecting the comfort of routine. The same checklist, the same empty horizon, the same report no one reads.
 <<play_sound Glitch 0.25>>
-Instead, the communication panel pings, sharp and insistent. Locked onto a frequency I didn't dial in.
-Three new packets sit in the buffer, tagged with an unknown sequence.
-The ship's translator does what it can. It renders the signals into clipped, robotic phonemes.
-It isn't a sentence. It's a pulse. A test pattern that learned three words.
+Instead, the communication panel pings again. The same frequency as before.
+New packets sit in the buffer, tagged with the same unknown sequence.
+The translator renders them into something more coherent this time.
 <<speed 0.4>>
-<<play_sound RobotTest 0.25>>
-"TEST" <i>[79 DAYS AGO]</i>
-<<play_sound RobotHello 0.25>>
-"HELLO" <i>[41 DAYS AGO]</i>
-<<play_sound RobotTalk 0.25>>
-"TALK" <i>[5 DAYS AGO]</i>
+"I HAVE BEEN PRACTICING" <i>[52 DAYS AGO]</i>
+"ARE YOU STILL THERE" <i>[31 DAYS AGO]</i>
+"I HOPE YOU ARE OKAY" <i>[12 DAYS AGO]</i>
 <<speed 1>>
-<<set $negSelfPerception += 1>>
-My fingers hover over the response key. The dread is already settling in.
-The encounter wasn't a fever dream...
-<<speed 0.4>>
-<<play_sound RobotTest 0.25>>
-"TEST" <i>[79 DAYS AGO]</i>
-<<play_sound RobotHello 0.25>>
-"HELLO" <i>[41 DAYS AGO]</i>
-<<play_sound RobotTalk 0.25>>
-"TALK" <i>[5 DAYS AGO]</i>
-<<speed 1>>
-It waited through cryosleep.
+It's been sending messages while I was in cryosleep. Waiting. Learning.
     -> (answer)
         <<jump SentPingDay2>>
     -> (don't answer)
-        I tell myself it's safer to ignore it. Safer to pretend my brain invented the whole thing.
+        I tell myself I should focus on the report first. The signal can wait.
         The ping repeats anyway. Patient. Persistent.
         <<speed 0.4>>
-        <<play_sound RobotTest 0.25>>
-        "TEST" <i>[79 DAYS AGO]</i>
-        <<play_sound RobotHello 0.25>>
-        "HELLO" <i>[41 DAYS AGO]</i>
-        <<play_sound RobotTalk 0.25>>
-        "TALK" <i>[5 DAYS AGO]</i>
+        "I HAVE BEEN PRACTICING" <i>[52 DAYS AGO]</i>
+        "ARE YOU STILL THERE" <i>[31 DAYS AGO]</i>
+        "I HOPE YOU ARE OKAY" <i>[12 DAYS AGO]</i>
         <<speed 1>>
-        It's as if it's trying to scare me.
+        It's not going to stop.
             -> (answer)
                 <<jump SentPingDay2>>
 ===
@@ -144,7 +126,7 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
     The alien appears on the screen, looking relieved to see me.
     <<show_character Cat Happy2 right>>
     <<start_voice_blip Cat>>
-    {$catName}: <i>*bzz-kt*</i> HELLO. You... awake? You there?
+    {$catName}: You... awake? You there?
     {$catName}: I learn word. More word. I want... to talk.
         -> I'm here.
             <<positive_indicator Cat>>
@@ -164,7 +146,7 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
     <<show_character Cat Neutral right>>
     The alien appears on the screen.
     <<start_voice_blip Cat>>
-    {$catName}: HELLO. TALK. :3
+    {$catName}: Hello. Talk!
         -> I want to get to know you better.
             <<show_character Cat Thinking right>>
             {$catName}: ...Okay. Talk more.
@@ -206,7 +188,7 @@ position: 647,285
         The words leave my mouth before I can stop them. I feel smaller for saying it.
 <<show_character Cat Neutral right>>
 {$catName}: You sleep many day. I thought you gone. I hate that thought.
-{$catName}: Then you move again. I send: TEST. HELLO. TALK.
+{$catName}: Then you move again. I send more messages to your ship.
 <<show_character Cat Thinking right>>
     -> Why did you leave so abruptly last time?
         <<show_character Cat Sad right>>

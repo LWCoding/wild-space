@@ -46,7 +46,58 @@ Earth launched an initiative to find out why the sun suddenly had a hole in the 
 My dad was the pilot of the last one.
 Dad... I hope I can find you out here.
 But deep inside, I knew signing up was just to get a chance away from Earth.
-<<jump RegularTasksDay1>>
+<<jump HearRadioSignals>>
+===
+
+title: HearRadioSignals
+position: 315,-550
+---
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show MonitorOn>>
+<<play_sound Glitch 0.25>>
+The communication panel pings, sharp and insistent. Locked onto a frequency I didn't dial in.
+Three new packets sit in the buffer, tagged with an unknown sequence.
+The ship's translator does what it can. It renders the signals into clipped, robotic phonemes.
+It isn't a sentence. It's a pulse. A test pattern that learned three words.
+<<speed 0.4>>
+<<play_sound RobotTest 0.25>>
+"TEST" <i>[79 DAYS AGO]</i>
+<<play_sound RobotHello 0.25>>
+"HELLO" <i>[41 DAYS AGO]</i>
+<<play_sound RobotTalk 0.25>>
+"TALK" <i>[5 DAYS AGO]</i>
+<<speed 1>>
+My fingers hover over the response key. I don't know what to make of this.
+    -> (send a ping back)
+        <<jump SentPingDay1>>
+    -> (ignore it)
+        I tell myself it's probably just interference. Cosmic noise. Nothing to worry about.
+        The ping repeats anyway. Patient. Persistent.
+        <<speed 0.4>>
+        <<play_sound RobotTest 0.25>>
+        "TEST" <i>[79 DAYS AGO]</i>
+        <<play_sound RobotHello 0.25>>
+        "HELLO" <i>[41 DAYS AGO]</i>
+        <<play_sound RobotTalk 0.25>>
+        "TALK" <i>[5 DAYS AGO]</i>
+        <<speed 1>>
+        It's as if it's waiting for me.
+            -> (send a ping back)
+                <<jump SentPingDay1>>
+            -> (ignore it again)
+                I shake my head and turn away from the monitor. Whatever it is, it can wait.
+                <<jump RegularTasksDay1>>
+===
+
+title: SentPingDay1
+position: 315,-500
+---
+I press the response key and send a ping back down the line.
+As a one-way signal, there's no way to tell what's waiting on the other side. I can only hope the other side taps back.
+Either way, my routine is still here.
+    -> (try to act normal)
+        <<jump RegularTasksDay1>>
 ===
 
 title: RegularTasksDay1
@@ -117,8 +168,7 @@ title: AfterTypedFirstTime
 position: 15,-241
 ---
 <<hide_ui TypeToInteract>>
-Done. The same report for the {$daysPassed}st time. 
-    -> (turn off the monitor)
+Done. The same report for the {$daysPassed}st time.
 <<hide MonitorReportDay1>>
 <<jump MonitorOn>>
 ===
@@ -128,13 +178,11 @@ position: 15,-63
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<hide MonitorOn>>
-Just as I turn the monitor off, my hip bumps the communication panel.
-<<play_sound Glitch 0.25>>
 <<show MonitorOn>>
-The tuner skitters across the dial with a burst of static.
+<<play_sound Glitch 0.25>>
 <<show MonitorSilhouette>>
-The noise thins, then resolves, locked onto a different frequency. The monitor jolts back to life.
+Just as I finish the report, the communication panel crackles.
+The frequency I pinged back lights up, like it was waiting for me to look away.
 <<show_character Cat Obscure right>>
 A dark figure appears on the screen, accompanied with a static-filled voice.
 <<speed 0.4>>
@@ -220,30 +268,36 @@ That voice. It's real. This is really happening.
                 ???: AH! So loud! My ears... they very sensitive!
                 <<show_character Cat Sad right>>
                 ???: Please... next time more quiet? I not mean scare you...
+    -> ...
 <<stop_voice_blip Cat>>
 I'm still reeling. An alien, asking if I'm okay. My hands are shaking.
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
 ???: You not look in danger. So... what you do in space? Why you here?
-    -> What <i>are</i> you?
+    -> I'm on a mission. Exploring.
+        <<show_character Cat Thinking right>>
+        ???: Mission? Explore? You go far from home just to... look? That sound lonely.
+    -> It's... complicated.
         <<show_character Cat Neutral right>>
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
-        ???: That... not kind. Rude.
-        ???: We both life. We both in space. I just... curious.
-    -> Who... what... are you?
+        ???: Complicated. Yes. I understand this word. Many thing in life is complicated.
     -> Why do you want to know?
         <<negative_indicator Cat>>
         <<set $catDislikesYou += 1>>
-        <<show_character Cat Thinking right>>
+        <<show_character Cat Sad right>>
         ???: Sorry. I just... want know. I only small... two orbit old? So many thing I not understand yet.
 <<show_character Cat Happy right>>
+???: Oh! You ping back! I so happy! I send many signal... TEST, HELLO, TALK... I not know if you hear.
+<<show_character Cat Thinking right>>
+???: I watch your ship long time. I learn little bit of your words. I practice and practice.
+<<show_character Cat Happy right>>
+???: But now you here! You respond! This is... this is very good.
+<<show_character Cat Neutral right>>
 ???: Before more question... you have name? What I call you? Human have this, one word for each? So interesting to me!
 <<stop_voice_blip Cat>>
 My mouth is dry. It's asking for my name. It wants to know what to call me. I'm having a conversation with an alien. I'm having a conversation with an <i>alien</i>.
 <<start_voice_blip Cat>>
 ???: I want remember you. Please?
-    -> My name's {$playerName}.
+    -> I'm {$playerName}.
         <<show_character Cat Happy right>>
         <<set $catLikesYou += 1>>
         <<positive_indicator Cat>>
