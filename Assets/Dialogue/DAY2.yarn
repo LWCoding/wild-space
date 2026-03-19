@@ -207,6 +207,31 @@ position: 647,285
 {$catName}: You sleep many day. I thought you gone. I hate that thought.
 {$catName}: Then you move again. I send: TEST. HELLO. TALK.
 <<show_character Cat Thinking right>>
+    -> Why did you leave so abruptly last time?
+        <<show_character Cat Sad right>>
+        {$catName}: Last time I talk with you, I leave because I must.
+        {$catName}: My planet... not really like humans.
+        {$catName}: Talking to you is dangerous for me.
+        <<show_character Cat Neutral right>>
+        You: Dangerous how?
+        <<show_character Cat Sad right>>
+        {$catName}: I not allowed to talk about it.
+        {$catName}: Sorry. I want tell you. I can't.
+        <<show_character Cat Neutral right>>
+        -> It's okay. Sorry.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy right>>
+            {$catName}: Thank you.
+        -> But why? What's happening on your planet?
+            <<negative_indicator Cat>>
+            <<set $catDislikesYou += 1>>
+            <<show_character Cat Angry right>>
+            {$catName}: Stop. Please.
+            <<show_character Cat Sad right>>
+            {$catName}: I really not allowed.
+            <<show_character Cat Neutral right>>
+        -> ...
 {$catName}: But I not just call for talk... I want... practice being person.
 {$catName}: Where I from, I was small. Two orbit old. People decide everything for me.
 {$catName}: Out here I decide. It is scary.
