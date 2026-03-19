@@ -2,7 +2,6 @@ title: StartDay3
 position: -125,-487
 ---
 <<set $daysPassed = 131>>
-<<declare $day3KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
 <<set $negSelfPerception += 1>>
 I wake to the alarm again. My body knows the routine now: the ache, the fog, the slow reassembly of self.
@@ -258,7 +257,7 @@ position: 647,515
             {$catName}: It is. And now you carry piece of it.
             <<set $posSelfPerception += 1>>
             Something about that gesture makes me feel <color=\#88FF88>less far from everything</color>.
-        -> You shouldn't have done that. What if someone's monitoring the feed?
+        -> Be careful! You don't want to get in trouble.
             <<show_character Cat Sad right>>
             {$catName}: ...You right. I was careless.
             <<negative_indicator Cat>>
@@ -273,21 +272,74 @@ title: CatConvoDay3_End
 position: 647,630
 ---
 <<stop_voice_blip Cat>>
-<<if $posSelfPerception > $negSelfPerception>>
-    The conversation has gone on longer than protocol would like. But I feel steadier for it. More like a person, less like a function.
-<<else>>
-    I feel the familiar tightness returning. The conversation helped, but the quiet afterwards is louder than ever.
-<<endif>>
+The conversation settles into a comfortable lull. Neither of us seems to want to hang up.
 <<start_voice_blip Cat>>
-<<if $catLikesYou > $catDislikesYou>>
-    <<show_character Cat Happy right>>
-    {$catName}: I like this. Talking. Even through bad translator and old frequency.
-    {$catName}: Next time you wake, I be here. I promise.
-<<else>>
-    <<show_character Cat Neutral right>>
-    {$catName}: Okay. Talk is done. Be safe, human.
-<<endif>>
+<<show_character Cat Thinking right>>
+{$catName}: I want tell you something. I been thinking about it since we first talk.
+{$catName}: Long time ago, before I born, someone come to our planet. From very far away.
+<<show_character Cat Neutral right>>
+{$catName}: My elders tell story about him. He was... strange. Tall. Clumsy. Always knocking things over because gravity different for him.
+{$catName}: But he learn fast. He try to speak our language, even though his mouth not made for it. He sound terrible. Everyone laugh, but... kind laugh. Warm.
+    -> Sounds like a character.
+        <<show_character Cat Happy right>>
+        {$catName}: Yes! He was. Very much.
+    -> Where did he come from?
+        <<show_character Cat Thinking right>>
+        {$catName}: From far. A small blue planet. I think you know which one.
+<<show_character Cat Thinking right>>
+{$catName}: He had this thing he carry everywhere. Small object, fit in hand. He say it was gift from his father. Had little... what is word... engraving? Of a bird.
+{$catName}: He would hold it when he miss home. My elders say he rub the edges smooth over time.
 <<stop_voice_blip Cat>>
+My breath catches. I know that object. A brass compass with a sparrow etched into the lid. It sat on my father's desk my entire childhood. He said his father gave it to him before he died.
+He never said where it had been.
+<<start_voice_blip Cat>>
+<<show_character Cat Neutral right>>
+{$catName}: He stay long time. Many season. My people, they... accept him. He was different, yes, but he try. He care.
+{$catName}: He learn to cook our food. He fix things. He sit with the elders and listen to old stories, even when he not understand all words.
+<<show_character Cat Happy right>>
+{$catName}: They give him a name in our language. It mean "the one who listens with his whole body."
+<<show_character Cat Sad right>>
+{$catName}: But then... he meet someone there. One of us. She was... important to many people.
+<<show_character Cat Neutral right>>
+{$catName}: She was my mother.
+<<show_character Cat Sad right>>
+{$catName}: And one day, he take her and leave. Back to his planet. No warning. No goodbye to the rest.
+<<stop_voice_blip Cat>>
+<<show_character Cat Neutral right>>
+The silence between us changes shape. It's not comfortable anymore.
+{$catName}'s mother. My father took {$catName}'s mother.
+I stare at the screen and try to make the pieces fit. My father — the quiet man with the compass, the man who read me bedtime stories — stole someone from their home. From their child.
+<<start_voice_blip Cat>>
+<<show_character Cat Sad right>>
+{$catName}: My people were... hurt. They trusted him. They open doors for him that they not open for outsiders. And he take one of their own and disappear.
+{$catName}: That is all I know. The elders not like to say more. It is... old wound.
+<<stop_voice_blip Cat>>
+    -> ...That was my father.
+        <<start_voice_blip Cat>>
+        <<show_character Cat Sad right>>
+        {$catName}: ...I know. I think I know since you first tell me about your family.
+        {$catName}: I am sorry. I not know how to say sooner.
+        <<stop_voice_blip Cat>>
+    -> (say nothing)
+        <<start_voice_blip Cat>>
+        <<show_character Cat Sad right>>
+        {$catName}: ...You are quiet. I think maybe you understand who I talk about.
+        <<stop_voice_blip Cat>>
+The words sit in my chest like stones. My father lived on an alien planet. He took {$catName}'s mother. And I'm sitting here, talking to the child he left behind.
+<<set $negSelfPerception += 2>>
+I feel something crack open inside me. The man I grew up admiring — who taught me patience, who gave me my love of the stars — did something unforgivable.
+And the person I've been building something with is the one who paid for it.
+    -> ...I need to go.
+        <<start_voice_blip Cat>>
+        <<show_character Cat Sad right>>
+        {$catName}: I understand. I—I am sorry.
+        <<stop_voice_blip Cat>>
+    -> I can't do this right now.
+        <<start_voice_blip Cat>>
+        <<show_character Cat Sad right>>
+        {$catName}: ...Okay.
+        <<stop_voice_blip Cat>>
+I close the channel. The screen goes dark.
 <<jump AfterCatLeavesDay3>>
 ===
 
@@ -296,62 +348,37 @@ position: 915,224
 ---
 <<hide_all_characters>>
 <<play_sound Glitch 0.25>>
-The screen returns to static, then to the steady glow of the report template.
+The screen collapses to static. Then nothing.
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
-The cursor blinks where I left it. Patient. Indifferent.
-HQ's standing order sits in the corner of the screen, unchanged:
-"Remember your duty to report accurately. Your observations are crucial for our understanding and eradication of foreign threats."
-The word "eradication" stares at me differently now.
-    -> (report {$catName})
-        <<jump WriteReportDay3_Report>>
-    -> (do not report)
-        <<jump WriteReportDay3_DontReport>>
-===
-
-title: WriteReportDay3_Report
-position: 915,315
----
-<<hide_all_ui_objects>>
-<<hide_all_characters>>
-<<hide MonitorSilhouette>>
+I sit there, staring at the monitor, hands flat on the console. My reflection stares back, and for the first time, I look at it like a stranger.
+The report template is still open. The cursor blinks.
+I can't do it. Not tonight.
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show_ui TypeToInteract>>
-<<show MonitorReportDay3>>
-I open the official channel and type it out. The alien. The frequency. The conversations.
-The words come easier than they should. That's what training does.
-    -> (submit the report)
-        <<hide_ui TypeToInteract>>
-        <<jump ForeverAlone>>
-===
-
-title: WriteReportDay3_DontReport
-position: 915,330
----
-<<hide_all_ui_objects>>
-<<hide_all_characters>>
-<<hide MonitorSilhouette>>
-<<hide_all_objects>>
-<<show PCRoom>>
-<<show_ui TypeToInteract>>
-<<show MonitorDontReportDay3>>
-I fill the report with routine observations and empty coordinates.
-{$catName}'s name doesn't appear. The frequency stays my secret.
-    -> (submit the report)
-        <<hide_ui TypeToInteract>>
-        <<set $day3KeptUnderWraps = true>>
-        <<jump KeptUnderWrapsDay3>>
-===
-
-title: KeptUnderWrapsDay3
-position: 83,279
----
-<<hide_all_ui_objects>>
-I stare at the "TRANSMITTED" confirmation until the letters blur.
-<<set $negSelfPerception += 1>>
-Each report I falsify adds another layer between me and the person I'm supposed to be. I <color=\#FF8888>feel the gap widening</color>.
-But the alternative... typing {$catName}'s name into a document with the word "eradication" in it... isn't something I can do. Not anymore.
+I push back from the desk. The chair scrapes against the floor, too loud in the silence.
+The report can wait. Everything can wait.
+<<if $negSelfPerception >= $posSelfPerception + 3>>
+    <<set $negSelfPerception += 2>>
+    It <color=\#FF8888>hits all at once</color>.
+    My father was a thief. Not of things — of people. He walked into a world that welcomed him, earned their trust, and ripped someone's mother away.
+    {$catName} grew up without her because of him. Because of my family.
+    And here I am, floating through the same void, talking to the child he orphaned, pretending I'm a good person.
+    I <color=\#FF8888>feel like I was built on a rotten foundation</color>.
+<<elseif $negSelfPerception > $posSelfPerception>>
+    <<set $negSelfPerception += 1>>
+    The thought spirals: <color=\#FF8888>how do I look {$catName} in the eye after this?</color>
+    My father took their mother. Stole her from a world that trusted him. And I've been sitting here, building something with the person he hurt most, without knowing any of it.
+    I think about every kind thing {$catName} said to me. Every moment of patience.
+    Did they know the whole time? Were they waiting for me to figure it out? The thought makes me feel <color=\#FF8888>sick</color>.
+<<else>>
+    <<set $negSelfPerception += 1>>
+    I sit with it. The weight is enormous, but I try to breathe around it.
+    My father did something terrible. He took {$catName}'s mother from her world, from her people, and never looked back.
+    It doesn't make me him. I know that. But it rearranges everything. The man I thought I knew, the family I thought I understood.
+    I'm shaken. Deeply. But I'm also <color=\#88FF88>still here</color>. That has to count for something.
+    I'll deal with this. Just... not tonight.
+<<endif>>
 <<jump EndDay3>>
 ===
 
@@ -360,26 +387,16 @@ position: 918,14
 ---
 <<hide_all_characters>>
 <<hide MonitorSilhouette>>
-<<show MonitorOn>>
+<<hide_all_objects>>
+<<show PCRoom>>
 <<play_music MainTheme>>
-The day is winding down. The ship settles into its nighttime hum, a frequency I've memorized without meaning to.
-    -> (turn off the monitor)
-        <<hide_all_objects>>
-        <<show PCRoom>>
-        <<if $posSelfPerception > $negSelfPerception>>
-            The conversations are changing me. I can feel it. Something that was locked is starting to open, and I'm not sure I can close it again even if I wanted to.
-        <<else>>
-            I sit in the dark for a while, caught between the person the mission needs me to be and the person these conversations are turning me into.
-        <<endif>>
-        <<hide_all_objects>>
-        <<show PCRoom>>
-        <<fade_transition 3>>
-        <<wait 3>>
-        <<if $day3KeptUnderWraps == true>>
-            <<jump DreamDay3>>
-        <<else>>
-            <<jump StartDay4>>
-        <<endif>>
+I don't bother turning the monitor off properly. I just let it go dark on its own.
+The report sits unfinished. HQ will get a blank day from me. They can add it to the long list of things I'm failing at.
+I climb into the cryopod without ceremony. No routine, no checklist, no pretending I'm fine.
+Just the hum of the pod, the cold settling in, and the last image behind my eyelids: a brass compass with a sparrow on the lid, and a question I can never ask my father.
+<<fade_transition 3>>
+<<wait 3>>
+<<jump DreamDay3>>
 ===
 
 title: DreamDay3
@@ -392,7 +409,9 @@ position: 915,500
 The dream starts with a sound I haven't heard in years: my mother's voice, calling me in for dinner.
 I'm standing in the backyard of the house I grew up in. The grass is too green, the sky too wide, the way memories overcompensate for detail.
 She's at the door. I can see her shape but not her face. The dream won't give me that much.
+But this time, my father is there too. Standing at the edge of the yard, looking up at the sky. He always did that. I thought he was stargazing. Now I wonder if he was remembering.
 I remember the last conversation before I left. How I told her this was what I wanted. How she said she understood. How neither of us believed the other.
+Did he ever think about what he left behind? Did he ever think about who he took?
 The training center was easier. There, loneliness had a schedule. Wake, train, eat, sleep. No one asked how you felt because feelings were a variable you learned to control.
 I remember the day they told me I was selected. The pride that lasted exactly one hour before it turned into something heavier.
 I packed one box. Everything I owned fit inside it.
@@ -405,8 +424,7 @@ I packed one box. Everything I owned fit inside it.
         <<set $negSelfPerception += 1>>
         The memory dissolves and leaves <color=\#FF8888>a familiar numbness</color> in its place.
 The dream shifts. The backyard becomes a viewport. The grass becomes stars.
-My mother's voice becomes static.
-And somewhere in the static, I think I hear {$catName}.
+My mother's voice becomes static. And in the silence that follows, I see my father's face, turned upward, looking at stars he'd walked among — carrying a secret he never shared.
 <<fade_transition 3>>
 <<wait 2>>
 <<jump StartDay4>>

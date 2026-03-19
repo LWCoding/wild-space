@@ -1,0 +1,24 @@
+title: StartDay4
+position: -125,-487
+---
+<<set $daysPassed = 200>>
+<<play_sound AlarmClock>>
+<<set $negSelfPerception += 1>>
+I wake up. The alarm sounds the same, but something doesn't.
+Day {$daysPassed}.
+The cryopod's readout shows nominal stats. My body disagrees.
+The memory of how things ended with {$catName} is the first thing that surfaces, before my name, before the mission, before anything useful.
+<<show_ui ClickToInteract>>
+<<show MonitorOffDay4>>
+===
+
+title: OnClickedMonitorDay4
+position: -128,-338
+---
+<<hide_all_ui_objects>>
+<<show MonitorOn>>
+I power on the monitor.
+The comms buffer is empty. No packets. No pings. No "STILL HERE."
+Just silence, and the report I never submitted last cycle.
+    -> (start the day)
+===
