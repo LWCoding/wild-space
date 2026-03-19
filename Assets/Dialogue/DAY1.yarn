@@ -117,7 +117,7 @@ title: AfterTypedFirstTime
 position: 15,-241
 ---
 <<hide_ui TypeToInteract>>
-Done. The same report for the 620th time. 
+Done. The same report for the {$daysPassed}st time. 
     -> (turn off the monitor)
 <<hide MonitorReportDay1>>
 <<jump MonitorOn>>

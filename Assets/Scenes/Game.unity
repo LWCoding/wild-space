@@ -2498,7 +2498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textToChange: {fileID: 1817371069}
   _nodeName: KeptUnderWrapsDay2
-  _messageToShow: "Date 10-21-2078\nDay 621\n\nNo anomalous celestial objects detected.
+  _messageToShow: "Date 12-19-2078\nDay 621\n\nNo anomalous celestial objects detected.
     Standard stellar formations remain consistent with previous recordings. \n\nRoutine
     observation cycle complete.\n\nEND TRANSMISSION"
 --- !u!114 &387058962
@@ -3073,7 +3073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textToChange: {fileID: 973329455}
   _nodeName: ReportedAliens
-  _messageToShow: 'Date 10-21-2078
+  _messageToShow: 'Date 12-19-2078
 
     PRIORITY ALERT
 
@@ -8416,7 +8416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textToChange: {fileID: 20591371}
   _nodeName: ReportedAliens
-  _messageToShow: 'Date 10-22-2078
+  _messageToShow: 'Date 2-17-2079
 
     PRIORITY ALERT
 
@@ -9652,7 +9652,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textToChange: {fileID: 1181785383}
   _nodeName: KeptUnderWrapsDay3
-  _messageToShow: "Date 10-22-2078\nDay 622\n\nNo anomalous celestial objects detected.
+  _messageToShow: "Date 2-17-2079\nDay 681\n\nNo anomalous celestial objects detected.
     Standard stellar formations remain consistent with previous recordings. \n\nRoutine
     observation cycle complete.\n\nEND TRANSMISSION"
 --- !u!114 &1203223423
@@ -10423,7 +10423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: StartDay2
+      value: Start
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject
@@ -15184,7 +15184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _textToChange: {fileID: 727945387}
   _nodeName: AfterTypedFirstTime
-  _messageToShow: "Date 10-20-2078\nDay 620\n\nNo anomalous celestial objects detected.
+  _messageToShow: "Date 10-20-2078\nDay 561\n\nNo anomalous celestial objects detected.
     Standard stellar formations remain consistent with previous recordings. \n\nRoutine
     observation cycle complete.\n\nEND TRANSMISSION"
 --- !u!1 &1952450184

@@ -22,5 +22,5 @@ title: Globals
 <<declare $askedEarthForHelp = false>>  // whether the player asked Earth HQ for help (varies ending)
 <<declare $desperate = false>>  // whether the player is asking for help with oxygen (varies ending)
 
-<<declare $daysPassed = 1>>
+<<declare $daysPassed = 561>>
 ===

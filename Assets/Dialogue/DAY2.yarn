@@ -1,7 +1,7 @@
 title: StartDay2
 position: 90,-43
 ---
-<<set $daysPassed = 62>>
+<<set $daysPassed = 621>>
 <<declare $day2KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
 <<set $negSelfPerception += 1>>
