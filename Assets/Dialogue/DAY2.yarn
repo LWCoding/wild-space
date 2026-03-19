@@ -4,7 +4,8 @@ position: 90,-43
 <<set $daysPassed = 62>>
 <<declare $day2KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
-I wake up to a loud chime on the monitor, my head pounding yet again.
+<<set $negSelfPerception += 1>>
+I wake up to a loud chime on the monitor, my head <color=\#FF8888>pounding yet again</color>.
 Cryosleep leaves a gap you can feel in your bones. The mission clock doesn't.
 I blink at the readout until it stops swimming.
 Day {$daysPassed}.
@@ -21,10 +22,8 @@ position: 85,114
 <<show MonitorOn>>
 I power the monitor on, expecting the comfort of routine. The same checklist, the same empty horizon, the same report no one reads.
 <<play_sound Glitch 0.25>>
-Instead, the communication panel pings, sharp and insistent.
-The tuner is already locked onto a frequency I didn't dial in.
+Instead, the communication panel pings, sharp and insistent. Locked onto a frequency I didn't dial in.
 Three new packets sit in the buffer, tagged with an unknown sequence.
-No sender. No location. No human encoding.
 The ship's translator does what it can. It renders the signals into clipped, robotic phonemes.
 It isn't a sentence. It's a pulse. A test pattern that learned three words.
 <<speed 0.4>>
@@ -35,7 +34,8 @@ It isn't a sentence. It's a pulse. A test pattern that learned three words.
 <<play_sound RobotTalk 0.25>>
 "TALK" <i>[5 DAYS AGO]</i>
 <<speed 1>>
-My fingers hover over the response key.
+<<set $negSelfPerception += 1>>
+My fingers hover over the response key. The <color=\#FF8888>dread is already settling in</color>.
 The encounter wasn't a fever dream...
 <<speed 0.4>>
 <<play_sound RobotTest 0.25>>
@@ -51,7 +51,15 @@ It waited through cryosleep.
     -> (don't answer)
         I tell myself it's safer to ignore it. Safer to pretend my brain invented the whole thing.
         The ping repeats anyway. Patient. Persistent.
-        The same three words flash again, as if it's trying not to scare me.
+        <<speed 0.4>>
+        <<play_sound RobotTest 0.25>>
+        "TEST" <i>[79 DAYS AGO]</i>
+        <<play_sound RobotHello 0.25>>
+        "HELLO" <i>[41 DAYS AGO]</i>
+        <<play_sound RobotTalk 0.25>>
+        "TALK" <i>[5 DAYS AGO]</i>
+        <<speed 1>>
+        It's as if it's trying to scare me.
             -> (answer)
                 <<jump SentPingDay2>>
 ===
@@ -62,7 +70,7 @@ position: 259,206
 <<hide_all_ui_objects>>
 I press the response key and send a ping back down the line.
 As a one-way signal, there's no way to tell what's waiting on the other side. I can only hope the other side taps back.
-Either way, my routine is still here, heavy and unavoidable.
+Either way, my routine is still here.
     -> (try to act normal)
         <<jump RegularTasksDay2>>
 ===
@@ -83,18 +91,19 @@ The ship is silent. My body is still catching up. My thoughts keep circling the 
 What to do, what to do...
     -> (do some push-ups) <<if $day2DidPushups == false>>
         <<set $day2DidPushups = true>>
-        <<set $posSelfPerception += 1>>
         I drop to the floor and count slowly, careful with my breathing. My arms burn. The burn is familiar, controllable.
-        It helps, a little.
+        <<set $posSelfPerception += 1>>
+        I feel <color=\#88FF88>a little steadier</color> afterwards. It helps, a little.
         <<jump RegularTasksDay2>>
     -> (stare at the stars) <<if $day2DidStargaze == false>>
         <<set $day2DidStargaze = true>>
         I watch the stars until my eyes blur and the ship feels less like a coffin and more like a vehicle.
+        <<set $posSelfPerception += 1>>
+        For a moment, the vastness doesn't feel threatening. It feels like <color=\#88FF88>something I chose</color>.
         <<jump RegularTasksDay2>>
     -> (check the ship systems) <<if $day2DidSystemsCheck == false>>
         <<set $day2DidSystemsCheck = true>>
         I run quick diagnostics. Life support, comms integrity, power draw. Everything looks normal on paper.
-        I don't.
         <<jump RegularTasksDay2>>
     -> (move on to the report)
         <<jump PrepareReportDay2>>
@@ -192,11 +201,15 @@ Gnarp: What you want talk? You choose.
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Sad right>>
                 Gnarp: It is. But you still here. I still here. That matter.
+                <<set $posSelfPerception += 1>>
+                Admitting fear out loud feels strange. But also <color=\#88FF88>a little lighter</color>.
             -> Oh, those aren't bad. We have those too.
                 <<show_character Cat Sad right>>
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 Gnarp: You say that like pain is contest. Not kind.
+                <<set $negSelfPerception += 1>>
+                The words leave my mouth before I can stop them. I <color=\#FF8888>feel smaller</color> for saying it.
         <<show_character Cat Neutral right>>
         Gnarp: You sleep many day. I thought you gone. I hate that thought.
         Gnarp: Then you move again. I send: TEST. HELLO. TALK.
@@ -212,12 +225,16 @@ Gnarp: What you want talk? You choose.
                 <<show_character Cat Sad right>>
                 Gnarp: Yes. You speak like manual. But you feel like living thing.
                 Gnarp: You can be both. I think.
+                <<set $posSelfPerception += 1>>
+                Something about that lands. I feel <color=\#88FF88>a little more seen</color>.
             -> That's not how humans work.
                 <<show_character Cat Angry right>>
                 Gnarp: You make rule sound like cage. Maybe it is cage.
                 <<show_character Cat Neutral right>>
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
+                <<set $negSelfPerception += 1>>
+                I shut the conversation down without meaning to. The silence afterwards <color=\#FF8888>stings</color>.
     -> What do you do out there, like, day to day? <<if $knowCatJob == false>>
         <<set $knowCatJob = true>>
         <<positive_indicator Cat>>
@@ -236,11 +253,15 @@ Gnarp: What you want talk? You choose.
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Sad right>>
                 Gnarp: Yes. But I still breathe. Still do job. That what they taught me: keep going.
+                <<set $posSelfPerception += 1>>
+                The words sit with me. I feel <color=\#88FF88>something loosen in my chest</color>.
             -> Why don't you bring them here?
                 <<negative_indicator Cat>>
                 <<set $catDislikesYou += 1>>
                 <<show_character Cat Angry right>>
                 Gnarp: Not that simple. Space hurt people. It hurt you too.
+                <<set $negSelfPerception += 1>>
+                I said the wrong thing. I can feel it. I <color=\#FF8888>feel a pang of guilt</color>.
         <<if $catLikesYou > $catDislikesYou>>
             <<stop_voice_blip Cat>>
             <<show_character Cat Sad right>>
@@ -253,6 +274,8 @@ Gnarp: What you want talk? You choose.
                     Gnarp: I lost sibling. Sudden. I still talk to them in my head like they answer.
                     <<show_character Cat Neutral right>>
                     Gnarp: Talking to you help. You make space less sharp.
+                    <<set $posSelfPerception += 1>>
+                    I didn't know I could still do that — make someone feel less alone. It makes me feel <color=\#88FF88>a quiet warmth</color>.
                 -> Change the subject.
                     <<jump CatRecurringTreeDay2>>
         <<else>>
@@ -284,6 +307,8 @@ Gnarp: What you want talk? You choose.
         Gnarp: I understand this.
         Gnarp: I learn your words. You learn your feelings. We both translate.
         Gnarp: Emotional bilingual.
+        <<set $posSelfPerception += 1>>
+        I didn't expect to feel <color=\#88FF88>understood</color> by an alien. But here I am.
     -> Do you want to play a game? <<if $day2AskedCatQ3 == false && $knowCatPasttime == true && $catLikesYou >= $catDislikesYou>>
         <<set $day2AskedCatQ3 = true>>
         <<show_character Cat Happy2 right>>
@@ -412,11 +437,13 @@ The way isolation became a skill I could list on a form.
 The way I learned to speak in numbers and checklists so nobody could hear the shaking underneath.
 In the dream, the stars are there too, just out of reach through a window that doesn't open.
     -> (hold onto the ambition)
-        <<set $posSelfPerception += 1>>
         I remember why I wanted this. Not the prestige. The quiet. The distance. The proof that I could endure.
+        <<set $posSelfPerception += 1>>
+        The memory fills me with <color=\#88FF88>a stubborn resolve</color>.
     -> (feel the loneliness)
-        <<set $negSelfPerception += 1>>
         I remember how easy it was to disappear in a crowd, and how I kept choosing that over being seen.
+        <<set $negSelfPerception += 1>>
+        The weight of it <color=\#FF8888>presses down on me</color>.
 The dream tilts from college hallway to spacecraft corridor, as if my brain is admitting the truth.
 I didn't just get launched into space.
 I practiced for it for years.
@@ -431,7 +458,7 @@ position: 83,279
 <<hide_all_ui_objects>>
 I sit back from the keyboard, report transmitted, hands still trembling.
 <<set $negSelfPerception += 1>>
-I did what I'm trained to do. I kept the machine running.
+I did what I'm trained to do. I kept the machine running. But I <color=\#FF8888>feel the weight of the lie</color>.
 I also did something I'm not trained for at all. I kept a secret that has a pulse.
 The same three robotic words keep replaying behind my eyes.
 <<play_sound RobotTest 0.25>>

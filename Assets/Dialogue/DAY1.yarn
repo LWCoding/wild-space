@@ -1,4 +1,4 @@
-﻿title: AfterName
+title: AfterName
 position: 22,-593
 ---
 <<hide Drifting>>
@@ -163,6 +163,7 @@ You: ..........
 Against my better judgment, I decide to ignore the signal. 
 You: Darn static interference...
 <<set $negSelfPerception += 1>>
+I push the signal away, but the <color=\#FF8888>guilt lingers</color>.
 <<hide_all_characters>>
 <<fade_transition 2>>
 <<wait 1.5>>
