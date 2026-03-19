@@ -3,6 +3,7 @@ position: -125,-487
 ---
 <<set $daysPassed = 681>>
 <<play_sound AlarmClock>>
+<<play_music MainTheme>>
 <<set $negSelfPerception += 1>>
 I wake to the alarm again. My body knows the routine now. The ache, the fog, the slow reassembly of self.
 Cryosleep doesn't get easier. You just get better at pretending it does.
@@ -348,6 +349,7 @@ position: 915,224
 ---
 <<hide_all_characters>>
 <<play_sound Glitch 0.25>>
+<<play_music MainTheme>>
 The screen collapses to static. Then nothing.
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
@@ -389,7 +391,6 @@ position: 918,14
 <<hide MonitorSilhouette>>
 <<hide_all_objects>>
 <<show PCRoom>>
-<<play_music MainTheme>>
 I don't bother turning the monitor off properly. I just let it go dark on its own.
 The report sits unfinished. HQ will get a blank day from me. They can add it to the long list of things I'm failing at.
 I climb into the cryopod without ceremony. No routine, no checklist, no pretending I'm fine.
@@ -402,6 +403,7 @@ Just the hum of the pod, the cold settling in, and the last image behind my eyel
 title: DreamDay3
 position: 915,500
 ---
+<<stop_music>>
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show Stars>>

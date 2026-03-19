@@ -4,6 +4,7 @@ position: 90,-43
 <<set $daysPassed = 621>>
 <<declare $day2KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
+<<play_music MainTheme>>
 <<set $negSelfPerception += 1>>
 I wake up to a loud chime on the monitor, my head <color=\#FF8888>pounding yet again</color>.
 Cryosleep leaves a gap you can feel in your bones. The mission clock doesn't.
@@ -409,6 +410,7 @@ position: 915,224
 ---
 <<hide_all_characters>>
 <<play_sound Glitch 0.25>>
+<<play_music MainTheme>>
 The silhouette shudders, then collapses back into static.
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
@@ -468,6 +470,7 @@ position: 915,370
 title: DreamCollegeDay2
 position: 915,500
 ---
+<<stop_music>>
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show Stars>>

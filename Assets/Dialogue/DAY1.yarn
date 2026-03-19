@@ -323,7 +323,7 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
         <<set $catName = "Gnarp">>
         {$catName}: Yes. Gnarp. For you to say.
 <<show_character Cat Happy right>>
-{$catName}: Oh! One more thing. I... I watch you. Long time. Most of your journey to sun? I listen. Your ship, your... talking to yourself? Your reports? I learn little bit of your words. Your English.
+{$catName}: Oh! One more thing. I... I watch you. Long time. I listen. Your ship, your... talking to yourself? Your reports? I learn little bit of your words. Your English.
 <<show_character Cat Thinking right>>
 {$catName}: Is not perfect, I know. Sorry. But I try. I want to say hello proper when I finally call.
 <<show_character Cat Happy right>>
@@ -408,6 +408,7 @@ Then, I decide to sleep on it. Just for the meantime.
 
 title: VividDream
 ---
+<<stop_music>>
 <<fade_transition 2>>
 <<wait 1>>
 <<hide_all_characters>>

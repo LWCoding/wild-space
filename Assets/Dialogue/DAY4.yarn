@@ -3,6 +3,7 @@ position: -125,-487
 ---
 <<set $daysPassed = 741>>
 <<play_sound AlarmClock>>
+<<play_music MainTheme>>
 <<set $negSelfPerception += 1>>
 I wake up. The alarm sounds the same, but something doesn't.
 Day {$daysPassed}.
