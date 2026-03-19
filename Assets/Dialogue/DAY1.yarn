@@ -285,16 +285,37 @@ I'm still reeling. An alien, asking if I'm okay. My hands are shaking.
         <<set $catDislikesYou += 1>>
         <<show_character Cat Sad right>>
         ???: Sorry. I just... want know. I only small... two orbit old? So many thing I not understand yet.
+<<stop_voice_blip Cat>>
+I realize I can ask questions too. This... whatever it is... seems willing to talk.
+    -> What about you? Why are you out here?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Thinking right>>
+        ???: Me? I... I watch. I listen. I learn.
+        <<show_character Cat Sad right>>
+        ???: But mostly I am alone. Like you, maybe.
+        ???: I send signal... TEST, HELLO, TALK... hoping you respond.
+    -> Were you the one sending those signals?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Happy right>>
+        ???: Yes! That was me! I send many signal... TEST, HELLO, TALK... I not know if you hear.
+        <<show_character Cat Thinking right>>
+        ???: I practice your words. I want to talk proper when you finally answer.
+    -> How long have you been watching me?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Thinking right>>
+        ???: Long time. Many... rotations? I watch your ship move through the dark.
+        <<show_character Cat Neutral right>>
+        ???: I send signal... TEST, HELLO, TALK... hoping you respond.
 <<show_character Cat Happy right>>
-???: Oh! You ping back! I so happy! I send many signal... TEST, HELLO, TALK... I not know if you hear.
+???: And you ping back! I so happy!
 <<show_character Cat Thinking right>>
 ???: I watch your ship long time. I learn little bit of your words. I practice and practice.
 <<show_character Cat Happy right>>
 ???: But now you here! You respond! This is... this is very good.
 <<show_character Cat Neutral right>>
-???: Before more question... you have name? What I call you? Human have this, one word for each? So interesting to me!
+???: Before more question... what I call you? Human have this "name", one word for each? So interesting to me!
 <<stop_voice_blip Cat>>
-My mouth is dry. It's asking for my name. It wants to know what to call me. I'm having a conversation with an alien. I'm having a conversation with an <i>alien</i>.
+My mouth is dry. It wants to know what to call me...
 <<start_voice_blip Cat>>
 ???: I want remember you. Please?
     -> I'm {$playerName}.
@@ -380,6 +401,28 @@ I'm still trying to wrap my head around this. It's excited. It's <i>excited</i> 
 {$catName}: Oh! One more thing. I... I watch you. Long time. I listen. Your ship, your... talking to yourself? Your reports? I learn little bit of your words. Your English.
 <<show_character Cat Thinking right>>
 {$catName}: Is not perfect, I know. Sorry. But I try. I want to say hello proper when I finally call.
+<<stop_voice_blip Cat>>
+I find myself wanting to know more about this creature.
+    -> How did you learn to speak my language?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Happy right>>
+        {$catName}: Your ship! It leak many tiny noise. Logs, error words, old training tapes.
+        <<show_character Cat Thinking right>>
+        {$catName}: I listen. I repeat. I break sound into parts. I practice alone.
+        <<show_character Cat Neutral right>>
+        {$catName}: I want be understood. Not just... heard.
+    -> What's it like where you're from?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Thinking right>>
+        {$catName}: Home? It is... warm. Many sound. Many smell. Not like here.
+        <<show_character Cat Sad right>>
+        {$catName}: I miss it sometimes. But I have job to do.
+    -> Why do you want to talk to me?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Sad right>>
+        {$catName}: Because... space is big. And quiet. Too quiet.
+        <<show_character Cat Neutral right>>
+        {$catName}: I see your ship. I think... maybe you lonely too?
 <<show_character Cat Happy right>>
 {$catName}: So! You careful here. Space is... dangerous. Many danger.
 <<show_character Cat Thinking right>>
