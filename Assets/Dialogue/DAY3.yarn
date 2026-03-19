@@ -4,7 +4,7 @@ position: -125,-487
 <<set $daysPassed = 681>>
 <<play_sound AlarmClock>>
 <<set $negSelfPerception += 1>>
-I wake to the alarm again. My body knows the routine now: the ache, the fog, the slow reassembly of self.
+I wake to the alarm again. My body knows the routine now. The ache, the fog, the slow reassembly of self.
 Cryosleep doesn't get easier. You just get better at pretending it does.
 I blink at the mission clock.
 Day {$daysPassed}.
@@ -20,10 +20,10 @@ position: -128,-338
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-I power on the monitor. The usual HQ digest loads: mission parameters unchanged, supply inventory nominal, another reminder about reporting protocols.
+I power on the monitor. The usual HQ digest loads. Mission parameters unchanged, supply inventory nominal, another reminder about reporting protocols.
 But underneath the routine, the comms buffer has a new entry.
 <<play_sound Glitch 0.25>>
-A single packet, tagged with {$catName}'s frequency. The translator renders it into a short burst:
+A single packet, tagged with {$catName}'s frequency. The translator renders it into a short burst.
 <<speed 0.4>>
 <<play_sound RobotTalk 0.25>>
 "STILL HERE" <i>[12 DAYS AGO]</i>
@@ -62,7 +62,7 @@ My body is stiff from cryosleep. My mind is restless. I should do something with
     -> (check the ship systems) <<if $day3DidSystemsCheck == false>>
         <<set $day3DidSystemsCheck = true>>
         I pull up the diagnostics panel. Life support, comms, power draw. All within tolerance.
-        One line catches my eye: long-term oxygen reserves are slightly below projected baseline. Not critical. Not yet.
+        One line catches my eye. Long-term oxygen reserves are slightly below projected baseline. Not critical. Not yet.
         I make a mental note and move on.
         <<jump RegularTasksDay3>>
     -> (move on)
@@ -393,7 +393,7 @@ position: 918,14
 I don't bother turning the monitor off properly. I just let it go dark on its own.
 The report sits unfinished. HQ will get a blank day from me. They can add it to the long list of things I'm failing at.
 I climb into the cryopod without ceremony. No routine, no checklist, no pretending I'm fine.
-Just the hum of the pod, the cold settling in, and the last image behind my eyelids: a brass compass with a sparrow on the lid, and a question I can never ask my father.
+Just the hum of the pod, the cold settling in, and the last image behind my eyelids. A brass compass with a sparrow on the lid, and a question I can never ask my father.
 <<fade_transition 3>>
 <<wait 3>>
 <<jump DreamDay3>>
@@ -406,7 +406,7 @@ position: 915,500
 <<hide_all_ui_objects>>
 <<show Stars>>
 <<show Sitting>>
-The dream starts with a sound I haven't heard in years: my mother's voice, calling me in for dinner.
+The dream starts with a sound I haven't heard in years. My mother's voice, calling me in for dinner.
 I'm standing in the backyard of the house I grew up in. The grass is too green, the sky too wide, the way memories overcompensate for detail.
 She's at the door. I can see her shape but not her face. The dream won't give me that much.
 But this time, my father is there too. Standing at the edge of the yard, looking up at the sky. He always did that. I thought he was stargazing. Now I wonder if he was remembering.
