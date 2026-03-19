@@ -1,9 +1,17 @@
 title: StartDay3
 position: -125,-487
 ---
-<<set $daysPassed = 3>>
+<<set $daysPassed = 131>>
+<<declare $day3KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
-I wake up again to the sound of my alarm clock. It's time to get to my job.
+<<set $negSelfPerception += 1>>
+I wake to the alarm again. My body knows the routine now: the ache, the fog, the slow reassembly of self.
+Cryosleep doesn't get easier. You just get better at pretending it does.
+I blink at the mission clock.
+Day {$daysPassed}.
+Another two months dissolved into nothing. That's over four months from Earth now.
+The ship smells the same. The silence sounds the same. But something in my chest has shifted.
+I know there's someone out there. And they know I'm here.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay3>>
 ===
@@ -13,182 +21,393 @@ position: -128,-338
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-I turn on the monitor to see today's tasks.
-Out of the corner of my eye, I see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
-Do I report the alien to Earth, or let them be?
-    -> (report the alien)
-        I hesitate for a moment. HQ has been known to treat the unfamiliar as hostile, and they may get the wrong message.
-        I'm not entirely sure what will happen to the alien, but I may never see them again.
-        -> (report the alien)
-            I get to writing my report.
-            <<hide_all_objects>>
-            <<show PCRoom>>
-            <<show_ui TypeToInteract>>
-            <<show MonitorReportDay3>>
-        -> (report that you saw nothing)
-            <<hide_all_objects>>
-            <<show PCRoom>>
-            You get to writing your report.
-            <<show_ui TypeToInteract>>
-            <<show MonitorDontReportDay3>>
-    -> (report that you saw nothing)
-        <<hide_all_objects>>
-        <<show PCRoom>>
-        I get to writing my report.
-        <<show_ui TypeToInteract>>
-        <<show MonitorDontReportDay3>>
+I power on the monitor. The usual HQ digest loads: mission parameters unchanged, supply inventory nominal, another reminder about reporting protocols.
+But underneath the routine, the comms buffer has a new entry.
+<<play_sound Glitch 0.25>>
+A single packet, tagged with {$catName}'s frequency. The translator renders it into a short burst:
+<<speed 0.4>>
+<<play_sound RobotTalk 0.25>>
+"STILL HERE" <i>[12 DAYS AGO]</i>
+<<speed 1>>
+Two words, sent while I was frozen. A reminder that patience doesn't require a heartbeat.
+I note the timestamp and close the buffer. I'll deal with that later. For now, the day needs a shape.
+    -> (start the day)
+        <<jump RegularTasksDay3>>
 ===
 
-title: KeptUnderWrapsDay3
-position: -134,-190
+title: RegularTasksDay3
+position: 260,308
 ---
-<<hide_all_ui_objects>>
-I finish my report, choosing not to mention the alien.
+<<once>>
+<<declare $day3DidPushups = false>>
+<<declare $day3DidStargaze = false>>
+<<declare $day3DidSystemsCheck = false>>
+<<endonce>>
+<<hide_all_objects>>
+<<show Stars>>
+<<show Sitting>>
+The ship hums beneath me. I have time before anything demands my attention.
+My body is stiff from cryosleep. My mind is restless. I should do something with both.
+    -> (do some push-ups) <<if $day3DidPushups == false>>
+        <<set $day3DidPushups = true>>
+        I drop to the floor. The count is slower today, my arms heavier, but the rhythm is still mine.
+        <<set $posSelfPerception += 1>>
+        By the end I'm breathing hard, but I feel <color=\#88FF88>more present in my own skin</color>.
+        <<jump RegularTasksDay3>>
+    -> (stare at the stars) <<if $day3DidStargaze == false>>
+        <<set $day3DidStargaze = true>>
+        I press my face close to the viewport and let the stars fill my vision until there's no room for anything else.
+        <<set $posSelfPerception += 1>>
+        For a few minutes, the loneliness fades into <color=\#88FF88>something closer to wonder</color>.
+        <<jump RegularTasksDay3>>
+    -> (check the ship systems) <<if $day3DidSystemsCheck == false>>
+        <<set $day3DidSystemsCheck = true>>
+        I pull up the diagnostics panel. Life support, comms, power draw. All within tolerance.
+        One line catches my eye: long-term oxygen reserves are slightly below projected baseline. Not critical. Not yet.
+        I make a mental note and move on.
+        <<jump RegularTasksDay3>>
+    -> (move on)
+        <<jump PrepareReportDay3>>
+===
+
+title: PrepareReportDay3
+position: 259,417
+---
 <<hide_all_objects>>
 <<show PCRoom>>
-I get back to looking around my room. Out of boredom, I spend a few minutes glancing at every object around the room.
-After a while, a soft warning flashes on the corner of the monitor: my long-term oxygen reserves have dipped lower than they should.
-    -> What?
-        <<set $negSelfPerception += 2>>
-        I'm <color=\#FF8888>panicking</color>. If I ignore this, the ship will eventually run out of breathable air.
-    -> This can't be happening.
-        <<set $negSelfPerception += 2>>
-        I'm <color=\#FF8888>panicking</color>. I thought the life support systems would just quietly take care of this forever.
-    -> Am I going to die?
-        <<set $negSelfPerception += 2>>
-        I'm <color=\#FF8888>panicking</color>. Alone this far from Earth, a slow systems failure suddenly feels very real.
-    -> (breathe...)
-        <<set $posSelfPerception += 1>>
-        I take a few deep breaths, trying to <color=\#88FF88>stay calm</color>.
-        The readout says I still have time, but every minute I wait is another minute closer to a problem I can't fix alone.
-I need to decide how to handle this before it becomes an emergency.
-    -> (call the alien for help)
-        <<jump CallAliensDay3>>
-    -> (ask Earth HQ for help)
-        <<jump CallEarth>>
-    -> (accept whatever happens out here)
-        <<jump EmbraceDeath>>
-===
-
-title: CallAliensDay3
-position: 172,-49
----
-It's time to make contact with the alien.
-<<jump CallCatDay3>>
+<<show MonitorOn>>
+I sit down at the terminal. The report template blinks at me, the same empty fields I've filled a hundred times.
+Before I can type the first word, the comms panel lights up.
+<<play_sound Glitch 0.25>>
+<<show MonitorSilhouette>>
+{$catName}'s frequency. Live this time, not a recording.
+    -> (answer)
+        <<jump CallCatDay3>>
+    -> (ignore it and write the report first)
+        I try to focus on the report. The cursor blinks. The frequency pulses.
+        I last about thirty seconds.
+        <<jump CallCatDay3>>
 ===
 
 title: CallCatDay3
-position: 1018,-481
+position: 422,282
 ---
 <<hide_all_objects>>
+<<hide_all_ui_objects>>
 <<show PCRoom>>
 <<hide MonitorOn>>
 <<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
-I call {$catName}. I see movement, and start tweaking the dials to get the figure to appear clear.
-<<start_voice_blip Cat>>
+<<stop_voice_blip Cat>>
+I open the channel. Static, then motion. The silhouette leans in, sharper than before, like the translator is getting better at rendering it.
 <<play_music CatTheme 0.5>>
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
-    {$catName}: Hi again! I missed you. It's been a while.
+    <<start_voice_blip Cat>>
+    {$catName}: You came back! I was worried the sleep box ate you.
+    {$catName}: I practice more word while you gone. Listen: "It is good to see you."
+    {$catName}: Did I say right?
+        -> Perfect.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy2 right>>
+            {$catName}: I practice that one many time.
+        -> Close enough.
+            <<show_character Cat Happy right>>
+            {$catName}: I take it. Close is still closer than before.
 <<else>>
     <<show_character Cat Neutral right>>
-    {$catName}: Oh, it's you again. Do you need something?
+    <<start_voice_blip Cat>>
+    {$catName}: Oh. You answer. I was not sure you would.
+        -> Of course I answered.
+            <<show_character Cat Neutral right>>
+            {$catName}: Okay. Good.
 <<endif>>
-<<show_character Cat Neutral right>>
-{$catName}: What's going on? You look... worried.
-    -> (explain your situation)
-        <<stop_voice_blip Cat>>
-        I explain that my life support readings have been trending down, and I'm scared of what happens if they fail.
-        <<start_voice_blip Cat>>
-        <<show_character Cat Thinking right>>
-        {$catName}: Oh... have you tried asking the people from Earth for help?
-            -> I haven't tried yet.
-                {$catName}: Well, I'm flattered that you thought of me first, but... don't you think it's better for your own planet to save you?
-                    -> There's no time. I need help now.
-                        <<if $catLikesYou < $catDislikesYou>>
-                            {$catName}: Sorry, there's nothing I can do.
-                            <<stop_voice_blip Cat>>
-                            Stricken by sadness, you end the call.
-                            <<jump EmbraceDeath>>
-                        <<else>>
-                            {$catName}: Alright, I'll help you. But only because I care about you, {$catThinksPlayerNameIs}.
-                        <<endif>>
-                    -> I'll try that now. (call earth) <<if $askedEarthForHelp == false>>
-                        <<stop_voice_blip Cat>>
-                        You decide to disconnect the call with {$catName} for now.
-                        <<play_music MainTheme>>
-                        <<hide_all_characters>>
-                        <<hide_all_objects>>
-                        <<show PCRoom>>
-                        <<show MonitorOff>>
-                        <<jump CallEarth>>
-            -> I asked, but they can't get to me in time. <<if $askedEarthForHelp == true>>
-                {$catName}: I see. That seems pretty urgent. Let me see what I can do.
-            -> I'd rather have your help instead. <<if $catLikesYou >= $catDislikesYou>>
-                <<show_character Cat Flirt right>>
-                {$catName}: Heh, oh you... Alright, I'll help you out.
-<<show_character Cat Neutral right>>
-{$catName}: Be prepared for a rescue mission soon. I'll try to send over a pod that will bring you here, to my home planet.
-{$catName}: If we get the pod sent to you, just note you'll never be able to return to your home planet again. We can't risk getting in trouble with your people.
-    -> Isn't there another way?
-        {$catName}: Do you have any plans? Because I sure don't.
-            -> Let's do it.
-                <<jump AcceptCatHelp>>
-            -> I think I'll just accept my fate instead.
-    -> Let's do it.
-        <<jump AcceptCatHelp>>
-    -> I think I'll just accept my fate instead. <<if $posSelfPerception <= $negSelfPerception>>
-<<show_character Cat Neutral right>>
-<<if $catLikesYou > $catDislikesYou>>
-    {$catName}: I won't let you do that. Please, just accept my help.
-        -> Fine.
-            <<jump AcceptCatHelp>>
-        -> No.
-<<else>> 
-    {$catName}: ...Alright. If that's what you really want.
-<<endif>>
-<<stop_voice_blip Cat>>
-<<jump EmbraceDeath>>
+<<jump CatConvoDay3>>
 ===
 
-title: CallEarth
-position: 400,-239
+title: CatConvoDay3
+position: 647,285
 ---
-<<set $askedEarthForHelp = true>>
-I call Earth about my situation.
-They claim that they could send help, but it wouldn't make it to me on time unless I give them a stronger reason to prioritize my ship.
-I have a feeling that I can get them to send their emergency rescue team if I convince them that my life is in danger.
-    -> (tell them about the alien you saw)
-        I think about the idea of telling them about the alien. This could convince them to send help faster, but would put the alien at risk of being discovered.
-        -> (go through with it)
-            I explain the situation to Earth HQ, emphasizing the urgency of my predicament.
-            <<set $desperate = true>>
-            <<hide_all_objects>>
-            <<show PCRoom>>
-            <<show_ui TypeToInteract>>
-            <<show MonitorReportDay3>>
-        -> (reconsider)
-            I reconsider my options. Maybe there's another way to get help without putting the alien at risk.
-            -> (call the alien for help)
-                <<jump CallAliensDay3>>
-            -> (embrace death)
-                <<jump EmbraceDeath>>
-            -> (nevermind, tell earth about the alien you saw)
-                You explain the situation to Earth HQ, emphasizing the urgency of your predicament.
-                <<set $desperate = true>>
-                <<hide_all_objects>>
-                <<show PCRoom>>
-                <<show_ui TypeToInteract>>
-                <<show MonitorReportDay3>>
-    -> (nevermind, you can manage on your own)
-        I pace back and forth, considering my options.
-            -> (call the alien for help)
-                <<jump CallAliensDay3>>
-            -> (embrace death)
-                I hesitate for a moment. Do I really want to give up?
-                -> (yes)
-                    <<jump EmbraceDeath>>
-                -> (no)
-                    <<jump CallAliensDay3>>
+<<start_voice_blip Cat>>
+<<show_character Cat Thinking right>>
+{$catName}: I want ask you something. If okay.
+{$catName}: When you sleep in box... do you dream?
+    -> Sometimes. They feel more like memories.
+        <<show_character Cat Neutral right>>
+        {$catName}: Memories that come when you not looking. I have those too.
+        {$catName}: Mine are mostly sounds. My family talking over dinner. The hum of home.
+        <<set $posSelfPerception += 1>>
+        Sharing that feels <color=\#88FF88>unexpectedly easy</color>.
+    -> I'd rather not talk about it.
+        <<show_character Cat Sad right>>
+        {$catName}: Okay. I understand closed doors.
+        <<set $negSelfPerception += 1>>
+        I shut down again. The habit is <color=\#FF8888>hard to break</color>.
+<<show_character Cat Neutral right>>
+{$catName}: I ask because... I been thinking about time. How it move different for us.
+{$catName}: For you, few sleep. For me, many day alone. Watching. Waiting.
+{$catName}: I count them. Every one.
+<<show_character Cat Sad right>>
+{$catName}: Sometimes I wonder if you forget me between sleeps. If I am just... noise you heard once.
+    -> I haven't forgotten you.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: That mean more than you know.
+        <<set $posSelfPerception += 1>>
+        Saying it out loud makes it <color=\#88FF88>feel true</color>.
+    -> We barely know each other.
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        <<show_character Cat Sad right>>
+        {$catName}: ...Yes. You are right. But I hoped anyway.
+        <<set $negSelfPerception += 1>>
+        The honesty was supposed to feel clean. Instead it <color=\#FF8888>tastes like rust</color>.
+<<stop_voice_blip Cat>>
+The signal holds. {$catName} is still there, waiting.
+    -> (keep talking)
+        <<jump CatConvoDay3_Part2>>
+    -> (end the conversation)
+        <<jump CatConvoDay3_End>>
+===
+
+title: CatConvoDay3_Part2
+position: 647,400
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Thinking right>>
+{$catName}: Can I tell you something? About my planet?
+{$catName}: I know last time I say I not allowed. And I still not. But...
+<<show_character Cat Sad right>>
+{$catName}: My people, they have word for humans. Rough translation is... "loud silence." You fill space with noise but never say real thing.
+{$catName}: They think you dangerous. Not because weapon. Because you lonely and you don't know it.
+{$catName}: Lonely thing with power is... unpredictable.
+    -> That's... not unfair.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: You surprise me. Most people not like hearing truth about themselves.
+        <<set $posSelfPerception += 1>>
+        Accepting it hurts, but it also feels <color=\#88FF88>honest</color>.
+    -> That's a pretty harsh generalization.
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        <<show_character Cat Neutral right>>
+        {$catName}: Maybe. But you sitting alone in metal box in space. You tell me I wrong?
+        <<set $negSelfPerception += 1>>
+        I want to argue. I <color=\#FF8888>can't</color>.
+<<show_character Cat Neutral right>>
+{$catName}: That why they not want me talk to you. They afraid you... infect me. With your loneliness.
+{$catName}: But I think loneliness not disease. I think it just... wound that need air.
+<<show_character Cat Thinking right>>
+{$catName}: I already have wound. Talking to you not make it worse. It make it... known.
+    -> You're braver than I am.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: No. I just more desperate. Brave and desperate look same from outside.
+    -> What happens if your people find out about us?
+        <<show_character Cat Sad right>>
+        {$catName}: I... not want to think about that.
+        {$catName}: For now, we careful. That has to be enough.
+<<stop_voice_blip Cat>>
+The weight of what {$catName} just shared settles between us like dust after an explosion.
+    -> (keep talking)
+        <<jump CatConvoDay3_Part3>>
+    -> (end the conversation)
+        <<jump CatConvoDay3_End>>
+===
+
+title: CatConvoDay3_Part3
+position: 647,515
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Neutral right>>
+{$catName}: Enough heavy talk. I want ask lighter thing.
+{$catName}: What is thing you miss most? From your planet?
+    -> Rain.
+        <<show_character Cat Thinking right>>
+        {$catName}: Rain? Water falling from sky?
+        {$catName}: We have something like that. But ours is warm. And it hum.
+        <<show_character Cat Happy right>>
+        {$catName}: I miss the humming rain. Maybe I play recording for you sometime.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<set $posSelfPerception += 1>>
+        The idea of sharing something so small and specific makes the distance feel <color=\#88FF88>a little shorter</color>.
+    -> Nothing.
+        <<show_character Cat Sad right>>
+        {$catName}: ...Nothing? Not one thing?
+        {$catName}: That make me sad for you.
+        <<set $negSelfPerception += 1>>
+        I said it to sound tough. It just sounds <color=\#FF8888>empty</color>.
+<<if $catLikesYou > $catDislikesYou>>
+    <<show_character Cat Happy2 right>>
+    {$catName}: I want show you something. Hold on.
+    <<stop_voice_blip Cat>>
+    The screen flickers. For a brief moment, the silhouette shifts and I catch a glimpse of something behind {$catName}: a window, with an amber sky and shapes that might be trees, or might be something I have no word for.
+    It lasts two seconds. Then the feed stabilizes back to the usual framing.
+    <<start_voice_blip Cat>>
+    <<show_character Cat Happy right>>
+    {$catName}: That was my sky. I wanted you to see it. Even just little bit.
+        -> It's beautiful.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy2 right>>
+            {$catName}: It is. And now you carry piece of it.
+            <<set $posSelfPerception += 1>>
+            Something about that gesture makes me feel <color=\#88FF88>less far from everything</color>.
+        -> You shouldn't have done that. What if someone's monitoring the feed?
+            <<show_character Cat Sad right>>
+            {$catName}: ...You right. I was careless.
+            <<negative_indicator Cat>>
+            <<set $catDislikesYou += 1>>
+            <<set $negSelfPerception += 1>>
+            I said the practical thing. It <color=\#FF8888>doesn't feel like the right thing</color>.
+<<endif>>
+<<jump CatConvoDay3_End>>
+===
+
+title: CatConvoDay3_End
+position: 647,630
+---
+<<stop_voice_blip Cat>>
+<<if $posSelfPerception > $negSelfPerception>>
+    The conversation has gone on longer than protocol would like. But I feel steadier for it. More like a person, less like a function.
+<<else>>
+    I feel the familiar tightness returning. The conversation helped, but the quiet afterwards is louder than ever.
+<<endif>>
+<<start_voice_blip Cat>>
+<<if $catLikesYou > $catDislikesYou>>
+    <<show_character Cat Happy right>>
+    {$catName}: I like this. Talking. Even through bad translator and old frequency.
+    {$catName}: Next time you wake, I be here. I promise.
+<<else>>
+    <<show_character Cat Neutral right>>
+    {$catName}: Okay. Talk is done. Be safe, human.
+<<endif>>
+<<stop_voice_blip Cat>>
+<<jump AfterCatLeavesDay3>>
+===
+
+title: AfterCatLeavesDay3
+position: 915,224
+---
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+The screen returns to static, then to the steady glow of the report template.
+<<hide MonitorSilhouette>>
+<<show MonitorOn>>
+The cursor blinks where I left it. Patient. Indifferent.
+HQ's standing order sits in the corner of the screen, unchanged:
+"Remember your duty to report accurately. Your observations are crucial for our understanding and eradication of foreign threats."
+The word "eradication" stares at me differently now.
+    -> (report {$catName})
+        <<jump WriteReportDay3_Report>>
+    -> (do not report)
+        <<jump WriteReportDay3_DontReport>>
+===
+
+title: WriteReportDay3_Report
+position: 915,315
+---
+<<hide_all_ui_objects>>
+<<hide_all_characters>>
+<<hide MonitorSilhouette>>
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show_ui TypeToInteract>>
+<<show MonitorReportDay3>>
+I open the official channel and type it out. The alien. The frequency. The conversations.
+The words come easier than they should. That's what training does.
+    -> (submit the report)
+        <<hide_ui TypeToInteract>>
+        <<jump ForeverAlone>>
+===
+
+title: WriteReportDay3_DontReport
+position: 915,330
+---
+<<hide_all_ui_objects>>
+<<hide_all_characters>>
+<<hide MonitorSilhouette>>
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show_ui TypeToInteract>>
+<<show MonitorDontReportDay3>>
+I fill the report with routine observations and empty coordinates.
+{$catName}'s name doesn't appear. The frequency stays my secret.
+    -> (submit the report)
+        <<hide_ui TypeToInteract>>
+        <<set $day3KeptUnderWraps = true>>
+        <<jump KeptUnderWrapsDay3>>
+===
+
+title: KeptUnderWrapsDay3
+position: 83,279
+---
+<<hide_all_ui_objects>>
+I stare at the "TRANSMITTED" confirmation until the letters blur.
+<<set $negSelfPerception += 1>>
+Each report I falsify adds another layer between me and the person I'm supposed to be. I <color=\#FF8888>feel the gap widening</color>.
+But the alternative... typing {$catName}'s name into a document with the word "eradication" in it... isn't something I can do. Not anymore.
+<<jump EndDay3>>
+===
+
+title: EndDay3
+position: 918,14
+---
+<<hide_all_characters>>
+<<hide MonitorSilhouette>>
+<<show MonitorOn>>
+<<play_music MainTheme>>
+The day is winding down. The ship settles into its nighttime hum, a frequency I've memorized without meaning to.
+    -> (turn off the monitor)
+        <<hide_all_objects>>
+        <<show PCRoom>>
+        <<if $posSelfPerception > $negSelfPerception>>
+            The conversations are changing me. I can feel it. Something that was locked is starting to open, and I'm not sure I can close it again even if I wanted to.
+        <<else>>
+            I sit in the dark for a while, caught between the person the mission needs me to be and the person these conversations are turning me into.
+        <<endif>>
+        <<hide_all_objects>>
+        <<show PCRoom>>
+        <<fade_transition 3>>
+        <<wait 3>>
+        <<if $day3KeptUnderWraps == true>>
+            <<jump DreamDay3>>
+        <<else>>
+            <<jump StartDay4>>
+        <<endif>>
+===
+
+title: DreamDay3
+position: 915,500
+---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show Stars>>
+<<show Sitting>>
+The dream starts with a sound I haven't heard in years: my mother's voice, calling me in for dinner.
+I'm standing in the backyard of the house I grew up in. The grass is too green, the sky too wide, the way memories overcompensate for detail.
+She's at the door. I can see her shape but not her face. The dream won't give me that much.
+I remember the last conversation before I left. How I told her this was what I wanted. How she said she understood. How neither of us believed the other.
+The training center was easier. There, loneliness had a schedule. Wake, train, eat, sleep. No one asked how you felt because feelings were a variable you learned to control.
+I remember the day they told me I was selected. The pride that lasted exactly one hour before it turned into something heavier.
+I packed one box. Everything I owned fit inside it.
+    -> (hold onto the memory)
+        I let myself stay in the backyard a moment longer. The grass under my feet feels real. The air smells like cut lawn and possibility.
+        <<set $posSelfPerception += 1>>
+        The memory fills me with <color=\#88FF88>a tender ache that feels like proof I'm still alive</color>.
+    -> (let it fade)
+        I turn away from the door. Some things are easier at a distance. I chose that distance for a reason.
+        <<set $negSelfPerception += 1>>
+        The memory dissolves and leaves <color=\#FF8888>a familiar numbness</color> in its place.
+The dream shifts. The backyard becomes a viewport. The grass becomes stars.
+My mother's voice becomes static.
+And somewhere in the static, I think I hear {$catName}.
+<<fade_transition 3>>
+<<wait 2>>
+<<jump StartDay4>>
 ===
