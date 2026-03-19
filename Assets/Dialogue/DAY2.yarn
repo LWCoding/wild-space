@@ -143,42 +143,37 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
     The alien appears on the screen, looking relieved to see me.
     <<show_character Cat Happy2 right>>
     <<start_voice_blip Cat>>
-    Gnarp: <i>*bzz-kt*</i> HELLO. You... awake? You there?
-    Gnarp: I learn word. More word. I want... to talk.
+    {$catName}: <i>*bzz-kt*</i> HELLO. You... awake? You there?
+    {$catName}: I learn word. More word. I want... to talk.
         -> I'm here.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy right>>
-            Gnarp: Time different for you. Sleep box. I watch ship quiet many day. I wait.
+            {$catName}: Time different for you. Sleep box. I watch ship quiet many day. I wait.
         -> Who is this?
             <<show_character Cat Thinking right>>
-            Gnarp: It me. Same frequency. Same ears. Same human.
-            Gnarp: I not dream.
+            {$catName}: It me. Same frequency. Same ears. Same human.
+            {$catName}: I not dream.
         -> I'm happy to see you again.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy right>>
-            Gnarp: I like that. Nice have someone. Space is... too big for one mind.
+            {$catName}: I like that. Nice have someone. Space is... too big for one mind.
 <<else>>
     <<show_character Cat Neutral right>>
     The alien appears on the screen.
     <<start_voice_blip Cat>>
-    Gnarp: HELLO. TALK. :3
+    {$catName}: HELLO. TALK. :3
         -> I want to get to know you better.
             <<show_character Cat Thinking right>>
-            Gnarp: ...Okay. Talk more.
+            {$catName}: ...Okay. Talk more.
 <<endif>>
-<<declare $day2AskedCatQ1 = false>>
-<<declare $day2AskedCatQ2 = false>>
-<<declare $day2AskedCatQ3 = false>>
-<<declare $day2AskedCatQ4 = false>>
-<<declare $day2AskedCatQ5 = false>>
 <<declare $knowCatPasttime = false>>
 <<declare $knowCatJob = false>>
-<<jump CatRecurringTreeDay2>>
+<<jump CatConvoDay2>>
 ===
 
-title: CatRecurringTreeDay2
+title: CatConvoDay2
 position: 647,285
 ---
 <<start_voice_blip Cat>>
@@ -187,175 +182,204 @@ position: 647,285
 <<else>>
     <<show_character Cat Neutral right>>
 <<endif>>
-Gnarp: What you want talk? You choose.
-    -> How did you learn those words? <<if $day2AskedCatQ1 == false>>
-        <<set $day2AskedCatQ1 = true>>
-        <<show_character Cat Neutral right>>
-        Gnarp: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise: logs, error words, old training tapes.
-        Gnarp: I practice alone. I want be understood, not just... heard.
-        <<show_character Cat Sad right>>
-        Gnarp: First time I talk, I was new. Now I more... independent.
-        Gnarp: I can stay on frequency longer. I can keep my fear quiet.
-            -> That's terrifying.
-                <<positive_indicator Cat>>
-                <<set $catLikesYou += 1>>
-                <<show_character Cat Sad right>>
-                Gnarp: It is. But you still here. I still here. That matter.
-                <<set $posSelfPerception += 1>>
-                Admitting fear out loud feels strange. But also <color=\#88FF88>a little lighter</color>.
-            -> Oh, those aren't bad. We have those too.
-                <<show_character Cat Sad right>>
-                <<negative_indicator Cat>>
-                <<set $catDislikesYou += 1>>
-                Gnarp: You say that like pain is contest. Not kind.
-                <<set $negSelfPerception += 1>>
-                The words leave my mouth before I can stop them. I <color=\#FF8888>feel smaller</color> for saying it.
-        <<show_character Cat Neutral right>>
-        Gnarp: You sleep many day. I thought you gone. I hate that thought.
-        Gnarp: Then you move again. I send: TEST. HELLO. TALK.
-    -> What do you want from me? <<if $day2AskedCatQ2 == false>>
-        <<set $day2AskedCatQ2 = true>>
-        <<show_character Cat Thinking right>>
-        Gnarp: Want? I want... practice being person.
-        Gnarp: Where I from, I was small. Two orbit old. People decide everything for me.
-        Gnarp: Out here I decide. It is scary.
-            -> My mission decides everything too.
-                <<positive_indicator Cat>>
-                <<set $catLikesYou += 1>>
-                <<show_character Cat Sad right>>
-                Gnarp: Yes. You speak like manual. But you feel like living thing.
-                Gnarp: You can be both. I think.
-                <<set $posSelfPerception += 1>>
-                Something about that lands. I feel <color=\#88FF88>a little more seen</color>.
-            -> That's not how humans work.
-                <<show_character Cat Angry right>>
-                Gnarp: You make rule sound like cage. Maybe it is cage.
-                <<show_character Cat Neutral right>>
-                <<negative_indicator Cat>>
-                <<set $catDislikesYou += 1>>
-                <<set $negSelfPerception += 1>>
-                I shut the conversation down without meaning to. The silence afterwards <color=\#FF8888>stings</color>.
-    -> What do you do out there, like, day to day? <<if $knowCatJob == false>>
-        <<set $knowCatJob = true>>
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Happy right>>
-        Gnarp: I map safe paths. I watch for danger. I fix small things before they become big things.
-        <<show_character Cat Neutral right>>
-        Gnarp: I used to do it because others told me. Now I do it because I choose.
-        Gnarp: Independence feel like stepping off ledge and finding air holds you.
-    -> Do you have a family? <<if $day2AskedCatQ5 == false>>
-        <<set $day2AskedCatQ5 = true>>
-        <<show_character Cat Happy2 right>>
-        Gnarp: I have family. I miss them. I worry I left them with too much.
-            -> That must be hard.
-                <<positive_indicator Cat>>
-                <<set $catLikesYou += 1>>
-                <<show_character Cat Sad right>>
-                Gnarp: Yes. But I still breathe. Still do job. That what they taught me: keep going.
-                <<set $posSelfPerception += 1>>
-                The words sit with me. I feel <color=\#88FF88>something loosen in my chest</color>.
-            -> Why don't you bring them here?
-                <<negative_indicator Cat>>
-                <<set $catDislikesYou += 1>>
-                <<show_character Cat Angry right>>
-                Gnarp: Not that simple. Space hurt people. It hurt you too.
-                <<set $negSelfPerception += 1>>
-                I said the wrong thing. I can feel it. I <color=\#FF8888>feel a pang of guilt</color>.
-        <<if $catLikesYou > $catDislikesYou>>
-            <<stop_voice_blip Cat>>
-            <<show_character Cat Sad right>>
-            Gnarp's voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
-                -> You seemed a little sad just now. Is everything okay?
-                    <<start_voice_blip Cat>>
-                    Gnarp: I fine. Just... remembering.
-                    <<positive_indicator Cat>>
-                    <<set $catLikesYou += 1>>
-                    Gnarp: I lost sibling. Sudden. I still talk to them in my head like they answer.
-                    <<show_character Cat Neutral right>>
-                    Gnarp: Talking to you help. You make space less sharp.
-                    <<set $posSelfPerception += 1>>
-                    I didn't know I could still do that — make someone feel less alone. It makes me feel <color=\#88FF88>a quiet warmth</color>.
-                -> Change the subject.
-                    <<jump CatRecurringTreeDay2>>
-        <<else>>
-            <<stop_voice_blip Cat>>
-            <<show_character Cat Sad right>>
-            Gnarp goes quiet. The silhouette holds still.
-                -> ...
-                    <<jump CatRecurringTreeDay2>>
-        <<endif>>
-    -> What do you do for fun? <<if $knowCatPasttime == false>>
-        <<set $knowCatPasttime = true>>
-        Gnarp: Fun... I watch old broadcasts. I repeat songs. I try jokes. Most jokes fail.
-        <<if $catLikesYou >= $catDislikesYou>>
-            <<show_character Cat Happy2 right>>
-        <<else>>
-            <<show_character Cat Neutral right>>
-        <<endif>>
-        Gnarp: I like puzzle. I like pattern. Pattern make world feel less random.
-    -> Tell Gnarp something you don't put in reports. <<if $day2AskedCatQ4 == false && $catLikesYou >= $catDislikesYou>>
-        <<set $day2AskedCatQ4 = true>>
+<<show_character Cat Neutral right>>
+{$catName}: I want tell you something. About how I learn your words.
+{$catName}: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise: logs, error words, old training tapes.
+{$catName}: I practice alone. I want be understood, not just... heard.
+<<show_character Cat Sad right>>
+{$catName}: First time I talk, I was new. Now I more... independent.
+{$catName}: I can stay on frequency longer. I can keep my fear quiet.
+    -> That's terrifying.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<show_character Cat Sad right>>
-        I swallow, feeling ridiculous. There's a version of me that only knows how to speak in diagnostics.
-        But another version of me is sitting here, alive, with a secret vibrating in my teeth.
-        You: I... act confident on paper. In real life I'm scared all the time.
-        You: I trained myself to sound like a machine so nobody could hear how lonely I am.
-        <<show_character Cat Neutral right>>
-        Gnarp: I understand this.
-        Gnarp: I learn your words. You learn your feelings. We both translate.
-        Gnarp: Emotional bilingual.
+        {$catName}: It is. But you still here. I still here. That matter.
         <<set $posSelfPerception += 1>>
-        I didn't expect to feel <color=\#88FF88>understood</color> by an alien. But here I am.
-    -> Do you want to play a game? <<if $day2AskedCatQ3 == false && $knowCatPasttime == true && $catLikesYou >= $catDislikesYou>>
-        <<set $day2AskedCatQ3 = true>>
-        <<show_character Cat Happy2 right>>
-        Gnarp: Game? Yes. Small safe thing.
-        <<stop_voice_blip Cat>>
-        <<show_character Cat Happy right>>
-        I let Gnarp beam a simple puzzle to my device, with shapes, colors, and repeating sequences.
-        It shouldn't feel intimate.
-        It does anyway.
+        Admitting fear out loud feels strange. But also <color=\#88FF88>a little lighter</color>.
+    -> Oh, those aren't bad. We have those too.
         <<show_character Cat Sad right>>
-        Gnarp falters on patterns that should be easy, like the translator is eating pieces of the rules.
-            -> (win at the game)
-                <<positive_indicator Cat>>
-                <<set $catLikesYou += 1>>
-                <<show_character Cat Happy right>>
-                <<start_voice_blip Cat>>
-                Gnarp: You good. Teach me? I want learn from you.
-            -> (purposefully lose the game)
-                <<show_character Cat Happy2 right>>
-                <<positive_indicator Cat>>
-                <<set $catLikesYou += 1>>
-                <<start_voice_blip Cat>>
-                Gnarp: I win! I win!
-                Gnarp: Maybe someday I teach you. I practice a lot.
-    -> (don't ask any more questions)
-        <<stop_voice_blip Cat>>
-        <<if $posSelfPerception > $negSelfPerception>>
-            I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
-        <<else>>
-            I feel my social battery start to drain, so I decide to end the conversation for now.
-        <<endif>>
-        <<start_voice_blip Cat>>
-        <<if $catLikesYou > $catDislikesYou>>
-            <<show_character Cat Happy right>>
-            Gnarp: Already? I was... good. This was good.
-            Gnarp: But okay. If you need stop, I understand.
-            Gnarp: I will leave now. For now.
-        <<else>>
-            <<show_character Cat Neutral right>>
-            Gnarp: Okay. I go.
-        <<endif>>
-        <<stop_voice_blip Cat>>
-        <<jump AfterGnarpLeavesDay2>>
-<<jump CatRecurringTreeDay2>>
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        {$catName}: You say that like pain is contest. Not kind.
+        <<set $negSelfPerception += 1>>
+        The words leave my mouth before I can stop them. I <color=\#FF8888>feel smaller</color> for saying it.
+<<show_character Cat Neutral right>>
+{$catName}: You sleep many day. I thought you gone. I hate that thought.
+{$catName}: Then you move again. I send: TEST. HELLO. TALK.
+<<show_character Cat Thinking right>>
+{$catName}: But I not just call for talk... I want... practice being person.
+{$catName}: Where I from, I was small. Two orbit old. People decide everything for me.
+{$catName}: Out here I decide. It is scary.
+    -> My mission decides everything too.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Sad right>>
+        {$catName}: Yes. You speak like manual. But you feel like living thing.
+        {$catName}: You can be both. I think.
+        <<set $posSelfPerception += 1>>
+        Something about that lands. I feel <color=\#88FF88>a little more seen</color>.
+    -> That's not how humans work.
+        <<show_character Cat Angry right>>
+        {$catName}: You make rule sound like cage. Maybe it is cage.
+        <<show_character Cat Neutral right>>
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        <<set $negSelfPerception += 1>>
+        I shut the conversation down without meaning to. The silence afterwards <color=\#FF8888>stings</color>.
+<<stop_voice_blip Cat>>
+The signal holds steady. {$catName} is still there, waiting patiently on the other side.
+    -> (keep talking)
+        <<jump CatConvoDay2_Part2>>
+    -> (end the conversation)
+        <<jump CatConvoDay2_End>>
 ===
 
-title: AfterGnarpLeavesDay2
+title: CatConvoDay2_Part2
+position: 647,400
+---
+<<start_voice_blip Cat>>
+<<set $knowCatJob = true>>
+<<positive_indicator Cat>>
+<<set $catLikesYou += 1>>
+<<show_character Cat Happy right>>
+{$catName}: You want know what I do? I tell you. I map safe paths. I watch for danger. I fix small things before they become big things.
+<<show_character Cat Neutral right>>
+{$catName}: I used to do it because others told me. Now I do it because I choose.
+{$catName}: Independence feel like stepping off ledge and finding air holds you.
+<<set $knowCatPasttime = true>>
+<<if $catLikesYou >= $catDislikesYou>>
+    <<show_character Cat Happy2 right>>
+<<else>>
+    <<show_character Cat Neutral right>>
+<<endif>>
+{$catName}: When not working... I watch old broadcasts. I repeat songs. I try jokes. Most jokes fail.
+{$catName}: I like puzzle. I like pattern. Pattern make world feel less random.
+<<if $catLikesYou >= $catDislikesYou>>
+    <<show_character Cat Happy2 right>>
+    {$catName}: Oh! You want try? I have puzzle!
+    <<stop_voice_blip Cat>>
+    <<show_character Cat Happy right>>
+    I let {$catName} beam a simple puzzle to my device, with shapes, colors, and repeating sequences.
+    It shouldn't feel intimate.
+    It does anyway.
+    <<show_character Cat Sad right>>
+    {$catName} falters on patterns that should be easy, like the translator is eating pieces of the rules.
+        -> (win at the game)
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy right>>
+            <<start_voice_blip Cat>>
+            {$catName}: You good. Teach me? I want learn from you.
+        -> (purposefully lose the game)
+            <<show_character Cat Happy2 right>>
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<start_voice_blip Cat>>
+            {$catName}: I win! I win!
+            {$catName}: Maybe someday I teach you. I practice a lot.
+<<endif>>
+<<stop_voice_blip Cat>>
+The conversation has gone longer than I expected. {$catName} seems comfortable, settled into the frequency like it's a chair.
+    -> (keep talking)
+        <<jump CatConvoDay2_Part3>>
+    -> (end the conversation)
+        <<jump CatConvoDay2_End>>
+===
+
+title: CatConvoDay2_Part3
+position: 647,515
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Happy2 right>>
+{$catName}: Can I tell you something? About... my family?
+{$catName}: I have family. I miss them. I worry I left them with too much.
+    -> That must be hard.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Sad right>>
+        {$catName}: Yes. But I still breathe. Still do job. That what they taught me: keep going.
+        <<set $posSelfPerception += 1>>
+        The words sit with me. I feel <color=\#88FF88>something loosen in my chest</color>.
+    -> Why don't you bring them here?
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
+        <<show_character Cat Angry right>>
+        {$catName}: Not that simple. Space hurt people. It hurt you too.
+        <<set $negSelfPerception += 1>>
+        I said the wrong thing. I can feel it. I <color=\#FF8888>feel a pang of guilt</color>.
+<<if $catLikesYou > $catDislikesYou>>
+    <<stop_voice_blip Cat>>
+    <<show_character Cat Sad right>>
+    {$catName}'s voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
+        -> You seemed a little sad just now. Is everything okay?
+            <<start_voice_blip Cat>>
+            {$catName}: I fine. Just... remembering.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            {$catName}: I lost sibling. Sudden. I still talk to them in my head like they answer.
+            <<show_character Cat Neutral right>>
+            {$catName}: Talking to you help. You make space less sharp.
+            <<set $posSelfPerception += 1>>
+            I didn't know I could still do that — make someone feel less alone. It makes me feel <color=\#88FF88>a quiet warmth</color>.
+        -> Change the subject.
+            <<start_voice_blip Cat>>
+            <<show_character Cat Neutral right>>
+            {$catName}: ...Okay. Different thing then.
+<<else>>
+    <<stop_voice_blip Cat>>
+    <<show_character Cat Sad right>>
+    {$catName} goes quiet. The silhouette holds still.
+        -> ...
+            <<start_voice_blip Cat>>
+<<endif>>
+<<if $catLikesYou >= $catDislikesYou>>
+    <<stop_voice_blip Cat>>
+    The silence stretches. Not uncomfortably. More like an open door.
+        -> (tell {$catName} something you don't put in reports)
+            <<start_voice_blip Cat>>
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Sad right>>
+            I swallow, feeling ridiculous. There's a version of me that only knows how to speak in diagnostics.
+            But another version of me is sitting here, alive, with a secret vibrating in my teeth.
+            You: I... act confident on paper. In real life I'm scared all the time.
+            You: I trained myself to sound like a machine so nobody could hear how lonely I am.
+            <<show_character Cat Neutral right>>
+            {$catName}: I understand this.
+            {$catName}: I learn your words. You learn your feelings. We both translate.
+            {$catName}: Emotional bilingual.
+            <<set $posSelfPerception += 1>>
+            I didn't expect to feel <color=\#88FF88>understood</color> by an alien. But here I am.
+        -> (keep it to yourself)
+            I almost say something. The words are right there, hot and real, but I swallow them back down.
+<<endif>>
+<<jump CatConvoDay2_End>>
+===
+
+title: CatConvoDay2_End
+position: 647,630
+---
+<<stop_voice_blip Cat>>
+<<if $posSelfPerception > $negSelfPerception>>
+    I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
+<<else>>
+    I feel my social battery start to drain, so I decide to end the conversation for now.
+<<endif>>
+<<start_voice_blip Cat>>
+<<if $catLikesYou > $catDislikesYou>>
+    <<show_character Cat Happy right>>
+    {$catName}: Already? I was... good. This was good.
+    {$catName}: But okay. If you need stop, I understand.
+    {$catName}: I will leave now. For now.
+<<else>>
+    <<show_character Cat Neutral right>>
+    {$catName}: Okay. I go.
+<<endif>>
+<<stop_voice_blip Cat>>
+<<jump AfterCatLeavesDay2>>
+===
+
+title: AfterCatLeavesDay2
 position: 915,224
 ---
 <<hide_all_characters>>
@@ -370,7 +394,7 @@ The part with procedures and consequences.
 HQ's reminder sits in my inbox, timestamped weeks ago, delivered while I was asleep.
 "Remember your duty to report accurately. Your observations are crucial for our understanding and eradication of foreign threats."
 Do I report that an alien made contact again, stronger this time, more coherent, more <i>real</i>?
-    -> (report Gnarp)
+    -> (report {$catName})
         <<jump WriteReportDay2_Report>>
     -> (do not report)
         <<jump WriteReportDay2_DontReport>>
@@ -403,14 +427,14 @@ position: 915,330
 <<show_ui TypeToInteract>>
 <<show MonitorDontReportDay2>>
 I fill the report with safe facts and empty sky.
-I do not mention the frequency. I do not type Gnarp's name.
+I do not mention the frequency. I do not type {$catName}'s name.
     -> (submit the report)
         <<hide_ui TypeToInteract>>
         <<set $day2KeptUnderWraps = true>>
         <<jump KeptUnderWrapsDay2>>
 ===
 
-title: ReportedGnarpDay2_GameOver
+title: ReportedCatDay2_GameOver
 position: 915,370
 ---
 <<jump ForeverAlone>>
