@@ -308,7 +308,7 @@ He never said where it had been.
 <<show_character Cat Neutral right>>
 The silence between us changes shape. It's not comfortable anymore.
 {$catName}'s mother. My father took {$catName}'s mother.
-I stare at the screen and try to make the pieces fit. My father — the quiet man with the compass, the man who read me bedtime stories — stole someone from their home. From their child.
+I stare at the screen and try to make the pieces fit. My father, the quiet man with the compass, the man who read me bedtime stories, stole someone from their home. From their child.
 <<start_voice_blip Cat>>
 <<show_character Cat Sad right>>
 {$catName}: My people were... hurt. They trusted him. They open doors for him that they not open for outsiders. And he take one of their own and disappear.
@@ -327,12 +327,12 @@ I stare at the screen and try to make the pieces fit. My father — the quiet ma
         <<stop_voice_blip Cat>>
 The words sit in my chest like stones. My father lived on an alien planet. He took {$catName}'s mother. And I'm sitting here, talking to the child he left behind.
 <<set $negSelfPerception += 2>>
-I feel something crack open inside me. The man I grew up admiring — who taught me patience, who gave me my love of the stars — did something unforgivable.
+I feel something crack open inside me. The man I grew up admiring... who taught me patience, who gave me my love of the stars... did something unforgivable.
 And the person I've been building something with is the one who paid for it.
     -> ...I need to go.
         <<start_voice_blip Cat>>
         <<show_character Cat Sad right>>
-        {$catName}: I understand. I—I am sorry.
+        {$catName}: I understand. I... I am sorry.
         <<stop_voice_blip Cat>>
     -> I can't do this right now.
         <<start_voice_blip Cat>>
@@ -361,7 +361,7 @@ The report can wait. Everything can wait.
 <<if $negSelfPerception >= $posSelfPerception + 3>>
     <<set $negSelfPerception += 2>>
     It <color=\#FF8888>hits all at once</color>.
-    My father was a thief. Not of things — of people. He walked into a world that welcomed him, earned their trust, and ripped someone's mother away.
+    My father was a thief. Not of things, but of people. He walked into a world that welcomed him, earned their trust, and ripped someone's mother away.
     {$catName} grew up without her because of him. Because of my family.
     And here I am, floating through the same void, talking to the child he orphaned, pretending I'm a good person.
     I <color=\#FF8888>feel like I was built on a rotten foundation</color>.
@@ -424,7 +424,7 @@ I packed one box. Everything I owned fit inside it.
         <<set $negSelfPerception += 1>>
         The memory dissolves and leaves <color=\#FF8888>a familiar numbness</color> in its place.
 The dream shifts. The backyard becomes a viewport. The grass becomes stars.
-My mother's voice becomes static. And in the silence that follows, I see my father's face, turned upward, looking at stars he'd walked among — carrying a secret he never shared.
+My mother's voice becomes static. And in the silence that follows, I see my father's face, turned upward, looking at stars he'd walked among... carrying a secret he never shared.
 <<fade_transition 3>>
 <<wait 2>>
 <<jump StartDay4>>
