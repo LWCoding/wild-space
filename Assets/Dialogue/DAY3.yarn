@@ -2,6 +2,8 @@ title: StartDay3
 position: -125,-487
 ---
 <<set $daysPassed = 681>>
+<<hide_all_objects>>
+<<show PCRoom>>
 <<play_sound AlarmClock>>
 <<play_music MainTheme>>
 <<set $negSelfPerception += 1>>
@@ -170,12 +172,12 @@ position: 647,285
         {$catName}: But dark not mean empty. I am in the dark too, and I am here.
 <<show_character Cat Happy right>>
 {$catName}: Next question! Do humans have... pets? Creature that live with you just because?
-{$catName}: We have something like that. Small soft thing that hum when you hold it. We call it... no word in your language. But it make you feel less alone.
-    -> Yeah, we have dogs and cats. What's yours like?
+    -> Yeah, we have dogs and cats. Do you?
         <<show_character Cat Happy2 right>>
         {$catName}: Cat! I remember you say this word. The cat look like me? I hope cat look like me.
         <<show_character Cat Happy right>>
-        {$catName}: Mine is small, round, very warm. It not have face exactly... more like a feeling with a shape. When I hold it, it hum and the hum go into your chest.
+        {$catName}: We have little pets too! Mine is small, round, very warm. It not have face exactly... more like a feeling with a shape. 
+        {$catName}: When I hold it, it hum and the hum go into your chest.
         {$catName}: I not seen it in long time though. It stay with my family now.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
@@ -487,10 +489,12 @@ The dream starts at the viewport.
 The star is there, brighter than it should be, filling the glass like a searchlight. And at its center, the dark spot. The hole that swallowed six expeditions and my father with them.
 In the dream, I'm closer than I should be. Much closer. The ship is moving faster than physics should allow, drawn forward as if the dark spot is breathing me in.
 I try to check the instruments but they're blank. Every screen, every readout, just black glass reflecting my face back at me.
+<<hide BlackHole1>>
 <<show BlackHole2>>
 The dark spot grows. It stops looking like a blemish on a star and starts looking like a mouth. The light around it bends, stretches, thins into threads that spiral inward and vanish.
 A black hole. It was always a black hole.
 The ship groans. The hull flexes. I feel the pull in my chest, not pain exactly, but a certainty. A direction I can't refuse.
+<<hide BlackHole2>>
 <<show BlackHole3>>
 The stars outside begin to streak, then smear, then disappear entirely. The viewport fills with nothing. Pure, total nothing.
     -> (reach toward it)
@@ -515,6 +519,7 @@ The stars outside begin to streak, then smear, then disappear entirely. The view
             Behind my eyelids, there's the same darkness. No escape, no difference. Open or closed, the result is the same.
             I've been falling into this my whole life. The mission just gave it a name.
         <<endif>>
+<<hide BlackHole3>>
 <<show BlackHole4>>
 My vision goes black. The hum of the ship, the groan of the hull, the pull in my chest, all of it collapses into silence.
 For a long time, there is nothing at all.
