@@ -555,6 +555,6 @@ I step back from the monitor like it might burn me.
         <<hide_all_objects>>
         <<show PCRoom>>
         <<fade_transition 3>>
-        <<wait 3>>
+        <<wait 2>>
         <<jump DreamCollegeDay2>>
 ===
