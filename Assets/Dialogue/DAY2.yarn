@@ -318,6 +318,7 @@ I glance at the mission clock and the number doesn't make sense. I check it agai
 Over an hour. We've been talking for over an hour.
 I look back at the screen. {$catName} is mid-thought, leaning forward, completely at ease. Like the static and the distance and the impossibility of all of this is just... background noise now.
 When was the last time I lost track of time with someone? I honestly can't remember.
+Everything about {$catName} is new. Every answer opens a door I didn't know existed. It's the kind of conversation where you never run out of things to ask because you haven't asked anything yet.
     -> (keep talking)
         <<jump CatConvoDay2_Part3>>
     -> (end the conversation)
@@ -339,7 +340,7 @@ position: 647,515
     <<stop_voice_blip Cat>>
     <<show_character Cat Sad right>>
     {$catName}'s voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
-        -> You seemed a little sad just now. Is everything okay?
+        -> Is everything okay?
             <<start_voice_blip Cat>>
             {$catName}: I fine. Just... remembering.
             <<positive_indicator Cat>>
@@ -400,15 +401,19 @@ My mind shifts back to the report I need to write.
 <<start_voice_blip Cat>>
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
-    {$catName}: Already? This was good.
+    {$catName}: Already? This was good. Really good.
     <<show_character Cat Neutral right>>
     {$catName}: But okay. I understand.
-    {$catName}: I will leave now. For now.
+    {$catName}: Next time we talk... I have more thing to tell you. Many more.
+    <<stop_voice_blip Cat>>
+    I believe that. Right now, it feels like we could talk forever and never hit the bottom.
+    I wonder if that's true, or if it's just what new feels like.
 <<else>>
     <<show_character Cat Neutral right>>
     {$catName}: Okay. I go.
+    <<stop_voice_blip Cat>>
+    The screen lingers for a moment before the feed cuts. I notice I don't feel the pull to keep talking the way I did at the start.
 <<endif>>
-<<stop_voice_blip Cat>>
 <<jump AfterCatLeavesDay2>>
 ===
 
@@ -545,8 +550,12 @@ I step back from the monitor like it might burn me.
         Again, after the long conversation, I decide to go to bed.
         <<if $posSelfPerception > $negSelfPerception>>
             After talking with {$catName}, I've strangely felt more confident in my ability to handle whatever comes my way.
+            The conversation replays in fragments as I settle in. Every piece of it felt easy.
+            I catch myself already thinking about next time. What I'll ask. What I'll share. The list feels endless.
         <<else>>
             After talking with {$catName}, I've felt a bit more uncertain about everything. I hope I'll figure things out soon.
+            The conversation was fine.
+            I wonder what we'll talk about next time.
         <<endif>>
         <<hide_all_objects>>
         <<show PCRoom>>

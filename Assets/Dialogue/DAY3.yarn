@@ -11,7 +11,11 @@ I blink at the mission clock.
 Day {$daysPassed}.
 Another two months dissolved into nothing. That's over four months from Earth now.
 The ship smells the same. The silence sounds the same. But something in my chest has shifted.
+<<if $catLikesYou > $catDislikesYou>>
+I know there's someone out there. And they know I'm here. The thought still carries warmth, even after the ice.
+<<else>>
 I know there's someone out there. And they know I'm here.
+<<endif>>
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay3>>
 ===
@@ -29,7 +33,12 @@ A single packet, tagged with {$catName}'s frequency. The translator renders it i
 <<play_sound RobotTalk 0.25>>
 "STILL HERE" <i>[12 DAYS AGO]</i>
 <<speed 1>>
+<<if $catLikesYou > $catDislikesYou>>
 Two words, sent while I was frozen. A reminder that patience doesn't require a heartbeat.
+Something in my chest loosens. They waited. Again.
+<<else>>
+Two words. Twelve days ago.
+<<endif>>
 I note the timestamp and close the buffer. I'll deal with that later. For now, the day needs a shape.
     -> (start the day)
         <<jump RegularTasksDay3>>
@@ -133,8 +142,10 @@ position: 647,285
 <<show_character Cat Sad right>>
 {$catName}: So...
 <<stop_voice_blip Cat>>
-The line stays open but neither of us fills it. I can hear the faint hum of whatever's on {$catName}'s end.
+The line stays open but neither of us fills it. I can hear the faint hum of whatever's on {$catName}'s end. A distant vibration, like wind through something hollow.
+<<show_character Cat Sad right>>
 I notice {$catName} shifting on screen, like they want to say something but keep swallowing it.
+Last time we couldn't stop talking. Now we can't seem to start.
     -> What are you thinking about?
         <<start_voice_blip Cat>>
         <<show_character Cat Neutral right>>
@@ -144,6 +155,8 @@ I notice {$catName} shifting on screen, like they want to say something but keep
         <<show_character Cat Neutral right>>
         {$catName}: Yes. Sorry. I was trying to find right words.
         {$catName}: I want ask you something. If okay.
+    -> ...
+        {$catName}: Sorry for quiet. I was thinking...
 {$catName}: When you sleep in box... do you dream?
     -> Sometimes. They feel more like memories.
         <<show_character Cat Neutral right>>
@@ -254,6 +267,13 @@ position: 647,515
 <<start_voice_blip Cat>>
 <<show_character Cat Neutral right>>
 {$catName}: Enough heavy talk. I want ask lighter thing.
+<<if $catLikesYou <= $catDislikesYou>>
+<<stop_voice_blip Cat>>
+The pivot feels deliberate. 
+Like {$catName} is scanning through a mental list of conversation topics, looking for one that will land. 
+I recognize the move. I've done it myself... reaching for lightness when the connection isn't carrying itself anymore.
+<<start_voice_blip Cat>>
+<<endif>>
 {$catName}: What is thing you miss most? From your planet?
     -> Rain.
         <<show_character Cat Thinking right>>
@@ -302,7 +322,11 @@ title: CatConvoDay3_End
 position: 647,630
 ---
 <<stop_voice_blip Cat>>
-The conversation settles into a comfortable lull. Neither of us seems to want to hang up.
+<<if $catLikesYou > $catDislikesYou>>
+The conversation settles into a comfortable lull. Neither of us seems to want to hang up. But it feels different from last time.
+<<else>>
+The conversation thins out. Neither of us hangs up, but neither of us reaches for the next thing to say either.
+<<endif>>
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
 {$catName}: I want tell you something. I been thinking about it since we first talk.
