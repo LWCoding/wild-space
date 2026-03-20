@@ -361,8 +361,6 @@ And then, without either of us deciding to, the conversation just... keeps going
 <<start_voice_blip Cat>>
 <<show_character Cat Happy right>>
 {$catName}: ...and the color is not blue, not green. No word in your language. It is like... if cold had a color but was warm?
-    -> Wow!
-    -> That's... pretty crazy.
     -> ...
 <<fade_transition 1.5>>
 <<wait 1>>
@@ -372,7 +370,7 @@ And then, without either of us deciding to, the conversation just... keeps going
 <<fade_transition 1.5>>
 <<wait 1>>
 <<show_character Cat Happy2 right>>
-{$catName}: ...no no no, you say it wrong! The joke is the animal fall DOWN, not up! That is why it funny!
+{$catName}: ...no no no, you say it wrong! The joke is the animal fall UP, not down! That is why it funny!
     -> ...
 <<fade_transition 1.5>>
 <<wait 1>>
@@ -453,15 +451,10 @@ position: 915,315
 ---
 <<hide_all_ui_objects>>
 <<hide_all_characters>>
-<<hide MonitorSilhouette>>
 <<hide_all_objects>>
 <<show PCRoom>>
 <<show_ui TypeToInteract>>
 <<show MonitorReportDay2>>
-I open the official channel and write what happened, in the clean language of procedure.
-    -> (submit the report)
-        <<hide_ui TypeToInteract>>
-        <<jump ForeverAlone>>
 ===
 
 title: WriteReportDay2_DontReport
@@ -469,17 +462,10 @@ position: 915,330
 ---
 <<hide_all_ui_objects>>
 <<hide_all_characters>>
-<<hide MonitorSilhouette>>
 <<hide_all_objects>>
 <<show PCRoom>>
 <<show_ui TypeToInteract>>
 <<show MonitorDontReportDay2>>
-I fill the report with safe facts and empty sky.
-I do not mention the frequency. I do not type {$catName}'s name.
-    -> (submit the report)
-        <<hide_ui TypeToInteract>>
-        <<set $day2KeptUnderWraps = true>>
-        <<jump KeptUnderWrapsDay2>>
 ===
 
 title: ReportedCatDay2_GameOver
@@ -495,8 +481,8 @@ position: 915,500
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
 <<show CollegeRoom>>
-The dream doesn't start in space.
-It starts under fluorescent bulbs, with my hands wrapped around cheap coffee and a lab key I wasn't supposed to have.
+This time, the dream doesn't start in space.
+It starts under fluorescent bulbs, with cheap coffee and a lab key I wasn't supposed to have on my desk.
 College was a maze of open doors I couldn't make myself walk through.
 Everyone else had study groups, late nights that sounded like laughter, futures that assumed they belonged.
 I had silence, and the stubborn thought that if I could become an astronaut, maybe distance would finally feel like relief instead of failure.
@@ -528,10 +514,10 @@ title: KeptUnderWrapsDay2
 position: 83,279
 ---
 <<hide_all_ui_objects>>
-I sit back from the keyboard, report transmitted, hands still trembling.
+<<set $day2KeptUnderWraps = true>>
+I sit back from the keyboard, report transmitted.
 <<set $negSelfPerception += 1>>
-I did what I'm trained to do. I kept the machine running. But I feel the weight of the lie.
-I also did something I'm not trained for at all. I kept a secret that has a pulse.
+I did something I'm not trained for at all. I kept a secret that has a pulse.
 The same three messages keep replaying behind my eyes.
 <<speed 0.4>>
 <<play_sound RobotPracticing 0.25>>
