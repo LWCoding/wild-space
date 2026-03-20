@@ -4840,21 +4840,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfos:
   - characterObject: {fileID: 1722904809}
-    icon: {fileID: 0}
-    likeVariableName: 
-    dislikeVariableName: 
   - characterObject: {fileID: 109717617}
-    icon: {fileID: 0}
-    likeVariableName: 
-    dislikeVariableName: 
   - characterObject: {fileID: 167198769}
-    icon: {fileID: 0}
-    likeVariableName: 
-    dislikeVariableName: 
   - characterObject: {fileID: 1314969656}
-    icon: {fileID: 0}
-    likeVariableName: 
-    dislikeVariableName: 
   leftAnchor: {fileID: 106696850}
   centerAnchor: {fileID: 1165409721}
   rightAnchor: {fileID: 1306706245}
@@ -7037,6 +7025,7 @@ MonoBehaviour:
   globalVolume: {fileID: 1806722012}
   intensityPerPoint: 0.075
   minimumIntensity: 0.35
+  maximumIntensity: 0.75
   transitionDuration: 0.6
 --- !u!1 &826410418
 GameObject:
@@ -11480,7 +11469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: startNode
-      value: Start
+      value: StartDay2
       objectReference: {fileID: 0}
     - target: {fileID: 8309902628685535410, guid: 52571f68872914e24837210513edea1d, type: 3}
       propertyPath: yarnProject

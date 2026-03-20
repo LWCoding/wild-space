@@ -9,7 +9,6 @@ I wake to the alarm again. My body knows the routine now. The ache, the fog, the
 Cryosleep doesn't get easier. You just get better at pretending it does.
 I blink at the mission clock.
 Day {$daysPassed}.
-Another two months dissolved into nothing. That's over four months from Earth now.
 The ship smells the same. The silence sounds the same. But something in my chest has shifted.
 <<if $catLikesYou > $catDislikesYou>>
 I know there's someone out there. And they know I'm here. The thought still carries warmth, even after the ice.
@@ -30,18 +29,22 @@ But underneath the routine, the comms buffer has a new entry.
 <<play_sound Glitch 0.25>>
 A single packet, tagged with {$catName}'s frequency. The translator renders it into a short burst.
 <<speed 0.4>>
-<<play_sound RobotTalk 0.25>>
+<<play_sound RobotStillHere 0.25>>
 "STILL HERE" <i>[12 DAYS AGO]</i>
 <<speed 1>>
 <<if $catLikesYou > $catDislikesYou>>
 Two words, sent while I was frozen. A reminder that patience doesn't require a heartbeat.
 Something in my chest loosens. They waited. Again.
+I press the response key and send a ping back. Two can be patient.
+The day still needs a shape, but at least the silence has a crack in it now.
+    -> (start the day)
+        <<jump RegularTasksDay3>>
 <<else>>
 Two words. Twelve days ago.
-<<endif>>
 I note the timestamp and close the buffer. I'll deal with that later. For now, the day needs a shape.
     -> (start the day)
         <<jump RegularTasksDay3>>
+<<endif>>
 ===
 
 title: RegularTasksDay3
@@ -95,6 +98,7 @@ Before I can type the first word, the comms panel lights up.
     -> (ignore it and write the report first)
         I try to focus on the report. The cursor blinks. The frequency pulses.
         I last about thirty seconds.
+            -> (answer)
         <<jump CallCatDay3>>
 ===
 
@@ -128,7 +132,7 @@ I open the channel. Static, then motion. The silhouette leans in, sharper than b
     <<show_character Cat Neutral right>>
     <<start_voice_blip Cat>>
     {$catName}: Oh. You answer. I was not sure you would.
-        -> Of course I answered.
+        -> Of course.
             <<show_character Cat Neutral right>>
             {$catName}: Okay. Good.
 <<endif>>
@@ -139,60 +143,112 @@ title: CatConvoDay3
 position: 647,285
 ---
 <<start_voice_blip Cat>>
-<<show_character Cat Sad right>>
-{$catName}: So...
-<<stop_voice_blip Cat>>
-The line stays open but neither of us fills it. I can hear the faint hum of whatever's on {$catName}'s end. A distant vibration, like wind through something hollow.
-<<show_character Cat Sad right>>
-I notice {$catName} shifting on screen, like they want to say something but keep swallowing it.
-Last time we couldn't stop talking. Now we can't seem to start.
-    -> What are you thinking about?
-        <<start_voice_blip Cat>>
-        <<show_character Cat Neutral right>>
-        {$catName}: I... okay. I want ask you something. If okay.
-    -> You've gone quiet.
-        <<start_voice_blip Cat>>
-        <<show_character Cat Neutral right>>
-        {$catName}: Yes. Sorry. I was trying to find right words.
-        {$catName}: I want ask you something. If okay.
-    -> ...
-        {$catName}: Sorry for quiet. I was thinking...
-{$catName}: When you sleep in box... do you dream?
-    -> Sometimes. They feel more like memories.
-        <<show_character Cat Neutral right>>
-        {$catName}: Memories that come when you not looking. I have those too.
-        {$catName}: Mine are mostly sounds. My family talking over dinner. The hum of home.
-        <<set $posSelfPerception += 1>>
-        Sharing that feels unexpectedly easy.
-    -> I'd rather not talk about it.
-        <<show_character Cat Sad right>>
-        {$catName}: Okay. I understand closed doors.
-        <<set $negSelfPerception += 1>>
-        I shut down again. The habit is hard to break.
-<<show_character Cat Neutral right>>
-{$catName}: I ask because... I been thinking about time. How it work different for us.
-{$catName}: My people... we not live as long as humans. Much shorter. What is months for you is... big part of life for me.
-{$catName}: Every day I wait for you to wake up, I feel it. The weight of it. Like sand running out that I cannot put back.
-{$catName}: I count them. Every one.
-<<show_character Cat Sad right>>
-{$catName}: Sometimes I wonder if you forget me between sleeps. If I am just... noise you heard once.
-{$catName}: You have so many year ahead. For me, the time we already spend... it is not small. It is real.
-    -> I haven't forgotten you.
+<<show_character Cat Happy right>>
+{$catName}: So! I have been saving questions for you. Many questions. You ready?
+    -> Hit me.
+        <<show_character Cat Happy2 right>>
+        {$catName}: Hit you? No! I ask question, not throw thing!
+        {$catName}: ...Oh. That is expression. Okay. I learn that one.
+    -> Go for it.
+        <<show_character Cat Happy2 right>>
+        {$catName}: Good! I been waiting long time for this.
+<<show_character Cat Thinking right>>
+{$catName}: Okay, first: your ship. It have window, yes? What you see right now?
+    -> Stars. Lots of them. What do you see from your window?
+        <<show_character Cat Happy right>>
+        {$catName}: Stars! I see them too! But from ground. I wonder if we ever look at same one at same time.
+        {$catName}: I like that idea. Two people, very far, looking at same tiny light.
+        <<show_character Cat Thinking right>>
+        {$catName}: From my window... I see the sky change color three time in one day. Morning is orange, midday is white, and evening is... no word in your language. Deeper than purple.
+        {$catName}: And the ground glow a little at night. Soft, like everything remembering the sun.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
+    -> Mostly just... dark.
+        <<show_character Cat Thinking right>>
+        {$catName}: Dark. Yes. Space is very good at dark.
+        {$catName}: But dark not mean empty. I am in the dark too, and I am here.
+<<show_character Cat Happy right>>
+{$catName}: Next question! Do humans have... pets? Creature that live with you just because?
+{$catName}: We have something like that. Small soft thing that hum when you hold it. We call it... no word in your language. But it make you feel less alone.
+    -> Yeah, we have dogs and cats. What's yours like?
+        <<show_character Cat Happy2 right>>
+        {$catName}: Dog! Cat! I read about these in your ship log. The cat look like me? I hope cat look like me.
         <<show_character Cat Happy right>>
-        {$catName}: That mean more than you know.
+        {$catName}: Mine is small, round, very warm. It not have face exactly... more like a feeling with a shape. When I hold it, it hum and the hum go into your chest.
+        {$catName}: I not seen it in long time though. It stay with my family now.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
         <<set $posSelfPerception += 1>>
-        Saying it out loud makes it feel true.
-    -> We barely know each other.
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
+    -> Not on this ship.
         <<show_character Cat Sad right>>
-        {$catName}: ...Yes. You are right. But I hoped anyway.
+        {$catName}: No pet on ship? That seem... cruel. Everyone need something soft nearby.
         <<set $negSelfPerception += 1>>
-        The honesty was supposed to feel clean. Instead it tastes like rust.
+<<show_character Cat Thinking right>>
+{$catName}: Oh! One more. Very important question.
+{$catName}: What is best food you ever eat? Not paste from tube. Real food. Before you leave planet.
+    -> My mom's cooking. Nothing specific, just... the smell of it. What about yours?
+        <<show_character Cat Happy right>>
+        {$catName}: The smell! Yes! Food memory live in nose, not mouth. That same for us.
+        {$catName}: My home smell like warm grain and something sweet I not know word for. I smell it in dreams sometimes.
+        <<show_character Cat Thinking right>>
+        {$catName}: Best thing I ever eat... my mother make this thing on special days. Warm, soft, it melt before you finish chewing. She say the secret is patience. You have to wait for it to be ready. You cannot rush.
+        {$catName}: I never had patience for that. I always try eat it too early and burn my mouth.
+        <<show_character Cat Happy right>>
+        {$catName}: She laugh every time. Every time.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<set $posSelfPerception += 1>>
+    -> Can't remember. It's been too long.
+        <<show_character Cat Sad right>>
+        {$catName}: That is... very sad sentence. But I understand. Some memories get far away if you not hold them.
+        <<set $negSelfPerception += 1>>
 <<stop_voice_blip Cat>>
-The signal holds. {$catName} is still there, waiting.
+The signal holds. {$catName} is still there, leaning forward on screen, ready for more.
+    -> My turn. I have questions too.
+        <<jump CatConvoDay3_PlayerQuestions>>
+    -> (keep talking)
+        <<jump CatConvoDay3_Part2>>
+    -> (end the conversation)
+        <<jump CatConvoDay3_End>>
+===
+
+title: CatConvoDay3_PlayerQuestions
+position: 647,340
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Happy2 right>>
+{$catName}: You have questions? For me? Ask! Ask!
+<<stop_voice_blip Cat>>
+    -> What do you do all day when we're not talking?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Thinking right>>
+        {$catName}: Hmm. I watch the sky. I draw in my journal. I listen to the noise from space and try to find pattern.
+        {$catName}: Sometimes I make up stories about the signals I hear. Where they come from. Who send them. What they trying to say.
+        <<show_character Cat Happy right>>
+        {$catName}: Yours was my favorite story. Before I know it was real.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+    -> Do you ever get scared? Being alone out there monitoring space?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Sad right>>
+        {$catName}: ...Yes. Sometimes.
+        {$catName}: Not of space. Space is just... big quiet. I used to that.
+        <<show_character Cat Thinking right>>
+        {$catName}: I scared of being forgotten. That one day I stop sending signal and nobody notice.
+        <<show_character Cat Neutral right>>
+        {$catName}: But then you answer. And now I think... maybe someone would notice.
+        <<set $posSelfPerception += 1>>
+    -> What's your favorite thing you've drawn in your journal?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Happy right>>
+        {$catName}: Oh! Easy. I draw your ship.
+        {$catName}: Not how it really look. I not know that. I draw how it feel. Small light, moving slow through dark. Brave and silly at same time.
+        <<show_character Cat Happy2 right>>
+        {$catName}: I add little face to it once. Accident. But now I cannot un-see it.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<set $posSelfPerception += 1>>
+<<stop_voice_blip Cat>>
     -> (keep talking)
         <<jump CatConvoDay3_Part2>>
     -> (end the conversation)
@@ -204,57 +260,54 @@ position: 647,400
 ---
 <<start_voice_blip Cat>>
 <<show_character Cat Thinking right>>
-{$catName}: Can I tell you something? About my planet?
-{$catName}: I know last time I say I not allowed. And I still not. But...
-<<show_character Cat Sad right>>
-{$catName}: My people, they have word for humans. Rough translation is... "loud silence." You fill space with noise but never say real thing.
-{$catName}: They think you dangerous. Not because weapon. Because you lonely and you don't know it.
-{$catName}: Lonely thing with power is... unpredictable.
-    -> That's... not unfair.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Happy right>>
-        {$catName}: You surprise me. Most people not like hearing truth about themselves.
-        <<set $posSelfPerception += 1>>
-        Accepting it hurts, but it also feels honest.
-    -> That's a pretty harsh generalization.
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
+{$catName}: Can I ask you personal thing? You not have to answer.
+{$catName}: Do you have family? Back on your planet?
+    -> I did. It's complicated.
         <<show_character Cat Neutral right>>
-        {$catName}: Maybe. But you sitting alone in metal box in space. You tell me I wrong?
+        {$catName}: Complicated. Yes. Family always complicated. Even on my planet.
+        <<set $posSelfPerception += 1>>
+    -> Not really. Not anymore.
+        <<show_character Cat Sad right>>
+        {$catName}: ...Oh. I sorry.
         <<set $negSelfPerception += 1>>
-        I want to argue. I can't.
-<<show_character Cat Sad right>>
-{$catName}: My father... he most afraid of all. He very careful with me. Keep me close. Always.
-{$catName}: He not mean. He love me. But his love feel like... wall? Like small room with no window.
 <<show_character Cat Thinking right>>
-{$catName}: And my people... they watch. Always watch. If I do wrong thing, they know.
-{$catName}: They have big rule. Because of what happen long time ago. When human come before.
-<<show_character Cat Neutral right>>
-{$catName}: I grow up hearing that story. Everyone afraid because of it. Father most of all.
-{$catName}: He say never talk to human. Never. Not even think about it.
-<<show_character Cat Sad right>>
-{$catName}: But I hear your ship. Your voice in the noise. And I think... this not sound like monster.
-{$catName}: This sound like person. Alone person. Like me.
+{$catName}: My family is... close. Too close, maybe. My parents work very important job. Security. Protecting planet.
+{$catName}: They love me. But their love is... how you say... heavy? Like blanket that is too thick. You warm, but you cannot move.
+<<show_character Cat Happy right>>
+{$catName}: That is why I like this. Talking to you. Nobody watching. Nobody telling me what to say.
+{$catName}: On my planet, everything I do is... observed. Measured. There are rules for everything.
 <<show_character Cat Thinking right>>
-{$catName}: You are first thing in my life nobody tell me to want.
-{$catName}: First thing I choose. Just me. No rule. No father. No story.
-<<show_character Cat Neutral right>>
-{$catName}: That why they not want me talk to you. They afraid you... infect me. With your loneliness.
-{$catName}: But I think loneliness not disease. I think it just... wound that need air.
-<<show_character Cat Thinking right>>
-{$catName}: I already have wound. Talking to you not make it worse. It make it... known.
-    -> You're braver than I am.
+{$catName}: But out here, on this frequency, it is just us. No rules. No watchers.
+{$catName}: It is only place I feel like... me. Real me. Not the me they want.
+    -> I get that. This ship is the same for me — freedom and a cage at the same time.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<show_character Cat Happy right>>
-        {$catName}: No. I just more desperate. Brave and desperate look same from outside.
-    -> What happens if your people find out about us?
-        <<show_character Cat Sad right>>
-        {$catName}: I... not want to think about that.
-        {$catName}: For now, we careful. That has to be enough.
+        {$catName}: Yes! Exactly! Freedom-cage! You understand.
+        <<set $posSelfPerception += 1>>
+    -> That sounds lonely.
+        <<show_character Cat Neutral right>>
+        {$catName}: It was. Before you.
+<<show_character Cat Happy2 right>>
+{$catName}: Okay, enough about feelings. I want show you something I learn!
+{$catName}: I been practicing your language jokes. Ready?
+{$catName}: Why did the star go to school?
+    -> ...Why?
+        <<show_character Cat Happy right>>
+        {$catName}: Because it want to be... brighter!
+        {$catName}: ...Is that right? The word play? I not sure I understand how funny work in your language.
+    -> I'm scared to ask.
+        <<show_character Cat Happy right>>
+        {$catName}: Because it want to be... brighter!
+        {$catName}: You see? Bright like smart AND bright like light? Two meaning, one word!
+<<show_character Cat Happy2 right>>
+{$catName}: I have more! I write them down in journal so I not forget.
 <<stop_voice_blip Cat>>
-The weight of what {$catName} just shared settles between us like dust after an explosion.
+<<if $catLikesYou > $catDislikesYou>>
+I catch myself smiling. Actually smiling. When was the last time that happened?
+<<else>>
+The joke is terrible. But {$catName}'s pride in it is oddly disarming.
+<<endif>>
     -> (keep talking)
         <<jump CatConvoDay3_Part3>>
     -> (end the conversation)
@@ -264,56 +317,76 @@ The weight of what {$catName} just shared settles between us like dust after an 
 title: CatConvoDay3_Part3
 position: 647,515
 ---
+<<if $catLikesYou > $catDislikesYou>>
 <<start_voice_blip Cat>>
-<<show_character Cat Neutral right>>
-{$catName}: Enough heavy talk. I want ask lighter thing.
-<<if $catLikesYou <= $catDislikesYou>>
+<<show_character Cat Happy2 right>>
+{$catName}: Oh! I want show you something. Hold on.
 <<stop_voice_blip Cat>>
-The pivot feels deliberate. 
-Like {$catName} is scanning through a mental list of conversation topics, looking for one that will land. 
-I recognize the move. I've done it myself... reaching for lightness when the connection isn't carrying itself anymore.
+The screen flickers. For a brief moment, the silhouette shifts and I catch a glimpse of something behind {$catName}: a window, with an amber sky and shapes that might be trees, or might be something I have no word for.
+It lasts two seconds. Then the feed stabilizes back to the usual framing.
 <<start_voice_blip Cat>>
-<<endif>>
-{$catName}: What is thing you miss most? From your planet?
-    -> Rain.
-        <<show_character Cat Thinking right>>
-        {$catName}: Rain? Water falling from sky?
-        {$catName}: We have something like that. But ours is warm. And it hum.
-        <<show_character Cat Happy right>>
-        {$catName}: I miss the humming rain. Maybe I play recording for you sometime.
+<<show_character Cat Happy right>>
+{$catName}: That was my sky. I wanted you to see it. Even just little bit.
+    -> It's beautiful.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
+        <<show_character Cat Happy2 right>>
+        {$catName}: It is. And now you carry piece of it.
         <<set $posSelfPerception += 1>>
-        The idea of sharing something so small and specific makes the distance feel a little shorter.
-    -> Nothing.
+        Something about that gesture makes me feel less far from everything.
+    -> Be careful! You don't want to get in trouble.
         <<show_character Cat Sad right>>
-        {$catName}: ...Nothing? Not one thing?
-        {$catName}: That make me sad for you.
+        {$catName}: ...You right. I was careless.
+        <<negative_indicator Cat>>
+        <<set $catDislikesYou += 1>>
         <<set $negSelfPerception += 1>>
-        I said it to sound tough. It just sounds empty.
+        I said the practical thing. It doesn't feel like the right thing.
+<<endif>>
+<<jump CatConvoDay3_Montage>>
+===
+
+title: CatConvoDay3_Montage
+position: 647,575
+---
+<<stop_voice_blip Cat>>
+And just like last time, the conversation keeps going. Easier now. Like a path we've walked before.
+<<fade_transition 1.5>>
+<<wait 1>>
+<<start_voice_blip Cat>>
+<<show_character Cat Happy right>>
+{$catName}: ...no, you not understand. The fruit is not red. It is the color AFTER red. Your eyes just cannot see it!
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Thinking right>>
+{$catName}: ...so your planet has frozen water that fall from sky AND liquid water that fall from sky? How you know which one is coming?
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Happy2 right>>
+{$catName}: ...and then the little creature just sit on my hand! Not afraid at all! I think it like the warmth.
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Sad right>>
+{$catName}: ...I wonder what would happen if I could visit your planet. Would people be afraid of me too?
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Happy right>>
+{$catName}: ...okay, I have new joke. What did the moon say to the sun? "You are too bright for me, but I still want to be close!"
+{$catName}: ...That one is not really joke. More like... feeling.
+    -> ...
+<<stop_voice_blip Cat>>
+<<fade_transition 1.5>>
+<<wait 1>>
 <<if $catLikesYou > $catDislikesYou>>
-    <<show_character Cat Happy2 right>>
-    {$catName}: I want show you something. Hold on.
-    <<stop_voice_blip Cat>>
-    The screen flickers. For a brief moment, the silhouette shifts and I catch a glimpse of something behind {$catName}: a window, with an amber sky and shapes that might be trees, or might be something I have no word for.
-    It lasts two seconds. Then the feed stabilizes back to the usual framing.
-    <<start_voice_blip Cat>>
-    <<show_character Cat Happy right>>
-    {$catName}: That was my sky. I wanted you to see it. Even just little bit.
-        -> It's beautiful.
-            <<positive_indicator Cat>>
-            <<set $catLikesYou += 1>>
-            <<show_character Cat Happy2 right>>
-            {$catName}: It is. And now you carry piece of it.
-            <<set $posSelfPerception += 1>>
-            Something about that gesture makes me feel less far from everything.
-        -> Be careful! You don't want to get in trouble.
-            <<show_character Cat Sad right>>
-            {$catName}: ...You right. I was careless.
-            <<negative_indicator Cat>>
-            <<set $catDislikesYou += 1>>
-            <<set $negSelfPerception += 1>>
-            I said the practical thing. It doesn't feel like the right thing.
+The hours slip by without either of us noticing. It's becoming a pattern — the kind of ease that makes you forget there's a universe between you.
+But somewhere underneath the comfort, I notice something. The topics come a little slower now. The pauses between them stretch a beat longer than they used to.
+We're not running out of things to say. Not yet. But the infinite well from last time doesn't feel quite as bottomless.
+<<else>>
+The conversation runs longer than I expected. Not bad, exactly. Just... thinner. Like we're both reaching for the next thing to say and finding fewer options each time.
+It's still more than I have with anyone else. That has to count for something.
 <<endif>>
 <<jump CatConvoDay3_End>>
 ===
@@ -323,76 +396,89 @@ position: 647,630
 ---
 <<stop_voice_blip Cat>>
 <<if $catLikesYou > $catDislikesYou>>
-The conversation settles into a comfortable lull. Neither of us seems to want to hang up. But it feels different from last time.
+The conversation settles into a comfortable lull. Neither of us seems to want to hang up.
 <<else>>
 The conversation thins out. Neither of us hangs up, but neither of us reaches for the next thing to say either.
 <<endif>>
 <<start_voice_blip Cat>>
-<<show_character Cat Thinking right>>
-{$catName}: I want tell you something. I been thinking about it since we first talk.
-{$catName}: Long time ago, before I born, someone come to our planet. From very far away.
+<<show_character Cat Sad right>>
+{$catName}: Can I tell you something? Something I been carrying for long time?
+{$catName}: I need to say it to someone. And you are... only someone I have.
+    -> Of course.
+        <<show_character Cat Neutral right>>
+        {$catName}: Okay. Thank you.
+    -> Go ahead.
+        <<show_character Cat Neutral right>>
+        {$catName}: Okay.
+    -> ...
+<<show_character Cat Sad right>>
+{$catName}: When I was young... a human come to our planet. First one ever.
+{$catName}: It was... big thing. Huge thing. Everyone talking about it. The elders, the families, everyone.
 <<show_character Cat Neutral right>>
-{$catName}: My elders tell story about him. He was... strange. Tall. Clumsy. Always knocking things over because gravity different for him.
-{$catName}: But he learn fast. He try to speak our language, even though his mouth not made for it. He sound terrible. Everyone laugh, but... kind laugh. Warm.
-    -> Sounds like a character.
-        <<show_character Cat Happy right>>
-        {$catName}: Yes! He was. Very much.
-    -> Where did he come from?
-        <<show_character Cat Thinking right>>
-        {$catName}: From far. A small blue planet. I think you know which one.
+{$catName}: Some people say: this is good. New life. New knowledge. We should welcome.
+{$catName}: Others say: no. Outside life is threat. We not know what they want. We should be afraid.
+<<show_character Cat Sad right>>
+{$catName}: My father was in second group. He very afraid. He say humans are... unpredictable. Dangerous. He want the human gone.
 <<show_character Cat Thinking right>>
-{$catName}: He had this thing he carry everywhere. Small object, fit in hand. He say it was gift from his father. Had little... what is word... engraving? Of a bird.
-{$catName}: He would hold it when he miss home. My elders say he rub the edges smooth over time.
-<<stop_voice_blip Cat>>
-My breath catches. I know that object. A brass compass with a sparrow etched into the lid. It sat on my father's desk my entire childhood. He said his father gave it to him before he died.
-He never said where it had been.
-<<start_voice_blip Cat>>
-<<show_character Cat Neutral right>>
-{$catName}: He stay long time. Many season. My people, they... accept him. He was different, yes, but he try. He care.
-{$catName}: He learn to cook our food. He fix things. He sit with the elders and listen to old stories, even when he not understand all words.
+{$catName}: But I was young and curious. I watch the human from far away. I not supposed to, but I do anyway.
+{$catName}: He was... clumsy. Tall. Always bumping into thing because gravity different for him. He knock over a whole table once and look so embarrassed.
 <<show_character Cat Happy right>>
-{$catName}: They give him a name in our language. It mean "the one who listens with his whole body."
-<<show_character Cat Sad right>>
-{$catName}: But then... he meet someone there. One of us. She was... important to many people. A healer. Everyone trust her.
-<<show_character Cat Sad right>>
-{$catName}: And one day, he take her and leave. Back to his planet. No warning. No goodbye to the rest.
-{$catName}: She not want to go. Or maybe she did. Nobody know for sure. But she never come back.
-<<stop_voice_blip Cat>>
+{$catName}: But he was kind. He try to learn our words, even though his mouth not made for them. He sound terrible. But he keep trying.
+{$catName}: He sit with people and listen. Really listen. Not just wait for his turn to talk.
 <<show_character Cat Neutral right>>
-The silence between us changes shape. It's not comfortable anymore.
-My father took someone from {$catName}'s world. Someone they trusted. Someone who mattered.
-I stare at the screen and try to make the pieces fit. My father, the quiet man with the compass, the man who read me bedtime stories, walked into a world that welcomed him and tore a piece of it away.
-<<start_voice_blip Cat>>
+{$catName}: The debates got worse. The people who afraid, they start winning. More and more say the human should leave.
+{$catName}: And one day... he was gone. I not know if he left or if they make him leave. Nobody tell me. I was too young to ask the right questions.
 <<show_character Cat Sad right>>
-{$catName}: My people were... hurt. They trusted him. They open doors for him that they not open for outsiders. And he take one of their own and disappear.
-{$catName}: That is all I know. The elders not like to say more. It is... old wound.
+{$catName}: After that, everything change. The afraid people, they make the rules now. No outside contact. No signals. No trust.
+{$catName}: That is world I grow up in. World built on fear of one human who come and went.
+<<show_character Cat Thinking right>>
+{$catName}: But I remember him, {$catThinksPlayerNameIs}. I remember watching him sit in the garden and listen to the wind like it was talking to him.
+{$catName}: And I think... my people are wrong. Not because they scared. Being scared make sense. But because they took one person and made him into a monster. They made all humans into that monster.
+<<show_character Cat Neutral right>>
+{$catName}: I think there is goodness in humans. Real goodness. I saw it. I was small, but I saw it.
+{$catName}: And talking to you... it prove me right. You are not monster. You are just person. Tired, lonely person. Like me.
+<<show_character Cat Sad right>>
+{$catName}: My people would say I am naive. That I am making same mistake they made before.
+{$catName}: But I think the mistake was not trusting. The mistake was stopping.
+<<show_character Cat Thinking right>>
+{$catName}: You know what I remember most about him? Small thing. Silly, maybe.
+{$catName}: He had this... habit. When he was thinking, or when he look sad, he would hold something small in his hand. Metal, I think. And he would turn it over and over, rubbing the edges with his thumb.
+{$catName}: I never see it up close. But I remember the way he hold it. Like it was the last piece of somewhere else.
 <<stop_voice_blip Cat>>
-    -> ...That was my father.
-        <<start_voice_blip Cat>>
-        <<show_character Cat Sad right>>
-        {$catName}: ...I know. I think I know since you first tell me about your family.
-        {$catName}: I am sorry. I not know how to say sooner.
-        <<stop_voice_blip Cat>>
-    -> (say nothing)
-        <<start_voice_blip Cat>>
-        <<show_character Cat Sad right>>
-        {$catName}: ...You are quiet. I think maybe you understand who I talk about.
-        <<stop_voice_blip Cat>>
-The words sit in my chest like stones. My father lived on an alien planet. He earned their trust, and then he betrayed it.
+<<stop_music>>
+<<hide_all_objects>>
+<<hide_all_characters>>
+<<show Stars>>
+<<show_character Cat Obscure right>>
 <<set $negSelfPerception += 2>>
-I feel something crack open inside me. The man I grew up admiring... who taught me patience, who gave me my love of the stars... did something unforgivable.
-And the person I've been building something with is the one who paid for it.
-    -> ...I need to go.
-        <<start_voice_blip Cat>>
-        <<show_character Cat Sad right>>
-        {$catName}: I understand. I... I am sorry.
-        <<stop_voice_blip Cat>>
-    -> I can't do this right now.
-        <<start_voice_blip Cat>>
-        <<show_character Cat Sad right>>
-        {$catName}: ...Okay.
-        <<stop_voice_blip Cat>>
-I close the channel. The screen goes dark.
+...Dad?
+The word surfaces before I can stop it. Not out loud.
+A brass compass with a bat etched into the lid. It sat on my father's desk my entire childhood. 
+I used to watch him do exactly that... turn it in his hands, thumb tracing the edges, eyes somewhere I couldn't follow.
+The sixth expedition was headed for the dark spot. {$catName}'s planet isn't on that route. If that was him... what was he doing there? Did he detour? Did the mission go wrong before he ever reached the star?
+How long was he there? What did he see? What did he do that made an entire civilization afraid of humans?
+And if he left... or was forced out... where did he go next?
+<<start_voice_blip Cat>>
+<<hide_all_characters>>
+<<show_character Cat Sad right>>
+{$catName}: {$catThinksPlayerNameIs}?
+{$catName}: ...You are okay?
+{$catName}: You not saying anything. Did I say something wrong?
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+<<play_music MainTheme>>
+I close the channel.
+No goodbye. No explanation. Just the click of the connection severing and then silence.
+I sit there. Hands on the console. Not moving.
+It was him. The compass. The fidgeting. The clumsiness. The listening.
+My father was on {$catName}'s planet.
+He was supposed to be heading for the dark spot. Straight line, no detours. That was the mission. That was the whole point.
+But he stopped. He landed on a world full of people who'd never seen a human, and he stayed long enough for a child to remember his hands.
+Why? What was he doing there? What made him leave his mission — leave us — for a garden on a planet nobody's ever heard of?
+And what happened to him after? Did he leave? Did they make him leave? Did he ever reach the dark spot, or was that the end of the road?
+I don't have answers. I just have a compass on a desk I'll never sit at again, and a story from someone who was too young to ask the right questions.
+And somewhere in the static, {$catName} is wondering why I hung up.
 <<jump AfterCatLeavesDay3>>
 ===
 
@@ -400,38 +486,28 @@ title: AfterCatLeavesDay3
 position: 915,224
 ---
 <<hide_all_characters>>
-<<play_sound Glitch 0.25>>
-<<play_music MainTheme>>
-The screen collapses to static. Then nothing.
 <<hide MonitorSilhouette>>
-<<show MonitorOn>>
-I sit there, staring at the monitor, hands flat on the console. My reflection stares back, and for the first time, I look at it like a stranger.
-The report template is still open. The cursor blinks.
-I can't do it. Not tonight.
 <<hide_all_objects>>
 <<show PCRoom>>
+<<show MonitorOn>>
 I push back from the desk. The chair scrapes against the floor, too loud in the silence.
-The report can wait. Everything can wait.
 <<if $negSelfPerception >= $posSelfPerception + 3>>
-    <<set $negSelfPerception += 2>>
-    It hits all at once.
-    My father was a thief. Not of things, but of trust. He walked into a world that welcomed him, earned their love, and ripped someone away from it.
-    {$catName}'s people lost someone because of him. Because of my family. And that loss became the fear that shaped everything — the rules, the silence, the walls {$catName} grew up inside.
-    And here I am, floating through the same void, pretending I'm a good person.
-    I feel like I was built on a rotten foundation.
+    <<set $negSelfPerception += 1>>
+    It was him. I know it was him. I can feel it like a bruise I didn't know I had until someone pressed on it.
+    My father sat in that garden. My father knocked over that table. My father held that compass and thought about us while an entire civilization decided he was a threat.
+    And then he vanished. Again.
+    The worst part isn't not knowing what happened to him. The worst part is that I'm not surprised. He was always leaving. He just finally found a place far enough away that nobody could follow.
 <<elseif $negSelfPerception > $posSelfPerception>>
     <<set $negSelfPerception += 1>>
-    The thought spirals: how do I look {$catName} in the eye after this?
-    My father took someone from their world. Someone who mattered. And that betrayal is the reason {$catName}'s people fear humans, the reason talking to me is dangerous for them.
-    I think about every kind thing {$catName} said to me. Every moment of patience.
-    They chose to trust me despite what my father did. And I didn't even know there was something to forgive. The thought makes me feel sick.
+    The thought won't settle. It keeps circling, like something caught in orbit.
+    What was he doing there? He was supposed to be heading for the dark spot. Straight line, no detours, no stops. That was the mission.
+    But he stopped. He sat in a garden. He learned words his mouth wasn't built for. He stayed long enough for a child to remember his hands.
+    I don't know what that means. I don't know if it makes him more human or less of a father.
 <<else>>
-    <<set $negSelfPerception += 1>>
-    I sit with it. The weight is enormous, but I try to breathe around it.
-    My father did something terrible. He took someone from {$catName}'s world, from their people, and never looked back.
-    It doesn't make me him. I know that. But it rearranges everything. The man I thought I knew, the family I thought I understood.
-    I'm shaken. Deeply. But I'm also still here. That has to count for something.
-    I'll deal with this. Just... not tonight.
+    The pieces are all there. I just can't make them fit into anything that doesn't hurt.
+    He detoured. He landed on a planet full of people who'd never seen a human. He was kind to them, and they drove him away anyway.
+    And somewhere in the middle of all that, he held a compass with a bat on it and thought about... what? Us? Home? Whether he'd ever go back?
+    I'll never know. But the question is lodged in me now, and I don't think it's coming out.
 <<endif>>
 <<jump EndDay3>>
 ===
@@ -446,7 +522,7 @@ position: 918,14
 I don't bother turning the monitor off properly. I just let it go dark on its own.
 The report sits unfinished. HQ will get a blank day from me. They can add it to the long list of things I'm failing at.
 I climb into the cryopod without ceremony. No routine, no checklist, no pretending I'm fine.
-Just the hum of the pod, the cold settling in, and the last image behind my eyelids. A brass compass with a sparrow on the lid, and a question I can never ask my father.
+Just the hum of the pod, the cold settling in, and the image behind my eyelids: a man sitting in a garden on a planet he doesn't belong to, turning something small and metal in his hands.
 <<fade_transition 3>>
 <<wait 3>>
 <<jump DreamDay3>>

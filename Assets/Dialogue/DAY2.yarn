@@ -289,7 +289,7 @@ position: 647,515
 <<if $catLikesYou > $catDislikesYou>>
     <<stop_voice_blip Cat>>
     <<show_character Cat Sad right>>
-    {$catName}'s voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
+    {$catName}'s voice dips.
         -> Is everything okay?
             <<start_voice_blip Cat>>
             {$catName}: I fine. Just... remembering.
@@ -302,13 +302,11 @@ position: 647,515
             {$catName}: I very lucky to have you here.
             <<set $posSelfPerception += 1>>
             Making someone feel less alone... brings me a quiet warmth.
-        -> ...
 <<else>>
     <<stop_voice_blip Cat>>
     <<show_character Cat Sad right>>
     {$catName} goes quiet. The silhouette holds still.
         -> ...
-            <<start_voice_blip Cat>>
 <<endif>>
 <<if $catLikesYou >= $catDislikesYou>>
     <<stop_voice_blip Cat>>
@@ -507,6 +505,8 @@ I didn't just suddenly get launched into space.
 I'd been practicing for this for years.
 <<fade_transition 3>>
 <<wait 2>>
+<<hide_all_characters>>
+<<hide_all_objects>>
 <<jump StartDay3>>
 ===
 
@@ -556,9 +556,5 @@ I step back from the monitor like it might burn me.
         <<show PCRoom>>
         <<fade_transition 3>>
         <<wait 3>>
-        <<if $day2KeptUnderWraps == true>>
-            <<jump DreamCollegeDay2>>
-        <<else>>
-            <<jump StartDay3>>
-        <<endif>>
+        <<jump DreamCollegeDay2>>
 ===

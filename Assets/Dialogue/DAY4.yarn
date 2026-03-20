@@ -53,7 +53,7 @@ Neither of us speaks for a moment. The weight of last time sits between us like 
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Sad right>>
     {$catName}: I was not sure you would answer. After what I tell you.
-    {$catName}: About your father. About what he did to my people. About... everything.
+    {$catName}: About the human. The one on my planet. About... everything.
     <<show_character Cat Thinking right>>
     {$catName}: I want you to know... I not blame you. You are not him.
         -> I needed to hear that.
