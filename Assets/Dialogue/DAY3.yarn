@@ -423,25 +423,38 @@ position: 915,500
 <<hide_all_ui_objects>>
 <<show Stars>>
 <<show Sitting>>
-The dream starts with a sound I haven't heard in years. My mother's voice, calling me in for dinner.
-I'm standing in the backyard of the house I grew up in. The grass is too green, the sky too wide, the way memories overcompensate for detail.
-She's at the door. I can see her shape but not her face. The dream won't give me that much.
-But this time, my father is there too. Standing at the edge of the yard, looking up at the sky. He always did that. I thought he was stargazing. Now I wonder if he was remembering.
-I remember the last conversation before I left. How I told her this was what I wanted. How she said she understood. How neither of us believed the other.
-Did he ever think about what he left behind? Did he ever think about who he took?
-The training center was easier. There, loneliness had a schedule. Wake, train, eat, sleep. No one asked how you felt because feelings were a variable you learned to control.
-I remember the day they told me I was selected. The pride that lasted exactly one hour before it turned into something heavier.
-I packed one box. Everything I owned fit inside it.
-    -> (hold onto the memory)
-        I let myself stay in the backyard a moment longer. The grass under my feet feels real. The air smells like cut lawn and possibility.
-        <<set $posSelfPerception += 1>>
-        The memory fills me with a tender ache that feels like proof I'm still alive.
-    -> (let it fade)
-        I turn away from the door. Some things are easier at a distance. I chose that distance for a reason.
-        <<set $negSelfPerception += 1>>
-        The memory dissolves and leaves a familiar numbness in its place.
-The dream shifts. The backyard becomes a viewport. The grass becomes stars.
-My mother's voice becomes static. And in the silence that follows, I see my father's face, turned upward, looking at stars he'd walked among... carrying a secret he never shared.
+The dream starts at the viewport.
+The star is there, brighter than it should be, filling the glass like a searchlight. And at its center, the dark spot. The hole that swallowed six expeditions and my father with them.
+In the dream, I'm closer than I should be. Much closer. The ship is moving faster than physics should allow, drawn forward as if the dark spot is breathing me in.
+I try to check the instruments but they're blank. Every screen, every readout, just black glass reflecting my face back at me.
+The dark spot grows. It stops looking like a blemish on a star and starts looking like a mouth. The light around it bends, stretches, thins into threads that spiral inward and vanish.
+A black hole. It was always a black hole.
+The ship groans. The hull flexes. I feel the pull in my chest, not pain exactly, but a certainty. A direction I can't refuse.
+The stars outside begin to streak, then smear, then disappear entirely. The viewport fills with nothing. Pure, total nothing.
+    -> (reach toward it)
+        I don't fight it. My hand lifts toward the glass, and the darkness reaches back.
+        <<if $posSelfPerception > $negSelfPerception>>
+            <<set $posSelfPerception += 1>>
+            And just before the black swallows everything, I feel something I didn't expect: peace. Not the empty kind. The kind that comes from finally letting go of the need to steer.
+            Maybe the dark spot isn't an ending. Maybe it's just a door I haven't learned to see through yet.
+        <<else>>
+            <<set $negSelfPerception += 1>>
+            The darkness takes me without resistance. I was always heading here. Every choice, every report, every sleepless night was just a longer route to the same inevitable point.
+            I wonder if my father felt this too, right at the end. The quiet relief of not having to pretend anymore.
+        <<endif>>
+    -> (close your eyes)
+        I shut my eyes before the nothing can reach them. As if that changes anything.
+        <<if $posSelfPerception > $negSelfPerception>>
+            <<set $posSelfPerception += 1>>
+            Behind my eyelids, I see light. Not the star. Something warmer, softer. The afterimage of every small thing that kept me going: push-ups in a tin can, a puzzle with an alien, a sky I was shown for two seconds.
+            The black hole can have the ship. It can't have that.
+        <<else>>
+            <<set $negSelfPerception += 1>>
+            Behind my eyelids, there's the same darkness. No escape, no difference. Open or closed, the result is the same.
+            I've been falling into this my whole life. The mission just gave it a name.
+        <<endif>>
+My vision goes black. The hum of the ship, the groan of the hull, the pull in my chest, all of it collapses into silence.
+For a long time, there is nothing at all.
 <<fade_transition 3>>
 <<wait 2>>
 <<jump StartDay4>>
