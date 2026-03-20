@@ -4,10 +4,10 @@ position: -125,-487
 <<set $daysPassed = 741>>
 <<play_sound AlarmClock>>
 <<play_music MainTheme>>
-I wake up. The alarm sounds the same, but something doesn't.
+I jolt awake gasping, hands braced against the cryopod lid like I'm trying to stop it from closing.
+I blink. The ship is intact. I'm intact.
 Day {$daysPassed}.
-The cryopod's readout shows nominal stats. My body disagrees.
-The memory of how things ended with {$catName} is the first thing that surfaces, before my name, before the mission, before anything useful.
+I lie here for a bit, waiting for the dream to finish draining out.
 <<show_ui ClickToInteract>>
 <<show MonitorOffDay4>>
 ===
@@ -17,7 +17,7 @@ position: -128,-338
 ---
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
-I power on the monitor.
+Then, I power on the monitor.
 The comms buffer loads slowly. HQ digest, mission parameters, the usual.
 Then, at the bottom, a single packet on {$catName}'s frequency. The translator renders it immediately.
 <<speed 0.4>>

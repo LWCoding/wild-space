@@ -421,15 +421,16 @@ position: 915,500
 <<stop_music>>
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
-<<show Stars>>
-<<show Sitting>>
+<<show BlackHole1>>
 The dream starts at the viewport.
 The star is there, brighter than it should be, filling the glass like a searchlight. And at its center, the dark spot. The hole that swallowed six expeditions and my father with them.
 In the dream, I'm closer than I should be. Much closer. The ship is moving faster than physics should allow, drawn forward as if the dark spot is breathing me in.
 I try to check the instruments but they're blank. Every screen, every readout, just black glass reflecting my face back at me.
+<<show BlackHole2>>
 The dark spot grows. It stops looking like a blemish on a star and starts looking like a mouth. The light around it bends, stretches, thins into threads that spiral inward and vanish.
 A black hole. It was always a black hole.
 The ship groans. The hull flexes. I feel the pull in my chest, not pain exactly, but a certainty. A direction I can't refuse.
+<<show BlackHole3>>
 The stars outside begin to streak, then smear, then disappear entirely. The viewport fills with nothing. Pure, total nothing.
     -> (reach toward it)
         I don't fight it. My hand lifts toward the glass, and the darkness reaches back.
@@ -453,6 +454,7 @@ The stars outside begin to streak, then smear, then disappear entirely. The view
             Behind my eyelids, there's the same darkness. No escape, no difference. Open or closed, the result is the same.
             I've been falling into this my whole life. The mission just gave it a name.
         <<endif>>
+<<show BlackHole4>>
 My vision goes black. The hum of the ship, the groan of the hull, the pull in my chest, all of it collapses into silence.
 For a long time, there is nothing at all.
 <<fade_transition 3>>
