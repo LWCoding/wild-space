@@ -353,16 +353,15 @@ He never said where it had been.
 <<show_character Cat Happy right>>
 {$catName}: They give him a name in our language. It mean "the one who listens with his whole body."
 <<show_character Cat Sad right>>
-{$catName}: But then... he meet someone there. One of us. She was... important to many people.
-<<show_character Cat Neutral right>>
-{$catName}: She was my mother.
+{$catName}: But then... he meet someone there. One of us. She was... important to many people. A healer. Everyone trust her.
 <<show_character Cat Sad right>>
 {$catName}: And one day, he take her and leave. Back to his planet. No warning. No goodbye to the rest.
+{$catName}: She not want to go. Or maybe she did. Nobody know for sure. But she never come back.
 <<stop_voice_blip Cat>>
 <<show_character Cat Neutral right>>
 The silence between us changes shape. It's not comfortable anymore.
-{$catName}'s mother. My father took {$catName}'s mother.
-I stare at the screen and try to make the pieces fit. My father, the quiet man with the compass, the man who read me bedtime stories, stole someone from their home. From their child.
+My father took someone from {$catName}'s world. Someone they trusted. Someone who mattered.
+I stare at the screen and try to make the pieces fit. My father, the quiet man with the compass, the man who read me bedtime stories, walked into a world that welcomed him and tore a piece of it away.
 <<start_voice_blip Cat>>
 <<show_character Cat Sad right>>
 {$catName}: My people were... hurt. They trusted him. They open doors for him that they not open for outsiders. And he take one of their own and disappear.
@@ -379,7 +378,7 @@ I stare at the screen and try to make the pieces fit. My father, the quiet man w
         <<show_character Cat Sad right>>
         {$catName}: ...You are quiet. I think maybe you understand who I talk about.
         <<stop_voice_blip Cat>>
-The words sit in my chest like stones. My father lived on an alien planet. He took {$catName}'s mother. And I'm sitting here, talking to the child he left behind.
+The words sit in my chest like stones. My father lived on an alien planet. He earned their trust, and then he betrayed it.
 <<set $negSelfPerception += 2>>
 I feel something crack open inside me. The man I grew up admiring... who taught me patience, who gave me my love of the stars... did something unforgivable.
 And the person I've been building something with is the one who paid for it.
@@ -416,20 +415,20 @@ The report can wait. Everything can wait.
 <<if $negSelfPerception >= $posSelfPerception + 3>>
     <<set $negSelfPerception += 2>>
     It hits all at once.
-    My father was a thief. Not of things, but of people. He walked into a world that welcomed him, earned their trust, and ripped someone's mother away.
-    {$catName} grew up without her because of him. Because of my family.
-    And here I am, floating through the same void, talking to the child he orphaned, pretending I'm a good person.
+    My father was a thief. Not of things, but of trust. He walked into a world that welcomed him, earned their love, and ripped someone away from it.
+    {$catName}'s people lost someone because of him. Because of my family. And that loss became the fear that shaped everything — the rules, the silence, the walls {$catName} grew up inside.
+    And here I am, floating through the same void, pretending I'm a good person.
     I feel like I was built on a rotten foundation.
 <<elseif $negSelfPerception > $posSelfPerception>>
     <<set $negSelfPerception += 1>>
     The thought spirals: how do I look {$catName} in the eye after this?
-    My father took their mother. Stole her from a world that trusted him. And I've been sitting here, building something with the person he hurt most, without knowing any of it.
+    My father took someone from their world. Someone who mattered. And that betrayal is the reason {$catName}'s people fear humans, the reason talking to me is dangerous for them.
     I think about every kind thing {$catName} said to me. Every moment of patience.
-    Did they know the whole time? Were they waiting for me to figure it out? The thought makes me feel sick.
+    They chose to trust me despite what my father did. And I didn't even know there was something to forgive. The thought makes me feel sick.
 <<else>>
     <<set $negSelfPerception += 1>>
     I sit with it. The weight is enormous, but I try to breathe around it.
-    My father did something terrible. He took {$catName}'s mother from her world, from her people, and never looked back.
+    My father did something terrible. He took someone from {$catName}'s world, from their people, and never looked back.
     It doesn't make me him. I know that. But it rearranges everything. The man I thought I knew, the family I thought I understood.
     I'm shaken. Deeply. But I'm also still here. That has to count for something.
     I'll deal with this. Just... not tonight.

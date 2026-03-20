@@ -5,7 +5,7 @@ position: 90,-43
 <<declare $day2KeptUnderWraps = false>>
 <<play_sound AlarmClock>>
 <<play_music MainTheme>>
-<<set $negSelfPerception += 1>>
+<<set $negSelfPerception += 2>>
 I wake up to a loud chime on the monitor, my head pounding yet again.
 Cryosleep leaves a gap you can feel in your bones. The mission clock doesn't.
 I blink at the readout until it stops swimming.
@@ -181,12 +181,9 @@ position: 647,285
         {$catName}: Last time I talk with you, I leave because I must.
         {$catName}: My planet... not really like humans.
         {$catName}: Talking to you is dangerous for me.
-        <<show_character Cat Neutral right>>
             -> Dangerous how?
                 <<show_character Cat Sad right>>
-                {$catName}: I not allowed to talk about it.
         {$catName}: Sorry. I want tell you. I can't.
-        <<show_character Cat Neutral right>>
         -> It's okay. Sorry.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
@@ -208,11 +205,11 @@ position: 647,285
 {$catName}: We not do that on my planet. Morning is for listening. You sit and hear what world tell you.
 <<show_character Cat Thinking right>>
 {$catName}: But I like idea. Start day with something nice for yourself. What your breakfast like?
-    -> Protein paste from a tube. It's as bad as it sounds.
+    -> Er, protein paste... from a tube.
         <<show_character Cat Happy2 right>>
         {$catName}: Paste! From tube! Like... medicine? You eat medicine for breakfast?
         {$catName}: That is maybe saddest thing I ever hear. But also little bit funny. Sorry.
-    -> I try not to think about it.
+    -> Um... I try not to think about it.
         <<show_character Cat Thinking right>>
         {$catName}: So bad you block from memory. I understand. Some thing deserve forgetting.
 <<show_character Cat Happy right>>
@@ -234,37 +231,26 @@ title: CatConvoDay2_Part2
 position: 647,400
 ---
 <<start_voice_blip Cat>>
-<<set $knowCatJob = true>>
 <<positive_indicator Cat>>
 <<set $catLikesYou += 1>>
 <<show_character Cat Happy right>>
 {$catName}: It nice talking to you. You make silence less heavy.
-    -> So... what do you actually do out here? Like, day to day?
+    -> So, what do you actually... do?
+<<show_character Cat Happy2 right>>
+{$catName}: Fun! Yes! I was hoping you ask.
 <<show_character Cat Thinking right>>
-{$catName}: I... monitor space. Watch for thing that come close.
-{$catName}: I not supposed to say more than that. Sorry.
-<<show_character Cat Sad right>>
-{$catName}: They give me this job after... something happen. Long time ago. Before I born.
-{$catName}: After that, my people say: we watch. We make sure nothing come close again.
-<<show_character Cat Neutral right>>
-{$catName}: So that what I do. I sit. I watch. I keep record.
-In a sense, that's kind of similar to what I do... Huh.
-<<set $knowCatPasttime = true>>
-<<if $catLikesYou >= $catDislikesYou>>
-    <<show_character Cat Happy2 right>>
-<<else>>
-    <<show_character Cat Neutral right>>
-<<endif>>
-{$catName}: When not working... I like puzzle.
-{$catName}: Pattern make world feel less random.
+{$catName}: Everyone on my planet is so... busy. Always working. Always serious. Rules and watching and duties.
+{$catName}: I not understand. Life is already short. Why spend all of it being boring?
+<<show_character Cat Happy right>>
+{$catName}: So I play. I make up game. I solve puzzle. I draw in my journal.
+{$catName}: Puzzle is my favorite. Pattern make world feel less random.
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy2 right>>
     {$catName}: You want try? I have puzzle!
     <<stop_voice_blip Cat>>
     <<show_character Cat Happy right>>
     I let {$catName} beam a simple puzzle to my device, with shapes, colors, and repeating sequences.
-    It shouldn't feel intimate.
-    It does anyway.
+    It shouldn't feel intimate... but somehow, it does anyway.
     <<show_character Cat Sad right>>
     {$catName} falters on patterns that should be easy, like the translator is eating pieces of the rules.
         -> (win at the game)
@@ -442,20 +428,22 @@ title: AfterCatLeavesDay2
 position: 915,224
 ---
 <<hide_all_characters>>
-<<play_sound Glitch 0.25>>
 <<play_music MainTheme>>
 The silhouette shudders, then collapses back into static.
 <<hide MonitorSilhouette>>
 <<show MonitorOn>>
 Silence rushes in like a pressure change.
 My reflection looks wrong on the dark glass, like someone who knows something they shouldn't.
-And now comes the part I'm trained for.
-The part with procedures and consequences.
 HQ's reminder sits in my inbox, timestamped weeks ago, delivered while I was asleep.
 "Remember your duty to report accurately. Your observations are crucial for our understanding and eradication of foreign threats."
-Do I report that an alien made contact again, stronger this time, more coherent, more <i>real</i>?
     -> (report {$catName})
-        <<jump WriteReportDay2_Report>>
+        If I send this, HQ will know. And their protocol for "foreign threats" doesn't involve follow-up conversations.
+        I think about {$catName}'s voice. The puzzles. The silence that felt full.
+        The word "eradication" stares back at me from the inbox.
+            -> (report {$catName} anyway)
+                <<jump WriteReportDay2_Report>>
+            -> (do not report)
+                <<jump WriteReportDay2_DontReport>>
     -> (do not report)
         <<jump WriteReportDay2_DontReport>>
 ===

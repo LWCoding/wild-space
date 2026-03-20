@@ -199,6 +199,7 @@ position: 15,-63
 <<show MonitorSilhouette>>
 Just as I finish the report, the communication panel crackles.
 The frequency I pinged back lights up, like it was waiting for me to look away.
+<<set $negSelfPerception += 2>>
 <<show_character Cat Obscure right>>
 A dark figure appears on the screen, accompanied with a static-filled voice.
 <<speed 0.4>>
@@ -328,7 +329,7 @@ I realize I can ask questions too. This... whatever it is... seems willing to ta
 ???: I watch your ship long time. I learn little bit of your words. I practice and practice.
 <<show_character Cat Happy right>>
 ???: But now you here! You respond! This is... this is very good.
-<<show_character Cat Neutral right>>
+<<show_character Cat Happy2 right>>
 ???: Before more question... what I call you? Human have this "name", one word for each? So interesting to me!
 <<stop_voice_blip Cat>>
 My mouth is dry. It wants to know what to call me...
@@ -547,13 +548,15 @@ I believe him. In the dream I still believe him.
 <<hide BrightStar>>
 <<show SchoolWithPeople>>
 I'm in elementary school. I proudly tell my friends my dad might go to space. He'll see the stars up close!
-Then, the rumors start. "His daddy doesn't love him." I hear it in the hallways, at the lunch table.
+Then, the rumors start. "His dad doesn't love him." I hear it in the hallways, at the lunch table.
     -> (remember their faces)
         Their faces are blurry now. The dream doesn't hold the details. Only the weight of it.
     -> (remember the hallway)
         The hallway stretches. Small chairs. Crayon art on the walls. Someone's laugh, somewhere. Then the dream shifts.
-And the worst part?
-One day he was there. The next, he wasn't. The house was quieter. My mother stopped talking about him the way she used to. 
+And the worst part... was that they were right.
+One day he was there. 
+The next, he wasn't. 
+The house was quieter. My mother stopped talking about him the way she used to. 
 I told myself he was in space. That he was on the expedition. That he was keeping his promise.
 My classmates looked at me differently now. Pity. They'd touch my shoulder. You're okay, right?
 Everyone trying to comfort me... for something I didn't believe. I didn't want their pity. I stopped trying to explain. 
