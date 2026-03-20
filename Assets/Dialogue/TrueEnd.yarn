@@ -1,0 +1,59 @@
+title: TrueEnd
+---
+<<stop_voice_blip Cat>>
+<<show_character Cat Happy right>>
+<<start_voice_blip Cat>>
+{$catName}: You... you really...
+<<show_character Cat Happy2 right>>
+{$catName}: Okay! Okay. I go now. I take ship. You set course. The quiet planet. Near the star.
+{$catName}: The coordinate... I send to your navigation system. You will see.
+<<show_character Cat Happy right>>
+{$catName}: {$catThinksPlayerNameIs}... thank you. For choosing me. For choosing us.
+<<show_character Cat Sad right>>
+{$catName}: I am scared. But for first time... it good scared. The kind that mean something real is starting.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+<<hide MonitorSilhouette>>
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show MonitorOn>>
+The transmission ends. My hands are shaking.
+I pull up the navigation console. New coordinates sit in the system, tagged with {$catName}'s frequency. A small planet, orbiting close to the star I was sent to study.
+I stare at the mission parameters on screen. The ones I've followed for {$daysPassed} days. The ones nobody reads.
+    -> (override the mission course)
+<<hide_all_objects>>
+<<show Stars>>
+<<show Sitting>>
+I type the override code. The ship groans as the engines adjust, plotting a new trajectory.
+The old course dissolves from the navigation display. Earth's mission, Earth's star, Earth's expectations. Gone.
+I think about my mother at the kitchen table. My father and his compass. The career counselor's empty smile. Every person who looked at me and saw someone else.
+Then I think about {$catName}. About breakfasts and ship hums and puzzles and a voice that never asked me to be anything other than what I am.
+<<fade_transition 3>>
+<<wait 2>>
+<<stop_music>>
+<<hide_all_objects>>
+<<show Stars>>
+The journey takes weeks. I don't enter cryosleep. I want to be awake for all of it.
+The star grows larger in the viewport. The dark spot at its center doesn't look like a wound anymore. It looks like a doorway.
+And then I see it. The quiet planet. Green and amber, wrapped in thin clouds, small enough to feel like it was made for two people who had nowhere else to go.
+A second ship, shaped like nothing I've ever seen, is already in orbit. Waiting.
+The comms panel crackles one last time.
+<<show_character Cat Happy2 right>>
+<<start_voice_blip Cat>>
+{$catName}: You came.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<hide_all_objects>>
+<<show ScreenBlocker>>
+We land on the same day. Different ships, different atmospheres, different bodies built for different gravity.
+The air is breathable. The ground is solid. The sky is a color I don't have a word for.
+{$catName} is smaller than I imagined. Or maybe I'm taller than they expected. We stand ten feet apart for a long time, just looking.
+Then {$catName} takes a step. Then another.
+And I take one too.
+We meet in the middle, on a planet that belongs to neither of our worlds, under a star that watched us both from the beginning.
+Neither of us will ever go home. But for the first time, that word doesn't mean a place.
+It means this.
+<<detour End>>
+<<the_end "ENDING 5/5: The quiet planet">>
+===

@@ -1,0 +1,26 @@
+title: BadEnd
+---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show ScreenBlocker>>
+<<play_music MainTheme>>
+The silence after the screen dies is total. Absolute. The kind that fills every corner and presses against the inside of your skull.
+I sit in the chair for a long time. I don't move. I don't think. I just exist in the quiet, the way I've always existed in it.
+<<if $negSelfPerception > $posSelfPerception>>
+    Nothing changed. That's the thing that gets me.
+    I met an alien. A real, living being from another world. They reached across the entire void of space to talk to me. And I still couldn't make it work.
+    I think about every wrong thing I said. Every wall I put up. Every moment I chose distance over connection.
+    The pattern is clear. It was never about space or aliens or missions. It's me. I do this to everything.
+<<else>>
+    I tell myself it was never going to work. Different species, different worlds, too much history between our families. The odds were against us from the start.
+    It almost sounds convincing.
+<<endif>>
+The mission continues. I write reports. I enter cryosleep. I wake up.
+Days pass. Then months. Then years.
+{$catName}'s frequency never lights up again. The comms buffer stays empty. The translator has nothing to render.
+I never find out what happened to them. Whether their people locked them down, whether they found someone else to talk to, whether they're okay.
+I never find out, because I never became the kind of person who deserved to know.
+The ship hums. The stars don't answer. And the silence, which once felt like it might break open into something new, closes back around me like it never left.
+<<detour End>>
+<<the_end "ENDING: Static">>
+===

@@ -15,6 +15,6 @@ title: ConfirmStart
 <<show_ui SkipToggle>>
 I'm floating in the vast emptiness of space.
 I am utterly alone. It feels... oddly relaxing?
-I drift aimlessly. Everything feels like a blur. What... is my name again?
+Ugh... Everything feels like a blur. What... is my name again?
 <<prompt_name NamePrompter>>
 ===

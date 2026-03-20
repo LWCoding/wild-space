@@ -511,11 +511,15 @@ title: VividDream
 <<wait 1>>
 <<hide_all_characters>>
 <<hide_all_objects>>
-<<show Stars>>
+<<show Table>>
 The stars drift... and I'm no longer in the ship. 
-(this part will be more graphic when its not low-fi) I'm in the kitchen, the morning light coming through the window.
+I'm in the kitchen, the morning light coming through the window.
+<<hide Table>>
+<<show TableWithParents>>
 My father is at the table, telling my mother he wants to go. An expedition led by NASA. He wants to be one of the explorers.
 My mother's face is tight. She keeps shaking her head. He keeps talking.
+<<hide TableWithParents>>
+<<show BrightStar>>
 Then, he turns to me, telling me about a beautiful star. When he goes up, he'll take a picture of it, and one day he'll come back and show it to me in person. He promises.
 I believe him. In the dream I still believe him.
     -> (remember my mother's hands on the table)
@@ -524,19 +528,21 @@ I believe him. In the dream I still believe him.
         He's smiling when he says it. Sure. Like it's already decided. The light keeps coming through the window.
 <<fade_transition 2>>
 <<wait 1>>
-(this part will also be more graphic) I'm in elementary school. I proudly tell my friends my dad might go to space. He'll see the stars up close!
+<<hide BrightStar>>
+<<show SchoolWithPeople>>
+I'm in elementary school. I proudly tell my friends my dad might go to space. He'll see the stars up close!
 Then, the rumors start. "His daddy doesn't love him." I hear it in the hallways, at the lunch table.
     -> (remember their faces)
         Their faces are blurry now. The dream doesn't hold the details. Only the weight of it.
     -> (remember the hallway)
         The hallway stretches. Small chairs. Crayon art on the walls. Someone's laugh, somewhere. Then the dream shifts.
-<<fade_transition 2>>
-<<wait 1>>
-(graphics tbd) Now, I'm in middle school.
+And the worst part?
 One day he was there. The next, he wasn't. The house was quieter. My mother stopped talking about him the way she used to. 
 I told myself he was in space. That he was on the expedition. That he was keeping his promise.
 My classmates looked at me differently now. Pity. They'd touch my shoulder. You're okay, right?
 Everyone trying to comfort me... for something I didn't believe. I didn't want their pity. I stopped trying to explain. 
+<<hide SchoolWithPeople>>
+<<show School>>
 I didn't make friends after that. Not really. I had people I sat with. Nobody I trusted.
     -> (look at the stars)
         The stars are still there. The same ones. The one he loved, visible from everywhere. I never got the picture.

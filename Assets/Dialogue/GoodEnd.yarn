@@ -1,0 +1,25 @@
+title: GoodEnd
+---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show ScreenBlocker>>
+I sit by the viewport for a long time after the screen goes dark.
+The star is still there. The dark spot. The light around it.
+<<if $posSelfPerception > $negSelfPerception>>
+    I realize I'm not the same person who woke up on Day 561 and stared at metal walls until the silence felt normal.
+    {$catName} didn't save me. Nobody saved me. But they held up a mirror, and for once I didn't look away.
+    I know now that I can change. That isolation was a choice, not a sentence. That the walls I built were never as thick as I thought.
+<<else>>
+    I try to hold onto what {$catName} said. That I showed them what it looks like to choose.
+    I'm not sure I believe it about myself yet. But someone believed it about me, and maybe that's where it starts.
+<<endif>>
+The mission clock ticks. The report template blinks. I still have a job. I still have a ship. I still have silence.
+But the silence is different now. It's not empty. It's full of a conversation that happened, proof that across all that dark, two people found each other and meant something.
+Weeks pass. Then months. I keep checking {$catName}'s frequency out of habit.
+It stays quiet. No packets. No pings. No "STILL HERE."
+I stop checking eventually. Not because I forgot. Because I don't need to.
+{$catName} is out there, somewhere under that same star, being the person they chose to be. And I'm here, doing the same.
+That's enough. That has to be enough.
+<<detour End>>
+<<the_end "ENDING: Different orbits">>
+===

@@ -4,7 +4,6 @@ position: -125,-487
 <<set $daysPassed = 741>>
 <<play_sound AlarmClock>>
 <<play_music MainTheme>>
-<<set $negSelfPerception += 1>>
 I wake up. The alarm sounds the same, but something doesn't.
 Day {$daysPassed}.
 The cryopod's readout shows nominal stats. My body disagrees.
@@ -19,7 +18,245 @@ position: -128,-338
 <<hide_all_ui_objects>>
 <<show MonitorOn>>
 I power on the monitor.
-The comms buffer is empty. No packets. No pings. No "STILL HERE."
-Just silence, and the report I never submitted last cycle.
-    -> (start the day)
+The comms buffer loads slowly. HQ digest, mission parameters, the usual.
+Then, at the bottom, a single packet on {$catName}'s frequency. The translator renders it immediately.
+<<speed 0.4>>
+"HEY" <i>[3 DAYS AGO]</i>
+<<speed 1>>
+One word. After everything.
+    -> (answer)
+        <<jump CallCatDay4>>
+    -> (stare at it for a while)
+        I sit with that single word for longer than I should. Three letters. No context. No apology. No explanation.
+        Just... hey.
+            -> (answer)
+                <<jump CallCatDay4>>
+===
+
+title: CallCatDay4
+position: 422,282
+---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show PCRoom>>
+<<show MonitorSilhouette>>
+<<show_character Cat Obscure right>>
+<<stop_voice_blip Cat>>
+I open the channel. The static clears faster this time, like the connection remembers us.
+<<play_music CatTheme 0.5>>
+<<show_character Cat Neutral right>>
+<<start_voice_blip Cat>>
+{$catName}: ...Hey.
+<<stop_voice_blip Cat>>
+Neither of us speaks for a moment. The weight of last time sits between us like a wall we built without meaning to.
+<<start_voice_blip Cat>>
+<<if $catLikesYou > $catDislikesYou>>
+    <<show_character Cat Sad right>>
+    {$catName}: I was not sure you would answer. After what I tell you.
+    {$catName}: About your father. About my mother. About... everything.
+    <<show_character Cat Thinking right>>
+    {$catName}: I want you to know... I not blame you. You are not him.
+        -> I needed to hear that.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Neutral right>>
+            {$catName}: I know. That why I say it.
+        -> I know. But it still hurts.
+            <<show_character Cat Sad right>>
+            {$catName}: Yes. Truth is like that. It heal and it cut at same time.
+<<else>>
+    <<show_character Cat Neutral right>>
+    {$catName}: I not sure what to say. After last time.
+    {$catName}: So I just say... hey.
+        -> Hey.
+            <<show_character Cat Neutral right>>
+            {$catName}: ...Okay.
+<<endif>>
+<<stop_voice_blip Cat>>
+<<if $catLikesYou > $catDislikesYou * 1.5>>
+    <<jump CatConvoDay4_TruePath>>
+<<elseif $catLikesYou > $catDislikesYou>>
+    <<jump CatConvoDay4_GoodPath>>
+<<else>>
+    <<jump CatConvoDay4_BadPath>>
+<<endif>>
+===
+
+title: CatConvoDay4_TruePath
+position: 647,100
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Sad right>>
+{$catName}: {$catThinksPlayerNameIs}... I have to tell you something. Something important.
+{$catName}: My people... they found out. About us. About everything.
+<<show_character Cat Thinking right>>
+{$catName}: Father confronted me. He say I betrayed them. That I am just like... like the human who came before.
+{$catName}: They want to shut down my transmitter. Cut me off from everything outside our planet.
+<<show_character Cat Sad right>>
+{$catName}: If they do that... I never talk to anyone again. Not you. Not anyone.
+    -> That can't happen. We'll figure something out.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Neutral right>>
+        {$catName}: You say "we." You say it like it natural. Like I am part of your world now.
+    -> What are you going to do?
+        <<show_character Cat Thinking right>>
+        {$catName}: I... I have plan. But it depend on you.
+<<show_character Cat Neutral right>>
+{$catName}: There is planet. Near the star you going to. Small one. Warm. Has air, has water.
+{$catName}: My people know about it. They call it "the quiet place." Nobody use it. Nobody go there.
+<<show_character Cat Thinking right>>
+{$catName}: I can take small ship. Leave before they lock me down. Meet you there.
+<<show_character Cat Sad right>>
+{$catName}: But if I do this... I never go home. My father, my people... I lose them.
+{$catName}: And you... you would have to leave your mission. Leave Earth behind. For real.
+<<stop_voice_blip Cat>>
+The words hang in the recycled air. Leave everything. For someone I've only ever seen through static and glass.
+But when I think about it... what am I leaving? A mission nobody reads the reports for. A planet full of people who didn't notice when I left. A ship that hums but never answers back.
+<<start_voice_blip Cat>>
+<<show_character Cat Thinking right>>
+{$catName}: I know it is much to ask. I know we only talk through screen. I know I am not even... same kind as you.
+{$catName}: But you are only person who ever made me feel like I get to choose who I am.
+<<show_character Cat Sad right>>
+{$catName}: And I think... maybe I do the same for you?
+    -> You do. More than you know.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<set $posSelfPerception += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: Then... you come? You meet me there?
+            -> (set course for the quiet planet)
+                <<jump TrueEnd>>
+            -> I can't. I'm sorry.
+                <<show_character Cat Sad right>>
+                {$catName}: ...I understand. I hoped, but... I understand.
+                <<stop_voice_blip Cat>>
+                <<jump CatConvoDay4_GoodPath_Farewell>>
+    -> I don't know if I can do this.
+        <<show_character Cat Sad right>>
+        {$catName}: That okay. I not ask you to decide now. But I have to go soon. Before they find me.
+            -> Then go. I'll find you.
+                <<positive_indicator Cat>>
+                <<set $catLikesYou += 1>>
+                <<show_character Cat Happy right>>
+                {$catName}: You mean it?
+                You: Yeah. I mean it.
+                <<jump TrueEnd>>
+            -> I can't leave everything behind.
+                <<show_character Cat Sad right>>
+                {$catName}: ...Okay. Then this is maybe last time.
+                <<stop_voice_blip Cat>>
+                <<jump CatConvoDay4_GoodPath_Farewell>>
+===
+
+title: CatConvoDay4_GoodPath
+position: 647,300
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Thinking right>>
+{$catName}: I been thinking. About us. About what this is.
+{$catName}: We come from different world. Different body. Different language. Different everything.
+<<show_character Cat Neutral right>>
+{$catName}: But somehow... we understand each other. More than people who live next to us our whole life.
+{$catName}: Is that not strange?
+    -> Strange in a good way.
+        <<positive_indicator Cat>>
+        <<set $catLikesYou += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: Yes. Good strange. Best kind of strange.
+    -> It is what it is.
+        <<show_character Cat Neutral right>>
+        {$catName}: Mm. Maybe that enough.
+<<show_character Cat Thinking right>>
+{$catName}: {$catThinksPlayerNameIs}... I want tell you something. My people are close to finding out about us.
+{$catName}: My father... he suspicious. He ask question. He watch me more careful now.
+<<show_character Cat Sad right>>
+{$catName}: I think soon I will not be able to call anymore. They will lock my transmitter.
+{$catName}: So this might be... last time.
+<<stop_voice_blip Cat>>
+The words land like a slow impact. I knew this was coming. Maybe I always knew.
+<<start_voice_blip Cat>>
+<<show_character Cat Neutral right>>
+{$catName}: But before I go... can we do one thing?
+{$catName}: The star. The one you flying toward. The one with the dark spot in center.
+{$catName}: I can see it too. From my planet. We call it "the eye that never close."
+<<show_character Cat Thinking right>>
+{$catName}: Can we... look at it together? Right now? At same time?
+    -> (look at the star)
+        <<jump CatConvoDay4_GoodPath_Farewell>>
+===
+
+title: CatConvoDay4_GoodPath_Farewell
+position: 647,450
+---
+<<stop_voice_blip Cat>>
+<<hide_all_objects>>
+<<show Stars>>
+<<show Sitting>>
+I move to the viewport and find the star. It's there, as always. The dark spot in its center like a pupil staring back.
+<<start_voice_blip Cat>>
+<<show_character Cat Sad right>>
+{$catName}: You see it?
+You: I see it.
+{$catName}: Same star. Same light. Different eyes.
+<<show_character Cat Thinking right>>
+{$catName}: {$catThinksPlayerNameIs}... I am different because of you. I want you to know that.
+{$catName}: Before you, I was someone my father made. Someone my people shaped. I did not know where they ended and I began.
+<<show_character Cat Neutral right>>
+{$catName}: Now I know. Because you showed me what it look like to choose. Even when choice is scary.
+    -> You changed me too. I was just a machine running a routine.
+        <<set $posSelfPerception += 1>>
+        <<show_character Cat Happy right>>
+        {$catName}: Then we both woke up. At same time. Across all that dark.
+    -> I hope you'll be okay.
+        <<show_character Cat Sad right>>
+        {$catName}: I will try. That is all anyone can do.
+<<show_character Cat Neutral right>>
+{$catName}: I will remember you. Always. Even if they take the transmitter. Even if they take everything.
+{$catName}: You are written in me now. Like word I can never unlearn.
+<<show_character Cat Sad right>>
+{$catName}: Goodbye, {$catThinksPlayerNameIs}.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+<<hide MonitorSilhouette>>
+The screen goes dark. Not with a crash, not with static. Just a slow fade, like someone gently closing their eyes.
+<<jump GoodEnd>>
+===
+
+title: CatConvoDay4_BadPath
+position: 647,600
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Neutral right>>
+{$catName}: So. Here we are.
+{$catName}: I not really know why I call. Maybe habit. Maybe hope.
+<<show_character Cat Thinking right>>
+{$catName}: But I look at you through screen and I think... we never really knew each other. Did we?
+    -> We tried.
+        <<show_character Cat Sad right>>
+        {$catName}: Did we? Or did we just... talk at each other? Through the static?
+    -> Maybe not.
+        <<show_character Cat Neutral right>>
+        {$catName}: At least you honest about it.
+<<show_character Cat Neutral right>>
+{$catName}: My people going to shut down my transmitter soon. They know I been talking to someone.
+{$catName}: Father say it for my own good. Maybe he right.
+<<show_character Cat Sad right>>
+{$catName}: I thought talking to you would help me grow. Make me more... me.
+{$catName}: But I just feel small again. Like I was before.
+    -> I'm sorry things turned out this way.
+        <<show_character Cat Neutral right>>
+        {$catName}: ...Yeah. Me too.
+    -> ...
+        <<show_character Cat Neutral right>>
+        {$catName}: Silence. That feel right. For us.
+<<show_character Cat Neutral right>>
+{$catName}: Goodbye, {$catThinksPlayerNameIs}. Take care of yourself.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+<<hide MonitorSilhouette>>
+The screen cuts to black. No static. No lingering glow. Just off.
+<<jump BadEnd>>
 ===
