@@ -194,7 +194,6 @@ position: 15,-63
 ---
 <<hide_all_objects>>
 <<show PCRoom>>
-<<show MonitorOn>>
 <<play_sound Glitch 0.25>>
 <<show MonitorSilhouette>>
 Just as I finish the report, the communication panel crackles.
