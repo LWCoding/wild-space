@@ -197,6 +197,21 @@ position: 647,400
         {$catName}: Maybe. But you sitting alone in metal box in space. You tell me I wrong?
         <<set $negSelfPerception += 1>>
         I want to argue. I can't.
+<<show_character Cat Sad right>>
+{$catName}: My father... he most afraid of all. He very careful with me. Keep me close. Always.
+{$catName}: He not mean. He love me. But his love feel like... wall? Like small room with no window.
+<<show_character Cat Thinking right>>
+{$catName}: And my people... they watch. Always watch. If I do wrong thing, they know.
+{$catName}: They have big rule. Because of what happen long time ago. When human come before.
+<<show_character Cat Neutral right>>
+{$catName}: I grow up hearing that story. Everyone afraid because of it. Father most of all.
+{$catName}: He say never talk to human. Never. Not even think about it.
+<<show_character Cat Sad right>>
+{$catName}: But I hear your ship. Your voice in the noise. And I think... this not sound like monster.
+{$catName}: This sound like person. Alone person. Like me.
+<<show_character Cat Thinking right>>
+{$catName}: You are first thing in my life nobody tell me to want.
+{$catName}: First thing I choose. Just me. No rule. No father. No story.
 <<show_character Cat Neutral right>>
 {$catName}: That why they not want me talk to you. They afraid you... infect me. With your loneliness.
 {$catName}: But I think loneliness not disease. I think it just... wound that need air.

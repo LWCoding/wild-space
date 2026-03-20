@@ -128,20 +128,13 @@ The line stays static long enough for panic to crawl up my throat. Then the silh
     <<start_voice_blip Cat>>
     {$catName}: You... awake? You there?
     {$catName}: I learn word. More word. I want... to talk.
-        -> I'm here.
-            <<positive_indicator Cat>>
-            <<set $catLikesYou += 1>>
-            <<show_character Cat Happy right>>
-            {$catName}: Time different for you. Sleep box. I watch ship quiet many day. I wait.
-        -> Who is this?
-            <<show_character Cat Thinking right>>
-            {$catName}: It me. Same frequency. Same ears. Same human.
-            {$catName}: I not dream.
+        -> Sure.
         -> I'm happy to see you again.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
             <<show_character Cat Happy right>>
-            {$catName}: I like that. Nice have someone. Space is... too big for one mind.
+            {$catName}: Thank. Nice have someone.
+        -> ...
 <<else>>
     <<show_character Cat Neutral right>>
     The alien appears on the screen.
@@ -166,31 +159,18 @@ position: 647,285
     <<show_character Cat Neutral right>>
 <<endif>>
 <<show_character Cat Neutral right>>
-{$catName}: I want tell you something. About how I learn your words.
-{$catName}: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise: logs, error words, old training tapes.
-{$catName}: I practice alone. I want be understood, not just... heard.
-<<show_character Cat Sad right>>
+<<if $playerKnowsHowGnarpTalks == false>>
+    <<set $playerKnowsHowGnarpTalks = true>>
+    {$catName}: I want tell you something. About how I learn your words.
+    {$catName}: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise: logs, error words, old training tapes.
+    {$catName}: I practice alone. I want be understood, not just... heard.
+<<endif>>
+<<show_character Cat Happy right>>
 {$catName}: First time I talk, I was new. Now I more... independent.
-{$catName}: I can stay on frequency longer. I can keep my fear quiet.
-    -> That's terrifying.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Sad right>>
-        {$catName}: It is. But you still here. I still here. That matter.
-        <<set $posSelfPerception += 1>>
-        Admitting fear out loud feels strange. But also a little lighter.
-    -> Oh, those aren't bad. We have those too.
-        <<show_character Cat Sad right>>
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
-        {$catName}: You say that like pain is contest. Not kind.
-        <<set $negSelfPerception += 1>>
-        The words leave my mouth before I can stop them. I feel smaller for saying it.
-<<show_character Cat Neutral right>>
-{$catName}: You sleep many day. I thought you gone. I hate that thought.
-{$catName}: Then you move again. I send more messages to your ship.
+{$catName}: I can stay longer. I can keep my fear quiet.
 <<show_character Cat Thinking right>>
-    -> Why did you leave so abruptly last time?
+{$catName}: You sleep many day. I thought you gone. Then you move again. I send more messages to your ship.
+    -> Why did you leave last time?
         <<show_character Cat Sad right>>
         {$catName}: Last time I talk with you, I leave because I must.
         {$catName}: My planet... not really like humans.
@@ -215,25 +195,27 @@ position: 647,285
             {$catName}: I really not allowed.
             <<show_character Cat Neutral right>>
         -> ...
-{$catName}: But I not just call for talk... I want... practice being person.
-{$catName}: Where I from, I was small. Two orbit old. People decide everything for me.
-{$catName}: Out here I decide. It is scary.
-    -> My mission decides everything too.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Sad right>>
-        {$catName}: Yes. You speak like manual. But you feel like living thing.
-        {$catName}: You can be both. I think.
-        <<set $posSelfPerception += 1>>
-        Something about that lands. I feel a little more seen.
-    -> That's not how humans work.
-        <<show_character Cat Angry right>>
-        {$catName}: You make rule sound like cage. Maybe it is cage.
-        <<show_character Cat Neutral right>>
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
-        <<set $negSelfPerception += 1>>
-        I shut the conversation down without meaning to. The silence afterwards stings.
+{$catName}: But enough about scary thing. I want know about you!
+<<show_character Cat Happy right>>
+{$catName}: What is like being human? What you do all day in metal box?
+{$catName}: I find word in your ship log... "breakfast"? You eat first thing when wake up?
+{$catName}: We not do that on my planet. Morning is for listening. You sit and hear what world tell you.
+<<show_character Cat Thinking right>>
+{$catName}: But I like idea. Start day with something nice for yourself. What your breakfast like?
+    -> Protein paste from a tube. It's as bad as it sounds.
+        <<show_character Cat Happy2 right>>
+        {$catName}: Paste! From tube! Like... medicine? You eat medicine for breakfast?
+        {$catName}: That is maybe saddest thing I ever hear. But also little bit funny. Sorry.
+    -> I try not to think about it.
+        <<show_character Cat Thinking right>>
+        {$catName}: So bad you block from memory. I understand. Some thing deserve forgetting.
+<<show_character Cat Happy right>>
+{$catName}: Oh! And your ship make sound. Constant sound. Low and steady. Like... breathing?
+{$catName}: I think at first it was music. I listen for long time trying to find the pattern.
+<<show_character Cat Thinking right>>
+{$catName}: Then I realize... no pattern. Just machine. But still... I like it. It feel alive.
+<<show_character Cat Happy2 right>>
+{$catName}: I try hum your ship sound once. Match the tone. It was... comforting? Like sitting next to something warm.
 <<stop_voice_blip Cat>>
 The signal holds steady. {$catName} is still there, waiting patiently on the other side.
     -> (keep talking)
@@ -250,21 +232,28 @@ position: 647,400
 <<positive_indicator Cat>>
 <<set $catLikesYou += 1>>
 <<show_character Cat Happy right>>
-{$catName}: You want know what I do? I tell you. I map safe paths. I watch for danger. I fix small things before they become big things.
+{$catName}: It nice talking to you. You make silence less heavy.
+    -> So... what do you actually do out here? Like, day to day?
+<<show_character Cat Thinking right>>
+{$catName}: I... monitor space. Watch for thing that come close.
+{$catName}: I not supposed to say more than that. Sorry.
+<<show_character Cat Sad right>>
+{$catName}: They give me this job after... something happen. Long time ago. Before I born.
+{$catName}: After that, my people say: we watch. We make sure nothing come close again.
 <<show_character Cat Neutral right>>
-{$catName}: I used to do it because others told me. Now I do it because I choose.
-{$catName}: Independence feel like stepping off ledge and finding air holds you.
+{$catName}: So that what I do. I sit. I watch. I keep record.
+In a sense, that's kind of similar to what I do... Huh.
 <<set $knowCatPasttime = true>>
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy2 right>>
 <<else>>
     <<show_character Cat Neutral right>>
 <<endif>>
-{$catName}: When not working... I watch old broadcasts. I repeat songs. I try jokes. Most jokes fail.
-{$catName}: I like puzzle. I like pattern. Pattern make world feel less random.
+{$catName}: When not working... I like puzzle.
+{$catName}: Pattern make world feel less random.
 <<if $catLikesYou >= $catDislikesYou>>
     <<show_character Cat Happy2 right>>
-    {$catName}: Oh! You want try? I have puzzle!
+    {$catName}: You want try? I have puzzle!
     <<stop_voice_blip Cat>>
     <<show_character Cat Happy right>>
     I let {$catName} beam a simple puzzle to my device, with shapes, colors, and repeating sequences.
@@ -287,7 +276,9 @@ position: 647,400
             {$catName}: Maybe someday I teach you. I practice a lot.
 <<endif>>
 <<stop_voice_blip Cat>>
-The conversation has gone longer than I expected. {$catName} seems comfortable, settled into the frequency like it's a chair.
+I glance at the mission clock and blink. Almost an hour. We've been talking for almost an hour.
+It doesn't feel like it. When was the last time that happened... losing track of time with someone?
+{$catName} seems comfortable, settled into the frequency like it's a chair. I realize I am too.
     -> (keep talking)
         <<jump CatConvoDay2_Part3>>
     -> (end the conversation)
@@ -300,21 +291,11 @@ position: 647,515
 <<start_voice_blip Cat>>
 <<show_character Cat Happy2 right>>
 {$catName}: Can I tell you something? About... my family?
-{$catName}: I have family. I miss them. I worry I left them with too much.
-    -> That must be hard.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Sad right>>
-        {$catName}: Yes. But I still breathe. Still do job. That what they taught me: keep going.
-        <<set $posSelfPerception += 1>>
-        The words sit with me. I feel something loosen in my chest.
-    -> Why don't you bring them here?
-        <<negative_indicator Cat>>
-        <<set $catDislikesYou += 1>>
-        <<show_character Cat Angry right>>
-        {$catName}: Not that simple. Space hurt people. It hurt you too.
-        <<set $negSelfPerception += 1>>
-        I said the wrong thing. I can feel it. I feel a pang of guilt.
+{$catName}: They still on planet. They not gone or anything. But... they distant.
+{$catName}: My mom and dad, they work for security group. Important people. They protect planet, make big decision.
+{$catName}: They always busy. Always watching for threat. He not have much time for me.
+<<show_character Cat Thinking right>>
+{$catName}: It strange. He right there. Same planet. But feel far away.
 <<if $catLikesYou > $catDislikesYou>>
     <<stop_voice_blip Cat>>
     <<show_character Cat Sad right>>
@@ -324,15 +305,12 @@ position: 647,515
             {$catName}: I fine. Just... remembering.
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
-            {$catName}: I lost sibling. Sudden. I still talk to them in my head like they answer.
+            {$catName}: Big trouble would happen if mom or dad found out about you.
             <<show_character Cat Neutral right>>
             {$catName}: Talking to you help. You make space less sharp.
             <<set $posSelfPerception += 1>>
-            I didn't know I could still do that — make someone feel less alone. It makes me feel a quiet warmth.
-        -> Change the subject.
-            <<start_voice_blip Cat>>
-            <<show_character Cat Neutral right>>
-            {$catName}: ...Okay. Different thing then.
+            Me... do that?... Making someone feel less alone? It makes me feel a quiet warmth.
+        -> ...
 <<else>>
     <<stop_voice_blip Cat>>
     <<show_character Cat Sad right>>
@@ -343,23 +321,29 @@ position: 647,515
 <<if $catLikesYou >= $catDislikesYou>>
     <<stop_voice_blip Cat>>
     The silence stretches. Not uncomfortably. More like an open door.
-        -> (tell {$catName} something you don't put in reports)
+        -> (tell {$catName} about the reports)
             <<start_voice_blip Cat>>
             <<positive_indicator Cat>>
             <<set $catLikesYou += 1>>
-            <<show_character Cat Sad right>>
-            I swallow, feeling ridiculous. There's a version of me that only knows how to speak in diagnostics.
-            But another version of me is sitting here, alive, with a secret vibrating in my teeth.
-            You: I... act confident on paper. In real life I'm scared all the time.
-            You: I trained myself to sound like a machine so nobody could hear how lonely I am.
-            <<show_character Cat Neutral right>>
-            {$catName}: I understand this.
-            {$catName}: I learn your words. You learn your feelings. We both translate.
-            {$catName}: Emotional bilingual.
+            You: You know, part of my job is writing reports. Status updates. Every few months I type up the same nothing and send it to people who probably don't read it.
+            <<show_character Cat Thinking right>>
+            {$catName}: You write... for no one? That sound lonely.
+            You: It's just routine. Keeps the mission official.
+            <<show_character Cat Happy right>>
+            {$catName}: I do same thing! I log what I see. Nothing happen most time. But I still write.
+            {$catName}: Maybe we both sending message into the dark hoping someone care.
             <<set $posSelfPerception += 1>>
-            I didn't expect to feel understood by an alien. But here I am.
-        -> (keep it to yourself)
-            I almost say something. The words are right there, hot and real, but I swallow them back down.
+            I didn't expect to find common ground over paperwork. But here we are.
+        -> ...
+            I consider saying something but decide the quiet is fine. Not every moment needs filling.
+            <<show_character Cat Happy right>>
+            {$catName}: ...
+            {$playerName}: ...
+            <<show_character Cat Neutral right>>
+            {$catName}: ...
+            {$playerName}: ...
+            <<show_character Cat Happy2 right>>
+            {$catName}: Haha. Silence is nice!
 <<endif>>
 <<jump CatConvoDay2_End>>
 ===
@@ -368,16 +352,18 @@ title: CatConvoDay2_End
 position: 647,630
 ---
 <<stop_voice_blip Cat>>
+My mind shifts back to the report I need to write. 
 <<if $posSelfPerception > $negSelfPerception>>
-    I decide to end the conversation for now. It's been a while since I've talked with somebody new, but I feel more confident in myself.
+    I decide to end the conversation for now. It's been a while since I've talked with somebody new.
 <<else>>
     I feel my social battery start to drain, so I decide to end the conversation for now.
 <<endif>>
 <<start_voice_blip Cat>>
 <<if $catLikesYou > $catDislikesYou>>
     <<show_character Cat Happy right>>
-    {$catName}: Already? I was... good. This was good.
-    {$catName}: But okay. If you need stop, I understand.
+    {$catName}: Already? This was good.
+    <<show_character Cat Neutral right>>
+    {$catName}: But okay. I understand.
     {$catName}: I will leave now. For now.
 <<else>>
     <<show_character Cat Neutral right>>
@@ -463,12 +449,8 @@ College was a maze of open doors I couldn't make myself walk through.
 Everyone else had study groups, late nights that sounded like laughter, futures that assumed they belonged.
 I had silence, and the stubborn thought that if I could become an astronaut, maybe distance would finally feel like relief instead of failure.
 I remember the day the decision hardened into something real.
-the career counselor's smile that didn't reach her eyes,
-the scholarship email I couldn't bring myself to answer,
-the long walk back to my dorm where I realized I was already living like I was in orbit, present, but untouchable.
-And then the application, the tests, the training.
+The application, the tests, the training...
 The way isolation became a skill I could list on a form.
-The way I learned to speak in numbers and checklists so nobody could hear the shaking underneath.
 In the dream, the stars are there too, just out of reach through a window that doesn't open.
     -> (hold onto the ambition)
         I remember why I wanted this. Not the prestige. The quiet. The distance. The proof that I could endure.
@@ -518,9 +500,9 @@ I step back from the monitor like it might burn me.
         <<show PCRoom>>
         Again, after the long conversation, I decide to go to bed.
         <<if $posSelfPerception > $negSelfPerception>>
-            After talking with these new figures, I've felt a sense of growth. I feel more confident in my ability to handle whatever comes my way.
+            After talking with {$catName}, I've strangely felt more confident in my ability to handle whatever comes my way.
         <<else>>
-            After talking with these new figures, I've felt a bit more uncertain about my place in this situation. I hope that I'll be able to figure things out soon.
+            After talking with {$catName}, I've felt a bit more uncertain about everything. I hope I'll figure things out soon.
         <<endif>>
         <<hide_all_objects>>
         <<show PCRoom>>

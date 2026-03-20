@@ -1,4 +1,4 @@
-title: AfterName
+﻿title: AfterName
 position: 22,-593
 ---
 <<hide Drifting>>
@@ -406,6 +406,7 @@ I find myself wanting to know more about this creature.
     -> How did you learn to speak my language?
         <<start_voice_blip Cat>>
         <<show_character Cat Happy right>>
+        <<set $playerKnowsHowGnarpTalks = true>>
         {$catName}: Your ship! It leak many tiny noise. Logs, error words, old training tapes.
         <<show_character Cat Thinking right>>
         {$catName}: I listen. I repeat. I break sound into parts. I practice alone.
@@ -414,9 +415,8 @@ I find myself wanting to know more about this creature.
     -> What's it like where you're from?
         <<start_voice_blip Cat>>
         <<show_character Cat Thinking right>>
-        {$catName}: Home? It is... warm. Many sound. Many smell. Not like here.
-        <<show_character Cat Sad right>>
-        {$catName}: I miss it sometimes. But I have job to do.
+        {$catName}: Home? It is... warm. Many sound. Many smell. Not like ship there.
+        {$catName}: Words hard to explain. Life everywhere.
     -> Why do you want to talk to me?
         <<start_voice_blip Cat>>
         <<show_character Cat Sad right>>
@@ -443,6 +443,7 @@ I find myself wanting to know more about this creature.
         {$catName}: Okay. Not sure okay. Sometime we not know. But find safe place good idea. Here very... unpredictable.
 <<show_character Cat Surprised right>>
 <<stop_voice_blip Cat>>
+<<show_character Cat Sad right>>
 A sound from their end... scuffling, something heavy shifting. A low voice, muffled and indistinct, in the background. {$catName} glances off-screen, ears flattening.
 <<start_voice_blip Cat>>
 {$catName}: Oh. I... I sorry. I have to go. Now. Sorry!
