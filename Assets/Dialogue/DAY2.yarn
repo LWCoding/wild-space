@@ -533,6 +533,8 @@ position: 918,14
 ---
 <<hide_all_characters>>
 <<hide MonitorSilhouette>>
+<<hide MonitorReportDay2>>
+<<hide MonitorDontReportDay2>>
 <<show MonitorOn>>
 <<play_music MainTheme>>
 I step back from the monitor like it might burn me.
