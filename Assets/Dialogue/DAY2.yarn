@@ -27,8 +27,11 @@ Instead, the communication panel pings again. The same frequency as before.
 New packets sit in the buffer, tagged with the same unknown sequence.
 The translator renders them into something more coherent this time.
 <<speed 0.4>>
+<<play_sound RobotPracticing 0.25>>
 "I HAVE BEEN PRACTICING" <i>[52 DAYS AGO]</i>
+<<play_sound RobotStillThere 0.25>>
 "ARE YOU STILL THERE" <i>[31 DAYS AGO]</i>
+<<play_sound RobotOkay 0.25>>
 "I HOPE YOU ARE OKAY" <i>[12 DAYS AGO]</i>
 <<speed 1>>
 It's been sending messages while I was in cryosleep. Waiting. Learning.
@@ -38,8 +41,11 @@ It's been sending messages while I was in cryosleep. Waiting. Learning.
         I tell myself I should focus on the report first. The signal can wait.
         The ping repeats anyway. Patient. Persistent.
         <<speed 0.4>>
+        <<play_sound RobotPracticing 0.25>>
         "I HAVE BEEN PRACTICING" <i>[52 DAYS AGO]</i>
+        <<play_sound RobotStillThere 0.25>>
         "ARE YOU STILL THERE" <i>[31 DAYS AGO]</i>
+        <<play_sound RobotOkay 0.25>>
         "I HOPE YOU ARE OKAY" <i>[12 DAYS AGO]</i>
         <<speed 1>>
         It's not going to stop.
@@ -441,13 +447,14 @@ position: 915,500
 <<stop_music>>
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
-<<show Stars>>
-<<show Sitting>>
+<<show CollegeRoom>>
 The dream doesn't start in space.
 It starts under fluorescent bulbs, with my hands wrapped around cheap coffee and a lab key I wasn't supposed to have.
 College was a maze of open doors I couldn't make myself walk through.
 Everyone else had study groups, late nights that sounded like laughter, futures that assumed they belonged.
 I had silence, and the stubborn thought that if I could become an astronaut, maybe distance would finally feel like relief instead of failure.
+<<hide CollegeRoom>>
+<<show Exam>>
 I remember the day the decision hardened into something real.
 The application, the tests, the training...
 The way isolation became a skill I could list on a form.
@@ -460,9 +467,11 @@ In the dream, the stars are there too, just out of reach through a window that d
         I remember how easy it was to disappear in a crowd, and how I kept choosing that over being seen.
         <<set $negSelfPerception += 1>>
         The weight of it presses down on me.
-The dream tilts from college hallway to spacecraft corridor, as if my brain is admitting the truth.
-I didn't just get launched into space.
-I practiced for it for years.
+<<hide Exam>>
+<<show Spaceroom>>
+Then, my brain admits the truth.
+I didn't just suddenly get launched into space.
+I'd been practicing for this for years.
 <<fade_transition 3>>
 <<wait 2>>
 <<jump StartDay3>>
@@ -476,13 +485,15 @@ I sit back from the keyboard, report transmitted, hands still trembling.
 <<set $negSelfPerception += 1>>
 I did what I'm trained to do. I kept the machine running. But I feel the weight of the lie.
 I also did something I'm not trained for at all. I kept a secret that has a pulse.
-The same three robotic words keep replaying behind my eyes.
-<<play_sound RobotTest 0.25>>
-"TEST" <i>[79 DAYS AGO]</i>
-<<play_sound RobotHello 0.25>>
-"HELLO" <i>[41 DAYS AGO]</i>
-<<play_sound RobotTalk 0.25>>
-"TALK" <i>[5 DAYS AGO]</i>
+The same three messages keep replaying behind my eyes.
+<<speed 0.4>>
+<<play_sound RobotPracticing 0.25>>
+"I HAVE BEEN PRACTICING" <i>[52 DAYS AGO]</i>
+<<play_sound RobotStillThere 0.25>>
+"ARE YOU STILL THERE" <i>[31 DAYS AGO]</i>
+<<play_sound RobotOkay 0.25>>
+"I HOPE YOU ARE OKAY" <i>[12 DAYS AGO]</i>
+<<speed 1>>
 I shut the screen down before I can change my mind.
 <<jump EndDay2>>
 ===
