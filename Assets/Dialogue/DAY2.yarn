@@ -168,7 +168,7 @@ position: 647,285
 <<if $playerKnowsHowGnarpTalks == false>>
     <<set $playerKnowsHowGnarpTalks = true>>
     {$catName}: I want tell you something. About how I learn your words.
-    {$catName}: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise: logs, error words, old training tapes.
+    {$catName}: I listen. I repeat. I break sound into parts. Your ship leak many tiny noise. Logs, error words, old training tapes.
     {$catName}: I practice alone. I want be understood, not just... heard.
 <<endif>>
 <<show_character Cat Happy right>>
