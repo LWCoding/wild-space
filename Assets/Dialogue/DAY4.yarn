@@ -2,6 +2,14 @@ title: StartDay4
 position: -125,-487
 ---
 <<set $daysPassed = 741>>
+<<declare $day4Route = "">>
+<<if $catLikesYou > $catDislikesYou * 1.5>>
+    <<set $day4Route = "true">>
+<<elseif $catLikesYou > $catDislikesYou>>
+    <<set $day4Route = "good">>
+<<else>>
+    <<set $day4Route = "bad">>
+<<endif>>
 <<play_sound AlarmClock>>
 <<play_music MainTheme>>
 I jolt awake gasping, hands braced against the cryopod lid like I'm trying to stop it from closing.
@@ -19,22 +27,73 @@ position: -128,-338
 <<show MonitorOn>>
 Then, I power on the monitor.
 The comms buffer loads slowly. HQ digest, mission parameters, the usual.
-Then, at the bottom, a single packet on {$catName}'s frequency. The translator renders it immediately.
+<<if $day4Route == "true">>
+    <<jump OnClickedMonitorDay4_True>>
+<<elseif $day4Route == "good">>
+    <<jump OnClickedMonitorDay4_Good>>
+<<else>>
+    <<jump OnClickedMonitorDay4_Bad>>
+<<endif>>
+===
+
+title: OnClickedMonitorDay4_True
+position: -128,-200
+---
+<<play_sound Glitch 0.25>>
+The comms buffer isn't empty. It's full. Packets stacked on top of each other, all on {$catName}'s frequency. The translator struggles to keep up.
 <<speed 0.4>>
+<<play_sound RobotHey 0.25>>
+"HEY" <i>[3 DAYS AGO]</i>
+"PLEASE ANSWER" <i>[2 DAYS AGO]</i>
+"THEY KNOW" <i>[2 DAYS AGO]</i>
+<<play_sound RobotHey 0.25>>
+"HEY" <i>[2 DAYS AGO]</i>
+"PLEASE WAKE UP" <i>[2 DAYS AGO]</i>
+<<speed 1>>
+My hands are shaking.
+    -> (answer immediately)
+        <<jump CallCatDay4_True>>
+===
+
+title: OnClickedMonitorDay4_Good
+position: -128,-60
+---
+Then, at the bottom, a single packet on {$catName}'s frequency. The translator renders it immediately.
+<<play_sound Glitch 0.25>>
+<<speed 0.4>>
+<<play_sound RobotHey 0.25>>
 "HEY" <i>[3 DAYS AGO]</i>
 <<speed 1>>
 One word. After everything.
     -> (answer)
-        <<jump CallCatDay4>>
+        <<jump CallCatDay4_Good>>
     -> (stare at it for a while)
         I sit with that single word for longer than I should. Three letters. No context. No apology. No explanation.
         Just... hey.
             -> (answer)
-                <<jump CallCatDay4>>
+                <<jump CallCatDay4_Good>>
 ===
 
-title: CallCatDay4
-position: 422,282
+title: OnClickedMonitorDay4_Bad
+position: -128,80
+---
+Then, at the bottom, a single packet on {$catName}'s frequency. The translator renders it immediately.
+<<play_sound Glitch 0.25>>
+<<speed 0.4>>
+<<play_sound RobotStillHere 0.25>>
+"HEY" <i>[3 DAYS AGO]</i>
+<<speed 1>>
+One word. I'm not sure what I expected.
+    -> (answer)
+        <<jump CallCatDay4_Bad>>
+    -> (stare at it for a while)
+        Three letters. No warmth. No urgency. Just a signal sent out of habit, or maybe obligation.
+            -> (answer)
+                <<jump CallCatDay4_Bad>>
+===
+
+title: CallCatDay4_True
+position: 422,100
 ---
 <<hide_all_objects>>
 <<hide_all_ui_objects>>
@@ -42,63 +101,25 @@ position: 422,282
 <<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
 <<stop_voice_blip Cat>>
-I open the channel. The static clears faster this time, like the connection remembers us.
+I open the channel. The static clears almost instantly. {$catName} is already there, pressed close to the screen.
 <<play_music CatTheme 0.5>>
-<<show_character Cat Neutral right>>
-<<start_voice_blip Cat>>
-{$catName}: ...Hey.
-<<stop_voice_blip Cat>>
-Neither of us speaks for a moment. The weight of last time sits between us like a wall we built without meaning to.
-<<start_voice_blip Cat>>
-<<if $catLikesYou > $catDislikesYou>>
-    <<show_character Cat Sad right>>
-    {$catName}: I was not sure you would answer. After what I tell you.
-    {$catName}: About the human. The one on my planet. About... everything.
-    <<show_character Cat Thinking right>>
-    {$catName}: I want you to know... I not blame you. You are not him.
-        -> I needed to hear that.
-            <<positive_indicator Cat>>
-            <<set $catLikesYou += 1>>
-            <<show_character Cat Neutral right>>
-            {$catName}: I know. That why I say it.
-        -> I know. But it still hurts.
-            <<show_character Cat Sad right>>
-            {$catName}: Yes. Truth is like that. It heal and it cut at same time.
-<<else>>
-    <<show_character Cat Neutral right>>
-    {$catName}: I not sure what to say. After last time.
-    {$catName}: So I just say... hey.
-        -> Hey.
-            <<show_character Cat Neutral right>>
-            {$catName}: ...Okay.
-<<endif>>
-<<stop_voice_blip Cat>>
-<<if $catLikesYou > $catDislikesYou * 1.5>>
-    <<jump CatConvoDay4_TruePath>>
-<<elseif $catLikesYou > $catDislikesYou>>
-    <<jump CatConvoDay4_GoodPath>>
-<<else>>
-    <<jump CatConvoDay4_BadPath>>
-<<endif>>
-===
-
-title: CatConvoDay4_TruePath
-position: 647,100
----
-<<start_voice_blip Cat>>
 <<show_character Cat Sad right>>
-{$catName}: {$catThinksPlayerNameIs}... I have to tell you something. Something important.
-{$catName}: My people... they found out. About us. About everything.
-<<show_character Cat Thinking right>>
+<<start_voice_blip Cat>>
+{$catName}: You awake. You finally awake.
+{$catName}: I been calling and calling. I thought maybe you not come back this time.
+    -> I'm here. What's happening?
+        <<show_character Cat Neutral right>>
+        {$catName}: Okay. Okay. I tell you everything.
+    -> I saw the messages. All of them.
+        <<show_character Cat Sad right>>
+        {$catName}: Then you know. Something bad is happening.
+<<show_character Cat Sad right>>
+{$catName}: {$catThinksPlayerNameIs}... my people found out. About us. About everything.
 {$catName}: Father confronted me. He say I betrayed them. That I am just like... like the human who came before.
+<<show_character Cat Thinking right>>
 {$catName}: They want to shut down my transmitter. Cut me off from everything outside our planet.
 <<show_character Cat Sad right>>
 {$catName}: If they do that... I never talk to anyone again. Not you. Not anyone.
-    -> That can't happen. We'll figure something out.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Neutral right>>
-        {$catName}: You say "we." You say it like it natural. Like I am part of your world now.
     -> What are you going to do?
         <<show_character Cat Thinking right>>
         {$catName}: I... I have plan. But it depend on you.
@@ -119,7 +140,7 @@ But when I think about it... what am I leaving? A mission nobody reads the repor
 {$catName}: But you are only person who ever made me feel like I get to choose who I am.
 <<show_character Cat Sad right>>
 {$catName}: And I think... maybe I do the same for you?
-    -> You do. More than you know.
+    -> You do.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>
         <<set $posSelfPerception += 1>>
@@ -149,21 +170,34 @@ But when I think about it... what am I leaving? A mission nobody reads the repor
                 <<jump CatConvoDay4_GoodPath_Farewell>>
 ===
 
-title: CatConvoDay4_GoodPath
-position: 647,300
+title: CallCatDay4_Good
+position: 422,300
 ---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show PCRoom>>
+<<show MonitorSilhouette>>
+<<show_character Cat Obscure right>>
+<<stop_voice_blip Cat>>
+I open the channel. The static clears faster this time, like the connection remembers us.
+<<play_music CatTheme 0.5>>
+<<show_character Cat Neutral right>>
 <<start_voice_blip Cat>>
+{$catName}: ...Hey.
+<<stop_voice_blip Cat>>
+Neither of us speaks for a moment. The weight of last time sits between us like a wall we built without meaning to.
+<<start_voice_blip Cat>>
+<<show_character Cat Sad right>>
+{$catName}: I was not sure you would answer. After what I tell you.
+{$catName}: About the human. The one on my planet. About... everything.
+<<show_character Cat Thinking right>>
+{$catName}: I want you to know... I not blame you.
 <<show_character Cat Thinking right>>
 {$catName}: I been thinking. About us. About what this is.
 {$catName}: We come from different world. Different body. Different language. Different everything.
 <<show_character Cat Neutral right>>
 {$catName}: But somehow... we understand each other. More than people who live next to us our whole life.
 {$catName}: Is that not strange?
-    -> Strange in a good way.
-        <<positive_indicator Cat>>
-        <<set $catLikesYou += 1>>
-        <<show_character Cat Happy right>>
-        {$catName}: Yes. Good strange. Best kind of strange.
     -> It is what it is.
         <<show_character Cat Neutral right>>
         {$catName}: Mm. Maybe that enough.
@@ -204,7 +238,7 @@ I move to the viewport and find the star. It's there, as always. The dark spot i
 {$catName}: Before you, I was someone my father made. Someone my people shaped. I did not know where they ended and I began.
 <<show_character Cat Neutral right>>
 {$catName}: Now I know. Because you showed me what it look like to choose. Even when choice is scary.
-    -> You changed me too. I was just a machine running a routine.
+    -> You changed me too.
         <<set $posSelfPerception += 1>>
         <<show_character Cat Happy right>>
         {$catName}: Then we both woke up. At same time. Across all that dark.
@@ -224,9 +258,22 @@ The screen goes dark. Not with a crash, not with static. Just a slow fade, like 
 <<jump GoodEnd>>
 ===
 
-title: CatConvoDay4_BadPath
-position: 647,600
+title: CallCatDay4_Bad
+position: 422,600
 ---
+<<hide_all_objects>>
+<<hide_all_ui_objects>>
+<<show PCRoom>>
+<<show MonitorSilhouette>>
+<<show_character Cat Obscure right>>
+<<stop_voice_blip Cat>>
+I open the channel. The static takes its time clearing. Like even the connection has given up trying.
+<<play_music CatTheme 0.5>>
+<<show_character Cat Neutral right>>
+<<start_voice_blip Cat>>
+{$catName}: ...Hey.
+<<stop_voice_blip Cat>>
+Neither of us speaks. The silence doesn't feel heavy anymore. It just feels empty.
 <<start_voice_blip Cat>>
 <<show_character Cat Neutral right>>
 {$catName}: So. Here we are.
