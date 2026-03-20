@@ -182,9 +182,9 @@ position: 647,285
         {$catName}: My planet... not really like humans.
         {$catName}: Talking to you is dangerous for me.
         <<show_character Cat Neutral right>>
-        You: Dangerous how?
-        <<show_character Cat Sad right>>
-        {$catName}: I not allowed to talk about it.
+            -> Dangerous how?
+                <<show_character Cat Sad right>>
+                {$catName}: I not allowed to talk about it.
         {$catName}: Sorry. I want tell you. I can't.
         <<show_character Cat Neutral right>>
         -> It's okay. Sorry.
@@ -282,6 +282,93 @@ In a sense, that's kind of similar to what I do... Huh.
             {$catName}: Maybe someday I teach you. I practice a lot.
 <<endif>>
 <<stop_voice_blip Cat>>
+The signal holds steady. {$catName} is still there, waiting patiently on the other side.
+    -> (keep talking)
+        <<jump CatConvoDay2_Part3>>
+    -> (end the conversation)
+        <<jump CatConvoDay2_End>>
+===
+
+title: CatConvoDay2_Part3
+position: 647,515
+---
+<<start_voice_blip Cat>>
+<<show_character Cat Neutral right>>
+{$catName}: Can I tell you something? About... my family?
+{$catName}: They still on planet. They not gone or anything. But... they distant.
+{$catName}: My mom and dad, they work for security group. Important people. They protect planet, make big decision.
+<<show_character Cat Sad right>>
+{$catName}: They always busy. Always watching for threat. Not have much time for me.
+{$catName}: It strange. Right here. But feel far away.
+<<if $catLikesYou > $catDislikesYou>>
+    <<stop_voice_blip Cat>>
+    <<show_character Cat Sad right>>
+    {$catName}'s voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
+        -> Is everything okay?
+            <<start_voice_blip Cat>>
+            {$catName}: I fine. Just... remembering.
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            {$catName}: Big trouble would happen if mom or dad found out about you.
+            <<show_character Cat Neutral right>>
+            {$catName}: Talking to you help. You make space less sharp.
+            <<show_character Cat Happy2 right>>
+            {$catName}: I very lucky to have you here.
+            <<set $posSelfPerception += 1>>
+            Making someone feel less alone... brings me a quiet warmth.
+        -> ...
+<<else>>
+    <<stop_voice_blip Cat>>
+    <<show_character Cat Sad right>>
+    {$catName} goes quiet. The silhouette holds still.
+        -> ...
+            <<start_voice_blip Cat>>
+<<endif>>
+<<if $catLikesYou >= $catDislikesYou>>
+    <<stop_voice_blip Cat>>
+        -> So what do you do while your family is off being important?
+            <<start_voice_blip Cat>>
+            <<show_character Cat Thinking right>>
+            {$catName}: Oh! I... I have job too, actually. Not important like theirs. But still job.
+            {$catName}: I watch space. Monitor for anything that come close. And I have to write about it. Keep record of everything I see. Every day, same thing. Nothing happen, but I still write it down.
+    {$catName}: Sometimes I wonder if anyone even read what I send. Maybe it just go into big pile somewhere and disappear.
+    <<show_character Cat Happy right>>
+    {$catName}: So most of the time... I draw instead.
+    {$catName}: In my journal. Little pictures. Stars, nebula, your ship one time. I draw what I see and what I imagine.
+    <<show_character Cat Happy2 right>>
+    {$catName}: My favorite is the one with rings near your star. I draw it so many time the page is almost full.
+    <<stop_voice_blip Cat>>
+    <<show_character Cat Neutral right>>
+    I think about my own reports. Status updates, every few months, the same nothing typed up and sent to people who probably don't read it. 
+    I take the work seriously... someone has to. But the idea of doodling stars in the margins instead is oddly charming.
+        -> I wish I had that freedom. My reports are pretty strict.
+            <<start_voice_blip Cat>>
+            <<positive_indicator Cat>>
+            <<set $catLikesYou += 1>>
+            <<show_character Cat Happy right>>
+            {$catName}: Strict? No drawing allowed? That sound terrible!
+            {$catName}: Maybe I send you one of mine sometime. So you have something nice to look at between all the boring word.
+            <<set $posSelfPerception += 1>>
+        -> I get bored too. But I just push through it.
+            <<start_voice_blip Cat>>
+            <<show_character Cat Thinking right>>
+            {$catName}: Push through... that sound very human. All work, no drawing.
+            <<show_character Cat Happy right>>
+            {$catName}: Maybe that why you need someone like me. To remind you that boredom is just creativity with nowhere to go.
+    I didn't expect to find common ground over paperwork. But here we are.
+    <<stop_voice_blip Cat>>
+    The conversation thins to nothing, and for a while neither of us speaks. Just the hum of my ship and whatever distant sound lives on theirs.
+    <<start_voice_blip Cat>>
+    <<show_character Cat Happy right>>
+    {$catName}: ...This is nice.
+    <<show_character Cat Thinking right>>
+    {$catName}: The quiet. With you. It feel different than quiet alone.
+    {$catName}: Alone quiet is... empty. This quiet is... full?
+    <<show_character Cat Neutral right>>
+    {$catName}: I don't mind waiting. For you to talk, for you to wake up. I don't mind it.
+    {$catName}: Just knowing you there is enough.
+    <<stop_voice_blip Cat>>
+<<endif>>
 And then, without either of us deciding to, the conversation just... keeps going.
 <<fade_transition 1.5>>
 <<wait 1>>
@@ -319,72 +406,6 @@ Over an hour. We've been talking for over an hour.
 I look back at the screen. {$catName} is mid-thought, leaning forward, completely at ease. Like the static and the distance and the impossibility of all of this is just... background noise now.
 When was the last time I lost track of time with someone? I honestly can't remember.
 Everything about {$catName} is new. Every answer opens a door I didn't know existed. It's the kind of conversation where you never run out of things to ask because you haven't asked anything yet.
-    -> (keep talking)
-        <<jump CatConvoDay2_Part3>>
-    -> (end the conversation)
-        <<jump CatConvoDay2_End>>
-===
-
-title: CatConvoDay2_Part3
-position: 647,515
----
-<<start_voice_blip Cat>>
-<<show_character Cat Happy2 right>>
-{$catName}: Can I tell you something? About... my family?
-{$catName}: They still on planet. They not gone or anything. But... they distant.
-{$catName}: My mom and dad, they work for security group. Important people. They protect planet, make big decision.
-{$catName}: They always busy. Always watching for threat. He not have much time for me.
-<<show_character Cat Thinking right>>
-{$catName}: It strange. He right there. Same planet. But feel far away.
-<<if $catLikesYou > $catDislikesYou>>
-    <<stop_voice_blip Cat>>
-    <<show_character Cat Sad right>>
-    {$catName}'s voice dips. The translator hesitates like it doesn't want to be responsible for the meaning.
-        -> Is everything okay?
-            <<start_voice_blip Cat>>
-            {$catName}: I fine. Just... remembering.
-            <<positive_indicator Cat>>
-            <<set $catLikesYou += 1>>
-            {$catName}: Big trouble would happen if mom or dad found out about you.
-            <<show_character Cat Neutral right>>
-            {$catName}: Talking to you help. You make space less sharp.
-            <<set $posSelfPerception += 1>>
-            Making someone feel less alone... brings me a quiet warmth.
-        -> ...
-<<else>>
-    <<stop_voice_blip Cat>>
-    <<show_character Cat Sad right>>
-    {$catName} goes quiet. The silhouette holds still.
-        -> ...
-            <<start_voice_blip Cat>>
-<<endif>>
-<<if $catLikesYou >= $catDislikesYou>>
-    <<stop_voice_blip Cat>>
-    The silence stretches. Not uncomfortably. More like an open door.
-        -> (tell {$catName} about the reports)
-            <<start_voice_blip Cat>>
-            <<positive_indicator Cat>>
-            <<set $catLikesYou += 1>>
-            You: You know, part of my job is writing reports. Status updates. Every few months I type up the same nothing and send it to people who probably don't read it.
-            <<show_character Cat Thinking right>>
-            {$catName}: You write... for no one? That sound lonely.
-            You: It's just routine. Keeps the mission official.
-            <<show_character Cat Happy right>>
-            {$catName}: I do same thing! I log what I see. Nothing happen most time. But I still write.
-            {$catName}: Maybe we both sending message into the dark hoping someone care.
-            <<set $posSelfPerception += 1>>
-            I didn't expect to find common ground over paperwork. But here we are.
-        -> ...
-            I consider saying something but decide the quiet is fine. Not every moment needs filling.
-            <<show_character Cat Happy right>>
-            {$catName}: ...
-            {$playerName}: ...
-            <<show_character Cat Neutral right>>
-            {$catName}: ...
-            {$playerName}: ...
-            <<show_character Cat Happy2 right>>
-            {$catName}: Haha. Silence is nice!
-<<endif>>
 <<jump CatConvoDay2_End>>
 ===
 

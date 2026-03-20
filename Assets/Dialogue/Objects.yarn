@@ -12,7 +12,7 @@ Since day one, I haven't reported anything out of the ordinary. I've been out he
 
 title: CalendarClick
 ---
-The calendar is set to Universal Space Time. According to it, it's been 620 days since I left Earth.
+The calendar is set to Universal Space Time. According to it, it's been {$daysPassed} days since I left Earth.
 Every day has been just as quiet as the last.
 <<set $calendarExplored = true>>
 <<if $calendarExplored and $routerExplored and $monitorExplored>>

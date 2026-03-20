@@ -140,7 +140,7 @@ But when I think about it... what am I leaving? A mission nobody reads the repor
                 <<set $catLikesYou += 1>>
                 <<show_character Cat Happy right>>
                 {$catName}: You mean it?
-                You: Yeah. I mean it.
+                    -> Yeah. I mean it.
                 <<jump TrueEnd>>
             -> I can't leave everything behind.
                 <<show_character Cat Sad right>>
@@ -197,7 +197,7 @@ I move to the viewport and find the star. It's there, as always. The dark spot i
 <<start_voice_blip Cat>>
 <<show_character Cat Sad right>>
 {$catName}: You see it?
-You: I see it.
+    -> I see it.
 {$catName}: Same star. Same light. Different eyes.
 <<show_character Cat Thinking right>>
 {$catName}: {$catThinksPlayerNameIs}... I am different because of you. I want you to know that.

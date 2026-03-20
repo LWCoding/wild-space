@@ -41,11 +41,27 @@ position: 315,-648
 <<hide_ui ClickToInteract>>
 <<show Stars>>
 <<show Sitting>>
+<<speed 0.8>>
 This is the life that I've committed myself to, ever since taking the job to pilot this small exploration vessel.
-Earth launched an initiative to find out why the sun suddenly had a hole in the center... a dark spot that appeared one day and never went away. It's a three-year journey just to get there. I'm on the seventh expedition they've sent.
-My dad was the pilot of the last one.
-Dad... I hope I can find you out here.
-But deep inside, I knew signing up was just to get a chance away from Earth.
+Earth launched an initiative to find out why the sun suddenly had a hole in the center... a dark spot that appeared one day and never went away. 
+It's a three-year journey just to get there. 
+I'm on the seventh expedition they've sent.
+<<fade_transition 1.5>>
+<<wait 1>>
+<<hide_all_objects>>
+<<show Stargazing>>
+I wish I could say I was out here because it was a dream of mine.
+But really, this is far from my reality.
+Deep inside, I knew signing up was just to get a chance away from Earth.
+Every night I spend on this spaceship, I find myself dreaming back to life on Earth.
+<<hide Stargazing>>
+<<show Stargazing2>>
+And every time in those dreams, I see my dad. An astronaut from the sixth expedition.
+He never came back.
+And honestly, I would've preferred he died. The lack of closure eats me up from the inside.
+A part of me hopes I'll see him on the way to the sun.
+A part of me hopes I just burn up and get lost.
+<<speed 1>>
 <<jump HearRadioSignals>>
 ===
 
@@ -56,7 +72,7 @@ position: 315,-550
 <<show PCRoom>>
 <<show MonitorOn>>
 <<play_sound Glitch 0.25>>
-The communication panel pings, sharp and insistent. Locked onto a frequency I didn't dial in.
+In the middle of my daydreaming, I hear the communication panel ping, sharp and insistent. Locked onto a frequency I didn't dial in.
 Three new packets sit in the buffer, tagged with an unknown sequence.
 The ship's translator does what it can. It renders the signals into clipped, robotic phonemes.
 It isn't a sentence. It's a pulse. A test pattern that learned three words.
