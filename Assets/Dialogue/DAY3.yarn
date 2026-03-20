@@ -130,8 +130,20 @@ title: CatConvoDay3
 position: 647,285
 ---
 <<start_voice_blip Cat>>
-<<show_character Cat Thinking right>>
-{$catName}: I want ask you something. If okay.
+<<show_character Cat Sad right>>
+{$catName}: So...
+<<stop_voice_blip Cat>>
+The line stays open but neither of us fills it. I can hear the faint hum of whatever's on {$catName}'s end.
+I notice {$catName} shifting on screen, like they want to say something but keep swallowing it.
+    -> What are you thinking about?
+        <<start_voice_blip Cat>>
+        <<show_character Cat Neutral right>>
+        {$catName}: I... okay. I want ask you something. If okay.
+    -> You've gone quiet.
+        <<start_voice_blip Cat>>
+        <<show_character Cat Neutral right>>
+        {$catName}: Yes. Sorry. I was trying to find right words.
+        {$catName}: I want ask you something. If okay.
 {$catName}: When you sleep in box... do you dream?
     -> Sometimes. They feel more like memories.
         <<show_character Cat Neutral right>>
@@ -145,11 +157,13 @@ position: 647,285
         <<set $negSelfPerception += 1>>
         I shut down again. The habit is hard to break.
 <<show_character Cat Neutral right>>
-{$catName}: I ask because... I been thinking about time. How it move different for us.
-{$catName}: For you, few sleep. For me, many day alone. Watching. Waiting.
+{$catName}: I ask because... I been thinking about time. How it work different for us.
+{$catName}: My people... we not live as long as humans. Much shorter. What is months for you is... big part of life for me.
+{$catName}: Every day I wait for you to wake up, I feel it. The weight of it. Like sand running out that I cannot put back.
 {$catName}: I count them. Every one.
 <<show_character Cat Sad right>>
 {$catName}: Sometimes I wonder if you forget me between sleeps. If I am just... noise you heard once.
+{$catName}: You have so many year ahead. For me, the time we already spend... it is not small. It is real.
     -> I haven't forgotten you.
         <<positive_indicator Cat>>
         <<set $catLikesYou += 1>>

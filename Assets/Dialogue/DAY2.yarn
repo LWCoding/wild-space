@@ -282,9 +282,42 @@ In a sense, that's kind of similar to what I do... Huh.
             {$catName}: Maybe someday I teach you. I practice a lot.
 <<endif>>
 <<stop_voice_blip Cat>>
-I glance at the mission clock and blink. Almost an hour. We've been talking for almost an hour.
-It doesn't feel like it. When was the last time that happened... losing track of time with someone?
-{$catName} seems comfortable, settled into the frequency like it's a chair. I realize I am too.
+And then, without either of us deciding to, the conversation just... keeps going.
+<<fade_transition 1.5>>
+<<wait 1>>
+<<start_voice_blip Cat>>
+<<show_character Cat Happy right>>
+{$catName}: ...and the color is not blue, not green. No word in your language. It is like... if cold had a color but was warm?
+    -> Wow!
+    -> That's... pretty crazy.
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Thinking right>>
+{$catName}: ...wait, you only have ONE mouth? How you eat and talk at same time?
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Happy2 right>>
+{$catName}: ...no no no, you say it wrong! The joke is the animal fall DOWN, not up! That is why it funny!
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Sad right>>
+{$catName}: ...sometimes the quiet get so big I forget what my own voice sound like. Then I talk to you and I remember.
+    -> ...
+<<fade_transition 1.5>>
+<<wait 1>>
+<<show_character Cat Happy right>>
+{$catName}: ...okay okay, one more question. If you could bring ONE thing from your planet, not big thing, small thing, what would you bring?
+    -> ...
+<<stop_voice_blip Cat>>
+<<fade_transition 1.5>>
+<<wait 1>>
+I glance at the mission clock and the number doesn't make sense. I check it again.
+Over an hour. We've been talking for over an hour.
+I look back at the screen. {$catName} is mid-thought, leaning forward, completely at ease. Like the static and the distance and the impossibility of all of this is just... background noise now.
+When was the last time I lost track of time with someone? I honestly can't remember.
     -> (keep talking)
         <<jump CatConvoDay2_Part3>>
     -> (end the conversation)
@@ -315,7 +348,7 @@ position: 647,515
             <<show_character Cat Neutral right>>
             {$catName}: Talking to you help. You make space less sharp.
             <<set $posSelfPerception += 1>>
-            Me... do that?... Making someone feel less alone? It makes me feel a quiet warmth.
+            Making someone feel less alone... brings me a quiet warmth.
         -> ...
 <<else>>
     <<stop_voice_blip Cat>>
