@@ -321,6 +321,7 @@ The screen flickers. For a brief moment, the silhouette shifts and I catch a gli
 <<fade_transition 2>>
 <<wait 1>>
 <<hide_all_characters>>
+<<hide_all_objects>>
 <<show GnarpPlanet>>
 They show me a window, with an amber sky and shapes that might be trees, or might be something I have no word for.
 It lasts two seconds. Then the feed stabilizes back to the usual framing.
@@ -329,6 +330,8 @@ It lasts two seconds. Then the feed stabilizes back to the usual framing.
 <<start_voice_blip Cat>>
 <<show_character Cat Happy right>>
 <<hide GnarpPlanet>>
+<<show PCRoom>>
+<<show MonitorSilhouette>>
 {$catName}: That was my sky. I wanted you to see it. Even just little bit.
     -> It's beautiful.
         <<positive_indicator Cat>>
@@ -355,8 +358,6 @@ The conversation thins out. Neither of us hangs up, but neither of us reaches fo
 {$catName}: Can I tell you something? Something I been carrying for long time?
 {$catName}: I need to say it to someone. And you are... only someone I have.
     -> Of course.
-        <<show_character Cat Neutral right>>
-        {$catName}: Okay. Thank you.
     -> ...
 <<show_character Cat Sad right>>
 {$catName}: When I was young... a human come to our planet. First one ever.
