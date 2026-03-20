@@ -395,24 +395,21 @@ title: CatConvoDay2_End
 position: 647,630
 ---
 <<stop_voice_blip Cat>>
-My mind shifts back to the report I need to write. 
-<<if $posSelfPerception > $negSelfPerception>>
-    I decide to end the conversation for now. It's been a while since I've talked with somebody new.
-<<else>>
-    I feel my social battery start to drain, so I decide to end the conversation for now.
-<<endif>>
+My mind shifts back to the report I need to write.
+I glance at the mission clock again.
+Three hours. It's been that long already.
 <<start_voice_blip Cat>>
 <<if $catLikesYou > $catDislikesYou>>
-    <<show_character Cat Happy right>>
-    {$catName}: Already? This was good. Really good.
     <<show_character Cat Neutral right>>
-    {$catName}: But okay. I understand.
-    {$catName}: Next time we talk... I have more thing to tell you. Many more.
+    {$catName}: I am tired. I probably go sleep... Sorry.
+    <<show_character Cat Happy right>>
+    {$catName}: But I am excited! Some other time, we talk more. Next time I have more thing to tell you. Many more.
     <<stop_voice_blip Cat>>
     I believe that. Right now, it feels like we could talk forever and never hit the bottom.
     I wonder if that's true, or if it's just what new feels like.
 <<else>>
     <<show_character Cat Neutral right>>
+    {$catName}: Three hours. I need go bed.
     {$catName}: Okay. I go.
     <<stop_voice_blip Cat>>
     The screen lingers for a moment before the feed cuts. I notice I don't feel the pull to keep talking the way I did at the start.
