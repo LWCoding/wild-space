@@ -35,8 +35,16 @@ Then I think about {$catName}. About breakfasts and ship hums and puzzles and a 
 <<hide_all_objects>>
 <<show Stars>>
 The journey takes weeks. I don't enter cryosleep. I want to be awake for all of it.
-The star grows larger in the viewport. The dark spot at its center doesn't look like a wound anymore. It looks like a doorway.
-And then I see it. The quiet planet. Green and amber, wrapped in thin clouds, small enough to feel like it was made for two people who had nowhere else to go.
+The star grows larger in the viewport. And as it does, something strange happens.
+The dark spot... shifts. It doesn't shrink like it should at this angle. It moves. Slightly, almost imperceptibly, but it moves.
+I run every scan I have. The readings don't make sense. The dark spot isn't a gap in the star. It's something in front of it. Something round, something solid, something cloaked.
+The coordinates {$catName} sent me. I pull them up against the navigation overlay.
+They match. Exactly.
+The dark spot is {$catName}'s planet.
+I sit with that for a long time. An entire civilization, hidden behind a cloak that bends light around it, tucked against a star so nobody would ever look twice. That's why the previous expeditions never found anything. That's why my father's mission ended in silence. There was never an anomaly. There was a planet that didn't want to be found.
+And the reason it became visible, the reason Earth detected the "dark spot" and sent seven expeditions to investigate... was {$catName}. Their transmissions. Every message, every ping, every "STILL HERE" punched a tiny hole in the cloaking field. Enough to let a sliver of shadow through. Enough for a telescope on the other side of the galaxy to notice something wrong with a distant star.
+{$catName} broke the sky open just by trying to talk to someone.
+The cloak is failing now. I can see the planet's surface through the gaps. Green and amber, wrapped in thin clouds, glowing softly with its own light.
 A second ship, shaped like nothing I've ever seen, is already in orbit. Waiting.
 The comms panel crackles one last time.
 <<show_character Cat Happy2 right>>
@@ -47,11 +55,13 @@ The comms panel crackles one last time.
 <<hide_all_objects>>
 <<show ScreenBlocker>>
 We land on the same day. Different ships, different atmospheres, different bodies built for different gravity.
-The air is breathable. The ground is solid. The sky is a color I don't have a word for.
+The air is breathable. The ground is soft. The sky is a color I don't have a word for.
 {$catName} is smaller than I imagined. Or maybe I'm taller than they expected. We stand ten feet apart for a long time, just looking.
 Then {$catName} takes a step. Then another.
 And I take one too.
-We meet in the middle, on a planet that belongs to neither of our worlds, under a star that watched us both from the beginning.
+We meet in the middle, on the planet that hid itself from the entire universe and was found because one person refused to stay quiet.
+My father came here too, once. He saw this sky. He walked on this ground. And then he left, or was made to leave, and the planet sealed itself shut behind him.
+Now the seal is broken. Not by force. Not by an expedition. By a voice in the dark that kept saying "still here" until someone finally answered.
 Neither of us will ever go home. But for the first time, that word doesn't mean a place.
 It means this.
 <<detour End>>
