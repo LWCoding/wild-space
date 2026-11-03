@@ -372,12 +372,12 @@ Who was that creature? How is that even possible?
     I think about what others on Earth would say if they found out about this encounter. Although it is my job to report such things, would they really believe I met friendly animal aliens?
     Maybe, I'll think about it after a night's rest.
 <<endif>>
-<<hide_all_objects>>
 <<fade_transition 2>>
 <<wait 1>>
+<<hide_all_objects>>
 <<show PCRoom>>
 The cabin falls silent again as the static fades back into the background hum.
-I slip back into the same routine: filling out reports, heating up rations, staring at the same metal walls.
+I slip back into the same routine, filling out reports, heating up rations, staring at the same metal walls.
 <<wait 1.5>>
 Days blur together in a dull loop. Sometimes I have to check the logs just to remember how long I've been out here.
 <<hide_all_objects>>

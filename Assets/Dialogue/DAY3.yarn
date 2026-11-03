@@ -12,6 +12,7 @@ title: OnClickedMonitorDay3
 position: -128,-338
 ---
 <<hide_all_ui_objects>>
+<<hide MonitorOffDay3>>
 <<show MonitorOn>>
 I turn on the monitor to see today's tasks.
 Out of the corner of my eye, I see the same alert from yesterday. "Remember your duty to report accurately and without bias. Your observations are crucial for our understanding and eradication of foreign threats."
@@ -28,7 +29,7 @@ Do I report the aliens to Earth, or let them be?
         -> (report that you saw nothing)
             <<hide_all_objects>>
             <<show PCRoom>>
-            You get to writing your report.
+            I get to writing my report.
             <<show_ui TypeToInteract>>
             <<show MonitorDontReportDay3>>
     -> (report that you saw nothing)
@@ -47,7 +48,7 @@ I finish my report, choosing not to mention the aliens.
 <<hide_all_objects>>
 <<show PCRoom>>
 I get back to looking around my room. Out of boredom, I spend a few minutes glancing at every object around the room.
-After a while, a soft warning flashes on the corner of the monitor: my long-term oxygen reserves have dipped lower than they should.
+After a while, a soft warning flashes on the corner of the monitor. My long-term oxygen reserves have dipped lower than they should.
     -> What?
         <<set $negSelfPerception += 2>>
         I'm <color=\#FF8888>panicking</color>. If I ignore this, the ship will eventually run out of breathable air.

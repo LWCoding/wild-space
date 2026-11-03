@@ -14,6 +14,7 @@ title: OnClickedMonitorDay2
 position: 85,114
 ---
 <<hide_all_ui_objects>>
+<<hide MonitorOffDay2>>
 <<show MonitorOn>>
 I turn on the monitor to see today's tasks.
 Before I start my report, I notice a new message from HQ.
