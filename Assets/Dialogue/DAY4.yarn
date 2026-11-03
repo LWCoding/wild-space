@@ -1,6 +1,8 @@
 title: StartDay4
 position: -125,-487
 ---
+<<hide_all_objects>>
+<<show PCRoom>>
 <<set $daysPassed = 741>>
 <<declare $day4Route = "">>
 <<if $catLikesYou > $catDislikesYou * 1.5>>
@@ -24,6 +26,7 @@ title: OnClickedMonitorDay4
 position: -128,-338
 ---
 <<hide_all_ui_objects>>
+<<hide MonitorOffDay4>>
 <<show MonitorOn>>
 Then, I power on the monitor.
 The comms buffer loads slowly. HQ digest, mission parameters, the usual.
@@ -226,7 +229,6 @@ position: 647,450
 <<stop_voice_blip Cat>>
 <<hide_all_objects>>
 <<show Stars>>
-<<show Sitting>>
 I move to the viewport and find the star. It's there, as always. The dark spot in its center like a pupil staring back.
 <<start_voice_blip Cat>>
 <<show_character Cat Sad right>>

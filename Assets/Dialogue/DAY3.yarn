@@ -25,6 +25,7 @@ title: OnClickedMonitorDay3
 position: -128,-338
 ---
 <<hide_all_ui_objects>>
+<<hide MonitorOffDay3>>
 <<show MonitorOn>>
 I power on the monitor. The usual HQ digest loads. Mission parameters unchanged, supply inventory nominal, another reminder about reporting protocols.
 But underneath the routine, the comms buffer has a new entry.
@@ -508,7 +509,7 @@ The stars outside begin to streak, then smear, then disappear entirely. The view
             The darkness takes me without resistance. I was always heading here. Every choice, every report, every sleepless night was just a longer route to the same inevitable point.
             I wonder if my father felt this too, right at the end. The quiet relief of not having to pretend anymore.
         <<endif>>
-    -> (close your eyes)
+    -> (close my eyes)
         I shut my eyes before the nothing can reach them. As if that changes anything.
         <<if $posSelfPerception > $negSelfPerception>>
             <<set $posSelfPerception += 1>>

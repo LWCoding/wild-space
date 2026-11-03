@@ -480,7 +480,7 @@ More shuffling. The feed flickers. {$catName} opens their mouth as if to say som
 <<play_music MainTheme>>
 The transmission cuts off. Whatever was happening on their end, they're gone.
 <<set $charactersSecured += 1>>
-Your device receives a strange series of pings afterwards, and the screen flickers back to static. {$catName} is gone.
+My device receives a strange series of pings afterwards, and the screen flickers back to static. {$catName} is gone.
 <<jump ThinkingAfterCatLeaves>>
 ===
 

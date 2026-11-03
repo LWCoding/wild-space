@@ -20,6 +20,7 @@ title: OnClickedMonitorDay2
 position: 85,114
 ---
 <<hide_all_ui_objects>>
+<<hide MonitorOffDay2>>
 <<show MonitorOn>>
 I power the monitor on, expecting the comfort of routine. The same checklist, the same empty horizon, the same report no one reads.
 <<play_sound Glitch 0.25>>
@@ -461,12 +462,6 @@ position: 915,330
 <<show PCRoom>>
 <<show_ui TypeToInteract>>
 <<show MonitorDontReportDay2>>
-===
-
-title: ReportedCatDay2_GameOver
-position: 915,370
----
-<<jump ForeverAlone>>
 ===
 
 title: DreamCollegeDay2
