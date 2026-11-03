@@ -151,6 +151,9 @@ With my expertise, I think I can adjust the frequency and let the signal through
             -> (try to find the signal again)
                 I fiddle with the dials and knobs, trying to find the signal again.
 <<hide_all_objects>>
+<<show PCRoom>>
+<<show MonitorOn>>
+<<show MonitorSilhouette>>
 <<show_character Cat Obscure right>>
 Suddenly, the same character from before reappears on the screen.
     -> (get it over with. let the signal through.)
@@ -377,6 +380,7 @@ The cabin falls silent again as the static fades back into the background hum.
 I slip back into the same routine: filling out reports, heating up rations, staring at the same metal walls.
 <<wait 1.5>>
 Days blur together in a dull loop. Sometimes I have to check the logs just to remember how long I've been out here.
+<<hide_all_objects>>
 <<show Stars>>
 <<show Sitting>>
 Out here, time stretches until it feels like I've been alone on this ship for months.
