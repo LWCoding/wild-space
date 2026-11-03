@@ -1,26 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Yarn.Unity;
 
 /// <summary>
-/// Data structure for character information including character GameObject, UI, and yarn variable names
+/// Data structure for character information including character GameObject
 /// </summary>
 [System.Serializable]
 public class CharacterInfo
 {
     [Header("Character Assignment")]
     public GameObject characterObject;
-    
-    [Header("UI Icon Assignment")]
-    public UICharacterIcon icon;
-    
-    [Header("Yarn Variable Names")]
-    public string likeVariableName;  // e.g., "catLikesYou"
-    public string dislikeVariableName;  // e.g., "catDislikesYou"
 }
 
 /// <summary>
-/// Manager that handles character visibility and UI icon management.
+/// Manager that handles character visibility.
 /// Characters are pre-made in the scene, not spawned at runtime.
 /// </summary>
 public class CharacterManager : MonoBehaviour
@@ -35,18 +27,14 @@ public class CharacterManager : MonoBehaviour
     [SerializeField] private Transform leftFarAnchor;
     [SerializeField] private Transform rightFarAnchor;
 
-    private DialogueRunner dialogueRunner;
-
     void Start()
     {
-        dialogueRunner = FindObjectOfType<DialogueRunner>();
-        
-        // Hide all characters and their UI icons by default
+        // Hide all characters by default
         InitializeCharacters();
     }
 
     /// <summary>
-    /// Initializes all characters and their UI icons to be hidden by default
+    /// Initializes all characters to be hidden by default
     /// </summary>
     private void InitializeCharacters()
     {
@@ -61,21 +49,15 @@ public class CharacterManager : MonoBehaviour
                     spriteRenderer.enabled = false;
                 }
             }
-
-            if (charInfo?.icon != null)
-            {
-                // Hide the UI icon
-                charInfo.icon.Hide();
-            }
         }
     }
 
     /// <summary>
-    /// Shows a character by enabling their sprite and UI icon
+    /// Shows a character by enabling their sprite
     /// Called from Character.cs ShowCharacter method
     /// </summary>
     /// <param name="characterName">Name of the character to show</param>
-    /// <param name="expression">Expression name to check for "Obscure"</param>
+    /// <param name="expression">Expression name</param>
     public void ShowCharacter(string characterName, string expression)
     {
         CharacterInfo charInfo = GetCharacterInfo(characterName);
@@ -90,21 +72,10 @@ public class CharacterManager : MonoBehaviour
                 spriteRenderer.enabled = true;
             }
         }
-
-        // Show and update the UI icon ONLY if the expression doesn't contain "Obscure"
-        if (charInfo.icon != null && !expression.Contains("Obscure"))
-        {
-            // Get like and dislike counts from yarn variables
-            int likes = GetYarnVariable(charInfo.likeVariableName);
-            int dislikes = GetYarnVariable(charInfo.dislikeVariableName);
-            
-            // Show the icon with like/dislike counts
-            charInfo.icon.Show(likes, dislikes);
-        }
     }
 
     /// <summary>
-    /// Hides a character by disabling their sprite and UI icon
+    /// Hides a character by disabling their sprite
     /// Called from Character.cs HideCharacter method
     /// </summary>
     /// <param name="characterName">Name of the character to hide</param>
@@ -121,36 +92,6 @@ public class CharacterManager : MonoBehaviour
             {
                 spriteRenderer.enabled = false;
             }
-        }
-
-        // Hide the UI icon
-        if (charInfo.icon != null)
-        {
-            charInfo.icon.Hide();
-        }
-    }
-
-    /// <summary>
-    /// Gets a Yarn variable value as an integer
-    /// </summary>
-    /// <param name="variableName">Name of the variable (without $ prefix)</param>
-    /// <returns>Variable value as integer, 0 if not found</returns>
-    private int GetYarnVariable(string variableName)
-    {
-        if (dialogueRunner?.VariableStorage == null || string.IsNullOrEmpty(variableName))
-        {
-            return 0;
-        }
-
-        // Get as float (Yarn stores numbers as floats)
-        if (dialogueRunner.VariableStorage.TryGetValue<float>($"${variableName}", out float floatValue))
-        {
-            return Mathf.RoundToInt(floatValue);
-        }
-        else
-        {
-            // Variable doesn't exist yet, return 0
-            return 0;
         }
     }
 
@@ -191,11 +132,6 @@ public class CharacterManager : MonoBehaviour
                 {
                     spriteRenderer.enabled = false;
                 }
-            }
-
-            if (charInfo?.icon != null)
-            {
-                charInfo.icon.Hide();
             }
         }
         Debug.Log("Hid all characters");

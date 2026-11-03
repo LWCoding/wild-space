@@ -17,6 +17,7 @@ public class SelfPerceptionTracker : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float intensityPerPoint = 0.1f; // 10% per point
     [SerializeField] private float minimumIntensity = 0.35f; // Minimum vignette intensity
+    [SerializeField] private float maximumIntensity = 0.75f;  // Maximum vignette intensity
     [SerializeField] private float transitionDuration = 0.5f; // Duration for smooth vignette transitions
     
     // Variable names in Yarn
@@ -158,7 +159,7 @@ public class SelfPerceptionTracker : MonoBehaviour
         float intensity = (lastNegSelfPerception - lastPosSelfPerception) * intensityPerPoint;
         
         // Add minimum intensity and clamp
-        targetIntensity = Mathf.Clamp(intensity + minimumIntensity, minimumIntensity, 0.75f);
+        targetIntensity = Mathf.Clamp(intensity + minimumIntensity, minimumIntensity, maximumIntensity);
         
         // If immediate, set the intensity directly without transition
         if (immediate)

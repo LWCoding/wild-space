@@ -1,0 +1,67 @@
+title: TrueEnd
+---
+<<stop_voice_blip Cat>>
+<<show_character Cat Happy right>>
+<<start_voice_blip Cat>>
+{$catName}: You... you really...
+<<show_character Cat Happy2 right>>
+{$catName}: Okay! Okay. I go now. I take ship. You set course. The quiet planet. Near the star.
+{$catName}: The coordinate... I send to your navigation system. You will see.
+<<show_character Cat Happy right>>
+{$catName}: {$catThinksPlayerNameIs}... thank you. For choosing me. For choosing us.
+<<show_character Cat Sad right>>
+{$catName}: I am scared. But for first time... it good scared. The kind that mean something real is starting.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<play_sound Glitch 0.25>>
+<<hide MonitorSilhouette>>
+<<hide_all_objects>>
+<<show PCRoom>>
+<<show MonitorOn>>
+The transmission ends. My hands are shaking.
+I pull up the navigation console. New coordinates sit in the system, tagged with {$catName}'s frequency. A small planet, orbiting close to the star I was sent to study.
+I stare at the mission parameters on screen. The ones I've followed for {$daysPassed} days. The ones nobody reads.
+    -> (override the mission course)
+<<hide_all_objects>>
+<<show Stars>>
+<<show Sitting>>
+I type the override code. The ship groans as the engines adjust, plotting a new trajectory.
+The old course dissolves from the navigation display. Earth's mission, Earth's star, Earth's expectations. Gone.
+I think about my mother at the kitchen table. My father and his compass. The career counselor's empty smile. Every person who looked at me and saw someone else.
+Then I think about {$catName}. About breakfasts and ship hums and puzzles and a voice that never asked me to be anything other than what I am.
+<<fade_transition 3>>
+<<wait 2>>
+<<stop_music>>
+<<hide_all_objects>>
+<<show Stars>>
+The journey takes weeks. I don't enter cryosleep. I want to be awake for all of it.
+The star grows larger in the viewport. And as it does, something strange happens.
+The dark spot... shifts. It doesn't shrink like it should at this angle. It moves. Slightly, almost imperceptibly, but it moves.
+I run every scan I have. The readings don't make sense. The dark spot isn't a gap in the star. It's something in front of it. Something round, something solid, something cloaked.
+The coordinates {$catName} sent me. I pull them up against the navigation overlay.
+They match. Exactly.
+The dark spot is {$catName}'s planet.
+I sit with that for a long time. An entire civilization, hidden behind a cloak that bends light around it, tucked against a star so nobody would ever look twice. That's why the previous expeditions never found anything. That's why my father's mission ended in silence. There was never an anomaly. There was a planet that didn't want to be found.
+And the reason it became visible, the reason Earth detected the "dark spot" and sent seven expeditions to investigate... was {$catName}. Their transmissions. Every message, every ping, every "STILL HERE" punched a tiny hole in the cloaking field. Enough to let a sliver of shadow through. Enough for a telescope on the other side of the galaxy to notice something wrong with a distant star.
+{$catName} broke the sky open just by trying to talk to someone.
+The cloak is failing now. I can see the planet's surface through the gaps. Green and amber, wrapped in thin clouds, glowing softly with its own light.
+A second ship, shaped like nothing I've ever seen, is already in orbit. Waiting.
+The comms panel crackles one last time.
+<<show_character Cat Happy2 right>>
+<<start_voice_blip Cat>>
+{$catName}: You came.
+<<stop_voice_blip Cat>>
+<<hide_all_characters>>
+<<hide_all_objects>>
+<<show ScreenBlocker>>
+We land on the same day. Different ships, different atmospheres, different bodies built for different gravity.
+The air is breathable. The ground is soft. The sky is a color I don't have a word for.
+{$catName} is smaller than I imagined. Or maybe I'm taller than they expected. We stand ten feet apart for a long time, just looking.
+Then {$catName} takes a step. Then another.
+And I take one too.
+Neither of us will ever go home. But for the first time, that word doesn't mean a place.
+It means this.
+<b>ENDING 5/5: True Ending</b>
+<<detour End>>
+<<the_end "ENDING 5/5: True Ending">>
+===

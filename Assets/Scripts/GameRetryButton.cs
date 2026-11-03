@@ -139,7 +139,6 @@ public class GameRetryButton : MonoBehaviour
         
         // Boolean flags
         storage.SetValue("$dogKnowsPlayerName", false);
-        storage.SetValue("$catSecured", false);
         storage.SetValue("$dogSecured", false);
         storage.SetValue("$opossumSecured", false);
         storage.SetValue("$birdSecured", false);

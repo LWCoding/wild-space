@@ -1,18 +1,3 @@
-title: ForeverAlone
----
-<<hide_all_objects>>
-<<hide_all_ui_objects>>
-<<hide_all_characters>>
-<<show ScreenBlocker>>
-I never made prolonged contact with any of the aliens.
-Feeling isolated, I report my findings to HQ in the most objective way possible. After this, I never hear from the aliens again.
-I live my life out on my ship, never quite feeling at peace with what happened. I never talk to anyone again. And nobody ever comes to check on me.
-I'm not even sure if the aliens were real to begin with.
-<b>ENDING 5/5: Forever Alone</b>
-<<detour End>>
-<<the_end "ENDING 5/5: Forever Alone">>
-===
-
 title: ForeverAloneNoContact
 ---
 <<hide_all_objects>>
@@ -22,7 +7,7 @@ title: ForeverAloneNoContact
 I ignored all of the strange signals I received that day.
 Feeling isolated, I later get a report from HQ about strange transmissions in my area of space. Not having proof of the communications, I have no findings to report to HQ.
 Disappointed, they relocate me to routine patrols in a less-important remote sector of space. I never talk to anyone again. And nobody ever comes to check on me.
-<b>ENDING 5/5: Forever Alone</b>
+<b>ENDING 1/5: Forever Alone</b>
 <<detour End>>
-<<the_end "ENDING 5/5: Forever Alone">>
+<<the_end "ENDING 1/5: Forever Alone">>
 ===
